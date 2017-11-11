@@ -104,20 +104,22 @@ pro BandAlignment_SetUpSensorForProcessing, PARAMETERS = parameters
           ;attempt to extract the reflectance panels
           if parameters.hasKey('MAX_PIXEL_VALUE') AND parameters.hasKey('MAX_VALUE_DIVISOR') then begin
             get_reflectance_panels,$
+              GROUP = panelGroups[keys[0]], $
               MAX_PIXEL_VALUE = parameters.MAX_PIXEL_VALUE,$
               MAX_VALUE_DIVISOR = parameters.MAX_VALUE_DIVISOR,$
-              GROUP = panelGroups[keys[0]], $
               PANEL_REFLECTANCE = parameters.PANEL_REFLECTANCE,$
               PANEL_IES = panel_ies,$
               PANEL_MEANS = panel_means, $
-              PANEL_STDDEVS = panel_stddevs
+              PANEL_STDDEVS = panel_stddevs,$
+              SENSOR = parameters.SENSOR
           endif else begin
             get_reflectance_panels,$
               GROUP = panelGroups[keys[0]], $
               PANEL_REFLECTANCE = parameters.PANEL_REFLECTANCE,$
               PANEL_IES = panel_ies,$
               PANEL_MEANS = panel_means, $
-              PANEL_STDDEVS = panel_stddevs
+              PANEL_STDDEVS = panel_stddevs,$
+              SENSOR = parameters.SENSOR
           endelse
         endif
       endif

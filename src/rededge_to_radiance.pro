@@ -142,10 +142,6 @@ end
 function rededge_to_radiance, file, DAT = dat
   compile_opt idl2
   on_error, 2
-  ;read in the TIFF data if we haven't already passed it in
-  if ~isa(dat, /ARRAY) then begin
-    dat = read_tiff(file)
-  endif
   
   ;read the image metadata
   exif = read_exif(file)
@@ -219,9 +215,14 @@ function rededge_to_radiance, file, DAT = dat
   ;create vignette map of our correction coefficients
   vMap = vmap(vCoeff, dims, X = x, Y = y)
   
+  ;read in the TIFF data if we haven't already passed it in
+  if ~isa(dat, /ARRAY) then begin
+    dat = read_tiff(file)
+  endif
+  
   ;normalize our data
   datNorm = float(dat - darkLevel)/(2.0^bits)
   
   ;convert to radiance
-  rad = vmap*float((cal[0]/gain)*(datNorm/(exposuretime + cal[1]*y - cal[2]*exposureTime*y)))
+  return, vmap*float((cal[0]/gain)*(datNorm/(exposuretime + cal[1]*y - cal[2]*exposureTime*y)))
 end

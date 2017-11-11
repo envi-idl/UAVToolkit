@@ -52,69 +52,11 @@ pro get_reflectance_panels, $
   MAX_PIXEL_VALUE = max_pixel_value,$
   MAX_VALUE_DIVISOR = max_value_divisor,$
   PANEL_REFLECTANCE = panel_reflectance,$
-  PANEL_IES = panel_ies,$
-  PANEL_MEANS = panel_means, $
-  PANEL_STDDEVS = panel_stddevs
+  PANEL_INFO = panel_info,$
+  SENSOR = sensor
   compile_opt idl2, hidden
 
-  e = envi(/current)
-  if (e eq !NULL) then e = envi(/headless)
-  print, 'Getting reflectance panel calibration information...'
-
-  ;set some defaults for keywords
-  if ~keyword_set(bitdepth) then bitdepth = 12
-  nbands = n_elements(group)
-
-  ;check the value of grayscale
-  if ~keyword_set(panel_reflectance) then begin
-    panel_reflectance = 100d
-  endif else begin
-    panel_reflectance = double(panel_reflectance)
-    panel_reflectance >= 0
-    panel_reflectance <= 100
-  endelse
-
-  ;pick the first group
-
-  ;get the data and metadata information
-  print, '  Getting band data and camera information...'
-  panel_ies = make_array(nbands, TYPE=5)
-  for i=0, nBands-1 do begin
-    ;openr aster and get metadata
-    raster = e.openraster(group[i])
-    meta = read_exif(group[i])
-    panel_ies[i] = meta.ISOSpeed*meta.ExposureTime
-    
-    ;extract pixels, allocate array if first image (assume all are same size)
-    if (i eq 0) then begin
-      dat = raster.getData()
-      dims = size(dat, /DIMENSIONS)
-      all_bands = make_array(dims[0], dims[1], nBands, TYPE = dat.typecode)
-      all_bands[*,*,i] = dat
-    endif else begin
-      all_bands[*,*,i] = raster.getData()
-    endelse
-    
-    ;close raster again
-    raster.close
-  endfor
-
-  ;check if we need to perform any scaling if over a certain pixel threshold
-  if keyword_set(max_pixel_value) AND keyword_set(max_value_divisor) then begin
-    ;check the maximum data value
-    ;convert read incorrectly if
-    maxval = max(all_bands)
-
-    ;check if we are higher than we need to be for the data
-    if (maxval gt max_pixel_value) then begin
-      print, '  Image has data type for 16 bit integers, maximum value of 4095 expected so dividing by 16'
-      all_bands = temporary(all_bands)/max_value_divisor
-    endif
-  endif
-
-  ;make a copy of the data for masking
-  masked = all_bands
-
+  ;hard coded parameters
   ;set a threshold for the region size (square pixels)
   size_min = 7500
 
@@ -123,8 +65,46 @@ pro get_reflectance_panels, $
   niter = 8 ;number of iterations to shrink areas next to black pixels
   stddev_mult = 10 ;for growing the panel region
 
-  panel_means = make_array(nbands, TYPE=4)
-  panel_stddevs = make_array(nbands, TYPE=4)
+  e = envi(/current)
+  if (e eq !NULL) then begin
+    message, 'ENVI has not been started yet, requried!'
+  endif
+  print, 'Getting reflectance panel calibration information...'
+
+  ;set some defaults for keywords
+  nBands = n_elements(group)
+
+  ;initialize the panel information
+  panel_info = dictionary()
+
+  ;check the value of grayscale
+  if ~keyword_set(panel_reflectance) then begin
+    panel_reflectance = fltarr(nBands) + 100.0
+  endif else begin
+    panel_reflectance = fltarr(nBands) + fltarr(panel_reflectance)
+    panel_reflectance >= 0
+    panel_reflectance <= 100
+  endelse
+
+  ;lets read in all of the data for our group
+  all_bands = calibrate_data(group, $
+    MAX_PIXEL_VALUE = max_pixel_value, $
+    MAX_VALUE_DIVISOR = max_value_divisor,$
+    OUTPUT_GAINS = gains,$
+    OUTPUT_OFFSETS = offsets,$
+    /PTR_ARR,$
+    SENSOR = sensor,$
+    WAS_CALIBRATED = wasCalibrated)
+  
+  ;save the gains and offsets (either ones and zeros respectively, or the ISO*exposure)
+  panel_info['GAINS'] = gains
+  panel_info['OFFSETS'] = offsets
+
+  ;simple flag if we were successful or not at calibrating our data
+  success = 0
+
+  panel_means = make_array(nBands, TYPE=4)
+  panel_stddevs = make_array(nBands, TYPE=4)
 
   ;outfile for creating a GIF
 ;  outfile = inputdir + path_sep() + 'panel_locations.gif'
@@ -132,7 +112,7 @@ pro get_reflectance_panels, $
 
   print, string(9b) + 'Finding reflectance panels in the images...'
   for i=0, nbands-1 do begin
-    banddat = all_bands[*,*,i]
+    banddat = *all_bands[i]
     band_mean = mean(banddat)
     band_stddev = stddev(banddat)
 
@@ -198,20 +178,21 @@ pro get_reflectance_panels, $
     if (n_elements(regions) eq 0) then message, 'No regions found!'
 
     ;convert lists to arrays and get the relative errors for stddev and mean pixel values
-    regions = regions.toarray()
-    npx = npx.toarray()
-    stddevs = stddevs.toarray()
-    means = means.toarray()
+    regions = regions.toArray()
+    npx = npx.toArray()
+    stddevs = stddevs.toArray()
+    means = means.toArray()
     rel_errors = stddevs/means
 
     ;get the region with the most pixels, after shrinking regions, the max should be the panel
-    panel = (regions[where(npx eq npx.max())])[0]
+    panel = (regions[where(npx eq max(npx))])[0]
+
     ;get the original data since we have manipulated our current data a lot
     banddat = all_bands[*,*,i]
+    
     ;grow the region to try and fill the entire reflectance panel
     idx = where(label eq panel)
-    panel_pixels = region_grow(banddat, idx, $
-      STDDEV_MULTIPLIER=stddev_mult)
+    panel_pixels = region_grow(banddat, idx, STDDEV_MULTIPLIER = stddev_mult)
 
     panel_means[i] = mean(banddat[panel_pixels] * (100d/panel_reflectance))
     panel_stddevs[i] = stddev(banddat[panel_pixels] * (100d/panel_reflectance))
@@ -220,7 +201,7 @@ pro get_reflectance_panels, $
     print, '    Found panel ' + strtrim(i+1,2) + '!'
     print, '    Number of pixels in panel   : [ ' + strtrim(n_elements(idx),2) + ' ]'
     print, '    Mean of pixels in panel     : [ ' + strtrim(panel_means[i],2) + ' ]'
-    print, '    Stddev of pixels in panel   : [ ' + strtrim( panel_stddevs[i],2) + ' ]'
+    print, '    Stddev of pixels in panel   : [ ' + strtrim(panel_stddevs[i],2) + ' ]'
     print, ''
 
 
@@ -243,6 +224,8 @@ pro get_reflectance_panels, $
     ;          /multiple, repeat_count = 0
   endfor
 
+
+  stop
   ; Close the file and window
   ;    WRITE_GIF, outpath, /CLOSE
   print, 'Found all reflectance panels!'
