@@ -100,36 +100,25 @@ pro BandAlignment_SetUpSensorForProcessing, PARAMETERS = parameters
         if (n_elements(panelGroups) gt 0) then begin
           ;get the keys for our groups
           keys = panelGroups.keys()
-
+          
+          ;check if we have max valules to set
+          maxFlag = parameters.hasKey('MAX_PIXEL_VALUE') AND parameters.hasKey('MAX_VALUE_DIVISOR')
+          
           ;attempt to extract the reflectance panels
-          if parameters.hasKey('MAX_PIXEL_VALUE') AND parameters.hasKey('MAX_VALUE_DIVISOR') then begin
-            get_reflectance_panels,$
-              GROUP = panelGroups[keys[0]], $
-              MAX_PIXEL_VALUE = parameters.MAX_PIXEL_VALUE,$
-              MAX_VALUE_DIVISOR = parameters.MAX_VALUE_DIVISOR,$
-              PANEL_REFLECTANCE = parameters.PANEL_REFLECTANCE,$
-              PANEL_IES = panel_ies,$
-              PANEL_MEANS = panel_means, $
-              PANEL_STDDEVS = panel_stddevs,$
-              SENSOR = parameters.SENSOR
-          endif else begin
-            get_reflectance_panels,$
-              GROUP = panelGroups[keys[0]], $
-              PANEL_REFLECTANCE = parameters.PANEL_REFLECTANCE,$
-              PANEL_IES = panel_ies,$
-              PANEL_MEANS = panel_means, $
-              PANEL_STDDEVS = panel_stddevs,$
-              SENSOR = parameters.SENSOR
-          endelse
+          panel_info = get_reflectance_panels(panelGroups[keys[0]], parameters.SENSOR,$
+            MAX_PIXEL_VALUE = maxFlag ? parameters.MAX_PIXEL_VALUE : !NULL,$
+            MAX_VALUE_DIVISOR = maxFlag ? parameters.MAX_VALUE_DIVISOR : !NULL,$
+            PANEL_REFLECTANCE = parameters.PANEL_REFLECTANCE)
+          
+          ;save the panel information
+          save, panel_info, FILENAME = parameters.PANELDIR + path_sep() + 'panel_info.sav'
         endif
       endif
 
       ;extract scale factors for each group
       get_co_calibration, $
         GROUPS = groups,$
-        REFERENCE_IES = panel_ies,$
-        REFERENCES_MEANS = panel_means,$
-        REFERENCE_STDDEVS = panel_stddevs
+        PANEL_INFO = panel_info
     endif
 
     ;apply our reference tiepoints to our image groups

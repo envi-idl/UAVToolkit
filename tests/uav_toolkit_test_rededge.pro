@@ -12,7 +12,7 @@
 ;
 ; :Author: Zachary Norman - GitHub: znorman-harris
 ;-
-pro testRededge
+pro uav_toolkit_test_rededge
   compile_opt idl2
   on_error, 2
   
@@ -22,7 +22,7 @@ pro testRededge
   ;this folder should be the one that contains the unzipped contents of the sample data.
   flightDir = dialog_pickfile(/DIRECTORY)
 
-  if ~file_test(flightDir) then begin
+  if ~file_test(flightDir, /DIRECTORY) then begin
     message, 'flightDir does not exist!
   endif
 
@@ -36,7 +36,7 @@ pro testRededge
   newPath = !PATH + path_sep(/SEARCH_PATH) + '+' + parentDir
   pref_set, 'IDL_PATH', newPath, /COMMIT
   
-  ;reset search path
+  ;reset search path to original if error happened
   catch, err
   if (err ne 0) then begin
     catch, /CANCEL
@@ -50,5 +50,9 @@ pro testRededge
   ;create our batch task
   rededgeTask = ENVITask('UAVBatchRedEdge')
   rededgeTask.FLIGHTDIR = flightdir
+  rededgetask.PANEL_REFLECTANCE = [67, 69, 68, 67, 61]
   rededgeTask.execute
+  
+  ;succeeded so reset our path back to the original
+  pref_set, 'IDL_PATH', pathOrig, /COMMIT
 end

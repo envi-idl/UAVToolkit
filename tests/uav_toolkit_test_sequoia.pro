@@ -12,7 +12,7 @@
 ;
 ; :Author: Zachary Norman - GitHub: znorman-harris
 ;-
-pro testSequoia
+pro uav_toolkit_test_sequoia
   compile_opt idl2
   on_error, 2
 
@@ -22,7 +22,7 @@ pro testSequoia
   ;this folder should be the one that contains the unzipped contents of the sample data.
   flightDir = dialog_pickfile(/DIRECTORY)
 
-  if ~file_test(flightDir) then begin
+  if ~file_test(flightDir, /DIRECTORY) then begin
     message, 'flightDir does not exist!
   endif
 
@@ -54,4 +54,7 @@ pro testSequoia
   alignTask.GENERATE_REFERENCE_TIEPOINTS = 0
   alignTask.APPLY_REFERENCE_TIEPOINTS = 1
   alignTask.execute
+  
+  ;succeeded so reset our path back to the original
+  pref_set, 'IDL_PATH', pathOrig, /COMMIT
 end

@@ -19,17 +19,15 @@
 ;        ;initialize the uav_toolkit
 ;        uav_toolkit
 ;    
-;        ;main level program - make sure that your path has been updated with the UAV Toolkit
-;        ;this folder should be the one that contains the unzipped contents of the sample data.
+;        ;specify our flight folder (contains data folder '000')
 ;        flightdir = 'C:\data\rededge'
 ;    
 ;        ;create our batch task
 ;        rededgeTask = ENVITask('UAVBatchRedEdge')
 ;        rededgeTask.FLIGHTDIR = flightdir
-;        rededgeTask.BAND_ALIGNMENT_TASK = band_alignment_task
 ;        rededgeTask.execute
 ;  
-;    Here is an example for how you can use this routine directly. Processing with a task is preferable:
+;    Here is an example for how you can use this routine directly. Processing with the task is preferable:
 ;    
 ;        ;start ENVI headlessly
 ;        e = envi(/HEADLESS)
@@ -37,7 +35,7 @@
 ;        ;initialize the uav_toolkit
 ;        uav_toolkit
 ;    
-;        ;specify our flight folder (contains 000)
+;        ;specify our flight folder (contains data folder '000')
 ;        flightdir = 'C:\data\rededge'
 ;    
 ;        ;initialize our task
@@ -46,18 +44,44 @@
 ;    
 ;        ;generate the reference tiepoints
 ;        batchRedEdge, FLIGHTDIR = flightdir, BAND_ALIGNMENT_TASK = band_alignment_task
+;        
+;    Here is an example of how you can use this routine and specify the percent reflectance of each band with
+;    the reflectance panels:
+;
+;        ;start ENVI headlessly
+;        e = envi(/HEADLESS)
+;
+;        ;initialize the uav_toolkit
+;        uav_toolkit
+;
+;        ;specify our flight folder (contains data folder '000')
+;        flightdir = 'C:\data\rededge'
+;
+;        ;create our batch task
+;        rededgeTask = ENVITask('UAVBatchRedEdge')
+;        rededgeTask.FLIGHTDIR = flightdir
+;        rededgetask.PANEL_REFLECTANCE = [67, 69, 68, 67, 61]
+;        rededgeTask.execute
 ;
 ;
 ; :Keywords:
+;    BAND_ALIGNMENT_TASK: in, optional, type=ENVITask
+;      Custom task definition for processing the rededge data. A default
 ;    FLIGHTDIR: in, required, type=string
 ;      The directory that contains folders of RedEdge data.
-;    BAND_ALIGNMENT_TASK: in, optional, type=EVNITask
-;      Custom task definition for processing the rededge data. A default
 ;      task is used if not specified.
+;    PANEL_REFLECTANCE: in, optional, type=float, default=70.0
+;      This represents the percent reflectance (0 to 100) of reflectance panel images
+;      that are provided in `PANELDIR`. Specify a single value or an array of values
+;      that represents the percent reflectance of each band of the reflectance panel.
+;      The value should be between 0 and 100. If a scalar is provided, then it is
+;      assumed to be a constant value for each band. The order of this array should
+;      match the `FILE_IDENTIFIERS`. If you are using Sequioa or RedEdge data, then
+;      it is from shortest to longest wavelength.
 ;
 ; :Author: Zachary Norman - GitHub: znorman-harris
 ;-
-pro batchRedEdge, FLIGHTDIR = flightdir, BAND_ALIGNMENT_TASK = band_alignment_task
+pro batchRedEdge, FLIGHTDIR = flightdir, BAND_ALIGNMENT_TASK = band_alignment_task, PANEL_REFLECTANCE = panel_reflectance
   compile_opt idl2
 
   ;start ENVI
@@ -112,7 +136,7 @@ pro batchRedEdge, FLIGHTDIR = flightdir, BAND_ALIGNMENT_TASK = band_alignment_ta
   ; - "_temp"
 
   idx_datadirs = where(~dirs_lc.endsWith('_out') AND ~dirs_lc.endsWith('_temp') AND $
-    ~dirs_lc.endsWith('rigorous'), count_data)
+    ~dirs_lc.endsWith('rigorous') AND ~dirs_lc.endsWith('reflectance_panels'), count_data)
 
   ;check that we have potential directories of data
   if (count_data eq 0) then begin
@@ -163,6 +187,9 @@ pro batchRedEdge, FLIGHTDIR = flightdir, BAND_ALIGNMENT_TASK = band_alignment_ta
     band_alignment_task.APPLY_REFERENCE_TIEPOINTS = 1
   endif
   
+  ;set the panel reflectance
+  band_alignment_task.PANEL_REFLECTANCE = panel_reflectance
+  
   ;make sure that our sensor is correct
   band_alignment_task.SENSOR = 'rededge'
   band_alignment_task.INPUTDIR = datadirs[0]
@@ -170,13 +197,6 @@ pro batchRedEdge, FLIGHTDIR = flightdir, BAND_ALIGNMENT_TASK = band_alignment_ta
   ;run task
   band_alignment_task.execute
 
-;  ;code for simple debugging that will stop on errors
-;  bandalignmenttask, $
-;    SENSOR = 'rededge',$
-;    INPUTDIR = datadirs[0],$
-;    GENERATE_REFERENCE_TIEPOINTS = 1,$
-;    APPLY_REFERENCE_TIEPOINTS = 1
-  
   ;unjoin the micasense data to delete the copies of files we made in the first
   ;numbered directory
   if (n_elements(datadirs) gt 1) then begin

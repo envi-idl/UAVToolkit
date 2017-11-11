@@ -45,6 +45,7 @@
 ; :Author: Zachary Norman - GitHub: znorman-harris
 ;-
 pro BandAlignment_ApplyReferenceTiePointsWithIDL,$
+  BAND_DATA_POINTERS = band_data_pointers,$
   INPUT_RASTER = input_raster,$
   INPUT_BANDALIGNMENTTIEPOINTS = input_BandAlignmentTiePoints,$
   OUTPUT_SPATIALREF = output_spatialref,$
@@ -60,7 +61,8 @@ pro BandAlignment_ApplyReferenceTiePointsWithIDL,$
   endif
   
   ;get number of bands
-  nbands = input_raster.NBANDS
+  nBands = input_raster.NBANDS
+  nPtrs = n_elements(band_data_pointers)
   
   ;make sure that we have RST, otherwise calculate it
   if ~input_BandAlignmentTiePoints.RST_CALCULATED then begin
@@ -72,18 +74,31 @@ pro BandAlignment_ApplyReferenceTiePointsWithIDL,$
   rst = input_BandAlignmentTiePoints.RST_TRANSFORMS
   subs = input_BandAlignmentTiePoints.RST_SUB_RECT
 
-  ;preallocate an array to hold our data for warping
-  ;get the typecode from our input raster by reading a single pixel
-  write_data = make_array(dims[0], dims[1], nbands, $
-    TYPE = (input_raster.GetData(BANDS = 0, SUB_RECT = [0,0,1,1])).TYPECODE, /NOZERO)
+  ;check if we were already provided with our data
+  if (nPtrs eq nBands) then begin
+    ;preallocate an array to hold our data for warping
+    ;get the typecode from our input raster by reading a single pixel
+    write_data = make_array(dims[0], dims[1], nbands, $
+      TYPE = ((*band_data_pointers[0])[0]).TYPECODE, /NOZERO)
+  endif else begin
+    ;preallocate an array to hold our data for warping
+    ;get the typecode from our input raster by reading a single pixel
+    write_data = make_array(dims[0], dims[1], nbands, $
+      TYPE = (input_raster.GetData(BANDS = 0, SUB_RECT = [0,0,1,1])).TYPECODE, /NOZERO)
+  endelse
 
   ;register all our bands!
   for i=0,nbands-1 do begin
     ;get the RST transform
     xy1 = *rst[i]
-
-    ;fill our array
-    write_data[*,*,i] = interpolate(input_raster.GetData(BANDS = i), xy1[0,*], xy1[1,*])
+    
+    ;fill our data array with values
+    ;check if we were already provided with our data
+    if (nPtrs eq nBands) then begin
+      write_data[*,*,i] = interpolate(*band_data_pointers[i], xy1[0,*], xy1[1,*])
+    endif else begin
+      write_data[*,*,i] = interpolate(input_raster.GetData(BANDS = i), xy1[0,*], xy1[1,*])
+    endelse
   endfor
 
   ;create a pointer to our image data

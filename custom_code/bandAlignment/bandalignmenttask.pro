@@ -69,8 +69,13 @@
 ;      Set to the number of child processes that you want to process in parallel. Max is 4
 ;      due to licensing.
 ;    PANEL_REFLECTANCE: in, optional, type=float, default=70.0
-;      This represents the percent reflectance (0 to 100) of reflectance panel
-;      images that are provided in `PANELDIR`.
+;      This represents the percent reflectance (0 to 100) of reflectance panel images 
+;      that are provided in `PANELDIR`. Specify a single value or an array of values 
+;      that represents the percent reflectance of each band of the reflectance panel. 
+;      The value should be between 0 and 100. If a scalar is provided, then it is 
+;      assumed to be a constant value for each band. The order of this array should 
+;      match the `FILE_IDENTIFIERS`. If you are using Sequioa or RedEdge data, then 
+;      it is from shortest to longest wavelength.
 ;    PANELDIR: in, optional, default=INPUTDIR/reflectance_panels
 ;      Specify the directory that contains reflectance panels. The default value is
 ;      INPUTDIR/reflectance_panels.
@@ -152,10 +157,10 @@ pro BandAlignmentTask, $
   ;==============================================================================================
   ;set up directories for input/output files
   parameters['INPUTDIR'] = inputdir
-  if (panel_reflectance eq !NULL) then panel_reflectance = 70.0
   parameters['PANEL_REFLECTANCE'] = panel_reflectance
-  if (reflectance_scale_factor eq !NULL) then reflectance_scale_factor = 50000us
+  if (reflectance_scale_factor eq !NULL) then reflectance_scale_factor = 65535us
   parameters['REFLECTANCE_SCALE_FACTOR'] = reflectance_scale_factor
+  parameters.REFLECTANCE_TYPE_CODE = parameters.REFLECTANCE_SCALE_FACTOR.typecode
   if (file_identifiers ne !NULL) then parameters['FILE_IDENTIFIERS'] = file_identifiers
   
   if (paneldir eq !NULL) then paneldir = parameters.INPUTDIR + path_sep() + 'reflectance_panels'
@@ -238,6 +243,8 @@ pro BandAlignmentTask, $
       ;check for other parameter values
       if ~parameters.hasKey('SEARCH_WINDOW_FROM_HEIGHT') then parameters['SEARCH_WINDOW_FROM_HEIGHT'] = 1
       if ~parameters.hasKey('CO_CALIBRATION') then parameters['CO_CALIBRATION'] = 1
+      
+      ;replace with exif['BitsPerSample'] eventually
       if ~parameters.hasKey('MAX_VALUE_DIVISOR') then parameters['MAX_VALUE_DIVISOR'] = 16s
       if ~parameters.hasKey('MAX_PIXEL_VALUE') then parameters['MAX_PIXEL_VALUE'] = 4095
     end
@@ -290,6 +297,13 @@ pro BandAlignmentTask, $
   parameters['MINIMUM_FILTERED_TIEPOINTS'] = minimum_filtered_tiepoints
 
 
+  ;do some error checking
+  if (panel_reflectance eq !NULL) then panel_reflectance = 70.0 else begin
+    if (n_elements(panel_reflectance) gt 1) AND (n_elements(panel_reflectance) ne n_elements(parameters['FILE_IDENTIFIERS'])) then begin
+      message, 'Number of elements of PANEL_REFLECTANCE does not match the number of bands, required!'
+    endif
+  endelse
+
   ;==============================================================================================
   ;generating GPS file
   if keyword_set(get_gps) then begin
@@ -313,6 +327,7 @@ pro BandAlignmentTask, $
 ;    p = dialog_message(err_txt)
 ;    return
 ;  endif
+
   
   ;set up preferences for and children processes that we might start up
   if thisfile.endswith('.sav') then begin

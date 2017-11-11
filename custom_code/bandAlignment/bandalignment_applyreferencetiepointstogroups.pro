@@ -9,6 +9,48 @@
 ;-
 
 
+pro BandAlignment_GetTIFFKeywords, typecode, LNG = lng, SIGNED = signed, L64 = l64, DBL = dbl, FLT = flt, SHORT = short
+  compile_opt idl2
+  on_error, 2
+  
+  ;set defaults
+  lng = 0
+  signed = 0
+  l64 = 0
+  dbl = 0
+  flt = 0
+  short = 0
+  
+  case typecode of
+    ;unsigned long
+    13: lng = 1
+    ;signed long
+    3:begin
+      lng = 1
+      signed = 1
+    end
+    ;unsigned 64 bit long
+    15:  l64 = 1
+    ;signed 64 bit long
+    14:begin
+      l64 = 1
+      signed = 1
+    end
+    ;double
+    5:  dbl = 1
+    ;float
+    4:  flt = 1
+    ;signed integer
+    2:begin
+      short = 1
+      signed = 1
+    end
+    ;unsigned integer
+    12: short = 1
+    else: message, 'Unknown type'
+  endcase
+end
+
 
 ;+
 ; :Private:
@@ -163,9 +205,19 @@ pro BandAlignment_ApplyReferenceTiePointsToGroup, group, groupName, parameters
     e = envi(/headless)
   endif
 
+  ;check if we have max valules to set
+  maxFlag = parameters.hasKey('MAX_PIXEL_VALUE') AND parameters.hasKey('MAX_VALUE_DIVISOR')
+
+  ;read in and apply corrections to calibrate our data
+  ;this will vary by sensor and defaults to correcting for sensor
+  ;dynamic range
+  band_ptrs = uav_toolkit_calibrate_data(group, parameters.SENSOR, /PTR_ARR, $
+    MAX_PIXEL_VALUE = maxFlag ? parameters.MAX_PIXEL_VALUE : !NULL,$
+    MAX_VALUE_DIVISOR = maxFlag ? parameters.MAX_VALUE_DIVISOR : !NULL)
+
   ;convert out groups into a raster
   raster = bandAlignment_group_to_virtualRaster(group)
-  nbands = raster.NBANDS
+  nBands = raster.NBANDS
 
   ;specify the expected tiepoints file
   pointsFile = parameters.POINTS_FILE
@@ -175,13 +227,11 @@ pro BandAlignment_ApplyReferenceTiePointsToGroup, group, groupName, parameters
 
   ;register our tiepoints with one another
   bandAlignment_ApplyReferenceTiepointsWithIDL,$
+    BAND_DATA_POINTERS = band_ptrs,$
     INPUT_RASTER = raster,$
     INPUT_BANDALIGNMENTTIEPOINTS = tiePoints,$
     OUTPUT_SPATIALREF = outSref,$
     OUTPUT_DATA_POINTER = datPtr
-
-  ;get the data we want to write to disk
-  write_data = *datPtr
 
   ;check if we want to perform a secondary image-image registration to line our scenes up
   ;to account for variations in elevation
@@ -190,10 +240,9 @@ pro BandAlignment_ApplyReferenceTiePointsToGroup, group, groupName, parameters
     raster.close
 
     ;save second raster to disk so that we can generate a second set of tiepoints
-    raster = ENVIRaster(write_data, SPATIALREF = outSref)
+    raster = ENVIRaster(*datPtr, SPATIALREF = outSref)
     raster.save
 
-    ;TODO: add code for registration again
     ;generate the reference tie points
     BandAlignment_ProcessSensor_GetReferenceTiePoints,$
       group, parameters, RASTER = raster, $
@@ -208,57 +257,19 @@ pro BandAlignment_ApplyReferenceTiePointsToGroup, group, groupName, parameters
       OUTPUT_DATA_POINTER = datPtr
   endif
 
-  ;determine type of data so that we can write correctly sized TIFF files
-  ;although I bet all sample data is the same, it might be a good idea to use this
-  ;just in case we have a special typecode for an image
-  typecode = write_data.typecode
-  case typecode of
-    ;unsigned long
-    13: lng = 1
-    ;signed long
-    3:BEGIN
-      lng = 1
-      signed = 1
-    END
-    ;unsigned 64 bit long
-    15:  l64 = 1
-    ;signed 64 bit long
-    14:BEGIN
-      l64 = 1
-      signed = 1
-    END
-    ;double
-    5:  dbl = 1
-    ;float
-    4:  flt = 1
-    ;signed integer
-    2:BEGIN
-      short = 1
-      signed = 1
-    END
-    ;unsigned integer
-    12: short = 1
-    ELSE: message, 'Unknown type'
-  endcase
-
-
-  ;check if we need to perform any scaling if over a certain pixel threshold
-  if parameters.hasKey('MAX_PIXEL_VALUE') AND parameters.hasKey('MAX_VALUE_DIVISOR') then begin
-    ;check the maximum data value
-    ;convert read incorrectly if
-    maxval = max(write_data)
-
-    ;check if we are higher than we need to be for the data
-    if (maxval gt parameters.MAX_PIXEL_VALUE) then begin
-      print, '    Image has data type for 16 bit integers, maximum value of 4095 expected so dividing by 16'
-      write_data = temporary(write_data)/parameters.MAX_VALUE_DIVISOR
-    endif
-  endif
-
   ;adjust the data accordingly
   for i=0, nBands-1 do begin
     ;get band data
-    write_this = write_data[*,*,i]
+    write_this = (*datPtr)[*,*,i]
+    
+    ;determine type of data so that we can write correctly sized TIFF files
+    ;although I bet all sample data is the same, it might be a good idea to use this
+    ;just in case we have a special typecode for an image
+    if (i eq 0) then begin
+      typecode = write_this.typecode
+      BandAlignment_GetTIFFKeywords, typecode,$
+        LNG = lng, SIGNED = signed, L64 = l64, DBL = dbl, FLT = flt, SHORT = short
+    endif
 
     ;check for scaling of data
     co_calibration_file = strmid(group[i], 0, strpos(group[i],'.', /REVERSE_SEARCH)) + '_co_calibration.sav'
@@ -269,22 +280,28 @@ pro BandAlignment_ApplyReferenceTiePointsToGroup, group, groupName, parameters
       restore, co_calibration_file
 
       ;scale relative to reference
-      if (cocalibration_constant ne 0) then begin
+      if (cocalibration_constant ne 1.0) then begin
         print, '    Band ' + strtrim(i+1,2) + ' co-calibration constant            :    [ ' + strtrim(cocalibration_constant,2) + ' ] '
         write_this = fix(write_this*cocalibration_constant, TYPE=typecode)
       endif
 
       ;print the reference means from the calibration data and convert our images to reflectance
-      if (reference_means[0] ne -1) then begin
-        print, '    Reflectance panel mean, scaled image max  :    [ ' + strtrim(reference_means[i],2) + ', ' + strtrim(max(write_this),2) + ' ] '
-        write_this = fix(parameters.REFLECTANCE_SCALE_FACTOR*(write_this/reference_means[i]), TYPE=typecode)
+      if (reference_means[0] ne 1.0) then begin
+        ;make sure that our typecodes are correct for the data that we are using
+        if (i eq 0) then begin
+          typecode = parameters.REFLECTANCE_TYPE_CODE
+          BandAlignment_GetTIFFKeywords, typecode,$
+            LNG = lng, SIGNED = signed, L64 = l64, DBL = dbl, FLT = flt, SHORT = short
+        endif
+        print, '    Reflectance panel mean, image max  :    [ ' + strtrim(reference_means[i],2) + ', ' + strtrim(max(write_this),2) + ' ] '
+        write_this = fix((parameters.REFLECTANCE_SCALE_FACTOR*(write_this/reference_means[i])) < parameters.REFLECTANCE_SCALE_FACTOR, TYPE = typecode)
       endif
       
       ;clean up
       file_delete, co_calibration_file, /QUIET
     endif
 
-    ;check if we have a color transform
+    ;check if we have a color transform *****NOT CURRENTLY USED*****
     transform_file = strmid(group[i], 0, strpos(group[i],'.', /REVERSE_SEARCH)) + '_transform.sav'
     if file_test(transform_file) then begin
       ;restore the transform_function which will be in a variable called transform_function
@@ -334,13 +351,29 @@ pro BandAlignment_ApplyReferenceTiePointsToGroup, group, groupName, parameters
       ;        endif
     endif
 
+    ;allocate an array to hold our new data
+    if (i eq 0) then begin
+      if ~keyword_set(parameters.MULTI_CHANNEL) AND ~keyword_set(parameters.MAKE_ENVI_FILE) then begin
+        writeData = ptrarr(nBands)
+      endif else begin
+        dims = size(write_data, /DIMENSIONS)
+        writeData = make_array(dims[0], dims[1], TYPE = typecode)
+      endelse
+    endif
+
     ;save our updates to the data
-    write_data[*,*,i] = write_this
+    if ~keyword_set(parameters.MULTI_CHANNEL) AND ~keyword_set(parameters.MAKE_ENVI_FILE) then begin
+      writeData[i] = ptr_new(write_this, /NO_COPY)
+    endif else begin
+      writeData[*,*,i] = temporary(write_this)
+    endelse
   endfor
 
   ;specify output file
   outfile = parameters.OUTPUT_DIR + path_sep() + groupName + '.tif'
   print, outFile
+  
+  ;validate that the file does not exist already
   if file_test(outFile) then file_delete, outFile, /QUIET
   if file_test(outFile) then begin
     print, '  Cannot create TIFF file, file exists and locked by another program. File: '
@@ -349,8 +382,13 @@ pro BandAlignment_ApplyReferenceTiePointsToGroup, group, groupName, parameters
     ;save our data as a TIFF (multi-channel or multi-page)
     if ~keyword_set(parameters.MULTI_CHANNEL) then begin
       for i=0,nBands-1 do begin
-        write_tiff, outfile, write_data[*,*,i], /APPEND, $
-          LONG = lng, L64 = l64, DOUBLE = dbl, FLOAT = flt, SHORT = short, SIGNED = signed
+        if ~keyword_set(parameters.MAKE_ENVI_FILE) then begin
+          write_tiff, outfile, *writeData[i], /APPEND, $
+            LONG = lng, L64 = l64, DOUBLE = dbl, FLOAT = flt, SHORT = short, SIGNED = signed
+        endif else begin
+          write_tiff, outfile, write_data[*,*,i], /APPEND, $
+            LONG = lng, L64 = l64, DOUBLE = dbl, FLOAT = flt, SHORT = short, SIGNED = signed
+        endelse
       endfor
     endif else begin
       write_tiff, outFile, write_data, $
@@ -424,6 +462,9 @@ pro BandAlignment_ApplyReferenceTiePointsToGroups, groups, parameters
   
   ;get the number of groups
   nGroups = n_elements(groups)
+  
+  ;check if we have few enough groups to simply process single threaded
+  if (nGroups le parameters.NP_GROUPS) then parameters.NP_GROUPS = 1
   
   if (nGroups eq 1) then bonus = '' else bonus = 's'
   print, 'Applying reference tie points...'

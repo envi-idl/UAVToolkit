@@ -35,25 +35,30 @@
 ;-
 pro get_co_calibration, $
   GROUPS = groups,$
-;  REFERENCE_GROUP_NAME = reference_group_name,$
-  REFERENCE_IES = reference_ies,$
-  REFERENCES_MEANS = reference_means,$
-  REFERENCE_STDDEVS = reference_stddevs
+  PANEL_INFO = panel_info
   compile_opt idl2, hidden
 
-  ;zero based number for the reference group
-  if ~keyword_set(reference_means) then reference_means = -1
-  if ~keyword_set(reference_stddevs) then reference_stddevs = -1
-
-  print, 'Found ' + strtrim(n_elements(groups),2) + ' images to calibrate to reference group...'
+  ;extract information from our panel_info
+  wasCalibrated = panel_info.hasKey('WAS_CALIBRATED') ? panel_info.WAS_CALIBRATED : 0
   
+  ;update user
+  if (wasCalibrated) then begin
+    print, 'Generting calibration information for ' + strtrim(n_elements(groups),2) + ' images...'
+  endif else begin
+    print, 'Generting calibration information for ' + strtrim(n_elements(groups),2) + ' images to reference group...'
+  endelse
+
   ;init timer
   tic
-  
+
   ;get info on how many files we need to process
   gNames = groups.keys()
   nPrint = floor(n_elements(gnames)/20) > 10
   nBands = n_elements(groups[gNames[0]])
+  
+  ;extract information from our panel info
+  reference_means = panel_info.hasKey('PANEL_MEANS') ? panel_info.PANEL_MEANS : fltarr(nBands) + 1
+  reference_stddevs = panel_info.hasKey('PANEL_STDDEVS') ? panel_info.PANEL_STDDEVS : fltarr(nBands)
 
   ;check to see if we have a reference group or not
   ;if not pick the first image that we found
@@ -62,30 +67,30 @@ pro get_co_calibration, $
   endif
 
   ;generate relative reference intensity and exposure values if we have not been provided reference information
-  if ~keyword_set(reference_ies) then begin
+  if ~panel_info.hasKey('PANEL_IES') then begin
     ;get the reference exposure and IS) settings
     ;the ISO is the same for all images captured at the same time, but
     ;exposure seems to change from band to band
-    ; ref_ie = reference intensity and exposure
+    ; ref_ie = reference iso and exposure
     ref_imgs = groups[reference_group_name]
     ref_ie = make_array(nbands, TYPE=5, /NOZERO)
-    
+
     ;loop over each band
     for i=0, nbands-1 do begin
       ;extract information
       oImageinfo = image_info(ref_imgs[i], /NO_SPATIALREF)
       res = oImageInfo.Get(['EXPOSURETIME', 'ISO'])
-      
+
       ;check to make sure that we have information for this image
       if ((res.EXPOSURETIME eq -!DPI) OR (res.ISO eq -!DPI)) then begin
         return
       endif
-      
+
       ;save value
       ref_ie[i] =  res.EXPOSURETIME*res.ISO
     endfor
   endif else begin
-    ref_ie = reference_ies
+    ref_ie = panel_info.PANEL_IES
   endelse
 
   ;get the reference ISO and exposure time so that we can correctly calibrate
@@ -96,41 +101,47 @@ pro get_co_calibration, $
   foreach group_name, gNames do begin
     ;init hash to store data
     cocalibration = hash()
-    
+
     ;get the image group
     images = groups[group_name]
-    
+
     ;loop over each image
-    for i=0, nbands-1 do begin
-      ;extract information from our images
-      oImageinfo = image_info(images[i], /NO_SPATIALREF)
-      res = oImageInfo.Get(['EXPOSURETIME', 'ISO'])
-      
-      ;validate that we have the right metadata
-      if ((res.EXPOSURETIME eq -!DPI) OR (res.ISO eq -!DPI)) then begin
-        print, 'Found image without exposure and ISO information so we cannot complete for rest of scene, removing generated files and returning...'
-        cd, inputdir, CURRENT = first_dir
-        files = file_search('*.sav')
-        if (files[0] ne '') then FILE_DELETE, files
-        cd, first_dir
-        return
-      endif
-      
-      ;calcualte the cocalibration constant
-      cocalibration_constant = ref_ie[i]/(res.EXPOSURETIME*res.ISO)
-      
+    for i=0, nBands-1 do begin
+      if (wasCalibrated) then begin
+        cocalibration_constant = 1.0
+      endif else begin
+        ;extract information from our images
+        oImageinfo = image_info(images[i], /NO_SPATIALREF)
+        res = oImageInfo.Get(['EXPOSURETIME', 'ISO'])
+
+        ;validate that we have the right metadata
+        if ((res.EXPOSURETIME eq -!DPI) OR (res.ISO eq -!DPI)) then begin
+          print, 'Found image without exposure and ISO information so we cannot complete for rest of scene, removing generated files and returning...'
+          cd, inputdir, CURRENT = first_dir
+          files = file_search('*.sav')
+          if (files[0] ne '') then FILE_DELETE, files
+          cd, first_dir
+          return
+        endif
+
+        ;calcualte the cocalibration constant
+        cocalibration_constant = ref_ie[i]/(res.EXPOSURETIME*res.ISO)
+      endelse
+
       ;save to disk
       outfile = strmid(images[i], 0, strpos(images[i], '.', /REVERSE_SEARCH)) + '_co_calibration.sav'
       save, cocalibration_constant, reference_means, reference_stddevs, FILENAME = outfile
     endfor
-
+    
+    ;increment counter and check if we want to print to the screen
     gcount++
     if ~(gcount mod nprint) then begin
-      print, '  Calculated ' + strtrim(nbands*gcount,2) + ' of ' + strtrim(nbands*n_elements(gNames),2) + ' co calibration scales'
+      print, '  Calculated ' + strtrim(nbands*gcount,2) + ' of ' + strtrim(nbands*n_elements(gNames),2) + ' calibrations'
       print, '  Approx. time remaining (sec): ' + strtrim((n_elements(gnames)-gcount)*(toc()/gcount),2)
       print
     endif
   endforeach
-
+  
+  ;alert user
   print, 'Finished calculating calibration functions!'
 end

@@ -188,10 +188,10 @@
         {
             "name": "PANEL_REFLECTANCE",
             "displayName": "Panel Reflectance",
-            "description": "This represents the percent reflectance (0 to 100) of reflectance panel images that are provided in PANELDIR.",
+            "description": "This represents the percent reflectance (0 to 100) of reflectance panel images that are provided in PANELDIR. Specify a single value or an array of values that represents the percent reflectance of each band of the reflectance panel. The value should be between 0 and 100. If a scalar is provided, then it is assumed to be a constant value for each band. The order of this array should match the FILE_IDENTIFIERS. If you are using Sequioa or RedEdge data, then it is from shortest to longest wavelength.",
             "direction": "input",
             "parameterType": "optional",
-            "dataType": "float",
+            "dataType": "float[*]",
             "min": 0,
             "max": 100,
             "defaultValue": 70.0
@@ -202,9 +202,9 @@
             "description": "Set this to the scale factor that will be applied to the output imagery so that we don't have to use floating point data for reflectance imagery.",
             "direction": "input",
             "parameterType": "required",
-            "dataType": "long",
+            "dataType": "uint",
             "min": 1,
-            "defaultValue": 50000
+            "defaultValue": 65535
         },
         {
             "name": "REQUESTED_NUMBER_OF_TIEPOINTS",

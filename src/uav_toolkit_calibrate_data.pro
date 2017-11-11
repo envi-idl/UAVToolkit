@@ -1,14 +1,12 @@
-function calibrate_data, group, $
+function uav_toolkit_calibrate_data, group, sensor, $
   BAND_DIMS = band_dims,$
   INPUT_GAINS = input_gains,$
   INPUT_OFFSETS = input_offsets,$
   MAX_PIXEL_VALUE = max_pixel_value, $
   MAX_VALUE_DIVISOR = max_value_divisor,$
   ORIG_DAT = orig_dat, $
-  OUTPUT_GAINS = output_gains,$
-  OUTPUT_OFFSETS = output_offsets,$
+  OUTPUT_IES = output_ies,$
   PTR_ARR = ptr_arr,$
-  SENSOR = sensor,$
   WAS_CALIBRATED = was_calibrated
   compile_opt idl2
   
@@ -24,8 +22,7 @@ function calibrate_data, group, $
   nBands = n_elements(group)
   
   ;initialize gains and offsets
-  output_gains = fltarr(nBands) + 1.0
-  output_offsets = fltarr(nBands)
+  output_ies = fltarr(nBands) + 1.0
   
   ;flag if we need to scale
   scaleFlag = 0
@@ -35,7 +32,11 @@ function calibrate_data, group, $
   succeededPrev = 0
     
   ;copy sensor
-  useSensor = sensor
+  if (sensor ne !NULL) then begin
+    useSensor = strlowcase(sensor)
+  endif else begin
+    useSensor = 'generic'
+  endelse
 
   ;goto statement for starting from scratch if there is an error while calibrating
   ;this adds some rigor to the code and a fail-safe if there are issues
@@ -44,14 +45,14 @@ function calibrate_data, group, $
   ;loop over each file in our group
   foreach file, group, i do begin
     ;check our sensor type
-    switch (useSensor) of
-      ('rededge'):begin
+    switch (1) of
+      (useSensor eq 'rededge'):begin
         ;error catching block in case there are problems
         catch, err
         if (err ne 0) then begin
           catch, /CANCEL
           success = 0
-          useSensor = !NULL
+          useSensor = !NULL ;use generic sensor because there was an error for processing
           ;check if we need to restart or not (restart if we correctly processed one file)
           if (succeededPrev) then begin
             succeededPrev = 0
@@ -76,7 +77,7 @@ function calibrate_data, group, $
       end
 
       ;default cases
-      (!NULL):
+      (useSensor eq !NULL):
       else:begin
         default:
         
@@ -87,7 +88,7 @@ function calibrate_data, group, $
         
         ;extract image metadata and get our gains for our panel
         meta = read_exif(file)
-        output_gains[i] = meta.ISOSpeed*meta.ExposureTime
+        output_ies[i] = meta.ISOSpeed*meta.ExposureTime
         
         ;check if we need to perform any scaling if over a certain pixel threshold
         if keyword_set(max_pixel_value) AND keyword_set(max_value_divisor) then begin
@@ -133,7 +134,7 @@ function calibrate_data, group, $
   ;check if we need to scale our data
   if (scaleFlag) then begin
     if keyword_set(ptr_arr) then begin
-      foreach ptr, all_bands, i do all_bands[i] = *ptr/max_value_divisor
+      foreach ptr, all_bands, i do all_bands[i] = ptr_new(*ptr/max_value_divisor,/NO_COPY)
     endif else begin
       all_bands = temporary(all_bands)/max_value_divisor
     endelse
@@ -142,7 +143,7 @@ function calibrate_data, group, $
   ;check if we have gains to apply
   if (n_elements(input_gains) eq nBands) then begin
     if keyword_set(ptr_arr) then begin
-      foreach ptr, all_bands, i do all_bands[i] = (*ptr)*input_gains[i]
+      foreach ptr, all_bands, i do all_bands[i] = ptr_new((*ptr)*input_gains[i], /NO_COPY)
     endif else begin
       for i=0, nBands-1 do all_bands[*,*,i] *= input_gains[i]
     endelse
@@ -151,7 +152,7 @@ function calibrate_data, group, $
   ;check if we have offsets
   if (n_elements(input_offsets) eq nBands) then begin
     if keyword_set(ptr_arr) then begin
-      foreach ptr, all_bands, i do all_bands[i] = (*ptr) + input_offsets[i]
+      foreach ptr, all_bands, i do all_bands[i] = ptr_new((*ptr) + input_offsets[i], /NO_COPY)
     endif else begin
       for i=0, nBands-1 do all_bands[*,*,i] += input_offsets[i]
     endelse
