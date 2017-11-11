@@ -181,7 +181,7 @@ function get_reflectance_panels, group, sensor, $
   if (1 eq 0) then begin
     failed:
     print, 'Did not find all reflectance panels, defaulting values and using dynamic range correction'
-    panel_means = fltarr(nBands) + 1.0
+    panel_means = fltarr(nBands) + 1.0 
     panel_stddevs = fltarr(nBands)
     panel_counts = lonarr(nBands)
     panel_info['WAS_CALIBRATED'] = 0

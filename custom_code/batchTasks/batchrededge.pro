@@ -23,9 +23,9 @@
 ;        flightdir = 'C:\data\rededge'
 ;    
 ;        ;create our batch task
-;        rededgeTask = ENVITask('UAVBatchRedEdge')
-;        rededgeTask.FLIGHTDIR = flightdir
-;        rededgeTask.execute
+;        redEdgeTask = ENVITask('UAVBatchRedEdge')
+;        redEdgeTask.FLIGHTDIR = flightdir
+;        redEdgeTask.execute
 ;  
 ;    Here is an example for how you can use this routine directly. Processing with the task is preferable:
 ;    
@@ -39,11 +39,11 @@
 ;        flightdir = 'C:\data\rededge'
 ;    
 ;        ;initialize our task
-;        band_alignment_task = ENVITask('UAVBandAlignment')
-;        band_alignment_task.APPLY_REFERENCE_TIEPOINTS = 1
+;        alignTask = ENVITask('UAVBandAlignment')
+;        alignTask.APPLY_REFERENCE_TIEPOINTS = 1
 ;    
 ;        ;generate the reference tiepoints
-;        batchRedEdge, FLIGHTDIR = flightdir, BAND_ALIGNMENT_TASK = band_alignment_task
+;        batchRedEdge, FLIGHTDIR = flightdir, BAND_ALIGNMENT_TASK = alignTask
 ;        
 ;    Here is an example of how you can use this routine and specify the percent reflectance of each band with
 ;    the reflectance panels:
@@ -58,16 +58,18 @@
 ;        flightdir = 'C:\data\rededge'
 ;
 ;        ;create our batch task
-;        rededgeTask = ENVITask('UAVBatchRedEdge')
-;        rededgeTask.FLIGHTDIR = flightdir
-;        rededgetask.PANEL_REFLECTANCE = [67, 69, 68, 67, 61]
-;        rededgeTask.execute
+;        redEdgeTask = ENVITask('UAVBatchRedEdge')
+;        redEdgeTask.FLIGHTDIR = flightdir
+;        redEdgeTask.PANEL_REFLECTANCE = [67, 69, 68, 67, 61]
+;        redEdgeTask.execute
 ;
 ;
 ; :Keywords:
 ;    BAND_ALIGNMENT_TASK: in, optional, type=ENVITask
-;      Custom task definition for processing the rededge data. A default
-;    FLIGHTDIR: in, required, type=string
+;      Custom task definition for processing the rededge data. A default task is used
+;      if none if provided. This allows for customizing any task parameters through a
+;      simple interface.
+;    FLIGHTDIR: in, required, type=string 
 ;      The directory that contains folders of RedEdge data.
 ;      task is used if not specified.
 ;    PANEL_REFLECTANCE: in, optional, type=float, default=70.0

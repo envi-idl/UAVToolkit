@@ -29,7 +29,7 @@
 ;
 ;
 ; :Keywords:
-;    HELP : in, optional, type=boolean, default=false
+;    HELP: in, optional, type=boolean, default=false
 ;       Set this keyword to open up the help contents for the UAV Toolkit. Note that if you move the .sav file
 ;       then IDL may not be able to open up the help contents.
 ;

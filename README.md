@@ -144,12 +144,12 @@ e = envi(/HEADLESS)
 uav_toolkit
 
 ;this folder should be the one that contains the unzipped contents of the sample data.
-flightdir = 'C:\data\rededge'
+flightDir = 'C:\data\rededge'
 
 ;create our batch task
-rededgeTask = ENVITask('UAVBatchRedEdge')
-rededgeTask.FLIGHTDIR = flightdir
-rededgeTask.execute
+redEdgeTask = ENVITask('UAVBatchRedEdge')
+redEdgeTask.FLIGHTDIR = flightDir
+redEdgeTask.execute
 ```
 
 Where `FLIGHTDIR` is the folder that *contains* the RedEdge data.  In other words, `FLIGHTDIR` should contain the folders 000 and 001 as collected by the sensor. These folders must all be from the same sensor and be at approximately the same height off of the ground for the reference tie points to be valid.
@@ -195,6 +195,26 @@ alignTask.APPLY_REFERENCE_TIEPOINTS = 1
 alignTask.execute
 ```
 
+### Custom Percent Reflectance
+
+If you know the percent reflectance (from 0 to 100) of your reflectance panel for each of your bands, you can specify them inidivually with the `PANEL_REFLECTANCE` task parameter for the tasks demonstrated above. Here is an example with the `UAVBatchRedEdge` task:
+
+```idl
+;start ENVI headlessly
+e = envi(/HEADLESS)
+
+;initialize the uav_toolkit
+uav_toolkit
+
+;this folder should be the one that contains the unzipped contents of the sample data.
+flightDir = 'C:\data\rededge'
+
+;create our batch task
+redEdgeTask = ENVITask('UAVBatchRedEdge')
+redEdgeTask.FLIGHTDIR = flightDir
+redEdgeTask.PANEL_REFLECTANCE = [67, 69, 68, 67, 61] ;must be 0 to 100, NOT 0 to 1.0
+redEdgeTask.execute
+```
 
 ### Default Values
 
