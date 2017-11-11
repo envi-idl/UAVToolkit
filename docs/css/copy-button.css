@@ -1,0 +1,15 @@
+.copy-button {
+    float:right;
+    z-index: 10;
+    display: block;
+    padding: .25rem .5rem;
+    font-size: 75%;
+    color: #fff;
+    cursor: pointer;
+    background-color: #121212;
+    border-radius: 7px;
+}
+.copy-button:hover {
+    color: #fff;
+    background-color: #C8102E;
+}

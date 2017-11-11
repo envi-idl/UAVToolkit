@@ -1,0 +1,26 @@
+{
+    "name": "UAVBatchRedEdge",
+    "version": "5.3",
+    "baseClass": "ENVITaskFromProcedure",
+    "routine": "batchrededge",
+    "displayName": "Batchmicasense",
+    "description": "Task that batch processes a folder of MicaSense RedEdge imagery.",
+    "parameters": [
+        {
+            "name": "BAND_ALIGNMENT_TASK",
+            "displayName": "Band Alignment Task",
+            "description": "Specify a UAVBandAlignment task that you want to use for processing the RedEdge data. A default task will be used if one is not provided.",
+            "direction": "input",
+            "parameterType": "optional",
+            "dataType": "ENVITASK"
+        },
+        {
+            "name": "FLIGHTDIR",
+            "displayName": "Flightdir",
+            "description": "Specify the folder that contains directories of RedEdge data that will be batch processed. All flights must have the same height above the ground for the alignment to be valid.",
+            "direction": "input",
+            "parameterType": "required",
+            "dataType": "string"
+        }
+    ]
+}

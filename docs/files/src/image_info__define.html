@@ -1,0 +1,304 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="./../../css/haroopad-markdown.css" type="text/css" />
+<!--  for adding syntax colorizer --> 
+<link rel="stylesheet" href="./../../js/highlight/styles/github.css"> 
+<script src="./../../js/highlight/highlight.pack.js"></script>
+<script > hljs.initHighlightingOnLoad(); </script>
+
+<!--
+<link rel="stylesheet" href="./../../js/highlight/styles/line-numbers.css"> 
+<script src="./../../js/highlight/highlightjs-line-numbers.min.js"></script>
+<script>hljs.initLineNumbersOnLoad();</script>
+-->
+<!-- head contents for header-bar -->
+<script src="./../../js/jquery.min.js"></script>
+<script src="./../../js/bootstrap.min.js"></script>
+<script src="./../../js/lunr.min.js"></script>
+<script src="./../../js/clipboard.min.js"></script>
+<script src="./../../js/copy-button.js"></script>
+
+
+<!-- load colors for IDL syntax and anchor fix with fixed header-->
+<style type="text/css">
+	@import url("./../../css/bootstrap.min.css");
+	@import url("./../../css/font-awesome.min.css");
+	@import url("./../../css/cosmos.bootstrap.min.css");
+	@import url("./../../css/idl-styles.css");
+	@import url("./../../css/anchor-fix.css");
+	@import url("./../../css/sidebar.css");
+	@import url("./../../css/callouts.css");
+	@import url("./../../css/figures-and-tables.css");
+	@import url("./../../css/copy-button.css");
+	@import url("./../../css/general-styles.css");
+</style>
+</head>
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="15">
+
+<div id="header" class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar-header">
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+            <i class="icon-reorder"></i>
+        </button>
+    </div>
+    <nav class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li>
+                <a href="./../../index.html#"><i class="fa fa-home"></i> Home</a>
+            </li>
+            <li class="dropdown">
+                <a style="top:3px" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-book">  Contents</i></a>
+                <ul class="dropdown-menu">
+<li><a href="./../../files/UAVToolkit/uav_toolkit.html#">File 1: uav_toolkit.pro</a></li>
+<li><a href="./../../files/src/unjoin_rededge_datadir.html#">File 2: unjoin_rededge_datadir.pro</a></li>
+<li><a href="./../../files/src/join_rededge_datadirs.html#">File 3: join_rededge_datadirs.pro</a></li>
+<li><a href="./../../files/src/image_info__define.html#">File 4: image_info__define.pro</a></li>
+<li><a href="./../../files/src/image_groups_to_virtual_rasters.html#">File 5: image_groups_to_virtual_rasters.pro</a></li>
+<li><a href="./../../files/src/generate_gps_file.html#">File 6: generate_gps_file.pro</a></li>
+<li><a href="./../../files/src/generate_cam_file.html#">File 7: generate_cam_file.pro</a></li>
+<li><a href="./../../files/src/createbettertileiterator.html#">File 8: createbettertileiterator.pro</a></li>
+<li><a href="./../../files/filterRaster/filter_raster.html#">File 9: filter_raster.pro</a></li>
+<li><a href="./../../files/batchTasks/batchrededge.html#">File 10: batchrededge.pro</a></li>
+<li><a href="./../../files/bandAlignment/bandalignmenttiepoints__define.html#">File 11: bandalignmenttiepoints__define.pro</a></li>
+<li><a href="./../../files/bandAlignment/bandalignmenttask.html#">File 12: bandalignmenttask.pro</a></li>
+<li><a href="./../../files/bandAlignment/bandalignment_simple_kappa_filter.html#">File 13: bandalignment_simple_kappa_filter.pro</a></li>
+<li><a href="./../../files/bandAlignment/bandalignment_setupsensorforprocessing.html#">File 14: bandalignment_setupsensorforprocessing.pro</a></li>
+<li><a href="./../../files/bandAlignment/bandalignment_set_task_parameters.html#">File 15: bandalignment_set_task_parameters.pro</a></li>
+<li><a href="./../../files/bandAlignment/bandalignment_savereferencetiepoints.html#">File 16: bandalignment_savereferencetiepoints.pro</a></li>
+<li><a href="./../../files/bandAlignment/bandalignment_processsensor_getreferencetiepoints.html#">File 17: bandalignment_processsensor_getreferencetiepoints.pro</a></li>
+<li><a href="./../../files/bandAlignment/bandalignment_group_to_virtualraster.html#">File 18: bandalignment_group_to_virtualraster.pro</a></li>
+<li><a href="./../../files/bandAlignment/bandalignment_get_image_groups.html#">File 19: bandalignment_get_image_groups.pro</a></li>
+<li><a href="./../../files/bandAlignment/bandalignment_generatereferencetiepoints.html#">File 20: bandalignment_generatereferencetiepoints.pro</a></li>
+<li><a href="./../../files/bandAlignment/bandalignment_find_good_image_group.html#">File 21: bandalignment_find_good_image_group.pro</a></li>
+<li><a href="./../../files/bandAlignment/bandalignment_applyreferencetiepointswithidl.html#">File 22: bandalignment_applyreferencetiepointswithidl.pro</a></li>
+<li><a href="./../../files/bandAlignment/bandalignment_applyreferencetiepointswithenvi.html#">File 23: bandalignment_applyreferencetiepointswithenvi.pro</a></li>
+<li><a href="./../../files/bandAlignment/bandalignment_applyreferencetiepointstogroups.html#">File 24: bandalignment_applyreferencetiepointstogroups.pro</a></li>
+<li><a href="./../../files/custom_code/README.html#">File 25: UAVToolkit Directory custom_code</a></li>
+<li><a href="./../../files/CONTRIBUTING.html#">File 26: Contributing</a></li>
+                    <!--<li><a href="#">Chapter 1</a></li>-->
+                </ul>
+            </li>
+        </ul>
+      <a class="navbar-brand" href="#">
+         UAVToolkit: File 4
+      </a>
+      <div class="pull-right">
+        <a href="https://www.harrisgeospatial.com" target="_blank"><img src="./../../images/Harris_wR_White-RedA.png" style="height:41px; width:155px; position:relative; top:5px; right:20px"></img></a>
+      </div>
+      <a class="navbar-brand pull-right" href="#" style="position:relative;right:30px;" target="_blank">
+        Search
+      </a>
+    </nav>
+</div>
+<div style="padding-top:60px;"> 
+<div class="container">
+ <row>
+   <nav class="col-xs-3 bs-docs-sidebar" id="myScrollspy">
+      <ul id="sidebar" class="nav nav-stacked fixed sidebar-overflow">
+        <li><a href="#" class="side_tt", side_tt="image_info__define.pro">image_info__define.pro</a></li>
+        <li>
+          <a href="#image_info__define-head_0" class="side_tt", side_tt="image_info_ground_height()">image_info_ground_height()</a>
+            <ul class="nav nav-stacked">
+              <li><a href="#image_info__define-head_1" class="side_tt", side_tt="Syntax">Syntax</a></li>
+              <li><a href="#image_info__define-head_2" class="side_tt", side_tt="Return Value">Return Value</a></li>
+              <li><a href="#image_info__define-head_3" class="side_tt", side_tt="Arguments">Arguments</a></li>
+              <li><a href="#image_info__define-head_4" class="side_tt", side_tt="Author">Author</a></li>
+            </ul>
+        <li>
+        <li>
+          <a href="#image_info__define-head_5" class="side_tt", side_tt="image_info::init()">image_info::init()</a>
+            <ul class="nav nav-stacked">
+              <li><a href="#image_info__define-head_6" class="side_tt", side_tt="Syntax">Syntax</a></li>
+              <li><a href="#image_info__define-head_7" class="side_tt", side_tt="Arguments">Arguments</a></li>
+              <li><a href="#image_info__define-head_9" class="side_tt", side_tt="Keywords">Keywords</a></li>
+              <li><a href="#image_info__define-head_12" class="side_tt", side_tt="Author">Author</a></li>
+            </ul>
+        <li>
+        <li>
+          <a href="#image_info__define-head_13" class="side_tt", side_tt="image_info::Get()">image_info::Get()</a>
+            <ul class="nav nav-stacked">
+              <li><a href="#image_info__define-head_14" class="side_tt", side_tt="Syntax">Syntax</a></li>
+              <li><a href="#image_info__define-head_15" class="side_tt", side_tt="Arguments">Arguments</a></li>
+              <li><a href="#image_info__define-head_16" class="side_tt", side_tt="Keywords">Keywords</a></li>
+            </ul>
+        <li>
+        <li>
+          <a href="#image_info__define-head_17" class="side_tt", side_tt="image_info::GetGPSinformation()">image_info::GetGPSinformation()</a>
+            <ul class="nav nav-stacked">
+              <li><a href="#image_info__define-head_18" class="side_tt", side_tt="Syntax">Syntax</a></li>
+              <li><a href="#image_info__define-head_19" class="side_tt", side_tt="Keywords">Keywords</a></li>
+            </ul>
+        <li>
+        <li>
+          <a href="#image_info__define-head_20" class="side_tt", side_tt="image_info::_overloadPrint()">image_info::_overloadPrint()</a>
+            <ul class="nav nav-stacked">
+              <li><a href="#image_info__define-head_21" class="side_tt", side_tt="Syntax">Syntax</a></li>
+            </ul>
+        <li>
+        <li>
+          <a href="#image_info__define-head_22" class="side_tt", side_tt="image_info::_overloadImpliedPrint()">image_info::_overloadImpliedPrint()</a>
+            <ul class="nav nav-stacked">
+              <li><a href="#image_info__define-head_23" class="side_tt", side_tt="Syntax">Syntax</a></li>
+            </ul>
+        <li>
+        <li>
+          <a href="#image_info__define-head_24" class="side_tt", side_tt="image_info__define">image_info__define</a>
+            <ul class="nav nav-stacked">
+              <li><a href="#image_info__define-head_25" class="side_tt", side_tt="Syntax">Syntax</a></li>
+            </ul>
+        <li>
+      </ul>
+    </nav>
+    <div class="col-sm-9">
+<div id="image_info__define">
+<a name="image_info__define"></a>
+</div>
+<h1 id="image_info__define.pro">image_info__define.pro</h1>
+<hr />
+<div id="image_info__define-head_0">
+<a class="anchor_sub" name="image_info__define-head_0"></a>
+</div>
+<h2 id="image_info_ground_height">image_info_ground_height()</h2>
+<p>The purpose of this function is to get the approximate ground elevation in meters above sea level. This function is used internally for most of the other routines in the UAV Toolkit so that approximate pixel sizes can be calculated.</p>
+<div id="image_info__define-head_1">
+<a class="anchor_sub" name="image_info__define-head_1"></a>
+</div>
+<h3 id="syntax">Syntax</h3>
+<pre class="no-copy-button">Result = image_info_ground_height()</pre>
+<div id="image_info__define-head_2">
+<a class="anchor_sub" name="image_info__define-head_2"></a>
+</div>
+<h3 id="return-value">Return Value</h3>
+<p>Height above the ground, meters</p>
+<div id="image_info__define-head_3">
+<a class="anchor_sub" name="image_info__define-head_3"></a>
+</div>
+<h3 id="arguments">Arguments</h3>
+<p>longitude : in, required, type=float/double Longitude (decimal degrees) over the location that you want the ground height latitude : in, required, type=float/double Latitude (decimal degrees) over the location that you want the ground height</p>
+<div id="image_info__define-head_4">
+<a class="anchor_sub" name="image_info__define-head_4"></a>
+</div>
+<h3 id="author">Author</h3>
+<p>Zachary Norman - GitHub: znorman-harris</p>
+<div id="image_info__define-head_5">
+<a class="anchor_sub" name="image_info__define-head_5"></a>
+</div>
+<hr />
+<h2 id="image_infoinit">image_info::init()</h2>
+<p>Describe the procedure.</p>
+<div id="image_info__define-head_6">
+<a class="anchor_sub" name="image_info__define-head_6"></a>
+</div>
+<h3 id="syntax-1">Syntax</h3>
+<pre class="no-copy-button">Result = image_info(<a href="#params1-0">infile</a>[ <a href="#keywords1-0">PRINT_GPS</a> = int ], [ <a href="#keywords1-1">NO_SPATIALREF</a> = int ])</pre>
+<div id="image_info__define-head_7">
+<a class="anchor_sub" name="image_info__define-head_7"></a>
+</div>
+<h3 id="arguments-1">Arguments</h3>
+<p><a class="anchor_sub" name="params1-0"></a></p>
+<p><a class="anchor_sub" name="image_info__define-head_8"></a></p>
+<h4 id="infile">INFILE</h4>
+<p><strong>in, required, type=string</strong></p>
+<p>This required argument should be set to the fully-qualified file path to an image that will have it's metadata searched to create a spatial reference and get other basic information about the acquisition of the photo.</p>
+<div id="image_info__define-head_9">
+<a class="anchor_sub" name="image_info__define-head_9"></a>
+</div>
+<h3 id="keywords">Keywords</h3>
+<p><a class="anchor_sub" name="keywords1-0"></a></p>
+<p><a class="anchor_sub" name="image_info__define-head_10"></a></p>
+<h4 id="print_gps">PRINT_GPS</h4>
+<p><strong>in, optional, type=int, default=0</strong></p>
+<p>Keyword to set which will not print any information regarding the image position.</p>
+<p><a class="anchor_sub" name="keywords1-1"></a></p>
+<p><a class="anchor_sub" name="image_info__define-head_11"></a></p>
+<h4 id="no_spatialref">NO_SPATIALREF</h4>
+<p><strong>in, optional, type=int, default=0</strong></p>
+<p>Set this keyword to not create a spatial reference for the <code class="idl_line">infile</code>. Doing this won't require using ENVI to get the image dimensions</p>
+<div id="image_info__define-head_12">
+<a class="anchor_sub" name="image_info__define-head_12"></a>
+</div>
+<h3 id="author-1">Author</h3>
+<p>Norm3596</p>
+<div id="image_info__define-head_13">
+<a class="anchor_sub" name="image_info__define-head_13"></a>
+</div>
+<hr />
+<h2 id="image_infoget">image_info::Get()</h2>
+<p>Object method to return information about an INAGE_INFO object. See <code class="idl_line">tagnames</code> for specifying the input.</p>
+<p>If a requested tag does not exist for the object, then it will not be returned. If your result is equal to !NULL then there were no matches for the tag names that were requested.</p>
+<div id="image_info__define-head_14">
+<a class="anchor_sub" name="image_info__define-head_14"></a>
+</div>
+<h3 id="syntax-2">Syntax</h3>
+<pre class="no-copy-button">Result = obj.Get()</pre>
+<p>where <code class="idl_line">obj</code> represents a previously defined object of type <code class="idl_line">image_info</code>.</p>
+<div id="image_info__define-head_15">
+<a class="anchor_sub" name="image_info__define-head_15"></a>
+</div>
+<h3 id="arguments-2">Arguments</h3>
+<p>tagnames : in, required, type=string/stringarr This parameters should be set to one of the parameters defined in the object definition to be returned. If you only specify one tag to return, then you will just get that value. Otherwise, a structure will be returned with a key for each requested tag that is found.</p>
+<p>This argument is ignored if the keyword <code class="idl_line">ALL</code> is set.</p>
+<div id="image_info__define-head_16">
+<a class="anchor_sub" name="image_info__define-head_16"></a>
+</div>
+<h3 id="keywords-1">Keywords</h3>
+<p>Set this keyword to return all of the object properties from</p>
+<div id="image_info__define-head_17">
+<a class="anchor_sub" name="image_info__define-head_17"></a>
+</div>
+<hr />
+<h2 id="image_infogetgpsinformation">image_info::GetGPSinformation()</h2>
+<p>Function method to return the GPS information for the iamge that the object represents. The returned string array will contain the: image name, longitude, latitude, altitude, roll, pitch, yaw, and acquisition time.</p>
+<div id="image_info__define-head_18">
+<a class="anchor_sub" name="image_info__define-head_18"></a>
+</div>
+<h3 id="syntax-3">Syntax</h3>
+<pre class="no-copy-button">Result = obj.GetGPSinformation()</pre>
+<p>where <code class="idl_line">obj</code> represents a previously defined object of type <code class="idl_line">image_info</code>.</p>
+<div id="image_info__define-head_19">
+<a class="anchor_sub" name="image_info__define-head_19"></a>
+</div>
+<h3 id="keywords-2">Keywords</h3>
+<div id="image_info__define-head_20">
+<a class="anchor_sub" name="image_info__define-head_20"></a>
+</div>
+<hr />
+<h2 id="image_info_overloadprint">image_info::_overloadPrint()</h2>
+<div id="image_info__define-head_21">
+<a class="anchor_sub" name="image_info__define-head_21"></a>
+</div>
+<h3 id="syntax-4">Syntax</h3>
+<pre class="no-copy-button">Result = obj._overloadPrint()</pre>
+<p>where <code class="idl_line">obj</code> represents a previously defined object of type <code class="idl_line">image_info</code>.</p>
+<div id="image_info__define-head_22">
+<a class="anchor_sub" name="image_info__define-head_22"></a>
+</div>
+<hr />
+<h2 id="image_info_overloadimpliedprint">image_info::_overloadImpliedPrint()</h2>
+<div id="image_info__define-head_23">
+<a class="anchor_sub" name="image_info__define-head_23"></a>
+</div>
+<h3 id="syntax-5">Syntax</h3>
+<pre class="no-copy-button">Result = obj._overloadImpliedPrint()</pre>
+<p>where <code class="idl_line">obj</code> represents a previously defined object of type <code class="idl_line">image_info</code>.</p>
+<div id="image_info__define-head_24">
+<a class="anchor_sub" name="image_info__define-head_24"></a>
+</div>
+<hr />
+<h2 id="image_info__define">image_info__define</h2>
+<div id="image_info__define-head_25">
+<a class="anchor_sub" name="image_info__define-head_25"></a>
+</div>
+<h3 id="syntax-6">Syntax</h3>
+<pre class="no-copy-button">image_info__define</pre>
+</div>
+</row>
+</div>
+</body>
+</html>

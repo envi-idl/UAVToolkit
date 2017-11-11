@@ -1,0 +1,158 @@
+/* CSS file that specifies the different syntax highlighting for each part of IDL code. */
+
+/* class for idl links to the documentation */
+.idl_docs_link {
+    text-decoration: none;    
+}
+
+/* class for block of IDL code which exists as a pre*/
+pre.idl_code_block {
+    color: black;
+    padding-left: 15px;
+    background-color: #f5f5f5;
+    border-style:solid;
+    border-width:1px;
+    border-color:#cccccc;
+    overflow: visible;
+    /* word break, not working right
+    overflow-y: visible;
+    overflow-x: scroll;
+    white-space:pre-wrap;
+    word-break: break-word;
+    */
+}
+
+/* class for IDL code that is embedded in a line */
+code.idl_line {
+    color:black;
+    background:#f5f5f5;
+    border-style:solid;
+    border-width:1px;
+    border-color:#cccccc;
+    border-radius: 5px;
+}
+
+/* tooltips class in IDL*/
+.idl_tt{
+    display: inline;
+    position: relative;
+}
+
+/* makes the content for the tooltip*/
+.idl_tt:hover:after{
+    background: #333;
+    background: rgba(0,0,0,.8);
+    border-radius: 5px;
+    bottom: 26px;
+    color: #fff;
+    /* the idl_tt class elements also need an idl_tt attribute with the tooltip*/
+    content: attr(idl_tt);
+    left: 20%;
+    padding: 5px 15px;
+    position: absolute;
+    z-index:97;
+    /*word wrap*/
+    white-space:pre-line;
+    width:250px;
+    word-break: break-word;
+}
+
+/* makes the arrow for the tooltip */
+.idl_tt:hover:before{
+    border: solid;
+    border-color: #333 transparent;
+    border-width: 6px 6px 0 6px;
+    bottom: 20px;
+    content: "";
+    left: 50%;
+    position: absolute;
+    z-index:98;
+}
+
+/* allow overflow so that the tooltips dont disappear out of their elements*/
+body {
+    overflow: visible;
+}
+/* Makes text underlined and makes cursor turn into a question mark*/
+.tt_text {
+    border-bottom-style: inset;
+    cursor: help;
+}
+
+
+/* IDL comments*/
+.idl_comment {
+    color:#29A3A3;
+}
+
+/* IDL strings*/
+.idl_str {
+    color:#FF0000;
+}
+
+/* IDL numbers*/
+.idl_num {
+    color:#808000;
+    font-weight:bold;
+}
+
+/* IDL control statements*/
+.idl_control {
+    color:#7F0000;
+    font-weight:bold;
+}
+
+/* IDL PRO code functions*/
+.idl_lib_func {
+    color:#00CCCC;
+    font-weight:bold;
+}
+
+/* IDL PRO code procedures*/
+.idl_lib_pro {
+    color:#006666;
+    font-weight:bold;
+}
+
+/* IDL internal functions*/
+.idl_sys_func {
+    color:#0000FF;
+    font-weight:bold;
+}
+
+/* IDL internal procedures*/
+.idl_sys_pro {
+    color:#00007F;
+    font-weight:bold;
+}
+
+/* Bold things. "IDL>" OR "ENVI>"*/
+.idl_bold {
+    font-weight:bold;
+}
+
+/*gray lines*/
+.idl_gray {
+    color:#A9A9A9;
+}
+
+/* IDL system variables "!NULL"*/
+.idl_sysv {
+    color:black;
+    font-weight:bold;
+}
+
+/* IDL properties "something.property"*/
+.idl_prop {
+    font-style:italic;
+}
+
+/* IDL executive commands ".edit"*/
+.idl_exec {
+    font-style:italic;
+}
+
+/* structure definition tags "something:"*/
+.idl_struct_tag {
+    font-style:italic;
+}

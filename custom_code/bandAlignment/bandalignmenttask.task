@@ -1,0 +1,240 @@
+{
+    "name": "UAVBandAlignment",
+    "version": "5.3",
+    "baseClass": "ENVITaskFromProcedure",
+    "routine": "bandalignmenttask",
+    "displayName": "UAVBandAlignment",
+    "description": "Task for performing band-band alignment on UAV datasets.",
+    "parameters": [
+        {
+            "name": "APPLY_KAPPA_FILTER",
+            "displayName": "Apply Kappa Filter",
+            "description": "Set to true if you have reference tie points and want to apply them to all of your image groups.",
+            "direction": "input",
+            "parameterType": "optional",
+            "dataType": "boolean",
+            "defaultValue": false
+        },
+        {
+            "name": "APPLY_REFERENCE_TIEPOINTS",
+            "displayName": "Apply Reference Tiepoints",
+            "description": "If set to true then, when finding reference tie points, the choices for optimal group will be passed through a simple threshold to make sure that we pick an image during a straight flight line for generating reference tie points. Only used if APPLY_REFERENCE_TIEPOINTS is set.",
+            "direction": "input",
+            "parameterType": "optional",
+            "dataType": "boolean",
+            "defaultValue": false
+        },
+        {
+            "name": "BASE_BAND",
+            "displayName": "Base Band",
+            "description": "Specify the zero-based index for which band you want to use as a reference for generating reference tie points.",
+            "direction": "input",
+            "parameterType": "optional",
+            "dataType": "long"
+        },
+        {
+            "name": "CORRELATION_MATCHING_SCORE",
+            "displayName": "Correlation Matching Score",
+            "description": "Set this to the score required by the task GenerateTiePointsByCrossCorrelation to make sure that two points are actual the same information.",
+            "direction": "input",
+            "parameterType": "optional",
+            "dataType": "float",
+            "min": 0,
+            "max": 1,
+            "defaultValue": 0.6
+        },
+        {
+            "name": "CORRELATION_SEARCH_WINDOW",
+            "displayName": "Correlation Search Window",
+            "description": "Set this to the search window used by the task GenerateTiePointsByCrossCorrelation to find matching tie points.",
+            "direction": "input",
+            "parameterType": "required",
+            "dataType": "long",
+            "defaultValue": 255
+        },
+        {
+            "name": "CO_CALIBRATION",
+            "displayName": "Co Calibration",
+            "description": "When specified, the images will be scaled to one another to account for changes in the ISO and exposure time during a flight. If you want to use reflectance panels then this must be set.",
+            "direction": "input",
+            "parameterType": "required",
+            "dataType": "boolean",
+            "defaultValue": false
+        },
+        {
+            "name": "FILE_IDENTIFIERS",
+            "displayName": "File Identifiers",
+            "description": "Specify the end of each file name that delineates how files belong to a group or not.",
+            "direction": "input",
+            "parameterType": "optional",
+            "dataType": "string[*]"
+        },
+        {
+            "name": "GENERATE_REFERENCE_TIEPOINTS",
+            "displayName": "Generate Reference Tiepoints",
+            "description": "If set, then reference tie points will be found based on the sensor and INPUTDIR.",
+            "direction": "input",
+            "parameterType": "optional",
+            "dataType": "boolean",
+            "defaultValue": false
+        },
+        {
+            "name": "GET_GPS",
+            "displayName": "Get Gps",
+            "description": "Set to true for only generating a GPS file. Created by default after the processing has finished.",
+            "direction": "input",
+            "parameterType": "optional",
+            "dataType": "boolean",
+            "defaultValue": false
+        },
+        {
+            "name": "INPUTDIR",
+            "displayName": "Inputdir",
+            "description": "Specify the directory that you want to search for image groups to process.",
+            "direction": "input",
+            "parameterType": "required",
+            "dataType": "string"
+        },
+        {
+            "name": "MAKE_ENVI_FILE",
+            "displayName": "Make Envi File",
+            "description": "Turn to true to make a .dat and .hdr file that can be ingested in ENVI. Will likely have a dummy spatial reference set up.",
+            "direction": "input",
+            "parameterType": "optional",
+            "dataType": "boolean",
+            "defaultValue": false
+        },
+        {
+            "name": "MAX_PIXEL_VALUE",
+            "displayName": "Max Pixel Value",
+            "description": "Specify the maximum pixel value to be allowed when creating output images. Used in conjunction with MAX_VALUE_DIVISOR.",
+            "direction": "input",
+            "parameterType": "optional",
+            "dataType": "double"
+        },
+        {
+            "name": "MAX_VALUE_DIVISOR",
+            "displayName": "Max Value Divisor",
+            "description": "If MAX_PIXEL_VALUE is set, then this represents the scale factor that the data will be divided by if over the maximum. This is used for the RedEdge data to make sure that it is truly 12 bit as it was collected (instead of scaled by a factor of 16).",
+            "direction": "input",
+            "parameterType": "optional",
+            "dataType": "ulong"
+        },
+        {
+            "name": "MINIMUM_FILTERED_TIEPOINTS",
+            "displayName": "Minimum Filtered Tiepoints",
+            "description": "Select a threshold for the smallest number of allowed tie points that can be found after filtering. If less than this, then the tie point generation algorithm is ugraded to mutual information if not already set as that.",
+            "direction": "input",
+            "parameterType": "optional",
+            "dataType": "long"
+        },
+        {
+            "name": "MULTI_CHANNEL",
+            "displayName": "Multi Channel",
+            "description": "If set to true, then multi-channel TIFFs will be generated. otherwise multi-page TIFFs will be used.",
+            "direction": "input",
+            "parameterType": "optional",
+            "dataType": "boolean",
+            "defaultValue": false
+        },
+        {
+            "name": "MUTUAL_MATCHING_SCORE",
+            "displayName": "Mutual Matching Score",
+            "description": "Represents the required matching score used by GenerateTiePOintsbyMutualInformation.",
+            "direction": "input",
+            "parameterType": "optional",
+            "dataType": "float",
+            "min": 0.0,
+            "max": 1.0,
+            "defaultValue": 0.05
+        },
+        {
+            "name": "MUTUAL_SEARCH_WINDOW",
+            "displayName": "Mutual Search Window",
+            "description": "Represents the search window used by GenerateTiePOintsbyMutualInformation.",
+            "direction": "input",
+            "parameterType": "optional",
+            "dataType": "long",
+            "min": 1,
+            "defaultValue": 121
+        },
+        {
+            "name": "NO_SECONDARY_MATCH",
+            "displayName": "No Secondary Match",
+            "description": "When false, image registration is performed a second time before writing data to disk for batch processing. Will add a lot of overhead to the total time.",
+            "direction": "input",
+            "parameterType": "optional",
+            "dataType": "boolean",
+            "defaultValue": true
+        },
+        {
+            "name": "NP_GROUPS",
+            "displayName": "Np Groups",
+            "description": "Set to the number of child processes that you want to process in parallel. Max is 4 due to licensing.",
+            "direction": "input",
+            "parameterType": "optional",
+            "dataType": "long",
+            "min": 1,
+            "max": 4
+        },
+        {
+            "name": "PANELDIR",
+            "displayName": "Paneldir",
+            "description": "Specify the directory that contains reflectance panels. The default value is INPUTDIR/reflectance_panels.",
+            "direction": "input",
+            "parameterType": "optional",
+            "dataType": "string"
+        },
+        {
+            "name": "PANEL_REFLECTANCE",
+            "displayName": "Panel Reflectance",
+            "description": "This represents the percent reflectance (0 to 100) of reflectance panel images that are provided in PANELDIR.",
+            "direction": "input",
+            "parameterType": "optional",
+            "dataType": "float",
+            "min": 0,
+            "max": 100,
+            "defaultValue": 70.0
+        },
+        {
+            "name": "REFLECTANCE_SCALE_FACTOR",
+            "displayName": "Reflectance Scale Factor",
+            "description": "Set this to the scale factor that will be applied to the output imagery so that we don't have to use floating point data for reflectance imagery.",
+            "direction": "input",
+            "parameterType": "required",
+            "dataType": "long",
+            "min": 1,
+            "defaultValue": 50000
+        },
+        {
+            "name": "REQUESTED_NUMBER_OF_TIEPOINTS",
+            "displayName": "Requested Number Of Tiepoints",
+            "description": "Specify the number of tie points that you want to initially find.",
+            "direction": "input",
+            "parameterType": "optional",
+            "dataType": "long",
+            "min": 100,
+            "max": 60000,
+            "defaultValue": 1500
+        },
+        {
+            "name": "SEARCH_WINDOW_FROM_HEIGHT",
+            "displayName": "Search Window From Height",
+            "description": "If true, then the search window for the different algorithms is based on the approximate height above the ground for the reference group.",
+            "direction": "input",
+            "parameterType": "required",
+            "dataType": "boolean",
+            "defaultValue": false
+        },
+        {
+            "name": "SENSOR",
+            "displayName": "Sensor",
+            "description": "The type of sensor that will be processed. Default is generic unless otherwise specified.",
+            "direction": "input",
+            "parameterType": "required",
+            "dataType": "string",
+            "defaultValue": "generic",
+            "choiceList": ["generic", "sequoia", "rededge"]
+        }
+    ]
+}

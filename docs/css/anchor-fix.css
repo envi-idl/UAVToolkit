@@ -1,0 +1,6 @@
+.anchor_sub::before {
+  content:"";
+  display:block;
+  height:51px; /* fixed header height*/
+  margin:-51px 0 0; /* negative fixed header height */
+}

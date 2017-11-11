@@ -1,0 +1,498 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="./css/haroopad-markdown.css" type="text/css" />
+<!--  for adding syntax colorizer --> 
+<link rel="stylesheet" href="./js/highlight/styles/github.css"> 
+<script src="./js/highlight/highlight.pack.js"></script>
+<script > hljs.initHighlightingOnLoad(); </script>
+
+<!--
+<link rel="stylesheet" href="./js/highlight/styles/line-numbers.css"> 
+<script src="./js/highlight/highlightjs-line-numbers.min.js"></script>
+<script>hljs.initLineNumbersOnLoad();</script>
+-->
+<!-- head contents for header-bar -->
+<script src="./js/jquery.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/lunr.min.js"></script>
+<script src="./js/clipboard.min.js"></script>
+<script src="./js/copy-button.js"></script>
+
+
+<!-- load colors for IDL syntax and anchor fix with fixed header-->
+<style type="text/css">
+	@import url("./css/bootstrap.min.css");
+	@import url("./css/font-awesome.min.css");
+	@import url("./css/cosmos.bootstrap.min.css");
+	@import url("./css/idl-styles.css");
+	@import url("./css/anchor-fix.css");
+	@import url("./css/sidebar.css");
+	@import url("./css/callouts.css");
+	@import url("./css/figures-and-tables.css");
+	@import url("./css/copy-button.css");
+	@import url("./css/general-styles.css");
+</style>
+</head>
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="15">
+
+<div id="header" class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar-header">
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+            <i class="icon-reorder"></i>
+        </button>
+    </div>
+    <nav class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li>
+                <a href="./index.html#"><i class="fa fa-home"></i> Home</a>
+            </li>
+            <li class="dropdown">
+                <a style="top:3px" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-book">  Contents</i></a>
+                <ul class="dropdown-menu">
+<li><a href="./files/UAVToolkit/uav_toolkit.html#">File 1: uav_toolkit.pro</a></li>
+<li><a href="./files/src/unjoin_rededge_datadir.html#">File 2: unjoin_rededge_datadir.pro</a></li>
+<li><a href="./files/src/join_rededge_datadirs.html#">File 3: join_rededge_datadirs.pro</a></li>
+<li><a href="./files/src/image_info__define.html#">File 4: image_info__define.pro</a></li>
+<li><a href="./files/src/image_groups_to_virtual_rasters.html#">File 5: image_groups_to_virtual_rasters.pro</a></li>
+<li><a href="./files/src/generate_gps_file.html#">File 6: generate_gps_file.pro</a></li>
+<li><a href="./files/src/generate_cam_file.html#">File 7: generate_cam_file.pro</a></li>
+<li><a href="./files/src/createbettertileiterator.html#">File 8: createbettertileiterator.pro</a></li>
+<li><a href="./files/filterRaster/filter_raster.html#">File 9: filter_raster.pro</a></li>
+<li><a href="./files/batchTasks/batchrededge.html#">File 10: batchrededge.pro</a></li>
+<li><a href="./files/bandAlignment/bandalignmenttiepoints__define.html#">File 11: bandalignmenttiepoints__define.pro</a></li>
+<li><a href="./files/bandAlignment/bandalignmenttask.html#">File 12: bandalignmenttask.pro</a></li>
+<li><a href="./files/bandAlignment/bandalignment_simple_kappa_filter.html#">File 13: bandalignment_simple_kappa_filter.pro</a></li>
+<li><a href="./files/bandAlignment/bandalignment_setupsensorforprocessing.html#">File 14: bandalignment_setupsensorforprocessing.pro</a></li>
+<li><a href="./files/bandAlignment/bandalignment_set_task_parameters.html#">File 15: bandalignment_set_task_parameters.pro</a></li>
+<li><a href="./files/bandAlignment/bandalignment_savereferencetiepoints.html#">File 16: bandalignment_savereferencetiepoints.pro</a></li>
+<li><a href="./files/bandAlignment/bandalignment_processsensor_getreferencetiepoints.html#">File 17: bandalignment_processsensor_getreferencetiepoints.pro</a></li>
+<li><a href="./files/bandAlignment/bandalignment_group_to_virtualraster.html#">File 18: bandalignment_group_to_virtualraster.pro</a></li>
+<li><a href="./files/bandAlignment/bandalignment_get_image_groups.html#">File 19: bandalignment_get_image_groups.pro</a></li>
+<li><a href="./files/bandAlignment/bandalignment_generatereferencetiepoints.html#">File 20: bandalignment_generatereferencetiepoints.pro</a></li>
+<li><a href="./files/bandAlignment/bandalignment_find_good_image_group.html#">File 21: bandalignment_find_good_image_group.pro</a></li>
+<li><a href="./files/bandAlignment/bandalignment_applyreferencetiepointswithidl.html#">File 22: bandalignment_applyreferencetiepointswithidl.pro</a></li>
+<li><a href="./files/bandAlignment/bandalignment_applyreferencetiepointswithenvi.html#">File 23: bandalignment_applyreferencetiepointswithenvi.pro</a></li>
+<li><a href="./files/bandAlignment/bandalignment_applyreferencetiepointstogroups.html#">File 24: bandalignment_applyreferencetiepointstogroups.pro</a></li>
+<li><a href="./files/custom_code/README.html#">File 25: UAVToolkit Directory custom_code</a></li>
+<li><a href="./files/CONTRIBUTING.html#">File 26: Contributing</a></li>
+                    <!--<li><a href="#">Chapter 1</a></li>-->
+                </ul>
+            </li>
+        </ul>
+      <a class="navbar-brand" href="#">
+         UAVToolkit
+      </a>
+      <div class="pull-right">
+        <a href="https://www.harrisgeospatial.com" target="_blank"><img src="./images/Harris_wR_White-RedA.png" style="height:41px; width:155px; position:relative; top:5px; right:20px"></img></a>
+      </div>
+      <a class="navbar-brand pull-right" href="#" style="position:relative;right:30px;" target="_blank">
+        Search
+      </a>
+    </nav>
+</div>
+<div style="padding-top:60px;"> 
+<div class="container">
+ <row>
+   <nav class="col-xs-3 bs-docs-sidebar" id="myScrollspy">
+      <ul id="sidebar" class="nav nav-stacked fixed sidebar-overflow">
+        <li><a href="#" class="side_tt", side_tt="UAVToolkit">UAVToolkit</a></li>
+        <li>
+          <a href="#idl-package-md-file-head_0" class="side_tt", side_tt="Major Changes">Major Changes</a>
+            <ul class="nav nav-stacked">
+              <li><a href="#idl-package-md-file-head_1" class="side_tt", side_tt="Worth Mentioning">Worth Mentioning</a></li>
+            </ul>
+        <li>
+        <li>
+          <a href="#idl-package-md-file-head_2" class="side_tt", side_tt="Installation">Installation</a>
+            <ul class="nav nav-stacked">
+              <li><a href="#idl-package-md-file-head_3" class="side_tt", side_tt="Advanced Installation - SAVE files">Advanced Installation - SAVE files</a></li>
+            </ul>
+        <li>
+        <li>
+          <a href="#idl-package-md-file-head_4" class="side_tt", side_tt="Requirements">Requirements</a>
+        <li>
+        <li>
+          <a href="#idl-package-md-file-head_5" class="side_tt", side_tt="Usage">Usage</a>
+            <ul class="nav nav-stacked">
+              <li><a href="#idl-package-md-file-head_6" class="side_tt", side_tt="Notes">Notes</a></li>
+              <li><a href="#idl-package-md-file-head_7" class="side_tt", side_tt="Generic Sensor">Generic Sensor</a></li>
+              <li><a href="#idl-package-md-file-head_8" class="side_tt", side_tt="MicaSense RedEdge">MicaSense RedEdge</a></li>
+              <li><a href="#idl-package-md-file-head_9" class="side_tt", side_tt="Parrot Sequoia">Parrot Sequoia</a></li>
+              <li><a href="#idl-package-md-file-head_10" class="side_tt", side_tt="Default Values">Default Values</a></li>
+            </ul>
+        <li>
+        <li>
+          <a href="#idl-package-md-file-head_11" class="side_tt", side_tt="License">License</a>
+        <li>
+        <li>
+          <a href="#idl-package-md-file-head_12" class="side_tt", side_tt="Contents">Contents</a>
+        <li>
+      </ul>
+    </nav>
+    <div class="col-sm-9">
+<div id="idl-package-md-file">
+<a name="idl-package-md-file"></a>
+</div>
+<h1 id="uavtoolkit">UAVToolkit</h1>
+<hr />
+<p>This collection of code is meant for preprocessing drone data that has band-band alignment issues. Specifically, it was designed to work with the MicaSense RedEdge sensor in order to process the data and make it ready for ingestion into image stitching software packages. The benefit of processing on your own for the RedEdge sensor is that you don't need to pay monthly fees to process your data on the Atlas platform.</p>
+<p>Over time these tools have grown into more than just processing for the RedEdge sensor. There is now an option for working with generic sensor formats where each band comes as a separate image format. Additional support has also been added for the Parrot Sequoia sensor which is another common, inexpensive, multispectral drone sensor.</p>
+<p>If you have downloaded this repository, then the best way to view the documentation is to open up <strong>index.html</strong> in the <strong>docs</strong> folder.</p>
+<div id="idl-package-md-file-head_0">
+<a class="anchor_sub" name="idl-package-md-file-head_0"></a>
+</div>
+<hr />
+<h2 id="major-changes">Major Changes</h2>
+<p>There have been many overall updates to the UAV Toolkit since it's initial release which consists of:</p>
+<ul>
+<li><p>Complete automation of the process for generating and applying reference tie points to imagery.</p>
+<p>There is a new routine that works behind the scenes to find an image group that the reference tie points can be taken from and it has worked very well on the test datasets that I have used.</p></li>
+<li><p>Refactoring and optimization of much of the code</p>
+<p>Behind the scenes a new suite of routines is used for performing the band-band registration that can be used with any type of imagery or raster.</p></li>
+<li><p>Generic support for any multispectral sensor that produces separate images for each band.</p>
+<p>If there are other sensors feel free to make a request for adding them, provided sample data can be shared.</p></li>
+<li><p>Refocused overall tools for band-band alignment</p>
+<ul>
+<li><strong>This means that some routines have been removed completely from this version of the UAV Toolkit. If there are missing functions/procedures that you want which are missing, then file a bug report via the main GitHub repository and I will add them back in.</strong></li>
+</ul></li>
+<li><p>Packaged the tools to use the ENVI Task framework</p></li>
+</ul>
+<div id="idl-package-md-file-head_1">
+<a class="anchor_sub" name="idl-package-md-file-head_1"></a>
+</div>
+<h3 id="worth-mentioning">Worth Mentioning</h3>
+<p>If there are any requests, don't hesitate to add an issue for the repository. I can easily create some ENVI extensions for the tasks to help make things easier to process if you are not an IDL programmer.</p>
+<div id="idl-package-md-file-head_2">
+<a class="anchor_sub" name="idl-package-md-file-head_2"></a>
+</div>
+<hr />
+<h2 id="installation">Installation</h2>
+<p><strong>Make sure you remove any previous version of the UAV Toolkit from IDL's search path or ENVI's custom_code directories</strong>.</p>
+<p>To install the code, you just need to add this repository to IDL's search path. You can do this in Preferences -&gt; IDL -&gt; Paths -&gt; Insert and then make sure to check the box to have this folder recursively searched for code.</p>
+<div id="idl-package-md-file-head_3">
+<a class="anchor_sub" name="idl-package-md-file-head_3"></a>
+</div>
+<h3 id="advanced-installation---save-files">Advanced Installation - SAVE files</h3>
+<p>For advanced users that want to create an IDL SAVE file with pre-compiled code, simply run the script <code class="idl_line">build_uav_toolkit.pro</code> which will create a SAVE file with accompanying tasks. The folder will be called &quot;UAVToolkit-build&quot; and will be created in your system's temporary directory. In this folder you will also find the task files for the several tasks include din the toolkit. Once you have done this, you have two ways to install the SAVE files. You can take the contents of the build directory and :</p>
+<ul>
+<li><p>For ENVI 5.3 and admin rights the directory for Windows is <code class="idl_line">C:Files53_code</code></p></li>
+<li><p>For ENVI 5.4 and admin rights the directory for Windows is <code class="idl_line">C:Files54_code</code></p></li>
+<li><p>If you do not have admin rights then you can find the local user directory in ENVI's preferences under:</p>
+<p><strong>File -&gt; Preferences -&gt; Directories -&gt; Custom Code Directory</strong></p>
+<p>Once you place the file in ENVI's custom code folder you <strong>must restart ENVI</strong> before you will have access to them in ENVI.</p></li>
+</ul>
+<p><strong>Note the location that you installed the SAVE files to. If you get a later version of this code, then you will need to update or remove these files for any changes to take effect.</strong></p>
+<div id="idl-package-md-file-head_4">
+<a class="anchor_sub" name="idl-package-md-file-head_4"></a>
+</div>
+<hr />
+<h2 id="requirements">Requirements</h2>
+<p>ENVI 5.4 and IDL 8.6.</p>
+<p>This should likely work on ENVI 5.3 and IDL 8.5 (<em>should</em>) but is untested. If you are on this older version and there are issues, then you will need to upgrade to the latest version of ENVI + IDL.</p>
+<div id="idl-package-md-file-head_5">
+<a class="anchor_sub" name="idl-package-md-file-head_5"></a>
+</div>
+<hr />
+<h2 id="usage">Usage</h2>
+<p>To take advantage of the UAV toolkit, you just need to add the source code for this repository to IDL's search path and include the following in and routines that you want to use the band alignment tasks for:</p>
+<pre class="idl_code_block">
+<font class="idl_comment">;start ENVI - can be headless or GUI</font>
+e = <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/ENVI.html" target="_blank"><font class="idl_sys_func idl_tt" idl_tt="Launches the ENVI application and returns an object reference to the application.">envi</font></a>()
+
+<font class="idl_comment">;run the UAV Toolkit routine</font>
+<font class="idl_lib_pro ">uav_toolkit</font>
+</pre>
+<p>Including <code class="idl_line"><font class="idl_lib_pro ">uav_toolkit</font></code> ensures that the tasks that ship as a part of this repository are found by ENVI without needing to install them in ENVI's custom code directory.</p>
+<p>Below you can find several examples for how you can use the different tasks in the UAV Toolkit to process different UAV multispectral datasets, but first a few notes on the tools.</p>
+<div id="idl-package-md-file-head_6">
+<a class="anchor_sub" name="idl-package-md-file-head_6"></a>
+</div>
+<h3 id="notes">Notes</h3>
+<ul>
+<li><p><strong>Calibration</strong>:</p>
+<p>If you have reflectance panels, then these images will need to be separated from the main flight images. To work with the UAV Toolkit, you will need to place all reflectance panels in a folder called &quot;reflectance_panels&quot; in your data directory. This makes sure that these scenes can't be chosen for generating reference tie points. To have the reflectance panels be applied to convert the scenes to reflectance, then you will need to set the <code class="idl_line">CO_CALIBRATION</code> parameters to for the <code class="idl_line">UAVBandAlignment</code> task. This will correct for any differences in exposure time, ISO sensitivity to light, and perform the calibration step if the panels are present.</p>
+<p>When using reflectance panels, you will also need to specify the percent reflectance for the panel surface (i.e. 70%). To do this, you can use the <code class="idl_line">PANEL_REFLECTANCE</code> task parameter to specify a 0 to 100 floating point value for this.</p></li>
+<li><p>The algorithm may have a harder time finding reference tie points for the Parrot Sequoia because the multispectral sensor has a fisheye lens, which makes the geometry more complicated. The tools shown below have worked great on sample datasets, but that may not apply to all collections. It should, but it is just worth setting expectations a bit.</p></li>
+</ul>
+<div id="idl-package-md-file-head_7">
+<a class="anchor_sub" name="idl-package-md-file-head_7"></a>
+</div>
+<h3 id="generic-sensor">Generic Sensor</h3>
+<p>In order to process generic sensors with the UAV Toolkit, you will need datasets that contain a single band per separate image file. Each band should have:</p>
+<ol style="list-style-type: decimal">
+<li><p>Similar data range and data type.</p></li>
+<li><p>Same image dimensions</p></li>
+</ol>
+<p>If these two conditions are met, then you just need to have the unique file identifiers that can be used to group the separate images into a single raster. Here is an example of an image group and the file identifiers:</p>
+<ul>
+<li><p>img_001_1.tif</p></li>
+<li><p>img_001_2.tif</p></li>
+<li><p>img_001_3.tif</p></li>
+<li><p>img_001_4.tif</p></li>
+</ul>
+<p>And the file identifiers look like:</p>
+<ul>
+<li><code class="idl_line">['_1.tif', '_2.tif', '_3.tif', '_4.tif']</code></li>
+</ul>
+<p>This groups the images above into a single image. If we want to then generate and apply reference tie points for this generic group then we can simply do the following in IDL:</p>
+<pre class="idl_code_block">
+<font class="idl_comment">;start ENVI</font>
+e = <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/ENVI.html" target="_blank"><font class="idl_sys_func idl_tt" idl_tt="Launches the ENVI application and returns an object reference to the application.">envi</font></a>(/HEADLESS)
+
+<font class="idl_comment">;get UAV Toolkit ready</font>
+<font class="idl_lib_pro ">uav_toolkit</font>
+
+<font class="idl_comment">;set up task</font>
+alignTask = <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/ENVITask.html" target="_blank"><font class="idl_sys_func idl_tt" idl_tt="Accepts a task name and returns an object reference to the task.">ENVITask</font></a>(<font class="idl_str">&#39;UAVBandAlignment&#39;</font>)
+alignTask.<font class="idl_prop">SENSOR</font> = <font class="idl_str">&#39;generic&#39;</font>
+alignTask.<font class="idl_prop">FILE_IDENTIFIERS</font> = [<font class="idl_str">&#39;_1.tif&#39;</font>, <font class="idl_str">&#39;_2.tif&#39;</font>, <font class="idl_str">&#39;_3.tif&#39;</font>, <font class="idl_str">&#39;_4.tif&#39;</font>]
+alignTask.<font class="idl_prop">INPUTDIR</font> = <font class="idl_str">&#39;C:\data\directory&#39;</font>
+alignTask.<font class="idl_prop">GENERATE_REFERENCE_TIEPOINTS</font> = <font class="idl_num">1</font>
+alignTask.<font class="idl_prop">APPLY_REFERENCE_TIEPOINTS</font> = <font class="idl_num">1</font>
+alignTask.<font class="idl_lib_pro ">execute</font>
+</pre>
+<div id="idl-package-md-file-head_8">
+<a class="anchor_sub" name="idl-package-md-file-head_8"></a>
+</div>
+<h3 id="micasense-rededge">MicaSense RedEdge</h3>
+<p>A custom batch processing routine has been developed for the MicaSense RedEdge sensor to make processing the data very simple. To process the data, you can simply do the following using IDL:</p>
+<pre class="idl_code_block">
+<font class="idl_comment">;start ENVI headlessly</font>
+e = <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/ENVI.html" target="_blank"><font class="idl_sys_func idl_tt" idl_tt="Launches the ENVI application and returns an object reference to the application.">envi</font></a>(/HEADLESS)
+
+<font class="idl_comment">;initialize the uav_toolkit</font>
+<font class="idl_lib_pro ">uav_toolkit</font>
+
+<font class="idl_comment">;this folder should be the one that contains the unzipped contents of the sample data.</font>
+flightdir = <font class="idl_str">&#39;C:\data\rededge&#39;</font>
+
+<font class="idl_comment">;create our batch task</font>
+rededgeTask = <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/ENVITask.html" target="_blank"><font class="idl_sys_func idl_tt" idl_tt="Accepts a task name and returns an object reference to the task.">ENVITask</font></a>(<font class="idl_str">&#39;UAVBatchRedEdge&#39;</font>)
+rededgeTask.<font class="idl_prop">FLIGHTDIR</font> = flightdir
+rededgeTask.<font class="idl_lib_pro ">execute</font>
+</pre>
+<p>Where <code class="idl_line">FLIGHTDIR</code> is the folder that <em>contains</em> the RedEdge data. In other words, <code class="idl_line">FLIGHTDIR</code> should contain the folders 000 and 001 as collected by the sensor. These folders must all be from the same sensor and be at approximately the same height off of the ground for the reference tie points to be valid.</p>
+<p>If you have reflectance panel images in each data folder, then create a subdirectory called &quot;reflectance_panels&quot; and place them in there. These files will be excluded from processing and only used to calibrate the data.</p>
+<p>You can also use the ENVITask <code class="idl_line">UAVBandAlignment</code> directly to process a single folder of data using:</p>
+<pre class="idl_code_block">
+<font class="idl_comment">;start ENVI</font>
+e = <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/ENVI.html" target="_blank"><font class="idl_sys_func idl_tt" idl_tt="Launches the ENVI application and returns an object reference to the application.">envi</font></a>(/HEADLESS)
+
+<font class="idl_comment">;get UAV Toolkit ready</font>
+<font class="idl_lib_pro ">uav_toolkit</font>
+
+<font class="idl_comment">;set up task</font>
+alignTask = <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/ENVITask.html" target="_blank"><font class="idl_sys_func idl_tt" idl_tt="Accepts a task name and returns an object reference to the task.">ENVITask</font></a>(<font class="idl_str">&#39;UAVBandAlignment&#39;</font>)
+alignTask.<font class="idl_prop">SENSOR</font> = <font class="idl_str">&#39;rededge&#39;</font>
+alignTask.<font class="idl_prop">INPUTDIR</font> = <font class="idl_str">&#39;C:\data\directory&#39;</font>
+alignTask.<font class="idl_prop">GENERATE_REFERENCE_TIEPOINTS</font> = <font class="idl_num">1</font>
+alignTask.<font class="idl_prop">APPLY_REFERENCE_TIEPOINTS</font> = <font class="idl_num">1</font>
+alignTask.<font class="idl_lib_pro ">execute</font>
+</pre>
+<div id="idl-package-md-file-head_9">
+<a class="anchor_sub" name="idl-package-md-file-head_9"></a>
+</div>
+<h3 id="parrot-sequoia">Parrot Sequoia</h3>
+<p>You can also process the Parrot Sequoia data with the UAV toolkit. Note that generating the tie points for this data may take longer because the multispectral bands are taken with a fisheye lens. To process the Sequoia data, just use the <code class="idl_line">UAVBandAlignment</code> task with:</p>
+<pre class="idl_code_block">
+<font class="idl_comment">;start ENVI</font>
+e = <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/ENVI.html" target="_blank"><font class="idl_sys_func idl_tt" idl_tt="Launches the ENVI application and returns an object reference to the application.">envi</font></a>(/HEADLESS)
+
+<font class="idl_comment">;get UAV Toolkit ready</font>
+<font class="idl_lib_pro ">uav_toolkit</font>
+
+<font class="idl_comment">;set up task</font>
+alignTask = <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/ENVITask.html" target="_blank"><font class="idl_sys_func idl_tt" idl_tt="Accepts a task name and returns an object reference to the task.">ENVITask</font></a>(<font class="idl_str">&#39;UAVBandAlignment&#39;</font>)
+alignTask.<font class="idl_prop">SENSOR</font> = <font class="idl_str">&#39;sequoia&#39;</font>
+alignTask.<font class="idl_prop">INPUTDIR</font> = <font class="idl_str">&#39;C:\data\directory&#39;</font>
+alignTask.<font class="idl_prop">GENERATE_REFERENCE_TIEPOINTS</font> = <font class="idl_num">1</font>
+alignTask.<font class="idl_prop">APPLY_REFERENCE_TIEPOINTS</font> = <font class="idl_num">1</font>
+alignTask.<font class="idl_lib_pro ">execute</font>
+</pre>
+<div id="idl-package-md-file-head_10">
+<a class="anchor_sub" name="idl-package-md-file-head_10"></a>
+</div>
+<h3 id="default-values">Default Values</h3>
+<p>For each one of the sensors, there are some default task parameters for the UAVBandAlignment task which are custom to each sensor type. Each of these parameters can be overridden by specifying the accompanying parameter in the <code class="idl_line">UAVBandAlignment</code> task object.</p>
+<p>These defaults are taken directly from the source code and are:</p>
+<pre class="idl_code_block">
+<font class="idl_comment">;==============================================================================================</font>
+<font class="idl_comment">;check the sensor type and set defaults for our processing</font>
+<a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/CASE.html" target="_blank"><font class="idl_control idl_tt" idl_tt="Selects one statement for execution, depending on the value of an expression.">case</font></a> (parameters.<font class="idl_prop">SENSOR</font>) <font class="idl_control ">of</font>
+  <font class="idl_str">&#39;rededge&#39;</font>:<a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/BEGIN___END.html" target="_blank"><font class="idl_control idl_tt" idl_tt="Defines a block of statements.">begin</font></a>
+    parameters[<font class="idl_str">&#39;BASE_BAND&#39;</font>] = <font class="idl_num">2</font>
+    parameters[<font class="idl_str">&#39;FILE_IDENTIFIERS&#39;</font>] = [<font class="idl_str">&#39;_1.tif&#39;</font>, <font class="idl_str">&#39;_2.tif&#39;</font>, <font class="idl_str">&#39;_3.tif&#39;</font>, <font class="idl_str">&#39;_5.tif&#39;</font>, <font class="idl_str">&#39;_4.tif&#39;</font>]
+
+    <font class="idl_comment">;specify the metadata for our output scene</font>
+    meta = <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/ENVIRasterMetaData.html" target="_blank"><font class="idl_sys_func idl_tt" idl_tt="Reference to a raster metadata object.">ENVIRasterMetadata</font></a>()
+    meta[<font class="idl_str">&#39;band names&#39;</font>] = [<font class="idl_str">&#39;Blue&#39;</font>, <font class="idl_str">&#39;Green&#39;</font>, <font class="idl_str">&#39;Red&#39;</font>, <font class="idl_str">&#39;Red Edge&#39;</font>, <font class="idl_str">&#39;NIR&#39;</font>]
+    meta[<font class="idl_str">&#39;wavelength units&#39;</font>] = <font class="idl_str">&#39;nm&#39;</font>
+    meta[<font class="idl_str">&#39;wavelength&#39;</font>] = [<font class="idl_num">450</font>, <font class="idl_num">550</font>, <font class="idl_num">650</font>, <font class="idl_num">750</font>, <font class="idl_num">850</font>]
+    parameters[<font class="idl_str">&#39;METADATA&#39;</font>] = meta
+
+    <font class="idl_comment">;check for other parameter values</font>
+    <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/IF___THEN___ELSE.html" target="_blank"><font class="idl_control idl_tt" idl_tt="Conditionally executes a statement or block of statements.">if</font></a> ~parameters.<font class="idl_lib_func ">hasKey</font>(<font class="idl_str">&#39;SEARCH_WINDOW_FROM_HEIGHT&#39;</font>) <font class="idl_control ">then</font> parameters[<font class="idl_str">&#39;SEARCH_WINDOW_FROM_HEIGHT&#39;</font>] = <font class="idl_num">1</font>
+    <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/IF___THEN___ELSE.html" target="_blank"><font class="idl_control idl_tt" idl_tt="Conditionally executes a statement or block of statements.">if</font></a> ~parameters.<font class="idl_lib_func ">hasKey</font>(<font class="idl_str">&#39;CO_CALIBRATION&#39;</font>) <font class="idl_control ">then</font> parameters[<font class="idl_str">&#39;CO_CALIBRATION&#39;</font>] = <font class="idl_num">1</font>
+    <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/IF___THEN___ELSE.html" target="_blank"><font class="idl_control idl_tt" idl_tt="Conditionally executes a statement or block of statements.">if</font></a> ~parameters.<font class="idl_lib_func ">hasKey</font>(<font class="idl_str">&#39;MAX_VALUE_DIVISOR&#39;</font>) <font class="idl_control ">then</font> parameters[<font class="idl_str">&#39;MAX_VALUE_DIVISOR&#39;</font>] = <font class="idl_num">16s</font>
+    <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/IF___THEN___ELSE.html" target="_blank"><font class="idl_control idl_tt" idl_tt="Conditionally executes a statement or block of statements.">if</font></a> ~parameters.<font class="idl_lib_func ">hasKey</font>(<font class="idl_str">&#39;MAX_PIXEL_VALUE&#39;</font>) <font class="idl_control ">then</font> parameters[<font class="idl_str">&#39;MAX_PIXEL_VALUE&#39;</font>] = <font class="idl_num">4095</font>
+  <font class="idl_control ">end</font>
+  <font class="idl_str">&#39;sequoia&#39;</font>:<a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/BEGIN___END.html" target="_blank"><font class="idl_control idl_tt" idl_tt="Defines a block of statements.">begin</font></a>
+    parameters[<font class="idl_str">&#39;BASE_BAND&#39;</font>] = <font class="idl_num">1</font>
+    parameters[<font class="idl_str">&#39;FILE_IDENTIFIERS&#39;</font>] = [<font class="idl_str">&#39;_GRE.TIF&#39;</font>, <font class="idl_str">&#39;_RED.TIF&#39;</font>, <font class="idl_str">&#39;_REG.TIF&#39;</font>, <font class="idl_str">&#39;_NIR.TIF&#39;</font>]
+
+    <font class="idl_comment">;specify the metadata for our output scene</font>
+    meta = <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/ENVIRasterMetaData.html" target="_blank"><font class="idl_sys_func idl_tt" idl_tt="Reference to a raster metadata object.">ENVIRasterMetadata</font></a>()
+    meta[<font class="idl_str">&#39;band names&#39;</font>] = [<font class="idl_str">&#39;Green&#39;</font>, <font class="idl_str">&#39;Red&#39;</font>, <font class="idl_str">&#39;Red Edge&#39;</font>, <font class="idl_str">&#39;NIR&#39;</font>]
+    meta[<font class="idl_str">&#39;wavelength units&#39;</font>] = <font class="idl_str">&#39;nm&#39;</font>
+    meta[<font class="idl_str">&#39;wavelength&#39;</font>] = [<font class="idl_num">550</font>, <font class="idl_num">650</font>, <font class="idl_num">750</font>, <font class="idl_num">850</font>]
+    parameters[<font class="idl_str">&#39;METADATA&#39;</font>] = meta
+
+    <font class="idl_comment">;check for other parameter values</font>
+    <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/IF___THEN___ELSE.html" target="_blank"><font class="idl_control idl_tt" idl_tt="Conditionally executes a statement or block of statements.">if</font></a> ~parameters.<font class="idl_lib_func ">hasKey</font>(<font class="idl_str">&#39;SEARCH_WINDOW_FROM_HEIGHT&#39;</font>) <font class="idl_control ">then</font> parameters[<font class="idl_str">&#39;SEARCH_WINDOW_FROM_HEIGHT&#39;</font>] = <font class="idl_num">0</font>
+    <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/IF___THEN___ELSE.html" target="_blank"><font class="idl_control idl_tt" idl_tt="Conditionally executes a statement or block of statements.">if</font></a> ~parameters.<font class="idl_lib_func ">hasKey</font>(<font class="idl_str">&#39;CO_CALIBRATION&#39;</font>) <font class="idl_control ">then</font> parameters[<font class="idl_str">&#39;CO_CALIBRATION&#39;</font>] = <font class="idl_num">0</font>
+    requested_number_of_tiepoints = <font class="idl_num">500</font>
+    minimum_filtered_tiepoints = <font class="idl_num">100</font>
+  <font class="idl_control ">end</font>
+  <font class="idl_control ">else</font>:<a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/BEGIN___END.html" target="_blank"><font class="idl_control idl_tt" idl_tt="Defines a block of statements.">begin</font></a>
+    <font class="idl_comment">;make sure we have information about our panel identifiers</font>
+    <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/IF___THEN___ELSE.html" target="_blank"><font class="idl_control idl_tt" idl_tt="Conditionally executes a statement or block of statements.">if</font></a> ~parameters.<font class="idl_lib_func ">hasKey</font>(<font class="idl_str">&#39;FILE_IDENTIFIERS&#39;</font>) <font class="idl_control ">then</font> <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/BEGIN___END.html" target="_blank"><font class="idl_control idl_tt" idl_tt="Defines a block of statements.">begin</font></a>
+    <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/MESSAGE.html" target="_blank"><font class="idl_sys_pro idl_tt" idl_tt="Issues error and informational messages.">message</font></a>, <font class="idl_str">&#39;FILE_IDENTIFIERS not specified in parameters, required for generic sensor!&#39;</font>
+    <font class="idl_control ">endif</font>
+
+    <font class="idl_comment">;set default parameters</font>
+    <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/IF___THEN___ELSE.html" target="_blank"><font class="idl_control idl_tt" idl_tt="Conditionally executes a statement or block of statements.">if</font></a> ~parameters.<font class="idl_lib_func ">hasKey</font>(<font class="idl_str">&#39;BASE_BAND&#39;</font>) <font class="idl_control ">then</font> paramers[<font class="idl_str">&#39;BASE_BAND&#39;</font>] = <font class="idl_num">0</font>
+    <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/IF___THEN___ELSE.html" target="_blank"><font class="idl_control idl_tt" idl_tt="Conditionally executes a statement or block of statements.">if</font></a> ~parameters.<font class="idl_lib_func ">hasKey</font>(<font class="idl_str">&#39;SEARCH_WINDOW_FROM_HEIGHT&#39;</font>) <font class="idl_control ">then</font> parameters[<font class="idl_str">&#39;SEARCH_WINDOW_FROM_HEIGHT&#39;</font>] = <font class="idl_num">0</font>
+    <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/IF___THEN___ELSE.html" target="_blank"><font class="idl_control idl_tt" idl_tt="Conditionally executes a statement or block of statements.">if</font></a> ~parameters.<font class="idl_lib_func ">hasKey</font>(<font class="idl_str">&#39;CO_CALIBRATION&#39;</font>) <font class="idl_control ">then</font> parameters[<font class="idl_str">&#39;CO_CALIBRATION&#39;</font>] = <font class="idl_num">0</font>
+  <font class="idl_control ">end</font>
+<font class="idl_control ">endcase</font>
+</pre>
+<div id="idl-package-md-file-head_11">
+<a class="anchor_sub" name="idl-package-md-file-head_11"></a>
+</div>
+<hr />
+<h2 id="license">License</h2>
+<p>Licensed under MIT. See LICENSE.txt for additional details and information.</p>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>2017 Exelis Visual Information Solutions, Inc., a subsidiary of Harris Corporation.</li>
+</ol>
+<div id="idl-package-md-file-head_12">
+<a class="anchor_sub" name="idl-package-md-file-head_12"></a>
+</div>
+<hr />
+<h2 id="contents">Contents</h2>
+<ul>
+<li><a href="./files/UAVToolkit/uav_toolkit.html#">File 1: uav_toolkit.pro</a>
+<ul>
+<li><a href="./files/UAVToolkit/uav_toolkit.html#uav_toolkit-head_0">Example One</a></li>
+<li><a href="./files/UAVToolkit/uav_toolkit.html#uav_toolkit-head_1">Example Two</a></li>
+<li><a href="./files/UAVToolkit/uav_toolkit.html#uav_toolkit-head_3">uav_toolkit</a></li>
+</ul></li>
+<li><a href="./files/src/unjoin_rededge_datadir.html#">File 2: unjoin_rededge_datadir.pro</a>
+<ul>
+<li><a href="./files/src/unjoin_rededge_datadir.html#unjoin_rededge_datadir-head_0">Example</a></li>
+<li><a href="./files/src/unjoin_rededge_datadir.html#unjoin_rededge_datadir-head_1">unjoin_rededge_datadir</a></li>
+</ul></li>
+<li><a href="./files/src/join_rededge_datadirs.html#">File 3: join_rededge_datadirs.pro</a>
+<ul>
+<li><a href="./files/src/join_rededge_datadirs.html#join_rededge_datadirs-head_0">Example</a></li>
+<li><a href="./files/src/join_rededge_datadirs.html#join_rededge_datadirs-head_1">join_rededge_datadirs</a></li>
+</ul></li>
+<li><a href="./files/src/image_info__define.html#">File 4: image_info__define.pro</a>
+<ul>
+<li><a href="./files/src/image_info__define.html#image_info__define-head_0">image_info_ground_height()</a></li>
+<li><a href="./files/src/image_info__define.html#image_info__define-head_5">image_info::init()</a></li>
+<li><a href="./files/src/image_info__define.html#image_info__define-head_13">image_info::Get()</a></li>
+<li><a href="./files/src/image_info__define.html#image_info__define-head_17">image_info::GetGPSinformation()</a></li>
+<li><a href="./files/src/image_info__define.html#image_info__define-head_20">image_info::_overloadPrint()</a></li>
+<li><a href="./files/src/image_info__define.html#image_info__define-head_22">image_info::_overloadImpliedPrint()</a></li>
+<li><a href="./files/src/image_info__define.html#image_info__define-head_24">image_info__define</a></li>
+</ul></li>
+<li><a href="./files/src/image_groups_to_virtual_rasters.html#">File 5: image_groups_to_virtual_rasters.pro</a></li>
+<li><a href="./files/src/generate_gps_file.html#">File 6: generate_gps_file.pro</a>
+<ul>
+<li><a href="./files/src/generate_gps_file.html#generate_gps_file-head_2">generate_gps_file</a></li>
+</ul></li>
+<li><a href="./files/src/generate_cam_file.html#">File 7: generate_cam_file.pro</a>
+<ul>
+<li><a href="./files/src/generate_cam_file.html#generate_cam_file-head_2">generate_cam_file</a></li>
+</ul></li>
+<li><a href="./files/src/createbettertileiterator.html#">File 8: createbettertileiterator.pro</a></li>
+<li><a href="./files/filterRaster/filter_raster.html#">File 9: filter_raster.pro</a></li>
+<li><a href="./files/batchTasks/batchrededge.html#">File 10: batchrededge.pro</a>
+<ul>
+<li><a href="./files/batchTasks/batchrededge.html#batchrededge-head_0">batchRedEdge</a></li>
+</ul></li>
+<li><a href="./files/bandAlignment/bandalignmenttiepoints__define.html#">File 11: bandalignmenttiepoints__define.pro</a>
+<ul>
+<li><a href="./files/bandAlignment/bandalignmenttiepoints__define.html#bandalignmenttiepoints__define-head_1">BandAlignmentTiePoints::GenerateRSTTransform</a></li>
+<li><a href="./files/bandAlignment/bandalignmenttiepoints__define.html#bandalignmenttiepoints__define-head_6">BandAlignmentTiePoints::GetProperty</a></li>
+<li><a href="./files/bandAlignment/bandalignmenttiepoints__define.html#bandalignmenttiepoints__define-head_11">BandAlignmentTiePoints::init()</a></li>
+<li><a href="./files/bandAlignment/bandalignmenttiepoints__define.html#bandalignmenttiepoints__define-head_18">BandAlignmentTiePoints::_OverloadImpliedPrint()</a></li>
+<li><a href="./files/bandAlignment/bandalignmenttiepoints__define.html#bandalignmenttiepoints__define-head_21">BandAlignmentTiePoints::_OverloadPrint()</a></li>
+<li><a href="./files/bandAlignment/bandalignmenttiepoints__define.html#bandalignmenttiepoints__define-head_24">BandAlignmentTiePoints::SetProperty</a></li>
+<li><a href="./files/bandAlignment/bandalignmenttiepoints__define.html#bandalignmenttiepoints__define-head_29">BandAlignmentTiePoints::_SetProperty</a></li>
+</ul></li>
+<li><a href="./files/bandAlignment/bandalignmenttask.html#">File 12: bandalignmenttask.pro</a>
+<ul>
+<li><a href="./files/bandAlignment/bandalignmenttask.html#bandalignmenttask-head_0">BandAlignmentTask</a></li>
+</ul></li>
+<li><a href="./files/bandAlignment/bandalignment_simple_kappa_filter.html#">File 13: bandalignment_simple_kappa_filter.pro</a>
+<ul>
+<li><a href="./files/bandAlignment/bandalignment_simple_kappa_filter.html#bandalignment_simple_kappa_filter-head_0">bandalignment_simple_kappa_filter()</a></li>
+</ul></li>
+<li><a href="./files/bandAlignment/bandalignment_setupsensorforprocessing.html#">File 14: bandalignment_setupsensorforprocessing.pro</a>
+<ul>
+<li><a href="./files/bandAlignment/bandalignment_setupsensorforprocessing.html#bandalignment_setupsensorforprocessing-head_0">BandAlignment_SetUpSensorForProcessing</a></li>
+</ul></li>
+<li><a href="./files/bandAlignment/bandalignment_set_task_parameters.html#">File 15: bandalignment_set_task_parameters.pro</a></li>
+<li><a href="./files/bandAlignment/bandalignment_savereferencetiepoints.html#">File 16: bandalignment_savereferencetiepoints.pro</a>
+<ul>
+<li><a href="./files/bandAlignment/bandalignment_savereferencetiepoints.html#bandalignment_savereferencetiepoints-head_0">BandAlignment_SaveReferenceTiepoints</a></li>
+</ul></li>
+<li><a href="./files/bandAlignment/bandalignment_processsensor_getreferencetiepoints.html#">File 17: bandalignment_processsensor_getreferencetiepoints.pro</a>
+<ul>
+<li><a href="./files/bandAlignment/bandalignment_processsensor_getreferencetiepoints.html#bandalignment_processsensor_getreferencetiepoints-head_0">BandAlignment_ProcessSensor_GetReferenceTiePoints</a></li>
+</ul></li>
+<li><a href="./files/bandAlignment/bandalignment_group_to_virtualraster.html#">File 18: bandalignment_group_to_virtualraster.pro</a>
+<ul>
+<li><a href="./files/bandAlignment/bandalignment_group_to_virtualraster.html#bandalignment_group_to_virtualraster-head_0">bandAlignment_group_to_virtualRaster()</a></li>
+</ul></li>
+<li><a href="./files/bandAlignment/bandalignment_get_image_groups.html#">File 19: bandalignment_get_image_groups.pro</a>
+<ul>
+<li><a href="./files/bandAlignment/bandalignment_get_image_groups.html#bandalignment_get_image_groups-head_0">BandAlignment_Get_Image_Groups()</a></li>
+</ul></li>
+<li><a href="./files/bandAlignment/bandalignment_generatereferencetiepoints.html#">File 20: bandalignment_generatereferencetiepoints.pro</a>
+<ul>
+<li><a href="./files/bandAlignment/bandalignment_generatereferencetiepoints.html#bandalignment_generatereferencetiepoints-head_0">BandAlignment_GenerateReferenceTiePoints</a></li>
+</ul></li>
+<li><a href="./files/bandAlignment/bandalignment_find_good_image_group.html#">File 21: bandalignment_find_good_image_group.pro</a>
+<ul>
+<li><a href="./files/bandAlignment/bandalignment_find_good_image_group.html#bandalignment_find_good_image_group-head_0">bandalignment_find_good_image_group</a></li>
+</ul></li>
+<li><a href="./files/bandAlignment/bandalignment_applyreferencetiepointswithidl.html#">File 22: bandalignment_applyreferencetiepointswithidl.pro</a>
+<ul>
+<li><a href="./files/bandAlignment/bandalignment_applyreferencetiepointswithidl.html#bandalignment_applyreferencetiepointswithidl-head_0">BandAlignment_ApplyReferenceTiePointsWithIDL</a></li>
+</ul></li>
+<li><a href="./files/bandAlignment/bandalignment_applyreferencetiepointswithenvi.html#">File 23: bandalignment_applyreferencetiepointswithenvi.pro</a>
+<ul>
+<li><a href="./files/bandAlignment/bandalignment_applyreferencetiepointswithenvi.html#bandalignment_applyreferencetiepointswithenvi-head_0">BandAlignment_ApplyReferenceTiePointsWithENVI</a></li>
+</ul></li>
+<li><a href="./files/bandAlignment/bandalignment_applyreferencetiepointstogroups.html#">File 24: bandalignment_applyreferencetiepointstogroups.pro</a>
+<ul>
+<li><a href="./files/bandAlignment/bandalignment_applyreferencetiepointstogroups.html#bandalignment_applyreferencetiepointstogroups-head_1">BandAlignment_ApplyReferenceTiePointsToGroup</a></li>
+<li><a href="./files/bandAlignment/bandalignment_applyreferencetiepointstogroups.html#bandalignment_applyreferencetiepointstogroups-head_8">BandAlignment_ApplyReferenceTiePointsToGroups</a></li>
+</ul></li>
+<li><a href="./files/custom_code/README.html#">File 25: UAVToolkit Directory custom_code</a></li>
+<li><a href="./files/CONTRIBUTING.html#">File 26: Contributing</a></li>
+</ul>
+</div>
+</row>
+</div>
+</body>
+</html>

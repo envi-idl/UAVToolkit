@@ -1,0 +1,3 @@
+# .gitignore file initialized by the IDL Package Creator
+/build
+/idl_packages

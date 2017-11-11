@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="./../../css/haroopad-markdown.css" type="text/css" />
+<!--  for adding syntax colorizer --> 
+<link rel="stylesheet" href="./../../js/highlight/styles/github.css"> 
+<script src="./../../js/highlight/highlight.pack.js"></script>
+<script > hljs.initHighlightingOnLoad(); </script>
+
+<!--
+<link rel="stylesheet" href="./../../js/highlight/styles/line-numbers.css"> 
+<script src="./../../js/highlight/highlightjs-line-numbers.min.js"></script>
+<script>hljs.initLineNumbersOnLoad();</script>
+-->
+<!-- head contents for header-bar -->
+<script src="./../../js/jquery.min.js"></script>
+<script src="./../../js/bootstrap.min.js"></script>
+<script src="./../../js/lunr.min.js"></script>
+<script src="./../../js/clipboard.min.js"></script>
+<script src="./../../js/copy-button.js"></script>
+
+
+<!-- load colors for IDL syntax and anchor fix with fixed header-->
+<style type="text/css">
+	@import url("./../../css/bootstrap.min.css");
+	@import url("./../../css/font-awesome.min.css");
+	@import url("./../../css/cosmos.bootstrap.min.css");
+	@import url("./../../css/idl-styles.css");
+	@import url("./../../css/anchor-fix.css");
+	@import url("./../../css/sidebar.css");
+	@import url("./../../css/callouts.css");
+	@import url("./../../css/figures-and-tables.css");
+	@import url("./../../css/copy-button.css");
+	@import url("./../../css/general-styles.css");
+</style>
+</head>
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="15">
+
+<div id="header" class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar-header">
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+            <i class="icon-reorder"></i>
+        </button>
+    </div>
+    <nav class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li>
+                <a href="./../../index.html#"><i class="fa fa-home"></i> Home</a>
+            </li>
+            <li class="dropdown">
+                <a style="top:3px" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-book">  Contents</i></a>
+                <ul class="dropdown-menu">
+<li><a href="./../../files/UAVToolkit/uav_toolkit.html#">File 1: uav_toolkit.pro</a></li>
+<li><a href="./../../files/src/unjoin_rededge_datadir.html#">File 2: unjoin_rededge_datadir.pro</a></li>
+<li><a href="./../../files/src/join_rededge_datadirs.html#">File 3: join_rededge_datadirs.pro</a></li>
+<li><a href="./../../files/src/image_info__define.html#">File 4: image_info__define.pro</a></li>
+<li><a href="./../../files/src/image_groups_to_virtual_rasters.html#">File 5: image_groups_to_virtual_rasters.pro</a></li>
+<li><a href="./../../files/src/generate_gps_file.html#">File 6: generate_gps_file.pro</a></li>
+<li><a href="./../../files/src/generate_cam_file.html#">File 7: generate_cam_file.pro</a></li>
+<li><a href="./../../files/src/createbettertileiterator.html#">File 8: createbettertileiterator.pro</a></li>
+<li><a href="./../../files/filterRaster/filter_raster.html#">File 9: filter_raster.pro</a></li>
+<li><a href="./../../files/batchTasks/batchrededge.html#">File 10: batchrededge.pro</a></li>
+<li><a href="./../../files/bandAlignment/bandalignmenttiepoints__define.html#">File 11: bandalignmenttiepoints__define.pro</a></li>
+<li><a href="./../../files/bandAlignment/bandalignmenttask.html#">File 12: bandalignmenttask.pro</a></li>
+<li><a href="./../../files/bandAlignment/bandalignment_simple_kappa_filter.html#">File 13: bandalignment_simple_kappa_filter.pro</a></li>
+<li><a href="./../../files/bandAlignment/bandalignment_setupsensorforprocessing.html#">File 14: bandalignment_setupsensorforprocessing.pro</a></li>
+<li><a href="./../../files/bandAlignment/bandalignment_set_task_parameters.html#">File 15: bandalignment_set_task_parameters.pro</a></li>
+<li><a href="./../../files/bandAlignment/bandalignment_savereferencetiepoints.html#">File 16: bandalignment_savereferencetiepoints.pro</a></li>
+<li><a href="./../../files/bandAlignment/bandalignment_processsensor_getreferencetiepoints.html#">File 17: bandalignment_processsensor_getreferencetiepoints.pro</a></li>
+<li><a href="./../../files/bandAlignment/bandalignment_group_to_virtualraster.html#">File 18: bandalignment_group_to_virtualraster.pro</a></li>
+<li><a href="./../../files/bandAlignment/bandalignment_get_image_groups.html#">File 19: bandalignment_get_image_groups.pro</a></li>
+<li><a href="./../../files/bandAlignment/bandalignment_generatereferencetiepoints.html#">File 20: bandalignment_generatereferencetiepoints.pro</a></li>
+<li><a href="./../../files/bandAlignment/bandalignment_find_good_image_group.html#">File 21: bandalignment_find_good_image_group.pro</a></li>
+<li><a href="./../../files/bandAlignment/bandalignment_applyreferencetiepointswithidl.html#">File 22: bandalignment_applyreferencetiepointswithidl.pro</a></li>
+<li><a href="./../../files/bandAlignment/bandalignment_applyreferencetiepointswithenvi.html#">File 23: bandalignment_applyreferencetiepointswithenvi.pro</a></li>
+<li><a href="./../../files/bandAlignment/bandalignment_applyreferencetiepointstogroups.html#">File 24: bandalignment_applyreferencetiepointstogroups.pro</a></li>
+<li><a href="./../../files/custom_code/README.html#">File 25: UAVToolkit Directory custom_code</a></li>
+<li><a href="./../../files/CONTRIBUTING.html#">File 26: Contributing</a></li>
+                    <!--<li><a href="#">Chapter 1</a></li>-->
+                </ul>
+            </li>
+        </ul>
+      <a class="navbar-brand" href="#">
+         UAVToolkit: File 6
+      </a>
+      <div class="pull-right">
+        <a href="https://www.harrisgeospatial.com" target="_blank"><img src="./../../images/Harris_wR_White-RedA.png" style="height:41px; width:155px; position:relative; top:5px; right:20px"></img></a>
+      </div>
+      <a class="navbar-brand pull-right" href="#" style="position:relative;right:30px;" target="_blank">
+        Search
+      </a>
+    </nav>
+</div>
+<div style="padding-top:60px;"> 
+<div class="container">
+ <row>
+   <nav class="col-xs-3 bs-docs-sidebar" id="myScrollspy">
+      <ul id="sidebar" class="nav nav-stacked fixed sidebar-overflow">
+        <li><a href="#" class="side_tt", side_tt="generate_gps_file.pro">generate_gps_file.pro</a></li>
+        <li>
+          <a href="#generate_gps_file-head_2" class="side_tt", side_tt="generate_gps_file">generate_gps_file</a>
+            <ul class="nav nav-stacked">
+              <li><a href="#generate_gps_file-head_3" class="side_tt", side_tt="Syntax">Syntax</a></li>
+              <li><a href="#generate_gps_file-head_4" class="side_tt", side_tt="Keywords">Keywords</a></li>
+              <li><a href="#generate_gps_file-head_7" class="side_tt", side_tt="Author">Author</a></li>
+            </ul>
+        <li>
+      </ul>
+    </nav>
+    <div class="col-sm-9">
+<div id="generate_gps_file">
+<a name="generate_gps_file"></a>
+</div>
+<h1 id="generate_gps_file.pro">generate_gps_file.pro</h1>
+<hr />
+<p>Procedure to search in input directory for images and create a GPS file for image stitching software to use. The resulting GPS file will be created in the directory specified by <code class="idl_line">INPUTDIR</code> and the exact file name will be <code class="idl_line">images.gps</code>.</p>
+<p>Note that this procedure will look for roll, pitch, and yaw in the image exif metadata and it will be set to all 0's if not present. Below are a few examples of how you can use this routine to process data.</p>
+<div id="generate_gps_file-head_0">
+<a class="anchor_sub" name="generate_gps_file-head_0"></a>
+</div>
+<h3 id="example-one">Example One</h3>
+<p>This first example illustrates how to create a GPS file from a single directory of MicaSense imagery:</p>
+<pre class="idl_code_block">
+inputdir = <font class="idl_str">&#39;C:\Users\username\images&#39;</font>
+<font class="idl_lib_pro ">generate_gps_file</font>,$
+  INPUTDIR = inputdir,$
+  FILE_IDENTIFIERS = [<font class="idl_str">&#39;_1.tif&#39;</font>, <font class="idl_str">&#39;_2.tif&#39;</font>, <font class="idl_str">&#39;_3.tif&#39;</font>, <font class="idl_str">&#39;_5.tif&#39;</font>, <font class="idl_str">&#39;_4.tif&#39;</font>]
+</pre>
+<div id="generate_gps_file-head_1">
+<a class="anchor_sub" name="generate_gps_file-head_1"></a>
+</div>
+<h3 id="example-two">Example two</h3>
+<p>This second example is what is used in the <code class="idl_line">BandAlignmentTask</code> to procedurally generate a GPS file and place it in the location specified by <code class="idl_line">OUTPUTDIR</code>. The images found in <code class="idl_line">OUTPUTDIR</code> will be compared against all of the images found in <code class="idl_line">INPUTDIR</code>. Doing this eliminates any chance that a GPS file will have an image listed that has not actually been processed. This example is working with Parrot Sequoia data:</p>
+<pre class="idl_code_block">
+inputdir = <font class="idl_str">&#39;C:\Users\Traininglead\Desktop\tradeshowData\sequoia\data&#39;</font>
+outputdir = inputdir + <font class="idl_str">&#39;_out&#39;</font>
+<font class="idl_lib_pro ">generate_gps_file</font>,$
+  INPUTDIR = flightdir,$
+  FILE_IDENTIFIERS = [<font class="idl_str">&#39;_GRE.TIF&#39;</font>, <font class="idl_str">&#39;_RED.TIF&#39;</font>, <font class="idl_str">&#39;_REG.TIF&#39;</font>, <font class="idl_str">&#39;_NIR.TIF&#39;</font>],$
+  OUTPUTDIR = flightdir + <font class="idl_str">&#39;_out&#39;</font>
+</pre>
+<div id="generate_gps_file-head_2">
+<a class="anchor_sub" name="generate_gps_file-head_2"></a>
+</div>
+<hr />
+<h2 id="generate_gps_file">generate_gps_file</h2>
+<div id="generate_gps_file-head_3">
+<a class="anchor_sub" name="generate_gps_file-head_3"></a>
+</div>
+<h3 id="syntax">Syntax</h3>
+<pre class="no-copy-button">generate_gps_file, <a href="#keywords1-0">FILE_IDENTIFIERS</a> = stringarr, [ <a href="#keywords1-1">ORIENTATION</a> = int ]</pre>
+<div id="generate_gps_file-head_4">
+<a class="anchor_sub" name="generate_gps_file-head_4"></a>
+</div>
+<h3 id="keywords">Keywords</h3>
+<p><a class="anchor_sub" name="keywords1-0"></a></p>
+<p><a class="anchor_sub" name="generate_gps_file-head_5"></a></p>
+<h4 id="file_identifiers">FILE_IDENTIFIERS</h4>
+<p><strong>in, required, type=stringarr</strong></p>
+<p>Specify the unique file idetifiers that represent the seeparate files that belog to a single image group for processing. Some examples of what this looks like can be found above.</p>
+<p><a class="anchor_sub" name="keywords1-1"></a></p>
+<p><a class="anchor_sub" name="generate_gps_file-head_6"></a></p>
+<h4 id="orientation">ORIENTATION</h4>
+<p><strong>in, optional, type=int</strong></p>
+<p>This optional keyword represents the orientation of the camera on the UAV. This parameter is used by OneButton and you can learn more information about the different camera orientations by reading the OneButton user manual.</p>
+<p>If you know this parameter, then setting it correctly will improve the image registration process because the images will be that much closer to their actual location. OUTPUTDIR : in, optional, type=string Specify this keyword to the location of the multi-page TIFFs of the band-stacked versions of the images in <code class="idl_line">INPUTDIR</code>. This will make the procedure search for corresponding files between <code class="idl_line">INPUTDIR</code> and OUTPUTDIR for the GPS file creation. This will also make the GPS file be created in the directory specified by OUTPUTDIR.</p>
+<div id="generate_gps_file-head_7">
+<a class="anchor_sub" name="generate_gps_file-head_7"></a>
+</div>
+<h3 id="author">Author</h3>
+<p>Zachary Norman - Github: znorman-harris</p>
+</div>
+</row>
+</div>
+</body>
+</html>
