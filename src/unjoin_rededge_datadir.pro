@@ -20,7 +20,7 @@
 
 ;+
 ; :Params:
-;    dir : in, required, type=string
+;    dir: in, required, type=string
 ;       This input is the fully qualified path to a directory that contains MicaSense data. An error will
 ;       be thrown if the directory does not exist.
 ;

@@ -27,7 +27,7 @@
 ;    
 ;
 ; :Params:
-;    dirs : in, required, type=stringarr
+;    dirs: in, required, type=stringarr
 ;       This input in required and must be a string array. The first directory in the string array will be where renamed copies
 ;       of the data in the other directories can be found.
 ;       

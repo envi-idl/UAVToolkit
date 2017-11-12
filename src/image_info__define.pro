@@ -11,9 +11,9 @@
 ;    Height above the ground, meters
 ;
 ; :Params:
-;    longitude : in, required, type=float/double
+;    longitude: in, required, type=float/double
 ;       Longitude (decimal degrees) over the location that you want the ground height
-;    latitude : in, required, type=float/double
+;    latitude: in, required, type=float/double
 ;       Latitude (decimal degrees) over the location that you want the ground height
 ;
 ; :Author: Zachary Norman - GitHub: znorman-harris
@@ -455,7 +455,7 @@ end
 ;    for the tag names that were requested.
 ;
 ; :Params:
-;    tagnames : in, required, type=string/stringarr
+;    tagnames: in, required, type=string/stringarr
 ;       This parameters should be set to one of the parameters defined in 
 ;       the object definition to be returned. If you only specify one tag
 ;       to return, then you will just get that value. Otherwise, a structure
@@ -464,7 +464,7 @@ end
 ;       This argument is ignored if the keyword `ALL` is set.
 ; 
 ; :Keywords:
-;    ALL : in, optional, type=int, default=0
+;    ALL: in, optional, type=int, default=0
 ;       Set this keyword to return all of the object properties from 
 ;-
 function image_info::Get, tagnames, ALL = all
@@ -516,7 +516,7 @@ end
 ;    latitude, altitude, roll, pitch, yaw, and acquisition time.
 ;
 ; :Keywords:
-;    FULL_FILE_PATH : in, optional, type=int, default=0
+;    FULL_FILE_PATH: in, optional, type=int, default=0
 ;       Set this keyword to have the returned GPS information include the fully-qualified file
 ;       path the the image that the information is for.
 ;

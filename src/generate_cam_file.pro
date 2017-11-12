@@ -31,12 +31,12 @@
 
 ;+
 ; :Keywords:
-;    INPUTDIR : in, required, type=string
+;    INPUTDIR: in, required, type=string
 ;       Directory to be searched for images to get sensor information from. 
-;    EXTENSION : in, optional, type=string, default='tif'
+;    EXTENSION: in, optional, type=string, default='tif'
 ;       File extension that will match the files found in `INPUTDIR`. The default value is 'tif' and
 ;       should be specified if another file extension is used.
-;    OUTPUTDIR : in, optional, type=string, default=`INPUTDIR`
+;    OUTPUTDIR: in, optional, type=string, default=`INPUTDIR`
 ;       Set this keyword to the location where you would like the output CAM file to be written to.
 ;       If you set this keyword and the directory does not exist, then it will be created.
 ;       
