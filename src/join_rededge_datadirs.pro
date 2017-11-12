@@ -1,4 +1,6 @@
+;h+
 ; (c) 2017 Exelis Visual Information Solutions, Inc., a subsidiary of Harris Corporation.
+;h-
 
 ;+
 ;    Procedure to combine MicaSense data from multiple directories. Running this procedure will rename and copy

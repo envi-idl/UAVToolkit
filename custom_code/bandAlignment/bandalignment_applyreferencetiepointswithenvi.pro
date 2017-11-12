@@ -1,4 +1,6 @@
+;h+
 ; (c) 2017 Exelis Visual Information Solutions, Inc., a subsidiary of Harris Corporation.
+;h-
 
 ;+
 ; TODO: save grid definition for regridding iamges so that it can be used elsewhere

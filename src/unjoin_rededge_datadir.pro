@@ -1,4 +1,6 @@
+;h+
 ; (c) 2017 Exelis Visual Information Solutions, Inc., a subsidiary of Harris Corporation.
+;h-
 
 ;+
 ;   Procedure used to remove any copied files to the directory and reverse the procedure

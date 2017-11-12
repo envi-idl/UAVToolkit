@@ -1,4 +1,6 @@
+;h+
 ; (c) 2017 Exelis Visual Information Solutions, Inc., a subsidiary of Harris Corporation.
+;h-
 
 ;+
 ;  Object definition for the BandAlignmentTiePoints object. This object uses the ".dot" notation

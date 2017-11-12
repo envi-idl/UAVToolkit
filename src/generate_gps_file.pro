@@ -1,4 +1,6 @@
+;h+
 ; (c) 2017 Exelis Visual Information Solutions, Inc., a subsidiary of Harris Corporation.
+;h-
 
 ;+
 ;    Procedure to search in input directory for images and create a GPS file for image stitching software to use. 
