@@ -290,13 +290,14 @@ pro BandAlignment_ApplyReferenceTiePointsToGroup, group, groupName, parameters
       ;print the reference means from the calibration data and convert our images to reflectance
       if (reference_means[0] ne 1.0) then begin
         ;make sure that our typecodes are correct for the data that we are using
-        if (i eq 0) then begin
-          typecode = parameters.REFLECTANCE_TYPE_CODE
-          BandAlignment_GetTIFFKeywords, typecode,$
-            LNG = lng, SIGNED = signed, L64 = l64, DBL = dbl, FLT = flt, SHORT = short
-        endif
+;        if (i eq 0) then begin
+;          typecode = parameters.REFLECTANCE_TYPE_CODE
+;          BandAlignment_GetTIFFKeywords, typecode,$
+;            LNG = lng, SIGNED = signed, L64 = l64, DBL = dbl, FLT = flt, SHORT = short
+;        endif
         print, '    Reflectance panel mean, image max  :    [ ' + strtrim(reference_means[i],2) + ', ' + strtrim(max(write_this),2) + ' ] '
-        write_this = fix((parameters.REFLECTANCE_SCALE_FACTOR*(write_this/reference_means[i])) < parameters.REFLECTANCE_SCALE_FACTOR, TYPE = typecode)
+        write_this = fix((parameters.REFLECTANCE_SCALE_FACTOR*(write_this/reference_means[i]) < parameters.REFLECTANCE_SCALE_FACTOR), TYPE = typecode)
+;        write_this = fix((parameters.REFLECTANCE_SCALE_FACTOR*(write_this/reference_means[i] > 0) < parameters.REFLECTANCE_SCALE_FACTOR), TYPE = typecode)
       endif
       
       ;clean up
@@ -358,8 +359,8 @@ pro BandAlignment_ApplyReferenceTiePointsToGroup, group, groupName, parameters
       if ~keyword_set(parameters.MULTI_CHANNEL) AND ~keyword_set(parameters.MAKE_ENVI_FILE) then begin
         writeData = ptrarr(nBands)
       endif else begin
-        dims = size(write_data, /DIMENSIONS)
-        writeData = make_array(dims[0], dims[1], TYPE = typecode)
+        dims = size(write_this, /DIMENSIONS)
+        writeData = make_array(dims[0], dims[1], nBands, TYPE = typecode)
       endelse
     endif
 
@@ -388,12 +389,12 @@ pro BandAlignment_ApplyReferenceTiePointsToGroup, group, groupName, parameters
           write_tiff, outfile, *writeData[i], /APPEND, $
             LONG = lng, L64 = l64, DOUBLE = dbl, FLOAT = flt, SHORT = short, SIGNED = signed
         endif else begin
-          write_tiff, outfile, write_data[*,*,i], /APPEND, $
+          write_tiff, outfile, writeData[*,*,i], /APPEND, $
             LONG = lng, L64 = l64, DOUBLE = dbl, FLOAT = flt, SHORT = short, SIGNED = signed
         endelse
       endfor
     endif else begin
-      write_tiff, outFile, write_data, $
+      write_tiff, outFile, writeData, PLANARCONFIG = 2, $
         LONG = lng, L64 = l64, DOUBLE = dbl, FLOAT = flt, SHORT = short, SIGNED = signed
     endelse
   endelse

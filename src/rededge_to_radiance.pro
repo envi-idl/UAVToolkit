@@ -88,7 +88,7 @@ end
 ;
 ; :Author: Zachary Norman - GitHub:znorman-harris
 ;-
-function vmap, coeff, dims, X = x, Y = y, R = r
+function vmap, coeff, dims, CENTER = center, X = x, Y = y, R = r
   compile_opt idl2
   if (n_elements(dims) ne 2) then begin
     message, 'Dims are not two element array, required!'
@@ -97,9 +97,14 @@ function vmap, coeff, dims, X = x, Y = y, R = r
     message, 'Coefficients are not six element array, required!'
   endif
   
-  ;get center
-  cX = dims[0]/2 - 1
-  cY = dims[1]/2 - 1
+  ;get center if not specified
+  if (n_elements(center) eq 0) then begin
+    cX = dims[0]/2 - 1
+    cY = dims[1]/2 - 1
+  endif else begin
+    cX = center[0]
+    cY = center[1]
+  endelse
 
   ;create our x and y arrays
   x1d = lindgen(dims[0])
@@ -141,7 +146,7 @@ end
 ;
 ; :Author: Zachary Norman - GitHub:znorman-harris
 ;-
-function rededge_to_radiance, file, DAT = dat
+function rededge_to_radiance, file, DAT = dat, VERBOSE = verbose
   compile_opt idl2
   on_error, 2
   
@@ -213,9 +218,24 @@ function rededge_to_radiance, file, DAT = dat
   
   ;extract vignetting coefficients
   vCoeff = extract_metadata(camMeta, ['Camera:VignettingPolynomial', 'rdf:Seq', 'rdf:li'])
+  vCenter = extract_metadata(camMeta, ['Camera:VignettingCenter', 'rdf:Seq', 'rdf:li'])
   
   ;create vignette map of our correction coefficients
-  vMap = vmap(vCoeff, dims, X = x, Y = y)
+  vMap = vmap(vCoeff, dims, CENTER = vCenter, X = x, Y = y)
+  
+  ;check if we want to print information to the screen, do this here because we are OK to convert
+  ;at this point in the process
+  if keyword_set(verbose) then begin
+    print, strjoin([exif['Make'], exif['Model'], exif['Software']], ' ')
+    print, 'Exposure time     : ', strtrim(exposureTime,2)
+    print, 'Imager gain       : ', strtrim(gain,2)
+    print, 'Size              : ', strjoin(strtrim(dims,2), 'x') + ' pixels
+    print, 'Band name         : ', extract_metadata(camMeta, ['Camera:BandName'])
+    print, 'Center wavelength : ', extract_metadata(camMeta, ['Camera:CentralWavelength'])
+    print, 'Bandwidth         : ', extract_metadata(camMeta, ['Camera:WavelengthFWHM'])
+    print, 'Capture ID        : ', extract_metadata(micaMeta, ['MicaSense:CaptureId'])
+    print, 'Flight ID         : ', extract_metadata(micaMeta, ['MicaSense:FlightId'])
+  endif
   
   ;read in the TIFF data if we haven't already passed it in
   if ~isa(dat, /ARRAY) then begin
@@ -223,8 +243,8 @@ function rededge_to_radiance, file, DAT = dat
   endif
   
   ;normalize our data
-  datNorm = float(dat - darkLevel)/(2.0^bits)
+  datNorm = (float(dat) - darkLevel)/(2.0^bits)
   
   ;convert to radiance
-  return, vmap*float((cal[0]/gain)*(datNorm/(exposuretime + cal[1]*y - cal[2]*exposureTime*y)))
+  return, vmap*float((cal[0]/gain)*(datNorm/(exposuretime + y*(cal[1] - cal[2]*exposureTime))))
 end

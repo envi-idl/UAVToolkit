@@ -1,6 +1,7 @@
 ;h+
 ; (c) 2017 Exelis Visual Information Solutions, Inc., a subsidiary of Harris Corporation.
 ;h-
+function uav_toolkit_calibrate_data, group, sensor, $
   BAND_DIMS = band_dims,$
   INPUT_GAINS = input_gains,$
   INPUT_OFFSETS = input_offsets,$

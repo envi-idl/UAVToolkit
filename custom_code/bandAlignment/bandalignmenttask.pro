@@ -347,11 +347,11 @@ pro BandAlignmentTask, $
   parameters['INIT'] = init
 
   ;search only that directory for input files
-  print, ''
+  print
   print, '##############################################################'
   print, 'Starting processing at : ' + systime()
   print, '##############################################################'
-  print, ''
+  print
 
   ;check how we need to process our data
   ;uses the same routine, but just a nice way to validate that we have support for a "sensor"
@@ -409,4 +409,11 @@ pro BandAlignmentTask, $
   ;clean up the temporary directory
   print, '  Attempting to clean up any temporary files...'
   file_delete, parameters.TEMP_DIR, /QUIET, /RECURSIVE
+  
+  ;search only that directory for input files
+  print
+  print, '##############################################################'
+  print, 'Finished processing at : ' + systime()
+  print, '##############################################################'
+  print
 end

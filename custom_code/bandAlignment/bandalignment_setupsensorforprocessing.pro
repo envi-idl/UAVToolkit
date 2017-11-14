@@ -115,7 +115,9 @@ pro BandAlignment_SetUpSensorForProcessing, PARAMETERS = parameters
           ;save the panel information
           save, panel_info, FILENAME = parameters.PANELDIR + path_sep() + 'panel_info.sav'
         endif
-      endif
+      endif else begin
+        panel_info = dictionary()
+      endelse
 
       ;extract scale factors for each group
       get_co_calibration, $

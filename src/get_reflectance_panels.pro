@@ -20,6 +20,76 @@
 
 
 ;+
+; :Description:
+;    Function that extracts the reflectance panels from a given data array. It is
+;    assumed that the reflectance panels are the largest, solid-color item in the scene
+;    and that the background is darker than the panel.
+;
+; :Params:
+;    dat: in required, type=array[n,m]
+;      Specify the array of data that you want to extract the reflectance panel from. It
+;      can be any data type.
+;
+;
+;
+; :Author: Zachary Norma - GitHub:znorman-harris
+;-
+function get_refelctance_panels_extract_panel, dat
+  compile_opt idl2
+  
+  if (n_elements(dat) eq 0) then begin
+    message, 'dat not specified, required!'
+  endif
+  
+  ;hard coded parameters
+  ;set a threshold for the region size (square pixels)
+  size_min = 7500
+
+  ;grow the regions that are 0
+  dmin = 5 ;pixel distance to 0 pixels that makes you a zero
+  kernel = bytarr(dmin, dmin) + 1 ;kernel used for masking
+  nIter = 8 ;number of iterations to shrink areas next to black pixels
+  stddev_mult = 10 ;for growing the panel region
+  
+  ;mask pixels less than the mean plus some factor of the standard deviation
+  bandMask = dat ge (mean(dat) +1.0*stddev(dat))
+
+  ;add a border around the image that is dmin pixels large
+  bandMask[*,0:dmin-1] = 0
+  bandMask[*,-dmin-2:-1] = 0
+  bandMask[0:dmin-1,*] = 0
+  bandMask[-dmin-2:-1,*] = 0
+
+  ;shrink good regions if they are close to black pixels
+  for z=0,nIter-1 do bandMask *= ~convol(~bandMask,kernel)
+
+  ;split our sobel image into regions, helps find areas with no edges
+  label = label_region(bandMask)
+
+  ; Count number of pixels in each region,
+  ; ignore background and edges
+  h = histogram(label, MIN = 1, REVERSE_INDICES = r, LOCATIONS = loc)
+
+  ; find our largest region
+  idx = !NULL
+  for j=0, n_elements(h)-1 do if (r[j] ne r[j+1]) then begin
+    if (h[j] eq max(h)) then begin
+      idx = j
+      break
+    endif
+  endif
+
+  ;make sure that we found a panel
+  if (idx eq !NULL) then begin
+    return, !NULL
+  endif
+
+  ;grow the region to try and fill the entire reflectance panel
+  return, region_grow(dat, r[r[idx]:r[idx+1]-1], STDDEV_MULTIPLIER = stddev_mult)
+end
+
+
+;+
 ;
 ; :Keywords:
 ;    BITDEPTH : in, optional, type=int, default=12
@@ -47,16 +117,6 @@ function get_reflectance_panels, group, sensor, $
   PANEL_REFLECTANCE = panel_reflectance
   compile_opt idl2, hidden
 
-  ;hard coded parameters
-  ;set a threshold for the region size (square pixels)
-  size_min = 7500
-
-  ;grow the regions that are 0
-  dmin = 5 ;pixel distance to 0 pixels that makes you a zero
-  kernel = bytarr(dmin, dmin) + 1 ;kernel used for masking
-  niter = 8 ;number of iterations to shrink areas next to black pixels
-  stddev_mult = 10 ;for growing the panel region
-
   e = envi(/current)
   if (e eq !NULL) then begin
     message, 'ENVI has not been started yet, requried!'
@@ -74,7 +134,7 @@ function get_reflectance_panels, group, sensor, $
     useRefl = fltarr(nBands) + 100.0
   endif else begin
     if (n_elements(panel_reflectance) eq 1) then begin
-      useRefl = fltarr(nBands) + float(panel_reflectance)
+      useRefl = fltarr(nBands) + float(panel_reflectance[0])
     endif else begin
       useRefl = float(panel_reflectance)
     endelse
@@ -109,47 +169,16 @@ function get_reflectance_panels, group, sensor, $
 
   print, '    Finding reflectance panels in the images...'
   for i=0, nBands-1 do begin
-    ;mask pixels less than the mean plus some factor of the standard deviation
-    bandMask = *all_bands[i] ge (mean(*all_bands[i]) +1.0*stddev(*all_bands[i]))
-
-    ;add a border around the image that is dmin pixels large
-    bandMask[*,0:dmin-1] = 0
-    bandMask[*,-dmin-2:-1] = 0
-    bandMask[0:dmin-1,*] = 0
-    bandMask[-dmin-2:-1,*] = 0
-
-    ;shrink good regions if they are close to black pixels
-    for z=0,niter-1 do begin
-      bandMask *= ~convol(~bandMask,kernel)
-    endfor
-
-    ;split our sobel image into regions, helps find areas with no edges
-    label = label_region(bandMask)
-
-    ; Count number of pixels in each region,
-    ; ignore background and edges
-    h = histogram(label, MIN = 1, REVERSE_INDICES = r, LOCATIONS = loc)
-
-    ; find our largest region
-    idx = !NULL
-    for j=0, n_elements(h)-1 do if (r[j] ne r[j+1]) then begin
-      if (h[j] eq max(h)) then begin
-        idx = j
-        break
-      endif
-    endif
-    
-    ;make sure that we found a panel
-    if (idx eq !NULL) then begin
-      goto, failed
-    endif
-    
-    ;get the original data since we have manipulated our current data a lot
+    ;get our data
     banddat = *all_bands[i]
     
-    ;grow the region to try and fill the entire reflectance panel
-    panel_pixels = region_grow(banddat, r[r[idx]:r[idx+1]-1], STDDEV_MULTIPLIER = stddev_mult)
+    ;extract the reflectance panel
+    panel_pixes = get_refelctance_panels_extract_panel(banddat)
+    if (panel_pixels eq !NULL) then begin
+      goto, failed
+    endif
 
+    ;save information on our panel
     panel_means[i] = mean(banddat[panel_pixels] * (100d/useRefl[i]))
     panel_stddevs[i] = stddev(banddat[panel_pixels] * (100d/useRefl[i]))
     panel_counts[i] = h[idx]
@@ -187,7 +216,6 @@ function get_reflectance_panels, group, sensor, $
     panel_stddevs = fltarr(nBands)
     panel_counts = lonarr(nBands)
     panel_info['WAS_CALIBRATED'] = 0
-    stop
   endif else begin
     print, 'Found all reflectance panels!'
   endelse
