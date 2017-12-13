@@ -46,7 +46,7 @@ pro BandAlignment_ProcessSensor_GetReferenceTiePoints, group, parameters, $
   ;generate reference tiepoints
   BandAlignment_GenerateReferenceTiepoints,$
     INPUT_RASTER = raster,$
-    TIEPOINT_GENERATION_TASK = parameters.CORRELATION_TASK,$
+    TIEPOINT_GENERATION_TASK = ~(parameters.RIGOROUS_ALIGNMENT) ? parameters.CORRELATION_TASK : parameters.MUTUAL_TASK,$
     TIEPOINT_FILTERING_TASK = parameters.FILTER_TASK,$
     REFERENCE_BAND = parameters.BASE_BAND,$
     MINIMUM_FILTERED_TIEPOINTS = parameters.MINIMUM_FILTERED_TIEPOINTS,$

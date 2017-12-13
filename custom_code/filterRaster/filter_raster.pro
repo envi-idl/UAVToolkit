@@ -61,7 +61,24 @@ pro filter_raster,$
   ;tile!
   foreach sub_rect, output_sub_rects, i do begin
     ;get the data
-    tile_data = input_raster.GetData(SUB_RECT = sub_rect, INTERLEAVE = 'BSQ')
+    tile_data = input_raster.GetData(SUB_RECT = sub_rect, INTERLEAVE = 'BSQ', PIXEL_STATE = ps)
+        
+    ;update any nans
+    idxBad = where(~finite(tile_data), countBad, COMPLEMENT = idxGood, NCOMPLEMENT = countGood)
+    if (countBad gt 0) then begin
+      if (countGood eq 0) then begin
+        message, 'No valid data to process....'
+      endif
+      
+      stop
+      
+      ;get tile size
+      tDims = size(tile_data, /DIMENSIONS)
+      
+;      ps[idxBad]++
+;      tile_data[idxBad] = fix(interpolate(tile_data[idxGood], idxGood mod tDims[0], idxGood / tDims[0], $
+;        idxBad mod tDims[0], idxBad / tDims[1]), TYPE=tile_data.TYPECODE) 
+    endif
     
     ;do edge detection for every band
     ;ensure that the type of the data matches the original
@@ -96,6 +113,12 @@ pro filter_raster,$
         SPATIALREF = input_raster.SPATIALREF,$
         METADATA = meta,$
         URI = output_raster_uri)
+    endif
+    
+    ;check pixel state
+    idxOff = where(ps, countOff) 
+    if (countOff gt 0) then begin
+      tile_data[idxOff] = -1
     endif
 
     ;get the output index locations

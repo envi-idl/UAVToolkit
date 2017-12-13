@@ -290,11 +290,11 @@ pro BandAlignment_ApplyReferenceTiePointsToGroup, group, groupName, parameters
       ;print the reference means from the calibration data and convert our images to reflectance
       if (reference_means[0] ne 1.0) then begin
         ;make sure that our typecodes are correct for the data that we are using
-;        if (i eq 0) then begin
-;          typecode = parameters.REFLECTANCE_TYPE_CODE
-;          BandAlignment_GetTIFFKeywords, typecode,$
-;            LNG = lng, SIGNED = signed, L64 = l64, DBL = dbl, FLT = flt, SHORT = short
-;        endif
+        if (i eq 0) then begin
+          typecode = parameters.REFLECTANCE_TYPE_CODE
+          BandAlignment_GetTIFFKeywords, typecode,$
+            LNG = lng, SIGNED = signed, L64 = l64, DBL = dbl, FLT = flt, SHORT = short
+        endif
         print, '    Reflectance panel mean, image max  :    [ ' + strtrim(reference_means[i],2) + ', ' + strtrim(max(write_this),2) + ' ] '
         write_this = fix((parameters.REFLECTANCE_SCALE_FACTOR*(write_this/reference_means[i]) < parameters.REFLECTANCE_SCALE_FACTOR), TYPE = typecode)
 ;        write_this = fix((parameters.REFLECTANCE_SCALE_FACTOR*(write_this/reference_means[i] > 0) < parameters.REFLECTANCE_SCALE_FACTOR), TYPE = typecode)
@@ -374,7 +374,6 @@ pro BandAlignment_ApplyReferenceTiePointsToGroup, group, groupName, parameters
 
   ;specify output file
   outfile = parameters.OUTPUT_DIR + path_sep() + groupName + '.tif'
-  print, outFile
   
   ;validate that the file does not exist already
   if file_test(outFile) then file_delete, outFile, /QUIET
@@ -430,8 +429,6 @@ pro BandAlignment_ApplyReferenceTiePointsToGroup, group, groupName, parameters
     raster = e.openraster(file)
     raster.close
   endforeach
-  print, 'Finished group'
-  print
 end
 
 
@@ -524,7 +521,7 @@ pro BandAlignment_ApplyReferenceTiePointsToGroups, groups, parameters
         ARG2 = groupName,$
         CUSTOM_ARGS = 'parameters',$
         /TIME
-      wait, .1
+      wait, .1 ;short wait helps separate the executions which can increase speed a bit
     endforeach
 
     ;wait for everything to finish
@@ -539,11 +536,12 @@ pro BandAlignment_ApplyReferenceTiePointsToGroups, groups, parameters
     ;kill child processes once finished!
     oBdg.cleanup
   endelse
-  
-  print, 'Finished processing groups!'
+  print
+  print, 'Finished processing groups! Stats:'
+  print
   print, '  Time to process ' + strtrim(nGroups,2) +' groups (sec): ' + strtrim(toc(),2)
   print, '  Average time per group (sec) : ' + strtrim(toc()/nGroups,2)
-  print, ''
+  print
   
   ;check how many output files we have  
   outfiles = file_search(parameters.OUTPUT_DIR, '*.tif', COUNT = nOut)

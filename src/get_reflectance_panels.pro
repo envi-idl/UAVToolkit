@@ -173,7 +173,7 @@ function get_reflectance_panels, group, sensor, $
     banddat = *all_bands[i]
     
     ;extract the reflectance panel
-    panel_pixes = get_refelctance_panels_extract_panel(banddat)
+    panel_pixels = get_refelctance_panels_extract_panel(banddat)
     if (panel_pixels eq !NULL) then begin
       goto, failed
     endif
@@ -181,11 +181,11 @@ function get_reflectance_panels, group, sensor, $
     ;save information on our panel
     panel_means[i] = mean(banddat[panel_pixels] * (100d/useRefl[i]))
     panel_stddevs[i] = stddev(banddat[panel_pixels] * (100d/useRefl[i]))
-    panel_counts[i] = h[idx]
+    panel_counts[i] = n_elements(panel_pixels)
 
     ;print some useful information regarding the panel values
     print, '    Found panel ' + strtrim(i+1,2) + '!'
-    print, '    Number of pixels in panel   : [ ' + strtrim(h[idx],2) + ' ]'
+    print, '    Number of pixels in panel   : [ ' + strtrim(panel_counts[i],2) + ' ]'
     print, '    Mean of pixels in panel     : [ ' + strtrim(panel_means[i],2) + ' ]'
     print, '    Stddev of pixels in panel   : [ ' + strtrim(panel_stddevs[i],2) + ' ]'
     print

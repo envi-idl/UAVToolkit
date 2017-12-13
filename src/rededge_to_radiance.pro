@@ -202,7 +202,10 @@ function rededge_to_radiance, file, DAT = dat, VERBOSE = verbose
   micaMeta = meta[micaSenseIdx]
   
   ;extract dark pixels and dark level for scene
-  darkPixel = double(extract_metadata(micaMeta, ['MicaSense:DarkRowValue', 'rdf:Seq', 'rdf:li']))
+  darkPixel = exif['Exif_Image_BlackLevel']
+  
+  ;this comes from the GitHub page, but is not the correct approach, instead use above.
+  ;darkPixel = double(extract_metadata(micaMeta, ['MicaSense:DarkRowValue', 'rdf:Seq', 'rdf:li']))
   darkLevel = darkPixel.mean()
   
   ;extract our calibration coefficients
@@ -246,5 +249,5 @@ function rededge_to_radiance, file, DAT = dat, VERBOSE = verbose
   datNorm = (float(dat) - darkLevel)/(2.0^bits)
   
   ;convert to radiance
-  return, vmap*float((cal[0]/gain)*(datNorm/(exposuretime + y*(cal[1] - cal[2]*exposureTime))))
+  return, (vmap*float((cal[0]/gain)*(datNorm/(exposuretime + y*(cal[1] - cal[2]*exposureTime)))) > 0)
 end

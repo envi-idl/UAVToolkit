@@ -14,7 +14,7 @@
 ;
 ; :Author: Zachary Norman - GitHub: znorman-harris
 ;-
-pro uav_toolkit_test_rededge_panel_extraction
+pro uav_toolkit_test_rededge_panel_extraction, panelDir
   compile_opt idl2
   on_error, 2
 
@@ -22,10 +22,17 @@ pro uav_toolkit_test_rededge_panel_extraction
   e = envi(/HEADLESS)
 
   ;this folder should be the one that contains the unzipped contents of the sample data.
-  panelDir = dialog_pickfile(/DIRECTORY)
+  if (panelDir eq !NULL) then begin
+    panelDir = dialog_pickfile(/DIRECTORY)
+  endif
+  
+  ;check that flightDir was specified
+  if ~keyword_set(panelDir) then begin
+    message, 'panelDir not specified, required!'
+  endif
 
   if ~file_test(panelDir, /DIRECTORY) then begin
-    message, 'panelDir does not exist!
+    message, 'panelDir specified, but does not exist!
   endif
 
   ;get original path and reset

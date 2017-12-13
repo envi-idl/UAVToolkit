@@ -14,7 +14,7 @@
 ;
 ; :Author: Zachary Norman - GitHub: znorman-harris
 ;-
-pro uav_toolkit_test_rededge
+pro uav_toolkit_test_rededge, flightdir
   compile_opt idl2
   on_error, 2
   
@@ -22,10 +22,17 @@ pro uav_toolkit_test_rededge
   e = envi(/HEADLESS)
   
   ;this folder should be the one that contains the unzipped contents of the sample data.
-  flightDir = dialog_pickfile(/DIRECTORY)
+  if (flightdir eq !NULL) then begin
+    flightDir = dialog_pickfile(/DIRECTORY)
+  endif
+  
+  ;check that flightDir was specified
+  if ~keyword_set(flightDir) then begin
+    message, 'flightDir not specified, required!'
+  endif
 
   if ~file_test(flightDir, /DIRECTORY) then begin
-    message, 'flightDir does not exist!
+    message, 'flightDir specified, but does not exist!
   endif
 
   ;get original path and reset

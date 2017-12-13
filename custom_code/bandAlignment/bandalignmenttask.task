@@ -218,6 +218,15 @@
             "defaultValue": 1500
         },
         {
+            "name": "RIGOROUS_ALIGNMENT",
+            "displayName": "Rigorous Alignment",
+            "description": "If true, then the tie point generation will default to the mutual information algorithm which can work better in challenging situations. If this is set to false, then the tie point generation will use cross correlation and, if not enough tie points are found, then it will automatically use mutual information which can greatly reduce processing times.",
+            "direction": "input",
+            "parameterType": "required",
+            "dataType": "boolean",
+            "defaultValue": true
+        },
+        {
             "name": "SEARCH_WINDOW_FROM_HEIGHT",
             "displayName": "Search Window From Height",
             "description": "If true, then the search window for the different algorithms is based on the approximate height above the ground for the reference group.",

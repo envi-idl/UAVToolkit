@@ -119,10 +119,13 @@ pro BandAlignmentTask, $
   PANEL_REFLECTANCE = panel_reflectance,$
   REFLECTANCE_SCALE_FACTOR = reflectance_scale_factor,$
   REQUESTED_NUMBER_OF_TIEPOINTS = requested_number_of_tiepoints,$
+  RIGOROUS_ALIGNMENT = rigorous_alignment,$
   SEARCH_WINDOW_FROM_HEIGHT = search_window_from_height,$
   SENSOR = sensor
   compile_opt idl2, hidden
 
+  ;error catching block to give us useful errors when the tasks catch 
+  ;otherwise we only get the message, no traceback
   catch, err
   if (err ne 0) then begin
     catch, /CANCEL
@@ -209,6 +212,10 @@ pro BandAlignmentTask, $
   endif else begin
     parameters['APPLY_REFERENCE_TIEPOINTS'] = 0
   endelse
+  if (rigorous_alignment eq !NULL) then begin
+    rigorous_alignment = 1
+  endif
+  parameters['RIGOROUS_ALIGNMENT'] = rigorous_alignment
   if (max_value_divisor ne !NULL) then parameters['MAX_VALUE_DIVISOR'] = max_val_divisor
   if (max_pixel_value ne !NULL) then parameters['MAX_PIXEL_VALUE'] = max_val
   if (base_band ne !NULL) then parameters['BASE_BAND'] = base_band

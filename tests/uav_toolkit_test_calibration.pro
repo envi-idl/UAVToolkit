@@ -22,13 +22,18 @@ pro uav_toolkit_test_calibration, flightDir
   ;start ENVI headlessly
   e = envi(/HEADLESS)
 
+  ;this folder should be the one that contains the unzipped contents of the sample data.
+  if (flightdir eq !NULL) then begin
+    flightDir = dialog_pickfile(/DIRECTORY)
+  endif
+  
   ;check that flightDir was specified
   if ~keyword_set(flightDir) then begin
-    message, 'FLIGHTDIR not specified, required!'
+    message, 'flightDir not specified, required!'
   endif
 
   if ~file_test(flightDir, /DIRECTORY) then begin
-    message, 'flightDir does not exist!
+    message, 'flightDir specified, but does not exist!
   endif
 
   ;get original path and reset
@@ -65,7 +70,7 @@ pro uav_toolkit_test_calibration, flightDir
   pref_set, 'IDL_PATH', pathOrig, /COMMIT
 end
 
-uav_toolkit_test_calibration, 'C:\Users\Traininglead\Downloads\rededgeTest\calibration-micasense\000'
-;uav_toolkit_test_calibration, 'C:\Users\Traininglead\Downloads\rededgeTest\no_panels'
+;uav_toolkit_test_calibration, 'C:\Users\Traininglead\Downloads\rededgeTest\calibration-micasense\000'
+uav_toolkit_test_calibration, 'C:\Users\Traininglead\Downloads\rededgeTest\calibration\no_panels'
 ;uav_toolkit_test_calibration, 'C:\Users\Traininglead\Downloads\rededgeTest\with_panels'
 end
