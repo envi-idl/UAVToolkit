@@ -194,7 +194,7 @@
             "dataType": "float[*]",
             "min": 0,
             "max": 100,
-            "defaultValue": 70.0
+            "defaultValue": [70.0]
         },
         {
             "name": "REFLECTANCE_SCALE_FACTOR",

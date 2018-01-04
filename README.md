@@ -45,9 +45,9 @@ To install the code, you just need to add this repository to IDL's search path. 
 
 For advanced users that want to create an IDL SAVE file with pre-compiled code, simply run the script `build_uav_toolkit.pro` which will create a SAVE file with accompanying tasks. The folder will be called "UAVToolkit-build" and will be created in your system's temporary directory. In this folder you will also find the task files for the several tasks include din the toolkit. Once you have done this, you have two ways to install the SAVE files. You can take the contents of the build directory and :
 
-- For ENVI 5.3 and admin rights the directory for Windows is `C:\\Program Files\\Exelis\\ENVI53\\custom_code`
+- For ENVI 5.3 and admin rights the directory for Windows is **C:\\Program Files\\Exelis\\ENVI53\\custom_code**
 
-- For ENVI 5.4 and admin rights the directory for Windows is `C:\\Program Files\\Harris\\ENVI54\\custom_code`
+- For ENVI 5.4 and admin rights the directory for Windows is **C:\\Program Files\\Harris\\ENVI54\\custom_code**
 
 - If you do not have admin rights then you can find the local user directory in ENVI's preferences under:
 
@@ -69,6 +69,9 @@ This should likely work on ENVI 5.3 and IDL 8.5 (*should*) but is untested. If y
 To take advantage of the UAV toolkit, you just need to add the source code for this repository to IDL's search path and include the following in and routines that you want to use the band alignment tasks for:
 
 ```idl
+;set IDL's compile options
+compile_opt idl2
+
 ;start ENVI - can be headless or GUI
 e = envi()
 
@@ -115,6 +118,9 @@ And the file identifiers look like:
 This groups the images above into a single image. If we want to then generate and apply reference tie points for this generic group then we can simply do the following in IDL:
 
 ```idl
+;set IDL's compile options
+compile_opt idl2
+
 ;start ENVI
 e = envi(/HEADLESS)
 
@@ -137,6 +143,9 @@ alignTask.execute
 A custom batch processing routine has been developed for the MicaSense RedEdge sensor to make processing the data very simple. To process the data, you can simply do the following using IDL:
 
 ```idl
+;set IDL's compile options
+compile_opt idl2
+
 ;start ENVI headlessly
 e = envi(/HEADLESS)
 
@@ -159,6 +168,9 @@ If you have reflectance panel images in each data folder, then create a subdirec
 You can also use the ENVITask `UAVBandAlignment` directly to process a single folder of data using:
 
 ```idl
+;set IDL's compile options
+compile_opt idl2
+
 ;start ENVI
 e = envi(/HEADLESS)
 
@@ -180,6 +192,9 @@ You can also process the Parrot Sequoia data with the UAV toolkit. Note that gen
 
 
 ```idl
+;set IDL's compile options
+compile_opt idl2
+
 ;start ENVI
 e = envi(/HEADLESS)
 
@@ -200,6 +215,9 @@ alignTask.execute
 If you know the percent reflectance (from 0 to 100) of your reflectance panel for each of your bands, you can specify them inidivually with the `PANEL_REFLECTANCE` task parameter for the tasks demonstrated above. Here is an example with the `UAVBatchRedEdge` task:
 
 ```idl
+;set IDL's compile options
+compile_opt idl2
+
 ;start ENVI headlessly
 e = envi(/HEADLESS)
 

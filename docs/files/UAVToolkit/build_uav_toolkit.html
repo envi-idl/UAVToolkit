@@ -84,7 +84,7 @@
             </li>
         </ul>
       <a class="navbar-brand" href="#">
-         UAVToolkit: File 22
+         UAVToolkit: File 23
       </a>
       <div class="pull-right">
         <a href="https://www.harrisgeospatial.com" target="_blank"><img src="./../../images/Harris_wR_White-RedA.png" style="height:41px; width:155px; position:relative; top:5px; right:20px"></img></a>
@@ -99,16 +99,27 @@
  <row>
    <nav class="col-xs-3 bs-docs-sidebar" id="myScrollspy">
       <ul id="sidebar" class="nav nav-stacked fixed sidebar-overflow">
-        <li><a href="#" class="side_tt", side_tt="UAVToolkit Directory custom_code">UAVToolkit Directory custom_code</a></li>
+        <li><a href="#" class="side_tt", side_tt="build_uav_toolkit.pro">build_uav_toolkit.pro</a></li>
+        <li>
+          <a href="#build_uav_toolkit-head_0" class="side_tt", side_tt="Author">Author</a>
+        <li>
       </ul>
     </nav>
     <div class="col-sm-9">
-<div id="idl-package-md-file">
-<a name="idl-package-md-file"></a>
+<div id="build_uav_toolkit">
+<a name="build_uav_toolkit"></a>
 </div>
-<h1 id="uavtoolkit-directory-custom_code">UAVToolkit Directory custom_code</h1>
+<h1 id="build_uav_toolkit.pro">build_uav_toolkit.pro</h1>
 <hr />
-<p>This folder contains the source code used for the different tasks in the UAV Toolkit. They are separated by the overall tasks that they belong to. The task files are also going to be located in these subfolders.</p>
+<p>Simple IDL batch file that will compile the code present into a single IDL SAVE file called the UAV Toolkit. This will also place the task files next to the compiled source code.</p>
+<p>This is only necessary if you are trying to use the UAV Toolkit without IDL or with the enterprise version of ENVI/IDL.</p>
+<p>Just press compile + run in the IDL workbench to build the IDL SAVE file.</p>
+<p>The output directory will be called &quot;UAVToolkit-build&quot; in your system temporary folder. This helps avoid any conflicts on IDL's search path.</p>
+<div id="build_uav_toolkit-head_0">
+<a class="anchor_sub" name="build_uav_toolkit-head_0"></a>
+</div>
+<h3 id="author">Author</h3>
+<p>Zachary Norman - GitLab: znorman-harris</p>
 </div>
 </row>
 </div>

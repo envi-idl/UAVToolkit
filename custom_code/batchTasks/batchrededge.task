@@ -31,7 +31,7 @@
             "dataType": "float[*]",
             "min": 0,
             "max": 100,
-            "defaultValue":70
+            "defaultValue":[70]
         }
     ]
 }
