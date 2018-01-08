@@ -109,28 +109,31 @@
         <li>
           <a href="#idl-package-md-file-head_2" class="side_tt", side_tt="Installation">Installation</a>
             <ul class="nav nav-stacked">
-              <li><a href="#idl-package-md-file-head_3" class="side_tt", side_tt="Advanced Installation - SAVE files">Advanced Installation - SAVE files</a></li>
+              <li><a href="#idl-package-md-file-head_3" class="side_tt", side_tt="Basic">Basic</a></li>
+              <li><a href="#idl-package-md-file-head_4" class="side_tt", side_tt="Advanced Installation - SAVE files">Advanced Installation - SAVE files</a></li>
             </ul>
         <li>
         <li>
-          <a href="#idl-package-md-file-head_4" class="side_tt", side_tt="Requirements">Requirements</a>
+          <a href="#idl-package-md-file-head_5" class="side_tt", side_tt="Requirements">Requirements</a>
         <li>
         <li>
-          <a href="#idl-package-md-file-head_5" class="side_tt", side_tt="Usage">Usage</a>
+          <a href="#idl-package-md-file-head_6" class="side_tt", side_tt="Usage">Usage</a>
             <ul class="nav nav-stacked">
-              <li><a href="#idl-package-md-file-head_6" class="side_tt", side_tt="Notes">Notes</a></li>
-              <li><a href="#idl-package-md-file-head_7" class="side_tt", side_tt="Generic Sensor">Generic Sensor</a></li>
-              <li><a href="#idl-package-md-file-head_8" class="side_tt", side_tt="MicaSense RedEdge">MicaSense RedEdge</a></li>
-              <li><a href="#idl-package-md-file-head_9" class="side_tt", side_tt="Parrot Sequoia">Parrot Sequoia</a></li>
-              <li><a href="#idl-package-md-file-head_10" class="side_tt", side_tt="Custom Percent Reflectance">Custom Percent Reflectance</a></li>
-              <li><a href="#idl-package-md-file-head_11" class="side_tt", side_tt="Default Values">Default Values</a></li>
+              <li><a href="#idl-package-md-file-head_7" class="side_tt", side_tt="Running the Examples Below">Running the Examples Below</a></li>
+              <li><a href="#idl-package-md-file-head_8" class="side_tt", side_tt="Notes">Notes</a></li>
+              <li><a href="#idl-package-md-file-head_9" class="side_tt", side_tt="Generic Sensor">Generic Sensor</a></li>
+              <li><a href="#idl-package-md-file-head_10" class="side_tt", side_tt="MicaSense RedEdge">MicaSense RedEdge</a></li>
+              <li><a href="#idl-package-md-file-head_12" class="side_tt", side_tt="Parrot Sequoia">Parrot Sequoia</a></li>
+              <li><a href="#idl-package-md-file-head_13" class="side_tt", side_tt="Custom Percent Reflectance">Custom Percent Reflectance</a></li>
+              <li><a href="#idl-package-md-file-head_14" class="side_tt", side_tt="File Formats">File Formats</a></li>
+              <li><a href="#idl-package-md-file-head_15" class="side_tt", side_tt="Default Values">Default Values</a></li>
             </ul>
         <li>
         <li>
-          <a href="#idl-package-md-file-head_12" class="side_tt", side_tt="License">License</a>
+          <a href="#idl-package-md-file-head_16" class="side_tt", side_tt="License">License</a>
         <li>
         <li>
-          <a href="#idl-package-md-file-head_13" class="side_tt", side_tt="Contents">Contents</a>
+          <a href="#idl-package-md-file-head_17" class="side_tt", side_tt="Contents">Contents</a>
         <li>
       </ul>
     </nav>
@@ -173,9 +176,14 @@
 <hr />
 <h2 id="installation">Installation</h2>
 <p><strong>Make sure you remove any previous version of the UAV Toolkit from IDL's search path or ENVI's custom_code directories</strong>.</p>
-<p>To install the code, you just need to add this repository to IDL's search path. You can do this in Preferences -&gt; IDL -&gt; Paths -&gt; Insert and then make sure to check the box to have this folder recursively searched for code.</p>
 <div id="idl-package-md-file-head_3">
 <a class="anchor_sub" name="idl-package-md-file-head_3"></a>
+</div>
+<h3 id="basic">Basic</h3>
+<p>To install the code, you just need to add this repository to IDL's search path. You can access this setting in <strong>Preferences -&gt; IDL -&gt; Paths -&gt; Insert</strong>, navigate to the directory and select OK, and then make sure to check the box to have this folder recursively searched for code. Click <strong>Apply</strong> and <strong>OK</strong> once the path has been added.</p>
+<p>Note that you may have to reset IDL's session for the changes to take place. To do this you can simply press the <strong>Reset</strong> button in the IDL workbench.</p>
+<div id="idl-package-md-file-head_4">
+<a class="anchor_sub" name="idl-package-md-file-head_4"></a>
 </div>
 <h3 id="advanced-installation---save-files">Advanced Installation - SAVE files</h3>
 <p>For advanced users that want to create an IDL SAVE file with pre-compiled code, simply run the script <code class="idl_line">build_uav_toolkit.pro</code> which will create a SAVE file with accompanying tasks. The folder will be called &quot;UAVToolkit-build&quot; and will be created in your system's temporary directory. In this folder you will also find the task files for the several tasks include din the toolkit. Once you have done this, you have two ways to install the SAVE files. You can take the contents of the build directory and :</p>
@@ -187,15 +195,15 @@
 <p>Once you place the file in ENVI's custom code folder you <strong>must restart ENVI</strong> before you will have access to them in ENVI.</p></li>
 </ul>
 <p><strong>Note the location that you installed the SAVE files to. If you get a later version of this code, then you will need to update or remove these files for any changes to take effect.</strong></p>
-<div id="idl-package-md-file-head_4">
-<a class="anchor_sub" name="idl-package-md-file-head_4"></a>
+<div id="idl-package-md-file-head_5">
+<a class="anchor_sub" name="idl-package-md-file-head_5"></a>
 </div>
 <hr />
 <h2 id="requirements">Requirements</h2>
 <p>ENVI 5.4 and IDL 8.6.</p>
 <p>This should likely work on ENVI 5.3 and IDL 8.5 (<em>should</em>) but is untested. If you are on this older version and there are issues, then you will need to upgrade to the latest version of ENVI + IDL.</p>
-<div id="idl-package-md-file-head_5">
-<a class="anchor_sub" name="idl-package-md-file-head_5"></a>
+<div id="idl-package-md-file-head_6">
+<a class="anchor_sub" name="idl-package-md-file-head_6"></a>
 </div>
 <hr />
 <h2 id="usage">Usage</h2>
@@ -212,8 +220,20 @@ e = <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/ENVI.ht
 </pre>
 <p>Including <code class="idl_line"><font class="idl_lib_pro ">uav_toolkit</font></code> ensures that the tasks that ship as a part of this repository are found by ENVI without needing to install them in ENVI's custom code directory.</p>
 <p>Below you can find several examples for how you can use the different tasks in the UAV Toolkit to process different UAV multispectral datasets, but first a few notes on the tools.</p>
-<div id="idl-package-md-file-head_6">
-<a class="anchor_sub" name="idl-package-md-file-head_6"></a>
+<div id="idl-package-md-file-head_7">
+<a class="anchor_sub" name="idl-package-md-file-head_7"></a>
+</div>
+<h3 id="running-the-examples-below">Running the Examples Below</h3>
+<p>To run the examples below, the easiest method is to create a new PRO file in the IDL Workbench. To do this, simply:</p>
+<ol style="list-style-type: decimal">
+<li><p>Click on the <strong>New Pro</strong> icon the the workbench</p></li>
+<li><p>Copy the example code to the window</p></li>
+<li><p>Add and <code class="idl_line">end</code> statement as the <strong>last</strong> line in the file</p></li>
+<li><p>Save the code with a <strong>.pro</strong> fifle extension</p></li>
+<li><p>Press <strong>Compile</strong> and then <strong>Run</strong> to execute the code.</p></li>
+</ol>
+<div id="idl-package-md-file-head_8">
+<a class="anchor_sub" name="idl-package-md-file-head_8"></a>
 </div>
 <h3 id="notes">Notes</h3>
 <ul>
@@ -222,8 +242,8 @@ e = <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/ENVI.ht
 <p>When using reflectance panels, you will also need to specify the percent reflectance for the panel surface (i.e. 70%). To do this, you can use the <code class="idl_line">PANEL_REFLECTANCE</code> task parameter to specify a 0 to 100 floating point value for this.</p></li>
 <li><p>The algorithm may have a harder time finding reference tie points for the Parrot Sequoia because the multispectral sensor has a fisheye lens, which makes the geometry more complicated. The tools shown below have worked great on sample datasets, but that may not apply to all collections. It should, but it is just worth setting expectations a bit.</p></li>
 </ul>
-<div id="idl-package-md-file-head_7">
-<a class="anchor_sub" name="idl-package-md-file-head_7"></a>
+<div id="idl-package-md-file-head_9">
+<a class="anchor_sub" name="idl-package-md-file-head_9"></a>
 </div>
 <h3 id="generic-sensor">Generic Sensor</h3>
 <p>In order to process generic sensors with the UAV Toolkit, you will need datasets that contain a single band per separate image file. Each band should have:</p>
@@ -262,8 +282,8 @@ alignTask.<font class="idl_prop">GENERATE_REFERENCE_TIEPOINTS</font> = <font cla
 alignTask.<font class="idl_prop">APPLY_REFERENCE_TIEPOINTS</font> = <font class="idl_num">1</font>
 alignTask.<font class="idl_lib_pro ">execute</font>
 </pre>
-<div id="idl-package-md-file-head_8">
-<a class="anchor_sub" name="idl-package-md-file-head_8"></a>
+<div id="idl-package-md-file-head_10">
+<a class="anchor_sub" name="idl-package-md-file-head_10"></a>
 </div>
 <h3 id="micasense-rededge">MicaSense RedEdge</h3>
 <p>A custom batch processing routine has been developed for the MicaSense RedEdge sensor to make processing the data very simple. To process the data, you can simply do the following using IDL:</p>
@@ -306,8 +326,34 @@ alignTask.<font class="idl_prop">GENERATE_REFERENCE_TIEPOINTS</font> = <font cla
 alignTask.<font class="idl_prop">APPLY_REFERENCE_TIEPOINTS</font> = <font class="idl_num">1</font>
 alignTask.<font class="idl_lib_pro ">execute</font>
 </pre>
-<div id="idl-package-md-file-head_9">
-<a class="anchor_sub" name="idl-package-md-file-head_9"></a>
+<p><a class="anchor_sub" name="idl-package-md-file-head_11"></a></p>
+<h4 id="customizing-batch-rededge-parameters">Customizing Batch RedEdge Parameters</h4>
+<p>If you are running the <code class="idl_line">UAVBatchRedEdge</code> task, then you can pass in a custom <code class="idl_line">UAVBandAlignment</code> task to edit all paramters of the registration process. Here is an example of how you can do this to have the <code class="idl_line">UAVBatchRedEdge</code> generate multi-channel TIFFs instead of multi-page TIFFs.</p>
+<pre class="idl_code_block">
+<font class="idl_comment">;set IDL's compile options</font>
+<a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/COMPILE_OPT.html" target="_blank"><font class="idl_control idl_tt" idl_tt="Change default rules for compiling routines.">compile_opt</font></a> idl2
+
+<font class="idl_comment">;start ENVI headlessly</font>
+e = <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/ENVI.html" target="_blank"><font class="idl_sys_func idl_tt" idl_tt="Launches the ENVI application and returns an object reference to the application.">envi</font></a>(/HEADLESS)
+
+<font class="idl_comment">;initialize the uav_toolkit</font>
+<font class="idl_lib_pro ">uav_toolkit</font>
+
+<font class="idl_comment">;create band alignment task to customize settings</font>
+alignTask = <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/ENVITask.html" target="_blank"><font class="idl_sys_func idl_tt" idl_tt="Accepts a task name and returns an object reference to the task.">ENVITask</font></a>(<font class="idl_str">&#39;UAVBandAlignment&#39;</font>)
+alignTask.<font class="idl_prop">MULTI_CHANNEL</font> = <font class="idl_num">1</font>
+
+<font class="idl_comment">;this folder should be the one that contains the unzipped contents of the sample data.</font>
+flightDir = <font class="idl_str">&#39;C:\data\rededge&#39;</font>
+
+<font class="idl_comment">;create our batch task</font>
+redEdgeTask = <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/ENVITask.html" target="_blank"><font class="idl_sys_func idl_tt" idl_tt="Accepts a task name and returns an object reference to the task.">ENVITask</font></a>(<font class="idl_str">&#39;UAVBatchRedEdge&#39;</font>)
+redEdgeTask.<font class="idl_prop">FLIGHTDIR</font> = flightDir
+redEdgeTask.<font class="idl_prop">BAND_ALIGNMENT_TASK</font> = alignTask
+redEdgeTask.<font class="idl_lib_pro ">execute</font>
+</pre>
+<div id="idl-package-md-file-head_12">
+<a class="anchor_sub" name="idl-package-md-file-head_12"></a>
 </div>
 <h3 id="parrot-sequoia">Parrot Sequoia</h3>
 <p>You can also process the Parrot Sequoia data with the UAV toolkit. Note that generating the tie points for this data may take longer because the multispectral bands are taken with a fisheye lens. To process the Sequoia data, just use the <code class="idl_line">UAVBandAlignment</code> task with:</p>
@@ -329,8 +375,8 @@ alignTask.<font class="idl_prop">GENERATE_REFERENCE_TIEPOINTS</font> = <font cla
 alignTask.<font class="idl_prop">APPLY_REFERENCE_TIEPOINTS</font> = <font class="idl_num">1</font>
 alignTask.<font class="idl_lib_pro ">execute</font>
 </pre>
-<div id="idl-package-md-file-head_10">
-<a class="anchor_sub" name="idl-package-md-file-head_10"></a>
+<div id="idl-package-md-file-head_13">
+<a class="anchor_sub" name="idl-package-md-file-head_13"></a>
 </div>
 <h3 id="custom-percent-reflectance">Custom Percent Reflectance</h3>
 <p>If you know the percent reflectance (from 0 to 100) of your reflectance panel for each of your bands, you can specify them inidivually with the <code class="idl_line">PANEL_REFLECTANCE</code> task parameter for the tasks demonstrated above. Here is an example with the <code class="idl_line">UAVBatchRedEdge</code> task:</p>
@@ -353,8 +399,32 @@ redEdgeTask.<font class="idl_prop">FLIGHTDIR</font> = flightDir
 redEdgeTask.<font class="idl_prop">PANEL_REFLECTANCE</font> = [<font class="idl_num">67</font>, <font class="idl_num">69</font>, <font class="idl_num">68</font>, <font class="idl_num">67</font>, <font class="idl_num">61</font>] <font class="idl_comment">;must be 0 to 100, NOT 0 to 1.0</font>
 redEdgeTask.<font class="idl_lib_pro ">execute</font>
 </pre>
-<div id="idl-package-md-file-head_11">
-<a class="anchor_sub" name="idl-package-md-file-head_11"></a>
+<div id="idl-package-md-file-head_14">
+<a class="anchor_sub" name="idl-package-md-file-head_14"></a>
+</div>
+<h3 id="file-formats">File Formats</h3>
+<p>By default the UAV Toolkit generates multi-page TIFFs for the output files. If you want to generate multi-band TIFFs instead, you can do the following for the BandAlignmentTask:</p>
+<pre class="idl_code_block">
+<font class="idl_comment">;set IDL's compile options</font>
+<a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/COMPILE_OPT.html" target="_blank"><font class="idl_control idl_tt" idl_tt="Change default rules for compiling routines.">compile_opt</font></a> idl2
+
+<font class="idl_comment">;start ENVI</font>
+e = <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/ENVI.html" target="_blank"><font class="idl_sys_func idl_tt" idl_tt="Launches the ENVI application and returns an object reference to the application.">envi</font></a>(/HEADLESS)
+
+<font class="idl_comment">;get UAV Toolkit ready</font>
+<font class="idl_lib_pro ">uav_toolkit</font>
+
+<font class="idl_comment">;set up task</font>
+alignTask = <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/ENVITask.html" target="_blank"><font class="idl_sys_func idl_tt" idl_tt="Accepts a task name and returns an object reference to the task.">ENVITask</font></a>(<font class="idl_str">&#39;UAVBandAlignment&#39;</font>)
+alignTask.<font class="idl_prop">SENSOR</font> = <font class="idl_str">&#39;sequoia&#39;</font>
+alignTask.<font class="idl_prop">INPUTDIR</font> = <font class="idl_str">&#39;C:\data\directory&#39;</font>
+alignTask.<font class="idl_prop">GENERATE_REFERENCE_TIEPOINTS</font> = <font class="idl_num">1</font>
+alignTask.<font class="idl_prop">APPLY_REFERENCE_TIEPOINTS</font> = <font class="idl_num">1</font>
+alignTask.<font class="idl_prop">MULTI_CHANNEL</font> = <font class="idl_num">1</font>
+alignTask.<font class="idl_lib_pro ">execute</font>
+</pre>
+<div id="idl-package-md-file-head_15">
+<a class="anchor_sub" name="idl-package-md-file-head_15"></a>
 </div>
 <h3 id="default-values">Default Values</h3>
 <p>For each one of the sensors, there are some default task parameters for the UAVBandAlignment task which are custom to each sensor type. Each of these parameters can be overridden by specifying the accompanying parameter in the <code class="idl_line">UAVBandAlignment</code> task object.</p>
@@ -410,8 +480,8 @@ redEdgeTask.<font class="idl_lib_pro ">execute</font>
   <font class="idl_control ">end</font>
 <font class="idl_control ">endcase</font>
 </pre>
-<div id="idl-package-md-file-head_12">
-<a class="anchor_sub" name="idl-package-md-file-head_12"></a>
+<div id="idl-package-md-file-head_16">
+<a class="anchor_sub" name="idl-package-md-file-head_16"></a>
 </div>
 <hr />
 <h2 id="license">License</h2>
@@ -419,8 +489,8 @@ redEdgeTask.<font class="idl_lib_pro ">execute</font>
 <ol start="3" style="list-style-type: lower-alpha">
 <li>2017 Exelis Visual Information Solutions, Inc., a subsidiary of Harris Corporation.</li>
 </ol>
-<div id="idl-package-md-file-head_13">
-<a class="anchor_sub" name="idl-package-md-file-head_13"></a>
+<div id="idl-package-md-file-head_17">
+<a class="anchor_sub" name="idl-package-md-file-head_17"></a>
 </div>
 <hr />
 <h2 id="contents">Contents</h2>

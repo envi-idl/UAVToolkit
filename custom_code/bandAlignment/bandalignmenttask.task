@@ -131,7 +131,7 @@
         {
             "name": "MULTI_CHANNEL",
             "displayName": "Multi Channel",
-            "description": "If set to true, then multi-channel TIFFs will be generated. otherwise multi-page TIFFs will be used.",
+            "description": "If set to true, then multi-channel TIFFs will be generated. Otherwise multi-page TIFFs will be used.",
             "direction": "input",
             "parameterType": "optional",
             "dataType": "boolean",

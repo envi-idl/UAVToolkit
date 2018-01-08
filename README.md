@@ -39,7 +39,11 @@ If there are any requests, don't hesitate to add an issue for the repository. I 
 
 **Make sure you remove any previous version of the UAV Toolkit from IDL's search path or ENVI's custom_code directories**.
 
-To install the code, you just need to add this repository to IDL's search path. You can do this in Preferences -> IDL -> Paths -> Insert and then make sure to check the box to have this folder recursively searched for code.
+### Basic
+
+To install the code, you just need to add this repository to IDL's search path. You can access this setting in **Preferences -> IDL -> Paths -> Insert**, navigate to the directory and select OK, and then make sure to check the box to have this folder recursively searched for code. Click **Apply** and **OK** once the path has been added.
+
+Note that you may have to reset IDL's session for the changes to take place. To do this you can simply press the **Reset** button in the IDL workbench.
 
 ### Advanced Installation - SAVE files
 
@@ -82,6 +86,21 @@ uav_toolkit
 Including ```idl uav_toolkit``` ensures that the tasks that ship as a part of this repository are found by ENVI without needing to install them in ENVI's custom code directory.
 
 Below you can find several examples for how you can use the different tasks in the UAV Toolkit to process different UAV multispectral datasets, but first a few notes on the tools.
+
+### Running the Examples Below
+
+To run the examples below, the easiest method is to create a new PRO file in the IDL Workbench. To do this, simply:
+
+1. Click on the **New Pro** icon the the workbench 
+
+2. Copy the example code to the window
+
+3. Add and `end` statement as the **last** line in the file
+
+4. Save the code with a **.pro** fifle extension
+
+5. Press **Compile** and then **Run** to execute the code.
+
 
 ### Notes
 
@@ -186,6 +205,34 @@ alignTask.APPLY_REFERENCE_TIEPOINTS = 1
 alignTask.execute
 ```
 
+#### Customizing Batch RedEdge Parameters
+
+If you are running the `UAVBatchRedEdge` task, then you can pass in a custom `UAVBandAlignment` task to edit all paramters of the registration process. Here is an example of how you can do this to have the `UAVBatchRedEdge` generate multi-channel TIFFs instead of multi-page TIFFs.
+
+```idl
+;set IDL's compile options
+compile_opt idl2
+
+;start ENVI headlessly
+e = envi(/HEADLESS)
+
+;initialize the uav_toolkit
+uav_toolkit
+
+;create band alignment task to customize settings
+alignTask = ENVITask('UAVBandAlignment')
+alignTask.MULTI_CHANNEL = 1
+
+;this folder should be the one that contains the unzipped contents of the sample data.
+flightDir = 'C:\data\rededge'
+
+;create our batch task
+redEdgeTask = ENVITask('UAVBatchRedEdge')
+redEdgeTask.FLIGHTDIR = flightDir
+redEdgeTask.BAND_ALIGNMENT_TASK = alignTask
+redEdgeTask.execute
+```
+
 ### Parrot Sequoia
 
 You can also process the Parrot Sequoia data with the UAV toolkit. Note that generating the tie points for this data may take longer because the multispectral bands are taken with a fisheye lens. To process the Sequoia data, just use the `UAVBandAlignment` task with:
@@ -233,6 +280,31 @@ redEdgeTask.FLIGHTDIR = flightDir
 redEdgeTask.PANEL_REFLECTANCE = [67, 69, 68, 67, 61] ;must be 0 to 100, NOT 0 to 1.0
 redEdgeTask.execute
 ```
+
+### File Formats
+
+By default the UAV Toolkit generates multi-page TIFFs for the output files. If you want to generate multi-band TIFFs instead, you can do the following for the BandAlignmentTask:
+
+```idl
+;set IDL's compile options
+compile_opt idl2
+
+;start ENVI
+e = envi(/HEADLESS)
+
+;get UAV Toolkit ready
+uav_toolkit
+
+;set up task
+alignTask = ENVITask('UAVBandAlignment')
+alignTask.SENSOR = 'sequoia'
+alignTask.INPUTDIR = 'C:\data\directory'
+alignTask.GENERATE_REFERENCE_TIEPOINTS = 1
+alignTask.APPLY_REFERENCE_TIEPOINTS = 1
+alignTask.MULTI_CHANNEL = 1
+alignTask.execute
+```
+
 
 ### Default Values
 
