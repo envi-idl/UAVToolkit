@@ -32,7 +32,7 @@ Note that you may have to reset IDL's session for the changes to take place. To 
 
 For advanced users that want to create an IDL SAVE file with pre-compiled code, simply run the script `build_uav_toolkit.pro` which will create a SAVE file with accompanying tasks. The folder will be called "UAVToolkit-build" and will be created in your system's temporary directory. In this folder you will also find the task files for the several tasks include din the toolkit. Once you have done this, you have two ways to install the SAVE files. You can take the contents of the build directory and :
 
-- For ENVI 5.3 and admin rights the directory for Windows is **C:\\Program Files\\Exelis\\ENVI53\\custom_code**
+- For ENVI 5.3 and admin rig hts the directory for Windows is **C:\\Program Files\\Exelis\\ENVI53\\custom_code**
 
 - For ENVI 5.4 and admin rights the directory for Windows is **C:\\Program Files\\Harris\\ENVI54\\custom_code**
 
