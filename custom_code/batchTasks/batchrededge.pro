@@ -93,7 +93,11 @@ pro batchRedEdge, FLIGHTDIR = flightdir, BAND_ALIGNMENT_TASK = band_alignment_ta
   e = envi(/current)
   if (e eq !NULL) then begin
     message, 'ENVI has not started yet, required!'
-  endif
+  endif else begin
+    if ~obj_valid(e) then begin
+      message, 'ENVI is not a valid object. Please reset your IDL session (or restart) and try again.'
+    endif
+  endelse
   
   ;restore the uav_toolkit
   uav_toolkit

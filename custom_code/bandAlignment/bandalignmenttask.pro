@@ -139,7 +139,11 @@ pro BandAlignmentTask, $
   e = envi(/CURRENT)
   if (e eq !NULL) then begin
     message, 'ENVI has not started yet, required.'
-  endif
+  endif else begin
+    if ~obj_valid(e) then begin
+      message, 'ENVI is not a valid object. Please reset your IDL session (or restart) and try again.'
+    endif
+  endelse
 
   ;init dictionary for out parameters
   parameters = dictionary()
