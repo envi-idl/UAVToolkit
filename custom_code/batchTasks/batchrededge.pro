@@ -87,6 +87,7 @@
 ;-
 pro batchRedEdge, FLIGHTDIR = flightdir, BAND_ALIGNMENT_TASK = band_alignment_task, PANEL_REFLECTANCE = panel_reflectance
   compile_opt idl2
+  on_error, 2
 
   ;start ENVI
   e = envi(/current)

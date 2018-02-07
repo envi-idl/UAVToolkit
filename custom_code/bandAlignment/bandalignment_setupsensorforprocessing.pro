@@ -26,6 +26,9 @@ pro BandAlignment_SetUpSensorForProcessing, PARAMETERS = parameters
 
   ;get current ENVI
   e = envi(/CURRENT)
+  if (e eq !NULL) then begin
+    message, 'ENVI has not started yet, required!'
+  endif
 
   ;search for image groups
   groups = bandalignment_get_image_groups(parameters.INPUTDIR, parameters.FILE_IDENTIFIERS)

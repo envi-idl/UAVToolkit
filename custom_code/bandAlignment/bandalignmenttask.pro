@@ -123,6 +123,7 @@ pro BandAlignmentTask, $
   SEARCH_WINDOW_FROM_HEIGHT = search_window_from_height,$
   SENSOR = sensor
   compile_opt idl2, hidden
+  on_error, 2
 
   ;error catching block to give us useful errors when the tasks catch 
   ;otherwise we only get the message, no traceback

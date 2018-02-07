@@ -52,7 +52,7 @@ pro bandalignment_find_good_image_group, $
   ;check to see if ENVI is running
   e = envi(/current)
   if (e eq !NULL) then begin
-    e = envi(/headless)
+    message, 'ENVI has not started yet, required!'
   endif
   
   ;check what the baseband is
@@ -60,6 +60,11 @@ pro bandalignment_find_good_image_group, $
   if (baseband eq !NULL) then begin
     baseband = 0
   endif 
+  
+  ;make sure we have groups
+  if ~n_elements(groups) then begin
+    message, 'No groups passed in for processing, required!'
+  endif
   
   ;get the group names that fall within approximate straight lines if asked for
   if keyword_set(kappa_filter) then begin
