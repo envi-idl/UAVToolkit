@@ -8,27 +8,10 @@ If you have downloaded this repository, then the best way to view the documentat
 
 
 
-## Major Changes
+## Changes
 
-There have been many overall updates to the UAV Toolkit since it's initial release which consists of:
+See CHANGELOG.md for complete details on what is new in the latest version.
 
-- Complete automation of the process for generating and applying reference tie points to imagery.
-
-    There is a new routine that works behind the scenes to find an image group that the reference tie points can be taken from and it has worked very well on the test datasets that I have used.
-
-- Refactoring and optimization of much of the code
-
-    Behind the scenes a new suite of routines is used for performing the band-band registration that can be used with any type of imagery or raster.
-
-- Generic support for any multispectral sensor that produces separate images for each band.
-
-    If there are other sensors feel free to make a request for adding them, provided sample data can be shared.
-
-- Refocused overall tools for band-band alignment 
-
-    - **This means that some routines have been removed completely from this version of the UAV Toolkit. If there are missing functions/procedures that you want which are missing, then file a bug report via the main GitHub repository and I will add them back in.**
-
-- Packaged the tools to use the ENVI Task framework
 
 ### Worth Mentioning
 
@@ -97,7 +80,7 @@ To run the examples below, the easiest method is to create a new PRO file in the
 
 3. Add and `end` statement as the **last** line in the file
 
-4. Save the code with a **.pro** fifle extension
+4. Save the code with a **.pro** file extension
 
 5. Press **Compile** and then **Run** to execute the code.
 
@@ -207,7 +190,7 @@ alignTask.execute
 
 #### Customizing Batch RedEdge Parameters
 
-If you are running the `UAVBatchRedEdge` task, then you can pass in a custom `UAVBandAlignment` task to edit all paramters of the registration process. Here is an example of how you can do this to have the `UAVBatchRedEdge` generate multi-channel TIFFs instead of multi-page TIFFs.
+If you are running the `UAVBatchRedEdge` task, then you can pass in a custom `UAVBandAlignment` task to edit all parameters of the registration process. Here is an example of how you can do this to have the `UAVBatchRedEdge` generate multi-channel TIFFs instead of multi-page TIFFs.
 
 ```idl
 ;set IDL's compile options
@@ -259,7 +242,7 @@ alignTask.execute
 
 ### Custom Percent Reflectance
 
-If you know the percent reflectance (from 0 to 100) of your reflectance panel for each of your bands, you can specify them inidivually with the `PANEL_REFLECTANCE` task parameter for the tasks demonstrated above. Here is an example with the `UAVBatchRedEdge` task:
+If you know the percent reflectance (from 0 to 100) of your reflectance panel for each of your bands, you can specify them individually with the `PANEL_REFLECTANCE` task parameter for the tasks demonstrated above. Here is an example with the `UAVBatchRedEdge` task:
 
 ```idl
 ;set IDL's compile options

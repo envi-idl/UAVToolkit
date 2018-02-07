@@ -189,7 +189,6 @@ pro batchRedEdge, FLIGHTDIR = flightdir, BAND_ALIGNMENT_TASK = band_alignment_ta
     ;set our other parameters for "batch processing"
     band_alignment_task.GENERATE_REFERENCE_TIEPOINTS = 1
     band_alignment_task.APPLY_REFERENCE_TIEPOINTS = 1
-    band_alignment_task.RIGOROUS_ALIGNMENT = 1
   endif
   
   ;set the panel reflectance
