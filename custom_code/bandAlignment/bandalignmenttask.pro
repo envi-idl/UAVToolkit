@@ -331,16 +331,15 @@ pro BandAlignmentTask, $
   tempdir2 = e.Preferences[ 'directories and files:output directory' ].Value
   tempdir3 = e.Preferences[ 'directories and files:auxiliary file directory' ].Value
   
-;  catch, errorstatus
-;  if errorstatus ne 0 then begin
-;    catch, /cancel
-;    help, /LAST_MESSAGE, OUTPUT=err_txt
-;    e.Preferences[ 'directories and files:temporary directory' ].Value = tempdir1
-;    e.Preferences[ 'directories and files:output directory' ].Value = tempdir2
-;    e.Preferences[ 'directories and files:auxiliary file directory' ].Value = tempdir3
-;    p = dialog_message(err_txt)
-;    return
-;  endif
+  ; handle errors and change preferences back
+  catch, err
+  if (err ne 0) then begin
+    catch, /cancel
+    e.Preferences[ 'directories and files:temporary directory' ].Value = tempdir1
+    e.Preferences[ 'directories and files:output directory' ].Value = tempdir2
+    e.Preferences[ 'directories and files:auxiliary file directory' ].Value = tempdir3
+    message, /REISSUE_LAST
+  endif
 
   
   ;set up preferences for and children processes that we might start up
