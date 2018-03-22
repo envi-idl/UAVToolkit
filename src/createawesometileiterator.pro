@@ -1,10 +1,5 @@
-;h+
-; (c) 2017 Exelis Visual Information Solutions, Inc., a subsidiary of Harris Corporation.
-;h-
-
 ;+
-; 
-; :Private:
+; (c) 2017 Exelis Visual Information Solutions, Inc., a subsidiary of Harris Corporation.
 ;
 ; :Description:
 ;    Procedure to create a much better tile iterator which includes a buffer to
@@ -42,7 +37,7 @@
 ;
 ; :Author: Zachary Norman - GitHub: znorman-harris
 ;-
-pro CreateBetterTileIterator,$
+pro createAwesomeTileIterator,$
   INPUT_RASTER = input_raster,$
   TILE_BUFFER = tile_buffer, $
   TILE_SIZE = tile_Size,$
@@ -84,7 +79,7 @@ pro CreateBetterTileIterator,$
     nx = ceil(float(ncolumns)/tile_size[0])
   endelse
 
-  if (nrows le tile_size[0]) then begin
+  if (nrows le tile_size[1]) then begin
     ny = 1
   endif else begin
     ny = ceil(float(nrows)/tile_size[1])

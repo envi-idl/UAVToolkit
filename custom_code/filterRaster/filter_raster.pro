@@ -40,7 +40,7 @@ pro filter_raster,$
 
   ;initialize our tile iterator
   ;add a buffer of 3 to each tile since our kernels are mostly 3 x 3 (i think)
-  CreateBetterTileIterator,$
+  createAwesomeTileIterator,$
     INPUT_RASTER = input_raster,$
     TILE_BUFFER = 3, $
     TILE_SIZE = [20480, 20480],$

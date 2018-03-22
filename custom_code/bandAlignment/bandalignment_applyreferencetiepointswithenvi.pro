@@ -153,7 +153,7 @@ pro BandAlignment_ApplyReferenceTiePointsWithENVI,$
     output_raster = ENVIRaster(INHERITS_FROM = stackedRaster, URI = output_raster_uri, METADAT = meta)
     
     ;create tile iterator
-    createBetterTileIterator,$
+    createAwesomeTileIterator,$
       INPUT_RASTER = stackedRaster,$
       OUTPUT_SUB_RECTS = sub_rects
       
