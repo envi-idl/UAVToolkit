@@ -1,0 +1,22 @@
+{
+    "sol": {
+        "bridge_debug_log": "sol.log",
+        "quiet": 0,
+        "verbose": 0,
+        "debug": false,
+        "search_pattern": ".spec.pro",
+        "auto_generate_luna_reports": true,
+        "auto_discover_source": false
+    },
+    "luna": {
+        "bridge_debug_log": "luna.log",
+        "quiet": 0,
+        "verbose": 0,
+        "debug": false,
+        "profile": false,
+        "no_log": false,
+        "no_routines": false,
+        "routines": [
+        ]
+    }
+}

@@ -1,5 +1,7 @@
 ;h+
-; (c) 2017 Exelis Visual Information Solutions, Inc., a subsidiary of Harris Corporation.
+; (c) 2018 Harris Geospatial Solutions, Inc.
+; 
+; Licensed under MIT, see LICENSE.txt for more details.
 ;h-
 
 ;+
@@ -796,6 +798,9 @@ end
 ;    outFile: in, required, type=string
 ;      Must be set to the fully-qualified filepath on disk for where the virtual 
 ;      raster will be written to disk.
+;    format: in, optional, type=string
+;      Specify the output file format. Supports any value of format from the 
+;      default `raster.export` method (see the docs).
 ;
 ; :Keywords:
 ;    DATA_IGNORE_VALUE: in, optional, type=number
@@ -807,7 +812,7 @@ end
 ; :Author: Zachary Norman - GitHub: znorman-harris
 ; 
 ;-
-pro bridge_it::ExportRaster, raster, outFile, DATA_IGNORE_VALUE = data_ignore_value, TIME = time
+pro bridge_it::ExportRaster, raster, outFile, format, DATA_IGNORE_VALUE = data_ignore_value, TIME = time
   compile_opt idl2
   
   ;get current session of ENVI
@@ -827,8 +832,8 @@ pro bridge_it::ExportRaster, raster, outFile, DATA_IGNORE_VALUE = data_ignore_va
     message, 'Output file not specified, required argument!'
   endif
   
-  if ~outfile.endsWith('.dat') then begin
-    message, 'outfile does not end with a .dat extension, required!'
+  if (format eq !NULL) then begin
+    format = 'ENVI'
   endif
 
   ;dehydrate our virtual raster into strings
@@ -841,17 +846,16 @@ pro bridge_it::ExportRaster, raster, outFile, DATA_IGNORE_VALUE = data_ignore_va
     !NULL = self.Run('ENVIHydrate', $
       ARG1 = strings, $
       PRE = 'arg1 = json_parse(arg1)', $
-      POST = 'output.Export, "' + outFile +'", "ENVI", ERROR = exportError, DATA_IGNORE_VALUE = ' + strtrim(data_ignore_value,2),$
+      POST = 'output.Export, "' + outFile +'", "' + format + '", ERROR = exportError, DATA_IGNORE_VALUE = ' + strtrim(data_ignore_value,2),$
       EXPORTRASTER = outFile, TIME = time)
   endif else begin
     ;run our task
     !NULL = self.Run('ENVIHydrate', $
       ARG1 = strings, $
       PRE = 'arg1 = json_parse(arg1)', $
-      POST = 'output.Export, "' + outFile +'", "ENVI", ERROR = exportError',$
+      POST = 'output.Export, "' + outFile +'", "' + format + '", ERROR = exportError',$
       EXPORTRASTER = outFile, TIME = time)
   endelse
-
 end
 
 

@@ -1,0 +1,50 @@
+{
+    "rules": {
+        "syntax": {
+            "indent": [
+                true,
+                "spaces"
+            ],
+            "whitespace": [
+                true,
+                "remove-trailing",
+                "empty-new-lines"
+            ],
+            "quote": [
+                true,
+                "single"
+            ],
+            "code-blocks-required": [
+                true,
+                "if",
+                "for",
+                "foreach",
+                "while",
+                "repeat"
+            ],
+            "max-line-length": [
+                false,
+                140
+            ]
+        },
+        "naming": {
+            "routine-prefix": "",
+            "underscore": [
+                true,
+                "only-start",
+                "routines",
+                "methods"
+            ],
+            "keywords": [
+                true,
+                "upper-case-left"
+            ]
+        },
+        "comments": {
+            "routine-comments-required": false,
+            "file-comments-required": false,
+            "whitespace-after-comment": true,
+            "header-content": ""
+        }
+    }
+}

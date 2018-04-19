@@ -1,0 +1,17 @@
+{
+    "name": "UAVToolkit",
+    "version": "1.0",
+    "license": "",
+    "author": "Zachary Norman - GitHub: znorman-harris",
+    "description": "A colleaction of tools for preprocessing multi-sensor, multi-spectral data.",
+    "entry_point": "uav_toolkit",
+    "build_types": [
+        "idl"
+    ],
+    "build_ignore": [
+        "dist",
+        "docs"
+    ],
+    "dependencies": {
+    }
+}

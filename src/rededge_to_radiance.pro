@@ -1,5 +1,7 @@
 ;h+
-; (c) 2017 Exelis Visual Information Solutions, Inc., a subsidiary of Harris Corporation.
+; (c) 2018 Harris Geospatial Solutions, Inc.
+; 
+; Licensed under MIT, see LICENSE.txt for more details.
 ;h-
 ;  This file contains the code needed to convert the raw pixel values from a 
 ;  RedEdge image directly to radiance. This workflow was taken from the following 

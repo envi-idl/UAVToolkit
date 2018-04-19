@@ -1,3 +1,8 @@
+;h+
+; (c) 2018 Harris Geospatial Solutions, Inc.
+; 
+; Licensed under MIT, see LICENSE.txt for more details.
+;h-
 ;+
 ; :Description:
 ;    Simple function that gets the current ENVI session and
