@@ -61,7 +61,7 @@ function BandAlignment_Get_Image_Groups, directory, uniqueIdentifiers
 
   ;search for files
   foreach id, uniqueIdentifiers, i do begin
-    idxMatch = where(strpos(dirFiles, id) ne -1, countMatch)
+    idxMatch = where(strpos(strlowcase(dirFiles), strlowcase(id)) ne -1, countMatch)
     
     ;make sure we found results
     if (countMatch eq 0) then return, groups
@@ -70,7 +70,7 @@ function BandAlignment_Get_Image_Groups, directory, uniqueIdentifiers
     files[id] = directory + path_sep() + dirFiles[idxMatch]
     
     ;save base names of first matching ID (any works for finding all other groups)
-    if (i eq 0) then baseNames = file_basename(dirFiles[idxMatch], id)
+    if (i eq 0) then baseNames = file_basename(strlowcase(dirFiles[idxMatch]), strlowcase(id))
   endforeach
   
   ;find the matches for each base name
@@ -80,7 +80,7 @@ function BandAlignment_Get_Image_Groups, directory, uniqueIdentifiers
     
     ;loop over each list of files
     foreach fileArr, files do begin
-      idx = where(strpos(fileArr, base) ne -1, countIdx)
+      idx = where(strpos(strlowcase(fileArr), base) ne -1, countIdx)
       if (countIdx eq 1) then begin
         matches.Add, fileArr[idx[0]]
       endif
@@ -96,13 +96,4 @@ function BandAlignment_Get_Image_Groups, directory, uniqueIdentifiers
   
   ;return group information
   return, groups
-end
-
-dir = 'C:\Users\znorman\Documents\data\opportunities\UAS_Multi'
-ids = ['_GRE.TIF', '_RED.TIF', '_NIR.TIF', '_REG.TIF']
-
-dir = 'C:\Users\znorman\Documents\data\opportunities\highland\000'
-ids = ['_1.tif', '_2.tif', '_3.tif', '_5.tif', '_4.tif']
-
-groups = BandAlignment_Get_Image_Groups(dir, ids)
 end
