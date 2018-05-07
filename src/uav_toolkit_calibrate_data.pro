@@ -93,7 +93,13 @@ function uav_toolkit_calibrate_data, group, sensor, $
         
         ;extract image metadata and get our gains for our panel
         meta = read_exif(file)
-        output_ies[i] = meta.ISOSpeed*meta.ExposureTime
+        
+        ;check the key type
+        case (1) of
+          meta.hasKey('ISOSpeed'): output_ies[i] = meta.ISOSpeed*meta.ExposureTime
+          meta.hasKey('ISOSpeedRatings'): output_ies[i] = meta.ISOSpeedRatings*meta.ExposureTime
+          else: output_ies[i] = 1.0
+        endcase
         
         ;check if we need to perform any scaling if over a certain pixel threshold
         if keyword_set(max_pixel_value) AND keyword_set(max_value_divisor) then begin
