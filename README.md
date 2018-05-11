@@ -15,34 +15,40 @@ See CHANGELOG.md for complete details on what is new in the latest version.
 
 ### Worth Mentioning
 
-If there are any requests, don't hesitate to add an issue for the repository. I can easily create some ENVI extensions for the tasks to help make things easier to process if you are not an IDL programmer.
+If there are any feature requests, don't hesitate to add an issue for the repository. If you have an issue, please be sure to include debug information and you may be asked to share some sample data for testing purposes which will not be shared.
 
 
 ## Installation
 
-**Make sure you remove any previous version of the UAV Toolkit from IDL's search path or ENVI's custom_code directories**.
+Please select **one** of the below options. Why one? Well, if you have SAVE files and PRO code on IDL's search path (or installed under ENVI), then the SAVE file will win over the PRO code. This means that you can have fun debugging odd issues with conflicts between newer and older versions of code.
 
-### Basic
+**If upgrading, make sure you remove any previous version of the UAV Toolkit from IDL's search path or,  ENVI's custom_code, or ENVI's extension folder**.
+
+### Basic - PRO code
 
 To install the code, you just need to add this repository to IDL's search path. You can access this setting in **Preferences -> IDL -> Paths -> Insert**, navigate to the directory and select OK, and then make sure to check the box to have this folder recursively searched for code. Click **Apply** and **OK** once the path has been added.
 
 Note that you may have to reset IDL's session for the changes to take place. To do this you can simply press the **Reset** button in the IDL workbench.
 
-### Advanced Installation - SAVE files
+### ENVI Extensions - SAVE files
 
-For advanced users that want to create an IDL SAVE file with pre-compiled code, simply run the script `build_uav_toolkit.pro` which will create a SAVE file with accompanying tasks. The folder will be called "UAVToolkit-build" and will be created in your system's temporary directory. In this folder you will also find the task files for the several tasks include din the toolkit. Once you have done this, you have two ways to install the SAVE files. You can take the contents of the build directory and :
+For users that want to use the UAV Toolkit as an ENVI extension, you will need to run the `build_uav_toolkit.pro` file in the primary directory of the repository. Once this completes, take the **entire** `UAVToolkit-build` folder and place it into ENVI's extensions folder. Here are the potential locations that you 
 
-- For ENVI 5.3 and admin rig hts the directory for Windows is **C:\\Program Files\\Exelis\\ENVI53\\custom_code**
+- For ENVI 5.3 and admin rig hts the directory for Windows is **C:\\Program Files\\Exelis\\ENVI53\\extensions**
 
-- For ENVI 5.4 and admin rights the directory for Windows is **C:\\Program Files\\Harris\\ENVI54\\custom_code**
+- For ENVI 5.4 and admin rights the directory for Windows is **C:\\Program Files\\Harris\\ENVI54\\extensions**
+
+- For ENVI 5.5 and admin rights the directory for Windows is **C:\\Program Files\\Harris\\ENVI55\\extensions**
 
 - If you do not have admin rights then you can find the local user directory in ENVI's preferences under:
 
-    **File -> Preferences -> Directories -> Custom Code Directory**
+    **File -> Preferences -> Directories -> Extensions Directory**
 
-    Once you place the file in ENVI's custom code folder you **must restart ENVI** before you will have access to them in ENVI.
+    Once you place the file in ENVI's extension folder you **must restart ENVI** before you will see them appear.
 
-**Note the location that you installed the SAVE files to. If you get a later version of this code, then you will need to update or remove these files for any changes to take effect.**
+**Note the location that you installed the SAVE files to. If you get a later version of this code, then you will need to update or remove these files for access to new features.**
+
+Note: if you are an experienced ENVI + IDL user, you may be wondering why the instructions are to place the ENVI Tasks in the extensions folder (they usually go in the custom_code directory). The reason that this works is because, when the buttons are added to ENVI, I search for and open all tasks in the extensions_folder meaning that you only have to place the UAV toolkit in one location instead of two which makes the installation process easier.
 
 ## Requirements
 
@@ -350,7 +356,8 @@ endcase
 
 ## License
 
+(c) 2018 Harris Geospatial Solutions, Inc.
+
 Licensed under MIT. See LICENSE.txt for additional details and information.
 
-(c) 2018 Harris Geospatial Solutions, Inc.
 

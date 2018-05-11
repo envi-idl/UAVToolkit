@@ -5,6 +5,11 @@
 ;h-
 
 ;+
+; :Private:  
+;
+;-
+
+;+
 ; :Description:
 ;    Procedure used with the BandAlignment tools that will generate tie points
 ;    for each band of the INPUT_RASTER.

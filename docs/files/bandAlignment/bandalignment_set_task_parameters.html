@@ -55,15 +55,15 @@
             <li class="dropdown">
                 <a style="top:3px" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-book">  Contents</i></a>
                 <ul class="dropdown-menu">
-<li><a href="./../../files/UAVToolkit/uav_toolkit.html#">File 1: uav_toolkit.pro</a></li>
+<li><a href="./../../files/SE-UAVToolkit/uav_toolkit.html#">File 1: uav_toolkit.pro</a></li>
 <li><a href="./../../files/src/unjoin_rededge_datadir.html#">File 2: unjoin_rededge_datadir.pro</a></li>
 <li><a href="./../../files/src/join_rededge_datadirs.html#">File 3: join_rededge_datadirs.pro</a></li>
 <li><a href="./../../files/src/image_info__define.html#">File 4: image_info__define.pro</a></li>
 <li><a href="./../../files/src/generate_gps_file.html#">File 5: generate_gps_file.pro</a></li>
 <li><a href="./../../files/src/generate_cam_file.html#">File 6: generate_cam_file.pro</a></li>
-<li><a href="./../../files/batchTasks/batchrededge.html#">File 7: batchrededge.pro</a></li>
-<li><a href="./../../files/bandAlignment/bandalignmenttiepoints__define.html#">File 8: bandalignmenttiepoints__define.pro</a></li>
-<li><a href="./../../files/bandAlignment/bandalignmenttask.html#">File 9: bandalignmenttask.pro</a></li>
+<li><a href="./../../files/batchTasks/uavbatchrededge.html#">File 7: uavbatchrededge.pro</a></li>
+<li><a href="./../../files/bandAlignment/uavbandalignment.html#">File 8: uavbandalignment.pro</a></li>
+<li><a href="./../../files/bandAlignment/bandalignmenttiepoints__define.html#">File 9: bandalignmenttiepoints__define.pro</a></li>
 <li><a href="./../../files/bandAlignment/bandalignment_simple_kappa_filter.html#">File 10: bandalignment_simple_kappa_filter.pro</a></li>
 <li><a href="./../../files/bandAlignment/bandalignment_setupsensorforprocessing.html#">File 11: bandalignment_setupsensorforprocessing.pro</a></li>
 <li><a href="./../../files/bandAlignment/bandalignment_set_task_parameters.html#">File 12: bandalignment_set_task_parameters.pro</a></li>
@@ -76,9 +76,10 @@
 <li><a href="./../../files/bandAlignment/bandalignment_applyreferencetiepointswithidl.html#">File 19: bandalignment_applyreferencetiepointswithidl.pro</a></li>
 <li><a href="./../../files/bandAlignment/bandalignment_applyreferencetiepointswithenvi.html#">File 20: bandalignment_applyreferencetiepointswithenvi.pro</a></li>
 <li><a href="./../../files/bandAlignment/bandalignment_applyreferencetiepointstogroups.html#">File 21: bandalignment_applyreferencetiepointstogroups.pro</a></li>
-<li><a href="./../../files/custom_code/README.html#">File 22: UAVToolkit Directory custom_code</a></li>
-<li><a href="./../../files/UAVToolkit/build_uav_toolkit.html#">File 23: build_uav_toolkit.pro</a></li>
+<li><a href="./../../files/README.html#">File 22: UAVToolkit Directory custom_code</a></li>
+<li><a href="./../../files/SE-UAVToolkit/build_uav_toolkit.html#">File 23: build_uav_toolkit.pro</a></li>
 <li><a href="./../../files/CONTRIBUTING.html#">File 24: Contributing</a></li>
+<li><a href="./../../files/CHANGELOG.html#">File 25: Changes</a></li>
                     <!--<li><a href="#">Chapter 1</a></li>-->
                 </ul>
             </li>
@@ -89,7 +90,7 @@
       <div class="pull-right">
         <a href="https://www.harrisgeospatial.com" target="_blank"><img src="./../../images/Harris_wR_White-RedA.png" style="height:41px; width:155px; position:relative; top:5px; right:20px"></img></a>
       </div>
-      <a class="navbar-brand pull-right" href="#" style="position:relative;right:30px;" target="_blank">
+      <a class="navbar-brand pull-right" href="./../..//index/index.html" style="position:relative;right:30px;" target="_blank">
         Search
       </a>
     </nav>
@@ -101,7 +102,11 @@
       <ul id="sidebar" class="nav nav-stacked fixed sidebar-overflow">
         <li><a href="#" class="side_tt", side_tt="bandalignment_set_task_parameters.pro">bandalignment_set_task_parameters.pro</a></li>
         <li>
-          <a href="#bandalignment_set_task_parameters-head_0" class="side_tt", side_tt="Author">Author</a>
+          <a href="#bandalignment_set_task_parameters-head_0" class="side_tt", side_tt="bandalignment_set_rededge_task_parameters">bandalignment_set_rededge_task_parameters</a>
+            <ul class="nav nav-stacked">
+              <li><a href="#bandalignment_set_task_parameters-head_1" class="side_tt", side_tt="Syntax">Syntax</a></li>
+              <li><a href="#bandalignment_set_task_parameters-head_2" class="side_tt", side_tt="Author">Author</a></li>
+            </ul>
         <li>
       </ul>
     </nav>
@@ -111,9 +116,18 @@
 </div>
 <h1 id="bandalignment_set_task_parameters.pro">bandalignment_set_task_parameters.pro</h1>
 <hr />
-<p>Simple routine that sets task parameters from the input parameters. Just convenience in case we need to set parameters in multiple places.</p>
 <div id="bandalignment_set_task_parameters-head_0">
 <a class="anchor_sub" name="bandalignment_set_task_parameters-head_0"></a>
+</div>
+<h2 id="bandalignment_set_rededge_task_parameters">bandalignment_set_rededge_task_parameters</h2>
+<p>Simple routine that sets task parameters from the input parameters. Just convenience in case we need to set parameters in multiple places.</p>
+<div id="bandalignment_set_task_parameters-head_1">
+<a class="anchor_sub" name="bandalignment_set_task_parameters-head_1"></a>
+</div>
+<h3 id="syntax">Syntax</h3>
+<pre class="no-copy-button">bandalignment_set_rededge_task_parameters</pre>
+<div id="bandalignment_set_task_parameters-head_2">
+<a class="anchor_sub" name="bandalignment_set_task_parameters-head_2"></a>
 </div>
 <h3 id="author">Author</h3>
 <p>Zachary Norman - GitHub: znorman-harris</p>

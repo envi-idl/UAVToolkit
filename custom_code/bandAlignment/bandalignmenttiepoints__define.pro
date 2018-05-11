@@ -5,6 +5,10 @@
 ;h-
 
 ;+
+; :Private:
+; 
+; :Description:
+;
 ;  Object definition for the BandAlignmentTiePoints object. This object uses the ".dot" notation
 ;  to access and set properties.
 ;

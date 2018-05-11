@@ -5,6 +5,11 @@
 ;h-
 
 ;+
+; :Private:  
+;
+;-
+
+;+
 ; :Description:
 ;    Function that creates a virtual raster from the input image groups. The
 ;    raster has a dummy spatial reference applied so that the image can be

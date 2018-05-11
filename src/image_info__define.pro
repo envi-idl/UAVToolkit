@@ -5,6 +5,12 @@
 ;h-
 
 ;+
+; :Private:
+;
+;
+;-
+
+;+
 ;
 ;   The purpose of this function is to get the approximate ground elevation in
 ;   meters above sea level. This function is used internally for most of the other

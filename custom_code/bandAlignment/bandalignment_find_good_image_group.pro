@@ -5,6 +5,11 @@
 ;h-
 
 ;+
+; :Private:  
+;
+;-
+
+;+
 ; :Description:
 ;    Procedure that will automatically find the best image group to
 ;    use for the band-band registration for a given set of data. This

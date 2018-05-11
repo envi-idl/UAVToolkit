@@ -11,7 +11,7 @@
 ;
 ; :Keywords:
 ;    UI: in, optional, tpye=boolean
-;      Set this keyword to make sure that the ENVI is not in 
+;      Set this keyword to make sure that ENVI is not in 
 ;      headless mode.
 ;
 ;

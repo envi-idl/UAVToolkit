@@ -5,6 +5,11 @@
 ;h-
 
 ;+
+; :Private:  
+;
+;-
+
+;+
 ; :Description:
 ;    Procedure that performs the image-image registration in memory using
 ;    IDL and an RST warping method. It returns the output spatial reference

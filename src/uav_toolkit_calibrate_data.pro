@@ -3,6 +3,11 @@
 ; 
 ; Licensed under MIT, see LICENSE.txt for more details.
 ;h-
+
+;+
+; :Private:
+;
+;-
 function uav_toolkit_calibrate_data, group, sensor, $
   BAND_DIMS = band_dims,$
   INPUT_GAINS = input_gains,$

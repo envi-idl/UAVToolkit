@@ -5,6 +5,7 @@
 ;h-
 
 ;+
+; :Private:  
 ;
 ;  Contains the code used for performing the band-band registration on all of the
 ;  image groups that you want to process.

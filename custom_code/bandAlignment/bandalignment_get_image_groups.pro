@@ -5,6 +5,11 @@
 ;h-
 
 ;+
+; :Private:  
+;
+;-
+
+;+
 ; :Description:
 ;    This function searches a directory for files and groups multiple files together
 ;    based on unique identifiers. Essentially, this function is useful for grouping

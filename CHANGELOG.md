@@ -1,16 +1,18 @@
-# Changes
+# Changelog
 
 This file summarizes the overall changes.
 
-## Latest (Version 2.1)
+## Version 2.1
 
 Added buttons to the uav_toolkit procedure so that you can have a UI for the tools and updated the readme. With this change, the progress information has also been updated.
 
-Separated code that belogs o other repositories which is now included in the IDL packages folder.
+Separated code that belogs o other repositories which is now included in the `idl_pacakges` folder.
 
 Fixed a bug with Parrot Sequoia metadata have a different tag name for ISOSpeed.
 
-Updated some routine names and task display names. This should not affect any code as the proper entry point is through the tasks. 
+Updated some routine names, task display names, and reorganized task parameters. This should not affect any code as the proper entry point is through the tasks.
+
+Added a new Basic version of the UAV Toolkit Band Alignment task that has about 1/3 of the parameters to make it easier to use in the ENVI UI.
 
 
 ## Version 2.0.2

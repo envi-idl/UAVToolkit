@@ -17,7 +17,9 @@ pro uav_toolkit_extensions_init
   compile_opt idl2, hidden
   e = envi(/CURRENT)
   uav_toolkit
-  e.AddExtension, 'Band Alignment', 'uav_toolkit_extension',$
+  e.AddExtension, 'Band Alignment (Basic)', 'uav_toolkit_extension',$
+    UVALUE = 'UAVBandAlignmentBasic', PATH='/UAV Toolkit/'
+  e.AddExtension, 'Band Alignment (Advanced)', 'uav_toolkit_extension',$
     UVALUE = 'UAVBandAlignment', PATH='/UAV Toolkit/'
   e.AddExtension, 'Batch RedEdge', 'uav_toolkit_extension',$
     UVALUE = 'UAVBatchRedEdge', PATH='/UAV Toolkit/'

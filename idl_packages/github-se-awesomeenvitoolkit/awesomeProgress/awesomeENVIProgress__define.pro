@@ -76,10 +76,7 @@ function awesomeENVIProgress::Init, progressTitle, PRINT = print
   on_error, 2
   
   ;get current session of ENVI
-  e = envi(/CURRENT)
-  if (e eq !NULL) then begin
-    message, 'ENVI has not been started yet, required!'
-  endif
+  e = awesomeGetENVI()
 
   ;make sure we passed in a progress title
   if (progressTitle eq !NULL) then begin

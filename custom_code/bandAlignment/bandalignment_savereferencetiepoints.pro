@@ -5,6 +5,11 @@
 ;h-
 
 ;+
+; :Private:  
+;
+;-
+
+;+
 ; :Description:
 ;    Simple wrapper procedure that validates and saves our tie points to an
 ;    IDL save file for later use. The tie points that are saved represent

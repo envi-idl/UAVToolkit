@@ -1,10 +1,10 @@
 {
-    "name": "UAVBandAlignment",
+    "name": "UAVBandAlignmentBasic",
     "version": "5.3",
     "baseClass": "ENVITaskFromProcedure",
     "routine": "uavbandalignment",
-    "displayName": "UAV Band Alignment",
-    "description": "Task for performing band-band alignment on UAV datasets.",
+    "displayName": "UAV Band Alignment Basic",
+    "description": "Task for performing band-band alignment on UAV datasets with reduced parameters and more defaults.",
     "parameters": [
         {
             "name": "GENERATE_REFERENCE_TIEPOINTS",
@@ -60,7 +60,8 @@
             "dataType": "uint",
             "min": 1,
             "max":65535,
-            "defaultValue": 65535
+            "defaultValue": 65535,
+            "hidden":true
         },
         {
             "name": "SENSOR",
@@ -95,7 +96,8 @@
             "direction": "input",
             "parameterType": "optional",
             "dataType": "boolean",
-            "defaultValue": false
+            "defaultValue": false,
+            "hidden":true
         },
         {
             "name": "RIGOROUS_ALIGNMENT",
@@ -104,7 +106,8 @@
             "direction": "input",
             "parameterType": "required",
             "dataType": "boolean",
-            "defaultValue": true
+            "defaultValue": true,
+            "hidden":true
         },
         {
             "name": "REQUESTED_NUMBER_OF_TIEPOINTS",
@@ -115,7 +118,8 @@
             "dataType": "long",
             "min": 100,
             "max": 60000,
-            "defaultValue": 1500
+            "defaultValue": 1500,
+            "hidden":true
         },
         {
             "name": "SEARCH_WINDOW_FROM_HEIGHT",
@@ -124,7 +128,8 @@
             "direction": "input",
             "parameterType": "required",
             "dataType": "boolean",
-            "defaultValue": false
+            "defaultValue": false,
+            "hidden":true
         },
         {
             "name": "CORRELATION_MATCHING_SCORE",
@@ -135,7 +140,8 @@
             "dataType": "float",
             "min": 0,
             "max": 1,
-            "defaultValue": 0.6
+            "defaultValue": 0.6,
+            "hidden":true
         },
         {
             "name": "CORRELATION_SEARCH_WINDOW",
@@ -144,7 +150,8 @@
             "direction": "input",
             "parameterType": "required",
             "dataType": "long",
-            "defaultValue": 255
+            "defaultValue": 255,
+            "hidden":true
         },
         {
             "name": "MUTUAL_MATCHING_SCORE",
@@ -155,7 +162,8 @@
             "dataType": "float",
             "min": 0.0,
             "max": 1.0,
-            "defaultValue": 0.05
+            "defaultValue": 0.05,
+            "hidden":true
         },
         {
             "name": "MUTUAL_SEARCH_WINDOW",
@@ -165,7 +173,8 @@
             "parameterType": "optional",
             "dataType": "long",
             "min": 1,
-            "defaultValue": 121
+            "defaultValue": 121,
+            "hidden":true
         },
         {
             "name": "MINIMUM_FILTERED_TIEPOINTS",
@@ -173,7 +182,8 @@
             "description": "Select a threshold for the smallest number of allowed tie points that can be found after filtering. If less than this, then the tie point generation algorithm is ugraded to mutual information if not already set as that.",
             "direction": "input",
             "parameterType": "optional",
-            "dataType": "long"
+            "dataType": "long",
+            "hidden":true
         },
         {
             "name": "NO_SECONDARY_MATCH",
@@ -182,7 +192,8 @@
             "direction": "input",
             "parameterType": "optional",
             "dataType": "boolean",
-            "defaultValue": true
+            "defaultValue": true,
+            "hidden":true
         },
         {
             "name": "NP_GROUPS",
@@ -192,7 +203,8 @@
             "parameterType": "optional",
             "dataType": "long",
             "min": 1,
-            "max": 4
+            "max": 4,
+            "hidden":true
         },
         {
             "name": "CO_CALIBRATION",
@@ -209,7 +221,8 @@
             "description": "Specify the maximum pixel value to be allowed when creating output images. Used in conjunction with MAX_VALUE_DIVISOR.",
             "direction": "input",
             "parameterType": "optional",
-            "dataType": "double"
+            "dataType": "double",
+            "hidden":true
         },
         {
             "name": "MAX_VALUE_DIVISOR",
@@ -217,7 +230,8 @@
             "description": "If MAX_PIXEL_VALUE is set, then this represents the scale factor that the data will be divided by if over the maximum. This is used for the RedEdge data to make sure that it is truly 12 bit as it was collected (instead of scaled by a factor of 16).",
             "direction": "input",
             "parameterType": "optional",
-            "dataType": "ulong"
+            "dataType": "ulong",
+            "hidden":true
         },
         {
             "name": "GET_GPS",
@@ -236,7 +250,8 @@
             "direction": "input",
             "parameterType": "optional",
             "dataType": "boolean",
-            "defaultValue": false
+            "defaultValue": false,
+            "hidden":true
         },
         {
             "name": "MULTI_CHANNEL",

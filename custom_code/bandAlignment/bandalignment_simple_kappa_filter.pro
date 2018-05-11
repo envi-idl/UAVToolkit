@@ -5,6 +5,11 @@
 ;h-
 
 ;+
+; :Private:  
+;
+;-
+
+;+
 ; :Description:
 ;    Routine that returns key names for the image groups that likely fall
 ;    within a straight line. This can remove images from the candidate pool

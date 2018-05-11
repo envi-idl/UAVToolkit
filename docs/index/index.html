@@ -1,3 +1,84 @@
+<html>
+<head>
+  <!--  for adding syntax colorizer --> 
+  <link rel="stylesheet" href="./../js/highlight/styles/github.css"> 
+  <script src="./../js/highlight/highlight.pack.js"></script>
+  <script > hljs.initHighlightingOnLoad(); </script>
+  
+  <!--
+  <link rel="stylesheet" href="./../js/highlight/styles/line-numbers.css"> 
+  <script src="./../js/highlight/highlightjs-line-numbers.min.js"></script>
+  <script>hljs.initLineNumbersOnLoad();</script>
+  -->
+  <!-- head contents for header-bar -->
+  <script src="./../js/jquery.min.js"></script>
+  <script src="./../js/bootstrap.min.js"></script>
+  <script src="./../js/lunr.min.js"></script>
+  <script src="./../js/clipboard.min.js"></script>
+  <script src="./../js/copy-button.js"></script>
+  
+  
+  <!-- load colors for IDL syntax and anchor fix with fixed header-->
+  <style type="text/css">
+  	@import url("./../css/bootstrap.min.css");
+  	@import url("./../css/font-awesome.min.css");
+  	@import url("./../css/cosmos.bootstrap.min.css");
+  	@import url("./../css/idl-styles.css");
+  	@import url("./../css/anchor-fix.css");
+  	@import url("./../css/sidebar.css");
+  	@import url("./../css/callouts.css");
+  	@import url("./../css/figures-and-tables.css");
+  	@import url("./../css/copy-button.css");
+  	@import url("./../css/general-styles.css");
+  </style>
+  <script src="./../js/lunr.min.js"></script>
+  <script src="./lunrIndex.js"></script>
+  <script src="./indexSearch.js"></script>
+  <style type="text/css"> @import url("./../css/search-results.css");</style>
+</head>
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="15">
+  
+  <div id="header" class="navbar navbar-default navbar-fixed-top">
+      <div class="navbar-header">
+          <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+              <i class="icon-reorder"></i>
+          </button>
+      </div>
+      <nav class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+              <li>
+                  <a href="./../index.html#"><i class="fa fa-home"></i> Home</a>
+              </li>
+              <li class="dropdown">
+                  <a style="top:3px" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-book">  Contents</i></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="./../files/SE-UAVToolkit/uav_toolkit.html#">Chapter 1: uav_toolkit.pro</a></li>
+                    <li><a href="./../files/src/unjoin_rededge_datadir.html#">Chapter 2: unjoin_rededge_datadir.pro</a></li>
+                    <li><a href="./../files/src/rededge_to_radiance.html#">Chapter 3: rededge_to_radiance.pro</a></li>
+                    <li><a href="./../files/src/join_rededge_datadirs.html#">Chapter 4: join_rededge_datadirs.pro</a></li>
+                    <li><a href="./../files/src/generate_gps_file.html#">Chapter 5: generate_gps_file.pro</a></li>
+                    <li><a href="./../files/src/generate_cam_file.html#">Chapter 6: generate_cam_file.pro</a></li>
+                    <li><a href="./../files/batchTasks/uavbatchrededge.html#">Chapter 7: uavbatchrededge.pro</a></li>
+                    <li><a href="./../files/bandAlignment/uavbandalignment.html#">Chapter 8: uavbandalignment.pro</a></li>
+                    <li><a href="./../files/README.html#">Chapter 9: UAVToolkit Directory custom_code</a></li>
+                    <li><a href="./../files/SE-UAVToolkit/build_uav_toolkit.html#">Chapter 10: build_uav_toolkit.pro</a></li>
+                    <li><a href="./../files/CONTRIBUTING.html#">Chapter 11: Contributing</a></li>
+                    <li><a href="./../files/CHANGELOG.html#">Chapter 12: Changelog</a></li>
+                      <!--<li><a href="#">Chapter 1</a></li>-->
+                  </ul>
+              </li>
+          </ul>
+        <a class="navbar-brand" href="#">
+           UAVToolkit
+        </a>
+        <div class="pull-right">
+          <a href="https://www.harrisgeospatial.com" target="_blank"><img src="./../images/Harris_wR_White-RedA.png" style="height:41px; width:155px; position:relative; top:5px; right:20px"></img></a>
+        </div>
+        <a class="navbar-brand pull-right" href="#" style="position:relative;right:30px;" target="_blank">
+          Search
+        </a>
+      </nav>
+  </div>
   <div style="padding-top:60px;" class="container">
     <row>
       <div class="col-xs-3">

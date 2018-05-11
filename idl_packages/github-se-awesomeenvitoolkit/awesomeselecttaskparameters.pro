@@ -14,18 +14,24 @@
 ;    SHOW_PREVIEW: in, optional, type=boolean
 ;      Set this keyword to allow users to preview what 
 ;      the results will look like.
+;    TASK: in, optional, type=ENVITask
+;      Optionally specify an ENVI task that has been created
+;      to generate a UI for.
 ;
 ; :Author: Zachary Norman - GitHub: znorman-harris
 ;-
 pro awesomeSelectTaskParameters, taskName, $
   SHOW_DISPLAY_OPTION = show_display_option,$
-  SHOW_PREVIEW = show_preview
+  SHOW_PREVIEW = show_preview,$
+  TASK = task
   compile_opt idl2
   on_error, 2
   
   ;validate our inputs
-  if (taskName eq !NULL) then begin
-    message, 'taskName required, but not specified!', LEVEL = -1
+  if ~isa(task, 'ENVITask') then begin
+    if (taskName eq !NULL) then begin
+      message, 'taskName required, but not specified!', LEVEL = -1
+    endif
   endif
   
   ;catch error and report to level above us
@@ -39,7 +45,7 @@ pro awesomeSelectTaskParameters, taskName, $
   a = awesomeGetENVI(/UI)
   
   ;get our task
-  task = ENVITask(taskName)
+  if ~isa(task, 'ENVITask') then task = ENVITask(taskName)
   
   ;create UI
   IDLcf$Get, TOOL=oTool
