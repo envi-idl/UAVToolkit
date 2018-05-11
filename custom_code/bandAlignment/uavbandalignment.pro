@@ -96,7 +96,7 @@
 ;
 ; :Author: Zachary Norman - GitHub: znorman-harris
 ;-
-pro BandAlignmentTask, $
+pro uavBandAlignment, $
   APPLY_REFERENCE_TIEPOINTS = apply_reference_tiepoints,$
   APPLY_KAPPA_FILTER = apply_kappa_filter,$
   BASE_BAND = base_band,$
@@ -138,14 +138,7 @@ pro BandAlignmentTask, $
   endif
 
   ;get current session of ENVI
-  e = envi(/CURRENT)
-  if (e eq !NULL) then begin
-    message, 'ENVI has not started yet, required.'
-  endif else begin
-    if ~obj_valid(e) then begin
-      message, 'ENVI is not a valid object. Please reset your IDL session (or restart) and try again.'
-    endif
-  endelse
+  e = awesomeGetENVI()
 
   ;init dictionary for out parameters
   parameters = dictionary()
@@ -358,8 +351,8 @@ pro BandAlignmentTask, $
     "e.Preferences[ 'directories and files:output directory' ].Value = '" + tempdir + "'",$
     "e.Preferences[ 'directories and files:auxiliary file directory' ].Value = '" + tempdir + "'"]
   parameters['INIT'] = init
-
-  ;search only that directory for input files
+  
+  ;alert user of start time
   print
   print, '##############################################################'
   print, 'Starting processing at : ' + systime()
@@ -387,7 +380,7 @@ pro BandAlignmentTask, $
     end
     
     else:begin
-     message, 'Unknown sensor type of "' + sensor + '"'
+      message, 'Unknown sensor type of "' + sensor + '"'
     end
   endcase
 

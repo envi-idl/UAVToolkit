@@ -1,8 +1,3 @@
-;h+
-; (c) 2018 Harris Geospatial Solutions, Inc.
-; 
-; Licensed under MIT, see LICENSE.txt for more details.
-;h-
 ;+
 ; (c) 2017 Exelis Visual Information Solutions, Inc., a subsidiary of Harris Corporation.
 ;

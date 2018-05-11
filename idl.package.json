@@ -1,9 +1,9 @@
 {
     "name": "UAVToolkit",
-    "version": "1.0",
-    "license": "",
-    "author": "Zachary Norman - GitHub: znorman-harris",
-    "description": "A colleaction of tools for preprocessing multi-sensor, multi-spectral data.",
+    "version": "2.1",
+    "license": "MIT",
+    "author": "Zachary Norman",
+    "description": "A tool used to preprocess multispectral multi-lens imagery.",
     "entry_point": "uav_toolkit",
     "build_types": [
         "idl"
@@ -13,5 +13,13 @@
         "docs"
     ],
     "dependencies": {
+        "github-se-awesomeenvitoolkit": {
+            "version": "^v0.0.2",
+            "url": "hgsolutions/SE-AwesomeENVIToolkit"
+        },
+        "github-BridgeIt": {
+            "version": "^v1.0.0",
+            "url": "interactive-data-language/BridgeIt"
+        }
     }
 }

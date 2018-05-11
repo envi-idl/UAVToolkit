@@ -4,6 +4,66 @@
 ; Licensed under MIT, see LICENSE.txt for more details.
 ;h-
 
+
+;+
+; :Description:
+;    Procedure that adds the buttons to ENVI's toolbox.
+;    
+;
+;
+; :Author: Zachary Norman - GitHub: znorman-harris
+;-
+pro uav_toolkit_extensions_init
+  compile_opt idl2, hidden
+  e = envi(/CURRENT)
+  uav_toolkit
+  e.AddExtension, 'Band Alignment', 'uav_toolkit_extension',$
+    UVALUE = 'UAVBandAlignment', PATH='/UAV Toolkit/'
+  e.AddExtension, 'Batch RedEdge', 'uav_toolkit_extension',$
+    UVALUE = 'UAVBatchRedEdge', PATH='/UAV Toolkit/'
+end
+
+;+
+; :Description:
+;    Displays the task UI for the button we click.
+;
+; :Params:
+;    event: in, required, type=structure
+;      The event that is passed on when a user clicks
+;      on the button in the ENVI toolbox.
+;
+;
+;
+; :Author: Zachary Norman - GitHub: znorman-harris
+;-
+pro uav_toolkit_extension, event
+  compile_opt idl2, hidden
+
+  ;error catching
+  catch, err
+  if (err ne 0) then begin
+    catch, /CANCEL
+    message, /RESET
+    void = dialog_message('An error occurred while running task:' + $
+      !ERROR_STATE.msg, /ERROR)
+    return
+  endif
+
+  ;get current session of ENVI
+  e = awesomeGetENVI(/UI)
+
+  ;return if called as a procedure instead of a button click
+  if (event eq !NULL) then begin
+    return
+  endif
+
+  ;get the name of the task that we want to run
+  widget_control, event.ID, GET_UVALUE = taskName
+
+  ;create the UI
+  awesomeSelectTaskParameters, taskName
+end
+
 ;+
 ;   The purpose of this procedure is to to used to restore the UAV Toolkit as a .sav file
 ;   into IDL's session and add to let ENVI know about the tasks that are a part of the
@@ -24,13 +84,7 @@
 ;   To open the help using this routine, just do the following:
 ;   
 ;       uav_toolkit, /HELP
-;    
-; :Author: Zachary Norman - GitHub: znorman-harris
-;-
-
-
-;+
-;
+;       
 ;
 ; :Keywords:
 ;    HELP: in, optional, type=boolean, default=false
@@ -60,11 +114,8 @@ pro uav_toolkit, HELP = help
     return
   endif
   
-  ;start ENVI if not started already
-  e = envi(/current)
-  if (e eq !NULL) then begin
-    message, 'ENVI has not been started yet, requried!'
-  endif
+  ;get the current session of ENVI
+  e = awesomeGetENVI()
   
   ;if we aren't looking for help, then let's find all of the task files
   taskFiles = file_search(thisdir, '*.task')

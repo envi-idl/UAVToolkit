@@ -1,12 +1,5 @@
-;h+
-; (c) 2018 Harris Geospatial Solutions, Inc.
-; 
-; Licensed under MIT, see LICENSE.txt for more details.
-;h-
-
 ;+
-;
-; :Private:
+; (c) 2017 Exelis Visual Information Solutions, Inc., a subsidiary of Harris Corporation.
 ;
 ; :Description:
 ;   Object definition to easily manage child processes through one interface and
@@ -231,6 +224,11 @@ pro bridge_it_callback, status, error, oBridge, userdata
   ;disable callback
   oBridge.SetProperty, CALLBACK = ''
 
+  if (status eq 3) then begin
+    print, 'Error while executing child process. Message from child: ' + strtrim(error,2)
+    return
+  endif
+  
   ;initialize error message variable
   msg = ''
 
@@ -304,7 +302,7 @@ pro bridge_it_callback, status, error, oBridge, userdata
     taskError = oBridge.getVar('taskError')
     if (taskError ne '') then begin
       userdata['$TASK_ERROR'] = taskError
-      msg = 'Error while executing task "' + hashResults['NAME'] + '":' + taskError
+;      msg = 'Error while executing task "' + hashResults['NAME'] + '":' + taskError
     endif
     
     save_results = 1
@@ -571,7 +569,8 @@ pro bridge_it::Run, routine,$
   TIME = time,$
   PRE = pre,$
   POST = post,$
-  VARIABLES_OUT = variables_out
+  VARIABLES_OUT = variables_out,$
+  _UVALUE = uvalue
   compile_opt idl2, hidden
 
   self.RunRoutine, routine, _EXTRA = args, $
@@ -583,7 +582,8 @@ pro bridge_it::Run, routine,$
     TIME = time,$
     PRE = pre,$
     POST = post,$
-    VARIABLES_OUT = variables_out
+    VARIABLES_OUT = variables_out,$
+    _UVALUE = uvalue
 end
 
 ;+
@@ -648,7 +648,8 @@ function bridge_it::Run, routine, $
   POST = post,$
   TIME = time,$
   VARIABLES_OUT = variables_out,$
-  EXPORTRASTER = exportRaster
+  EXPORTRASTER = exportRaster,$
+  _UVALUE = uvalue
   compile_opt idl2, hidden
 
   self.RunRoutine, routine, _EXTRA = args, $
@@ -661,7 +662,8 @@ function bridge_it::Run, routine, $
     PRE = pre,$
     POST = post,$
     VARIABLES_OUT = variables_out,$
-    EXPORTRASTER = exportRaster
+    EXPORTRASTER = exportRaster,$
+    _UVALUE = uvalue
 
   return, 1
 end
@@ -926,7 +928,7 @@ end
 ; :Author: Zachary Norman - GitHub: znorman-harris
 ; 
 ;-
-pro bridge_it::RunENVITask, task, TIME = time
+pro bridge_it::RunENVITask, task, TIME = time, _UVALUE = uvalue
   compile_opt idl2
   ;get current session of ENVI
   e = envi(/CURRENT)
@@ -950,7 +952,7 @@ pro bridge_it::RunENVITask, task, TIME = time
     ARG1 = strings, $
     PRE = 'arg1 = json_parse(arg1)', $
     POST = 'output.Execute, ERROR = taskError',$
-    /TASK, TIME = time)
+    /TASK, TIME = time, _UVALUE = uvalue)
   
 end
 
@@ -1006,7 +1008,8 @@ pro bridge_it::RunRoutine, routine, _extra = args, $
   POST = post,$
   VARIABLES_OUT = variables_out,$
   TASK = task,$
-  EXPORTRASTER = exportRaster
+  EXPORTRASTER = exportRaster,$
+  _UVALUE = uvalue
   compile_opt idl2
 
   ;get info about the object
@@ -1228,6 +1231,11 @@ pro bridge_it::RunRoutine, routine, _extra = args, $
     runhash['$RUNS_SINCE_RESET'] = runs.since_reset[bridgenum]+1
     runhash['SELF']= self
     runbridge.SetProperty, CALLBACK = 'bridge_it_callback'
+  endif
+  
+  ;check if we have a uval
+  if (n_elements(uvalue) gt 0) then begin
+    runhash['$UVALUE'] = uvalue
   endif
 
   ;set the runhash as a property

@@ -1,5 +1,4 @@
 # .gitignore file initialized by the IDL Developer Tools
 /dist
-/idl_packages
 *spec.pro.log
 *idl.test.log

@@ -2,8 +2,8 @@
     "name": "UAVBatchRedEdge",
     "version": "5.3",
     "baseClass": "ENVITaskFromProcedure",
-    "routine": "batchrededge",
-    "displayName": "Batchmicasense",
+    "routine": "uavbatchrededge",
+    "displayName": "UAV Batch RedEdge",
     "description": "Task that batch processes a folder of MicaSense RedEdge imagery.",
     "parameters": [
         {

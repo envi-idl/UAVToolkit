@@ -10,15 +10,13 @@
 ;
 ; :Author: Zachary Norman - GitHub: znorman-harris
 ;-
-
-
 pro bandalignment_set_rededge_task_parameters, task, parameters, group
   compile_opt idl2, hidden
   
   ;check if we want a dynamic search window
   if parameters.SEARCH_WINDOW_FROM_HEIGHT then begin
     ;extract image properties
-    oImageInfo = image_info(group[0], /PRINT_GPS)
+    oImageInfo = obj_new('image_info', group[0], /PRINT_GPS)
     height = oImageInfo.Get('HEIGHT_ABOVE_GROUND')
 
     ;update the task

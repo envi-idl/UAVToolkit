@@ -21,11 +21,7 @@
 ;-
 function bandalignment_simple_kappa_filter, groups, DEBUG = debug
   compile_opt idl2
-
-;  ;check error state we want to use
-;  if ~keyword_set(debug) then begin
-;    on_error, 2
-;  endif
+  if ~keyword_set(debug) then on_error, 2
 
   ;=======================================
   ;hard coded parameters
@@ -47,7 +43,7 @@ function bandalignment_simple_kappa_filter, groups, DEBUG = debug
   ;get all iamge locations
   i=0
   foreach images, groups, group do begin
-    oInfo = image_info(images[0], /NO_SPATIALREF, /NO_PRINT, /ERROR_GPS)
+    oInfo = obj_new('image_info', images[0], /NO_SPATIALREF, /NO_PRINT, /ERROR_GPS)
     locations[*,i] = oInfo.Get('LON_LAT')
     i++
   endforeach
@@ -81,7 +77,7 @@ function bandalignment_simple_kappa_filter, groups, DEBUG = debug
   ;make sure that we found some results
   if (count_valid eq 0) then begin
     message, 'Flight lines are not straight enough to filter out turning points in the flight lines!' + $
-      string(10b) + string(9b) + ' No valid images found to check for automating tie point generation process.'
+      string(10b) + string(9b) + ' No valid images found to check for automating tie point generation process.', LEVEL = -1
   endif
 
   ;debug plots to show before/after filtering

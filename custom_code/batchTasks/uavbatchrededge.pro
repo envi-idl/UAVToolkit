@@ -87,7 +87,7 @@
 ;
 ; :Author: Zachary Norman - GitHub: znorman-harris
 ;-
-pro batchRedEdge, FLIGHTDIR = flightdir, BAND_ALIGNMENT_TASK = band_alignment_task, PANEL_REFLECTANCE = panel_reflectance
+pro uavBatchRedEdge, FLIGHTDIR = flightdir, BAND_ALIGNMENT_TASK = band_alignment_task, PANEL_REFLECTANCE = panel_reflectance
   compile_opt idl2
   on_error, 2
 
@@ -163,6 +163,7 @@ pro batchRedEdge, FLIGHTDIR = flightdir, BAND_ALIGNMENT_TASK = band_alignment_ta
 
   ;check to make sure each directory contains image groups, otherwise we skip the
   ;directory since we don't want to use the data within
+  print
   print, 'Finding image groups...'
   foreach dir, datadirs, idx do begin
     print, string(9b) + 'Processing directory ' + strtrim(idx + 1,2) + ' of ' + strtrim(count_data,2)

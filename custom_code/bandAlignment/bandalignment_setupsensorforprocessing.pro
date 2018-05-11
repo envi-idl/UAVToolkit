@@ -27,10 +27,7 @@ pro BandAlignment_SetUpSensorForProcessing, PARAMETERS = parameters
   compile_opt idl2, hidden
 
   ;get current ENVI
-  e = envi(/CURRENT)
-  if (e eq !NULL) then begin
-    message, 'ENVI has not started yet, required!'
-  endif
+  e = awesomeGetENVI()
 
   ;search for image groups
   groups = bandalignment_get_image_groups(parameters.INPUTDIR, parameters.FILE_IDENTIFIERS)
@@ -60,8 +57,6 @@ pro BandAlignment_SetUpSensorForProcessing, PARAMETERS = parameters
 
   ;check what we need to do for our processing
   if keyword_set(parameters.GENERATE_REFERENCE_TIEPOINTS) then begin
-    print, 'Finding ideal image group for band-band alignment...'
-
     ;lets try and find a good image group to use for generating reference tie points
     bandalignment_find_good_image_group, $
       GROUPS = groups, $
@@ -86,7 +81,6 @@ pro BandAlignment_SetUpSensorForProcessing, PARAMETERS = parameters
     BandAlignment_ProcessSensor_GetReferenceTiePoints,$
       groups[reference_image_group], parameters
   endif
-
 
   ;check if we want to apply our reference tiepoints
   if keyword_set(parameters.APPLY_REFERENCE_TIEPOINTS) then begin

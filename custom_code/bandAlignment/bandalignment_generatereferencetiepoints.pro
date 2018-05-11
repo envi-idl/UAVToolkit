@@ -42,15 +42,17 @@
 ; :Author: Zachary Norman - GitHub: znorman-harris
 ;-
 pro BandAlignment_GenerateReferenceTiePoints,$
+  DEBUG = debug,$
   INPUT_RASTER = input_raster,$
   TIEPOINT_GENERATION_TASK = tiepoint_generation_task,$
   TIEPOINT_FILTERING_TASK = tiepoint_filtering_task,$
   MINIMUM_FILTERED_TIEPOINTS = minimum_filtered_tiepoints,$
+  PROGRESS = progress,$
   REFERENCE_BAND = reference_band,$
   OUTPUT_BANDALIGNMENTTIEPOINTS = output_BandAlignmentTiePoints,$
   REGISTER_BANDS = register_bands
   compile_opt idl2, hidden
-;  on_error, 2
+  if ~keyword_set(debug) then on_error, 2
   
   ;catch so that we may clean up correctly
   catch, err
@@ -72,10 +74,7 @@ pro BandAlignment_GenerateReferenceTiePoints,$
   endif
   
   ;start ENVI
-  e = envi(/current) 
-  if (e eq !NULL) then begin
-    e = envi()
-  endif
+  e = awesomeGetENVI()
   
   ;get some information on our input raster
   nbands = input_raster.NBANDS
@@ -93,7 +92,6 @@ pro BandAlignment_GenerateReferenceTiePoints,$
   if ~n_elements(register_bands) then begin
     register_bands = intarr(nbands) + 1
   endif else begin
-    
     ;check for too many things passed in
     if (n_elements(register_bands) gt nbands) then begin
       message, 'Invalid keyword value REGISTER_BANDS. More bands passed in than number of bands in INPUT_RASTER.'
@@ -112,6 +110,7 @@ pro BandAlignment_GenerateReferenceTiePoints,$
     temp[register_bands] = 1
     register_bands = temp
   endelse
+  
   
   ;preallocate some arrays
   filtered_tiepoint_tasks = objarr(nbands)
@@ -132,8 +131,13 @@ pro BandAlignment_GenerateReferenceTiePoints,$
       continue
     endif
     
-    ;print some info to the screen
-    print, '  ' + 'Generating and filtering tie points between band ' + strtrim(i + 1,2) + ' and ' + strtrim(reference_band + 1,2) + '...'
+    ;alert user
+    if keyword_set(progress) then begin
+      progress.setProgress, 'Registering bands ' + strtrim(i+1,2) + ' and ' + strtrim(reference_band + 1,2), 99*float(i)/(nBands-1)
+    endif else begin
+      ;print some info to the screen
+      print, '  Generating and filtering tie points between band ' + strtrim(i+1,2) + ' and ' + strtrim(reference_band + 1,2) + '...'
+    endelse
     
     ;subset our raster and export to disk
     band_raster = ENVISubSetraster(input_raster, BANDS = i)
@@ -231,6 +235,13 @@ pro BandAlignment_GenerateReferenceTiePoints,$
     
     ;clean up our virtual rasters
     band_raster.close
+    
+    ;check for cancellation
+    if keyword_set(progress) then begin
+      if progress.abortRequested() then begin
+        message, 'Process stopped by user', LEVEL = -1
+      endif
+    endif
   endfor
   
   ;close our subset band raster and clean up

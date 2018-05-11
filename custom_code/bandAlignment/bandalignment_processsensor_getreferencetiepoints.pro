@@ -31,10 +31,15 @@ pro BandAlignment_ProcessSensor_GetReferenceTiePoints, group, parameters, $
   FILTERED_TIEPOINTS = filtered_tiepoints
   compile_opt idl2, hidden
   e = envi(/CURRENT)
-  print, 'Generating reference tie points...'
-
+  
+  ;initialize progress
+  prog = awesomeENVIProgress('Generating Reference Tie points', /PRINT)
+  prog.setProgress, 'Initializing', 0, /PRINT
+  
   ;generate the reference tiepoints
-  if ~isa(raster, 'ENVIRASTER') then raster = bandAlignment_group_to_virtualRaster(group)
+  if ~isa(raster, 'ENVIRASTER') then begin
+    raster = bandAlignment_group_to_virtualRaster(group)
+  endif
 
   ;set task parameters - from banadalignment_set_task_parameters which ALWAYS gets called
   ;first so we should have the function defined
@@ -48,13 +53,17 @@ pro BandAlignment_ProcessSensor_GetReferenceTiePoints, group, parameters, $
   ;generate reference tiepoints
   BandAlignment_GenerateReferenceTiepoints,$
     INPUT_RASTER = raster,$
+    PROGRESS = prog,$
     TIEPOINT_GENERATION_TASK = ~(parameters.RIGOROUS_ALIGNMENT) ? parameters.CORRELATION_TASK : parameters.MUTUAL_TASK,$
     TIEPOINT_FILTERING_TASK = parameters.FILTER_TASK,$
     REFERENCE_BAND = parameters.BASE_BAND,$
     MINIMUM_FILTERED_TIEPOINTS = parameters.MINIMUM_FILTERED_TIEPOINTS,$
     OUTPUT_BANDALIGNMENTTIEPOINTS = filtered_tiepoints
-
+    
+  ;create output if not told to skip
   if ~keyword_set(no_output) then begin
+    prog.setProgress, 'Generating output', 99, /PRINT
+    
     ;save the tie points
     BandAlignment_SaveReferenceTiepoints,$
       INPUT_BANDALIGNMENTTIEPOINTS = filtered_tiepoints,$
@@ -91,5 +100,7 @@ pro BandAlignment_ProcessSensor_GetReferenceTiePoints, group, parameters, $
       raster.close
     endforeach
   endif
-
+  
+  ;finish our progress
+  prog.finish
 end

@@ -452,14 +452,20 @@ end
 ;
 ; :Author: Zachary Norman - GitHub: znorman-harris
 ;-
-pro BandAlignment_ApplyReferenceTiePointsToGroups, groups, parameters
+pro BandAlignment_ApplyReferenceTiePointsToGroups, groups, parameters, DEBUG = debug
   compile_opt idl2, hidden
   
-  catch, err
-  if (err ne 0) then begin
-    catch, /CANCEL
-    if obj_valid(oBdg) then oBdg.cleanup
-    message, /REISSUE_LAST
+  ;handle error accordingly and clean up our bridge if created
+  if ~keyword_set(debug) then begin
+    catch, err
+    if (err ne 0) then begin
+      catch, /CANCEL
+      if obj_valid(oBdg) then begin
+        oBdg.wait
+        oBdg.cleanup
+      endif
+      message, /REISSUE_LAST
+    endif
   endif
   
   ;get the number of groups
@@ -468,9 +474,13 @@ pro BandAlignment_ApplyReferenceTiePointsToGroups, groups, parameters
   ;check if we have few enough groups to simply process single threaded
   if (nGroups le parameters.NP_GROUPS) then parameters.NP_GROUPS = 1
   
+  ;make sure our string is pronted nicely
   if (nGroups eq 1) then bonus = '' else bonus = 's'
-  print, 'Applying reference tie points...'
-  print, '  Found ' + strtrim(nGroups,2) + ' group' + bonus + ' to process!'
+  
+  ;initialize progress information
+  prog = awesomeENVIProgress('Applying Reference Tie Points', /PRINT)
+  str = '  Processing ' + strtrim(nGroups,2) + ' group' + bonus
+  prog.setProgress, str, 0, /PRINT
   
   ;specify our output log file
   logDir = filepath('', /TMP)
@@ -492,16 +502,28 @@ pro BandAlignment_ApplyReferenceTiePointsToGroups, groups, parameters
 
   ;check if single or multi-threaded
   if (parameters.NP_GROUPS eq 1) then begin
-    ;start timer and process each group
-    tic
-    tocp = toc()
+    ;initialize start time and counter
+    tocp = systime(/SECONDS)
+    count = 0
+    
+    ;process each group
     foreach group, groups, groupName do begin
       BandAlignment_ApplyReferenceTiePointsToGroup, group, groupName, parameters
-      print, 'Time to process group (sec): ' + strtrim(toc() - tocp,2)
-      tocp = toc()
+      
+      ;alert user
+      prog.setProgress, str, 100*float(count+1)/nGroups
+      print, '  Time to process group (sec): ' + strtrim(systime(/SECONDS) - tocp,2)
+      tocp = systime(/SECONDS)
+      count++
+      
+      ;check for cancellation
+      if prog.AbortRequested() then begin
+        message, 'Process stopped by user', LEVEL = -1
+      endif
     endforeach
   endif else begin
-    print, '  Initializing child processes...'
+    ;alert user that we are initializing child processes
+    prog.setProgress, 'Initializing child processes', 0, /PRINT
     
     ;start our IDL-IDLbridges
     oBdg = bridge_it(parameters.NP_GROUPS,$
@@ -515,8 +537,10 @@ pro BandAlignment_ApplyReferenceTiePointsToGroups, groups, parameters
       POST_EXECUTE = 'resolve_routine, "BandAlignment_ApplyReferenceTiePointsToGroups", /COMPILE_FULL_FILE, /EITHER & ' + $
         'BandAlignment_ApplyReferenceTiePointsToGroup_hydrate_parameters, parameters'
     
+    ;initialize counter
+    count = 0
+    
     ;start timer and process each group
-    tic
     foreach group, groups, groupName do begin
       oBdg.run,'BandAlignment_ApplyReferenceTiePointsToGroup', $
         ARG1 = group, $
@@ -524,6 +548,17 @@ pro BandAlignment_ApplyReferenceTiePointsToGroups, groups, parameters
         CUSTOM_ARGS = 'parameters',$
         /TIME
       wait, .1 ;short wait helps separate the executions which can increase speed a bit
+      
+      ;update user
+      prog.setProgress, str, 100*float(count+1)/nGroups
+      
+      ;check for cancellation
+      if prog.AbortRequested() then begin
+        message, 'Process stopped by user', LEVEL = -1
+      endif
+      
+      ;update counter
+      count++
     endforeach
 
     ;wait for everything to finish
@@ -531,9 +566,11 @@ pro BandAlignment_ApplyReferenceTiePointsToGroups, groups, parameters
 
     ;get information on our runs
     runs = oBdg.getNRuns()
-    print, ''
-    print, 'Number of bridge runs: '
-    print, runs.total
+    if keyword_set(debug) then begin
+      print, ''
+      print, 'Number of bridge runs: '
+      print, runs.total
+    endif
 
     ;kill child processes once finished!
     oBdg.cleanup
@@ -557,4 +594,7 @@ pro BandAlignment_ApplyReferenceTiePointsToGroups, groups, parameters
     print, '  ' + logDir + path_sep() + 'all_logs.txt'
     print, '****************************************************************'
   endif
+  
+  ;clean up progress
+  prog.finish
 end

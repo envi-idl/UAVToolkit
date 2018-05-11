@@ -52,10 +52,7 @@ pro bandalignment_find_good_image_group, $
   compile_opt idl2, hidden
   
   ;check to see if ENVI is running
-  e = envi(/current)
-  if (e eq !NULL) then begin
-    message, 'ENVI has not started yet, required!'
-  endif
+  e = awesomeGetENVI()
   
   ;check what the baseband is
   ;default is first
@@ -65,31 +62,51 @@ pro bandalignment_find_good_image_group, $
   
   ;make sure we have groups
   if ~n_elements(groups) then begin
-    message, 'No groups passed in for processing, required!'
+    message, 'No groups passed in for processing, required!', LEVEL = -1
   endif
+  
+  ;initialize progress
+  prog = awesomeENVIProgress('Finding Ideal Image Group', /PRINT)
+  prog.setProgress, 'Applying kappa filter', 0, /PRINT
   
   ;get the group names that fall within approximate straight lines if asked for
   if keyword_set(kappa_filter) then begin
+    ;filter groups - error thrown internally if no groups exist after filtering
     groupNames = bandalignment_simple_kappa_filter(groups)
   endif else begin
     groupNames = (groups.keys()).toArray()
   endelse
   
+  ;get the number of groups
+  nGroups = n_elements(groupNames)
+  
   ;preallocate an array to hold our metric for the best image to register
-  edges = dblarr(n_elements(groupNames))
+  edges = dblarr(nGroups)
+  
+  ;alert user
+  prog.setProgress, 'Processing', 0, /PRINT
   
   ;iterate over each image group
   foreach groupName, groupNames, i do begin
     ;get the file names for each group
     images = groups[groupName]
     
-    ;open raster and get data
+    ;open raster and get data from first band
+    ;TODO: maybe improve this logic if bands are in one file?
     raster = e.openRaster(images[baseband])
-    dat = raster.getdata()
+    dat = raster.getdata(BANDS = [0])
     raster.close
     
+    ;check if we were cancelled
+    if prog.abortRequested() then begin
+      message, 'Process stopped by user', LEVEL = -1
+    endif
+    
     ;find the total number of edges in the image
-    edges[i] = mean(sobel(dat))
+    edges[i] = mean(sobel(temporary(dat)))
+    
+    ;update user
+    prog.setProgress, 'Processing', 100*float(i+1)/nGroups, /PRINT
   endforeach  
   
   ;get the min/max values
@@ -98,4 +115,7 @@ pro bandalignment_find_good_image_group, $
 
   ;return the iamge with the largest mean value of edges
   output_image_group = groupNames[idx_max]
+  
+  ;finish our progress
+  prog.finish
 end

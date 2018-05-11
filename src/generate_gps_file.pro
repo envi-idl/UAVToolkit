@@ -136,7 +136,7 @@ pro generate_gps_file,$
   print, '  Generating GPS file for ' + strtrim(nKeys,2) + ' file' + add + '...'
   for i=0,nKeys-1 do begin
     ;get information on our scene
-    oImageInfo = image_info((groups[keys[i]])[0], /NO_SPATIALREF)
+    oImageInfo = obj_new('image_info', (groups[keys[i]])[0], /NO_SPATIALREF)
 
     ;populate strings with GPS information
     string_out[0,i] = oImageInfo.GetGPSInformation()

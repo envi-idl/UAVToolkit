@@ -1,0 +1,14 @@
+{
+    "github-se-awesomeenvitoolkit": {
+        "version": "v0.0.2",
+        "url": "hgsolutions/SE-AwesomeENVIToolkit",
+        "dependencies": {
+        }
+    },
+    "github-BridgeIt": {
+        "version": "v1.0.0",
+        "url": "interactive-data-language/BridgeIt",
+        "dependencies": {
+        }
+    }
+}

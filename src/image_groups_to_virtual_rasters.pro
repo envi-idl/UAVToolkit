@@ -69,7 +69,7 @@ function image_groups_to_virtual_rasters, image_groups,$
     images = image_groups[key]
 
     if keyword_set(get_spatialref) AND ~keyword_set(spatialref) then begin
-      oinfo = image_info(images[0], /NO_PRINT)
+      oinfo = obj_new('image_info', images[0], /NO_PRINT)
       spatialref = oinfo.Get('SPATIALREF')
     endif
 

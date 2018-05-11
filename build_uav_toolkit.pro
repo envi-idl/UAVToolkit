@@ -7,7 +7,7 @@
 
 ;+
 ;
-;  Simple IDL batch file that will compile the code present into a single IDL 
+;  IDL batch file that will compile the code present into a single IDL 
 ;  SAVE file called the UAV Toolkit. This will also place the task files next to
 ;  the compiled source code.
 ;  
@@ -28,7 +28,7 @@
 thisDir = file_dirname(routine_filepath())
 
 ;set up our output location
-outDir = filepath('', /TMP)  + 'UAVToolkit-build'
+outDir = filepath('', /TMP) + 'UAVToolkit-build'
 if ~file_test(outDir, /DIRECTORY) then file_mkdir, outDir
 
 ;search for PRO files
@@ -52,16 +52,19 @@ foreach file, files do begin
   bdg.execute, '.compile "' + file + '"'
 endforeach
 
-;finish up
+;resolve dependencies
+bdg.execute, 'resolve_routine, "readexif__define"'
+bdg.execute, 'resolve_routine, "exifmetadata__define"'
 bdg.execute, 'resolve_all, /CONTINUE_ON_ERROR, SKIP_ROUTINES = ["envi", "envi_doit"]'
+
+;save routines and clean up
 bdg.execute, 'save, /ROUTINES, FILENAME = "' + outDir + path_sep() + 'uav_toolkit.sav"'
-bdg.cleanup
+obj_destroy, bdg
 
 ;copy task files
 taskFiles = file_search(thisDir, '*.task', COUNT = nTask)
-if (nTask gt 0) then file_copy, taskFiles, outDir
+if (nTask gt 0) then file_copy, taskFiles, outDir, /OVERWRITE
 
 ;alert user of output location
 print, 'Build located at : ' + outDir
-
 end

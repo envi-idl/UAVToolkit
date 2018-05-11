@@ -71,7 +71,7 @@ pro generate_cam_file, INPUTDIR = inputdir, EXTENSION = extension, OUTPUTDIR = o
   files = inputdir + path_sep() + temporary(files)
   
   ;get sensor information, assume all the same
-  oImageInfo = image_info(files[0])
+  oImageInfo = obj_new('image_info', files[0])
   result = oImageInfo.Get(['FOCAL_LENGTH_MM', 'MODEL', 'SENSOR_PIXEL_SIZE_MM'])
 
   ;initialize a list to hold the CAM file info

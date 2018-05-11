@@ -37,23 +37,28 @@
 ;       
 ; :Author: Zachary Norman - GitHub: znorman-harris
 ;-
-pro get_co_calibration, $
+pro get_co_calibration, $ 
+  DEBUG = debug,$
   GROUPS = groups,$
   PANEL_INFO = panel_info
   compile_opt idl2, hidden
+  if ~keyword_set(debug) then on_error, 2
+  
+  ;add some progress information
+  prog = awesomeENVIProgress('Generating Calibration Information', /PRINT)
 
   ;extract information from our panel_info
   wasCalibrated = panel_info.hasKey('WAS_CALIBRATED') ? panel_info.WAS_CALIBRATED : 0
   
-  ;update user
+  ;determine what our progress tring should be
   if (wasCalibrated) then begin
-    print, 'Generting calibration information for ' + strtrim(n_elements(groups),2) + ' images...'
+    progStr = 'Calibrating ' + strtrim(n_elements(groups),2) + ' images...'
   endif else begin
-    print, 'Generting calibration information for ' + strtrim(n_elements(groups),2) + ' images to reference group...'
+    progStr = 'Calibrating ' + strtrim(n_elements(groups),2) + ' images to reference...'
   endelse
 
-  ;init timer
-  tic
+  ; alert user
+  prog.setProgress, progStr, 0, /PRINT
 
   ;get info on how many files we need to process
   gNames = groups.keys()
@@ -82,7 +87,7 @@ pro get_co_calibration, $
     ;loop over each band
     for i=0, nbands-1 do begin
       ;extract information
-      oImageinfo = image_info(ref_imgs[i], /NO_SPATIALREF)
+      oImageinfo = obj_new('image_info', ref_imgs[i], /NO_SPATIALREF)
       res = oImageInfo.Get(['EXPOSURETIME', 'ISO'])
 
       ;check to make sure that we have information for this image
@@ -115,7 +120,7 @@ pro get_co_calibration, $
         cocalibration_constant = 1.0
       endif else begin
         ;extract information from our images
-        oImageinfo = image_info(images[i], /NO_SPATIALREF)
+        oImageinfo = obj_new('image_info', images[i], /NO_SPATIALREF)
         res = oImageInfo.Get(['EXPOSURETIME', 'ISO'])
 
         ;validate that we have the right metadata
@@ -123,7 +128,7 @@ pro get_co_calibration, $
           print, 'Found image without exposure and ISO information so we cannot complete for rest of scene, removing generated files and returning...'
           cd, inputdir, CURRENT = first_dir
           files = file_search('*.sav')
-          if (files[0] ne '') then FILE_DELETE, files
+          if (files[0] ne '') then file_delete, files
           cd, first_dir
           return
         endif
@@ -140,12 +145,15 @@ pro get_co_calibration, $
     ;increment counter and check if we want to print to the screen
     gcount++
     if ~(gcount mod nprint) then begin
-      print, '  Calculated ' + strtrim(nbands*gcount,2) + ' of ' + strtrim(nbands*n_elements(gNames),2) + ' calibrations'
-      print, '  Approx. time remaining (sec): ' + strtrim((n_elements(gnames)-gcount)*(toc()/gcount),2)
-      print
+      prog.setProgress, progStr, 100*float(gCount)/n_elements(gnames), /PRINT, /TIME
+    endif
+
+    ; check if someone cancelled
+    if prog.abortRequested() then begin
+      message, 'Process stopped by user', LEVEL = -1
     endif
   endforeach
   
   ;alert user
-  print, 'Finished calculating calibration functions!'
+  prog.finish, /PRINT
 end

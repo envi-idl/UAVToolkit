@@ -1,0 +1,61 @@
+function awesomeENVIRasterGetData, raster,$
+  BANDS = bands,$
+  COMPLEX_FUNCTION = complex_function,$
+  ERROR = error,$
+  INTERLEAVE = interleave,$
+  INTERPOLATION = interpolation,$
+  PIXEL_STATE = pixel_state,$
+  ROI = roi,$
+  SUB_RECT = sub_rect,$
+  XFACTOR = xfactor,$
+  YFACTOR = yfactor
+  compile_opt idl2
+;  on_error, 2
+  
+  ;get current ENVI session (should always be defined if we are here)
+  e = envi(/CURRENT)
+  
+  ;validate input
+  if (raster eq !NULL) then begin
+    message, 'raster not specified, required!'
+  endif
+  
+  ;get the raster data
+  data = raster.getData(BANDS = bands,$
+    COMPLEX_FUNCTION = complex_function,$
+    ERROR = error,$
+    INTERPOLATION = interpolation,$
+    PIXEL_STATE = pixel_state,$
+    ROI = roi,$
+    SUB_RECT = sub_rect,$
+    XFACTOR = xfactor,$
+    YFACTOR = yfactor)
+
+  ;check if we specified interleave
+  if keyword_set(interleave) AND ~keyword_set(roi) AND (raster.NBANDS gt 1) then begin
+    useInterleave = strlowcase(strtrim(interleave))
+    
+    ;check if we have a different interleave
+    if (useInterleave ne raster.INTERLEAVE) then begin
+      case (1) of
+        (useInterleave eq 'bil') AND (raster.INTERLEAVE eq 'bsq'): newIdx = [0, 2, 1]
+        (useInterleave eq 'bip') AND (raster.INTERLEAVE eq 'bsq'): newIdx = [2, 0, 1]
+        (useInterleave eq 'bip') AND (raster.INTERLEAVE eq 'bil'): newIdx = [1, 0, 2]
+        (useInterleave eq 'bsq') AND (raster.INTERLEAVE eq 'bil'): newIdx = [0, 2, 1]
+        (useInterleave eq 'bsq') AND (raster.INTERLEAVE eq 'bip'): newIdx = [1, 2, 0]
+        (useInterleave eq 'bil') AND (raster.INTERLEAVE eq 'bip'): newIdx = [1, 0, 2]
+        else: newIdx = [0,1,2]
+      endcase
+      
+      ;transpose the data
+      data = transpose(data, newIdx)
+
+      ;check if we have a pixel state to transpose as well
+      if arg_present(pixel_state) then begin
+        pixel_state = transpose(pixel_state, newIdx)
+      endif
+    endif
+  endif
+  
+  return, data
+end

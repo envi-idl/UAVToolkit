@@ -2,8 +2,8 @@
     "name": "UAVBandAlignment",
     "version": "5.3",
     "baseClass": "ENVITaskFromProcedure",
-    "routine": "bandalignmenttask",
-    "displayName": "UAVBandAlignment",
+    "routine": "uavbandalignment",
+    "displayName": "UAV Band Alignment",
     "description": "Task for performing band-band alignment on UAV datasets.",
     "parameters": [
         {
