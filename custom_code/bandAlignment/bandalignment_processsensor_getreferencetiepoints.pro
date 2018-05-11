@@ -33,7 +33,7 @@ pro BandAlignment_ProcessSensor_GetReferenceTiePoints, group, parameters, $
   e = envi(/CURRENT)
   
   ;initialize progress
-  prog = awesomeENVIProgress('Generating Reference Tie points', /PRINT)
+  prog = awesomeENVIProgress('Generating Reference Tie Points', /PRINT)
   prog.setProgress, 'Initializing', 0, /PRINT
   
   ;generate the reference tiepoints

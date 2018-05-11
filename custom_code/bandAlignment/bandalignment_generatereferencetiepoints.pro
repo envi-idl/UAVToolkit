@@ -118,6 +118,9 @@ pro BandAlignment_GenerateReferenceTiePoints,$
   ;create a virtual raster for our base raster
   base_raster = ENVISubsetraster(input_raster, BANDS = reference_band)
   
+  ;init counter
+  nProcessed = 0
+  
   ;generate our tiepoints
   for i=0, nbands-1 do begin
     ;chceck if we need to register our band to the reference band
@@ -133,7 +136,7 @@ pro BandAlignment_GenerateReferenceTiePoints,$
     
     ;alert user
     if keyword_set(progress) then begin
-      progress.setProgress, 'Registering bands ' + strtrim(i+1,2) + ' and ' + strtrim(reference_band + 1,2), 99*float(i)/(nBands-1)
+      progress.setProgress, 'Processing band ' + strtrim(i+1,2) + ' and ' + strtrim(reference_band + 1,2) + ', please wait', 99*float(nProcessed)/(nBands-1)
     endif else begin
       ;print some info to the screen
       print, '  Generating and filtering tie points between band ' + strtrim(i+1,2) + ' and ' + strtrim(reference_band + 1,2) + '...'
@@ -235,6 +238,9 @@ pro BandAlignment_GenerateReferenceTiePoints,$
     
     ;clean up our virtual rasters
     band_raster.close
+    
+    ;update counter
+    nProcessed++
     
     ;check for cancellation
     if keyword_set(progress) then begin

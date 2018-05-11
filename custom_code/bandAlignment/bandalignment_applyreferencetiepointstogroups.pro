@@ -477,6 +477,9 @@ pro BandAlignment_ApplyReferenceTiePointsToGroups, groups, parameters, DEBUG = d
   ;make sure our string is pronted nicely
   if (nGroups eq 1) then bonus = '' else bonus = 's'
   
+  ;get start time
+  tStart = systime(/SECONDS)
+  
   ;initialize progress information
   prog = awesomeENVIProgress('Applying Reference Tie Points', /PRINT)
   str = '  Processing ' + strtrim(nGroups,2) + ' group' + bonus
@@ -578,8 +581,8 @@ pro BandAlignment_ApplyReferenceTiePointsToGroups, groups, parameters, DEBUG = d
   print
   print, 'Finished processing groups! Stats:'
   print
-  print, '  Time to process ' + strtrim(nGroups,2) +' groups (sec): ' + strtrim(toc(),2)
-  print, '  Average time per group (sec) : ' + strtrim(toc()/nGroups,2)
+  print, '  Time to process ' + strtrim(nGroups,2) +' groups (sec): ' + strtrim(systime(/SECONDS) - tStart,2)
+  print, '  Average time per group (sec) : ' + strtrim((systime(/SECONDS) - tStart)/nGroups,2)
   print
   
   ;check how many output files we have  
