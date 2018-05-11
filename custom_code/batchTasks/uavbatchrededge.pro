@@ -92,26 +92,19 @@ pro uavBatchRedEdge, FLIGHTDIR = flightdir, BAND_ALIGNMENT_TASK = band_alignment
   on_error, 2
 
   ;start ENVI
-  e = envi(/current)
-  if (e eq !NULL) then begin
-    message, 'ENVI has not started yet, required!'
-  endif else begin
-    if ~obj_valid(e) then begin
-      message, 'ENVI is not a valid object. Please reset your IDL session (or restart) and try again.'
-    endif
-  endelse
+  e = awesomeGetENVI()
   
   ;restore the uav_toolkit
   uav_toolkit
 
   ;make sure flightdir was specified
   if ~keyword_set(flightdir) then begin
-    message, 'FLIGHTDIR keyword not specified, required!'
+    message, 'FLIGHTDIR keyword not specified, required!', LEVEL = -1
   endif
 
   ;make sure our directory exists
   if ~file_test(flightdir, /DIRECTORY) then begin
-    message, 'FLIGHTDIR specified, but is not a real directory!'
+    message, 'FLIGHTDIR specified, but does not exist!', LEVEL = -1
   endif
 
   ;search the FLIGHTDIR for other directories or files
@@ -121,7 +114,7 @@ pro uavBatchRedEdge, FLIGHTDIR = flightdir, BAND_ALIGNMENT_TASK = band_alignment
 
   ;make sure we found files or folders in FLIGHTDIR
   if (count eq 0) then begin
-    message, 'No folders or files found in FLIGHTDIR!'
+    message, 'No folders or files found in FLIGHTDIR!', LEVEL = -1
   endif
 
   ;create fully-qualified path
@@ -134,7 +127,7 @@ pro uavBatchRedEdge, FLIGHTDIR = flightdir, BAND_ALIGNMENT_TASK = band_alignment
 
   ;make sure we have found directories
   if (count_dirs eq 0) then begin
-    message, 'No directories found in FLIGHTDIR, required!'
+    message, 'No directories found in FLIGHTDIR, required!', LEVEL = -1
   endif
 
   ;subset our found array by the what is actually a directory
@@ -152,7 +145,7 @@ pro uavBatchRedEdge, FLIGHTDIR = flightdir, BAND_ALIGNMENT_TASK = band_alignment
   ;check that we have potential directories of data
   if (count_data eq 0) then begin
     message, 'No folders found in FLIGHTDIR passed the filetering step. All folders contain either' + $
-      '"_out", "_temp", or "rigorous".'
+      '"_out", "_temp", or "rigorous".', LEVEL = -1
   endif
 
   ;subset our directories by what likely contains data
@@ -163,14 +156,19 @@ pro uavBatchRedEdge, FLIGHTDIR = flightdir, BAND_ALIGNMENT_TASK = band_alignment
 
   ;check to make sure each directory contains image groups, otherwise we skip the
   ;directory since we don't want to use the data within
-  print
-  print, 'Finding image groups...'
+  prog = awesomeENVIProgress('Finding RedEdge Data')
+  prog.setProgress, 'Finding data, please wait', 0, /PRINT
   foreach dir, datadirs, idx do begin
     print, string(9b) + 'Processing directory ' + strtrim(idx + 1,2) + ' of ' + strtrim(count_data,2)
 
     ;check to make sure we have image groups in our directory
     groups = bandalignment_get_image_groups(dir, ['_1.tif', '_2.tif', '_3.tif', '_5.tif', '_4.tif'])
-
+    
+    ;check if we canceled
+    if prog.abortRequested() then begin
+      message, 'Process stopped by user', LEVEL = -1
+    endif
+    
     ;skip directory if there are no TIF files
     if (n_elements(groups) gt 0) then keepdirs.add, dir
   endforeach
@@ -185,9 +183,17 @@ pro uavBatchRedEdge, FLIGHTDIR = flightdir, BAND_ALIGNMENT_TASK = band_alignment
 
   ;joing the directories if we have more than one dir
   if (n_elements(datadirs) gt 1) then begin
-    print, 'Found multiple directories, joining them together...'
+    prog.setProgress, 'Joining directories, please wait', 0, /PRINT
     join_rededge_datadirs, datadirs
   endif
+  
+  ;check if we canceled
+  if prog.abortRequested() then begin
+    message, 'Process stopped by user', LEVEL = -1
+  endif
+  
+  ;close progress
+  prog.finish
   
   ;check if we specified a task or not, otherwise make a new one from scratch
   if (band_alignment_task eq !NULL) then begin
