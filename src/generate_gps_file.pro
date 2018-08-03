@@ -64,6 +64,7 @@
 ;-
 pro generate_gps_file,$
   FILE_IDENTIFIERS = file_identifiers,$
+  GPS_ALTITUDE_OFFSET = gps_altitude_offset,$
   INPUTDIR = inputdir, $
   OUTPUTDIR = outputdir, $
   ORIENTATION = orientation
@@ -139,7 +140,7 @@ pro generate_gps_file,$
     oImageInfo = obj_new('image_info', (groups[keys[i]])[0], /NO_SPATIALREF)
 
     ;populate strings with GPS information
-    string_out[0,i] = oImageInfo.GetGPSInformation()
+    string_out[0,i] = oImageInfo.GetGPSInformation(GPS_ALTITUDE_OFFSET = gps_altitude_offset)
     string_out[0,i] = keys[i] + '.tif'
 
     if (nKeys gt 1) then begin

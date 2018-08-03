@@ -105,6 +105,7 @@ pro uavBandAlignment, $
   CORRELATION_MATCHING_SCORE = correlation_matching_score,$
   GENERATE_REFERENCE_TIEPOINTS = generate_reference_tiepoints,$
   FILE_IDENTIFIERS = file_identifiers,$
+  GPS_ALTITUDE_OFFSET = gps_altitude_offset,$
   GET_GPS = get_gps,$
   ;HISTOGRAM_COLOR_BALANCING = histogram_color_balancing,$
   INPUTDIR = inputdir, $
@@ -398,11 +399,13 @@ pro uavBandAlignment, $
       generate_gps_file,$
         INPUTDIR = inputdir,$
         FILE_IDENTIFIERS = parameters.FILE_IDENTIFIERS,$
+        GPS_ALTITUDE_OFFSET = gps_altitude_offset,$
         OUTPUTDIR = inputdir + '_out'
     endif else begin
       generate_gps_file,$
         INPUTDIR = inputdir,$
-        FILE_IDENTIFIERS = parameters.FILE_IDENTIFIERS
+        FILE_IDENTIFIERS = parameters.FILE_IDENTIFIERS,$
+        GPS_ALTITUDE_OFFSET = gps_altitude_offset
     endelse
     
     ;return if this is all we wanted

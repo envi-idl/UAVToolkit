@@ -13,9 +13,9 @@
         "docs"
     ],
     "dependencies": {
-        "github-se-awesomeenvitoolkit": {
+        "github-se-awesomeenvitools": {
             "version": "^v0.0.2",
-            "url": "hgsolutions/SE-AwesomeENVIToolkit"
+            "url": "hgsolutions/SE-AwesomeENVITools"
         },
         "github-BridgeIt": {
             "version": "^v1.0.0",

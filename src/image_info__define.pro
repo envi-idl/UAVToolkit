@@ -43,7 +43,7 @@ function image_info_ground_height, longitude, latitude
 
   pixel = DEMraster.GetData(SUB_RECT=[FileX, FileY, FileX, FileY])
   DEMraster.close
-  return, pixel
+  return, float(pixel[0])
 end
 
 
@@ -228,10 +228,11 @@ function image_info::init, infile, PRINT_GPS = print_gps, NO_SPATIALREF = no_spa
   if ~keyword_set(no_spatialref) then begin
     ground_elevation = image_info_ground_height(ddeglon, ddeglat)
     
-    ;assume that is altitude is less than ground that the altitude is height
+    ;assume that if altitude is less than ground that the altitude is height
     ;above the ground
     if (altitude lt ground_elevation) then begin
-      altitude += ground_elevation
+      print, 'Warning - image altitude less than reference DEM elevation'
+      ;      altitude += ground_elevation
     endif
     
     self.GROUND_HEIGHT = ground_elevation
@@ -531,8 +532,14 @@ end
 ;       path the the image that the information is for.
 ;
 ;-
-function image_info::GetGPSinformation, FULL_FILE_PATH = fill_file_path
+function image_info::GetGPSinformation, FULL_FILE_PATH = fill_file_path, GPS_ALTITUDE_OFFSET = gps_altitude_offset
   compile_opt idl2
+  
+  if (gps_altitude_offset eq !NULL) then begin
+    gps_altitude_offset = 0.0
+  endif else begin
+    gps_altitude_offset = float(gps_altitude_offset)
+  endelse
   
   string_out = strarr(8)
   
@@ -550,7 +557,7 @@ function image_info::GetGPSinformation, FULL_FILE_PATH = fill_file_path
   
   string_out[1] = string(self.LON_LAT[0], format = '(d20.14)')
   string_out[2] = string(self.LON_LAT[1], format = '(d20.14)')
-  string_out[3] = strtrim(self.ALTITUDE,2)
+  string_out[3] = strtrim(self.ALTITUDE + gps_altitude_offset,2)
   string_out[4] = string(self.SENSOR_ORIENTATION[0], format = '(d20.14)')
   string_out[5] = string(self.SENSOR_ORIENTATION[1], format = '(d20.14)')
   string_out[6] = string(self.SENSOR_ORIENTATION[2], format = '(d20.14)')
