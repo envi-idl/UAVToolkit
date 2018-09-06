@@ -133,8 +133,7 @@ pro uavBandAlignment, $
   catch, err
   if (err ne 0) then begin
     catch, /CANCEL
-    help, /LAST_MESSAGE, OUTPUT = o
-    print, o
+    help, /LAST_MESSAGE
     message, /REISSUE_LAST
   endif
 
@@ -328,9 +327,13 @@ pro uavBandAlignment, $
   tempdir3 = e.Preferences[ 'directories and files:auxiliary file directory' ].Value
   
   ; handle errors and change preferences back
+  catch, /CANCEL
   catch, err
   if (err ne 0) then begin
-    catch, /cancel
+    catch, /CANCEL
+    help, /LAST_MESSAGE
+    defsysv, '!awesomeenviprogress', EXISTS=exists
+    if (exists) then !AWESOMEENVIPROGRESS = ptr_new()
     e.Preferences[ 'directories and files:temporary directory' ].Value = tempdir1
     e.Preferences[ 'directories and files:output directory' ].Value = tempdir2
     e.Preferences[ 'directories and files:auxiliary file directory' ].Value = tempdir3

@@ -52,9 +52,9 @@ Note: if you are an experienced ENVI + IDL user, you may be wondering why the in
 
 ## Requirements
 
-ENVI 5.4 and IDL 8.6. 
+ENVI 5.5 and IDL 8.7. 
 
-This should likely work on ENVI 5.3 and IDL 8.5 (*should*) but is untested. If you are on this older version and there are issues, then you will need to upgrade to the latest version of ENVI + IDL.
+This should likely work on older versions of ENVI (*should*) but is untested. If you are on this older version and there are issues, then you will need to upgrade to the latest version of ENVI + IDL.
 
 
 ## Usage
@@ -103,13 +103,13 @@ To run the examples below, the easiest method is to create a new PRO file in the
 
 ### Generic Sensor
 
-In order to process generic sensors with the UAV Toolkit, you will need datasets that contain a single band per separate image file. Each band should have:
+In order to process generic sensors with the UAV Toolkit, you will need datasets that consist of multipage TIFF or contain a single band per separate image file. Each band should have:
 
 1. Similar data range and data type. 
 
 2. Same image dimensions
 
-If these two conditions are met, then you just need to have the unique file identifiers that can be used to group the separate images into a single raster. Here is an example of an image group and the file identifiers:
+If these two conditions are met, then you just need to have the unique file identifiers that can be used to group the separate images into a single raster. Here is an example of an image group and the file identifiers for a dataset where each band is a separate file:
 
 - img_001_1.tif
 
@@ -145,6 +145,29 @@ alignTask.APPLY_REFERENCE_TIEPOINTS = 1
 alignTask.execute
 ```
 
+#### Multi-page TIFFs
+
+If your dataset consists of multi-page TIFFs, then you can just specify a single file-identifier as below to process the data:
+
+```idl
+;set IDL's compile options
+compile_opt idl2
+
+;start ENVI
+e = envi(/HEADLESS)
+
+;get UAV Toolkit ready
+uav_toolkit
+
+;set up task
+alignTask = ENVITask('UAVBandAlignment')
+alignTask.SENSOR = 'generic'
+alignTask.FILE_IDENTIFIERS = ['.tif']
+alignTask.INPUTDIR = 'C:\data\directory'
+alignTask.GENERATE_REFERENCE_TIEPOINTS = 1
+alignTask.APPLY_REFERENCE_TIEPOINTS = 1
+alignTask.execute
+```
 
 ### MicaSense RedEdge
 

@@ -3,7 +3,7 @@
         "syntax": {
             "indent": [
                 true,
-                "spaces"
+                2
             ],
             "whitespace": [
                 true,

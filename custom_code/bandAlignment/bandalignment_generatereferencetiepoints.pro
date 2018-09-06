@@ -141,7 +141,7 @@ pro BandAlignment_GenerateReferenceTiePoints,$
     
     ;alert user
     if keyword_set(progress) then begin
-      progress.setProgress, 'Processing band ' + strtrim(i+1,2) + ' and ' + strtrim(reference_band + 1,2) + ', please wait', 99*float(nProcessed)/(nBands-1)
+      progress.setProgress, 'Processing band ' + strtrim(i+1,2) + ' and ' + strtrim(reference_band + 1,2) + ', please wait', 99*float(nProcessed)/(nBands-1), /PRINT, /TIME
     endif else begin
       ;print some info to the screen
       print, '  Generating and filtering tie points between band ' + strtrim(i+1,2) + ' and ' + strtrim(reference_band + 1,2) + '...'
@@ -249,9 +249,7 @@ pro BandAlignment_GenerateReferenceTiePoints,$
     
     ;check for cancellation
     if keyword_set(progress) then begin
-      if progress.abortRequested() then begin
-        message, 'Process stopped by user', LEVEL = -1
-      endif
+      progress.abortRequested
     endif
   endfor
   

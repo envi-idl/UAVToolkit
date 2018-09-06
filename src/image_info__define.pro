@@ -448,12 +448,12 @@ function image_info::init, infile, PRINT_GPS = print_gps, NO_SPATIALREF = no_spa
       ;set the image  properties
       self.SPATIALREF = spatialref
     endif
-  endif
-  
-
+    self.FAKE_SREF = !TRUE
+  endif else begin
+    self.FAKE_SREF = !FALSE
+  endelse
   
   return,1
-
 end
 
 ;+
@@ -551,7 +551,7 @@ function image_info::GetGPSinformation, FULL_FILE_PATH = fill_file_path, GPS_ALT
   endelse
   
   ;check to make sure we have GPS tags
-  if (self.LON_LAT[0] eq !DPI) then begin
+  if (self.LON_LAT[0] eq -!DPI) then begin
     message, 'No GPS information found in exif tags for image!'
   endif
   
@@ -619,6 +619,7 @@ pro image_info__define
     ALTITUDE:double(1),$           ;sensor altitude, meters
     CCD_SIZE_MM:dblarr(2),$        ;CCD_SIZE in millimeters
     EXPOSURETIME:double(1),$       ;exposure time
+    FAKE_SREF: !FALSE,$
     FILE:'',$                      ;save the file that the object represents
     FOCAL_LENGTH_MM:double(1),$    ;focal length in millimeters
     GSD:dblarr(2),$                ;approximate GSD X,Y in meters

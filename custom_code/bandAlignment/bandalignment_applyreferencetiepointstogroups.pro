@@ -52,6 +52,8 @@ pro BandAlignment_GetTIFFKeywords, typecode, LNG = lng, SIGNED = signed, L64 = l
     end
     ;unsigned integer
     12: short = 1
+    ;byte
+    1:;do nothing
     else: message, 'Unknown type'
   endcase
 end
@@ -223,6 +225,7 @@ pro BandAlignment_ApplyReferenceTiePointsToGroup, group, groupName, parameters
   ;convert out groups into a raster
   raster = bandAlignment_group_to_virtualRaster(group)
   nBands = raster.NBANDS
+  mPage = raster.NBANDS ne n_elements(group)
 
   ;specify the expected tiepoints file
   pointsFile = parameters.POINTS_FILE
@@ -275,86 +278,89 @@ pro BandAlignment_ApplyReferenceTiePointsToGroup, group, groupName, parameters
       BandAlignment_GetTIFFKeywords, typecode,$
         LNG = lng, SIGNED = signed, L64 = l64, DBL = dbl, FLT = flt, SHORT = short
     endif
+    
+    ;skip calibration and color transform if multi-page
+    if ~mPage then begin
+      ;check for scaling of data
+      co_calibration_file = strmid(group[i], 0, strpos(group[i],'.', /REVERSE_SEARCH)) + '_co_calibration.sav'
 
-    ;check for scaling of data
-    co_calibration_file = strmid(group[i], 0, strpos(group[i],'.', /REVERSE_SEARCH)) + '_co_calibration.sav'
+      ;check if we have our co calibration files to scale the DNs accordingly
+      if file_test(co_calibration_file) then begin
+        ;restore data
+        restore, co_calibration_file
 
-    ;check if we have our co calibration files to scale the DNs accordingly
-    if file_test(co_calibration_file) then begin
-      ;restore data
-      restore, co_calibration_file
-
-      ;scale relative to reference
-      if (cocalibration_constant ne 1.0) then begin
-        print, '    Band ' + strtrim(i+1,2) + ' co-calibration constant            :    [ ' + strtrim(cocalibration_constant,2) + ' ] '
-        write_this = fix(write_this*cocalibration_constant, TYPE=typecode)
-      endif
-
-      ;print the reference means from the calibration data and convert our images to reflectance
-      if (reference_means[0] ne 1.0) then begin
-        ;make sure that our typecodes are correct for the data that we are using
-        if (i eq 0) then begin
-          typecode = parameters.REFLECTANCE_TYPE_CODE
-          BandAlignment_GetTIFFKeywords, typecode,$
-            LNG = lng, SIGNED = signed, L64 = l64, DBL = dbl, FLT = flt, SHORT = short
+        ;scale relative to reference
+        if (cocalibration_constant ne 1.0) then begin
+          print, '    Band ' + strtrim(i+1,2) + ' co-calibration constant            :    [ ' + strtrim(cocalibration_constant,2) + ' ] '
+          write_this = fix(write_this*cocalibration_constant, TYPE=typecode)
         endif
-        print, '    Reflectance panel mean, image max  :    [ ' + strtrim(reference_means[i],2) + ', ' + strtrim(max(write_this),2) + ' ] '
-        write_this = fix((parameters.REFLECTANCE_SCALE_FACTOR*(write_this/reference_means[i]) < parameters.REFLECTANCE_SCALE_FACTOR), TYPE = typecode)
-;        write_this = fix((parameters.REFLECTANCE_SCALE_FACTOR*(write_this/reference_means[i] > 0) < parameters.REFLECTANCE_SCALE_FACTOR), TYPE = typecode)
+
+        ;print the reference means from the calibration data and convert our images to reflectance
+        if (reference_means[0] ne 1.0) then begin
+          ;make sure that our typecodes are correct for the data that we are using
+          if (i eq 0) then begin
+            typecode = parameters.REFLECTANCE_TYPE_CODE
+            BandAlignment_GetTIFFKeywords, typecode,$
+              LNG = lng, SIGNED = signed, L64 = l64, DBL = dbl, FLT = flt, SHORT = short
+          endif
+          print, '    Reflectance panel mean, image max  :    [ ' + strtrim(reference_means[i],2) + ', ' + strtrim(max(write_this),2) + ' ] '
+          write_this = fix((parameters.REFLECTANCE_SCALE_FACTOR*(write_this/reference_means[i]) < parameters.REFLECTANCE_SCALE_FACTOR), TYPE = typecode)
+          ;        write_this = fix((parameters.REFLECTANCE_SCALE_FACTOR*(write_this/reference_means[i] > 0) < parameters.REFLECTANCE_SCALE_FACTOR), TYPE = typecode)
+        endif
+
+        ;clean up
+        file_delete, co_calibration_file, /QUIET
       endif
-      
-      ;clean up
-      file_delete, co_calibration_file, /QUIET
-    endif
 
-    ;check if we have a color transform *****NOT CURRENTLY USED*****
-    transform_file = strmid(group[i], 0, strpos(group[i],'.', /REVERSE_SEARCH)) + '_transform.sav'
-    if file_test(transform_file) then begin
-      ;restore the transform_function which will be in a variable called transform_function
-      restore, transform_file
+      ;check if we have a color transform *****NOT CURRENTLY USED*****
+      transform_file = strmid(group[i], 0, strpos(group[i],'.', /REVERSE_SEARCH)) + '_transform.sav'
+      if file_test(transform_file) then begin
+        ;restore the transform_function which will be in a variable called transform_function
+        restore, transform_file
 
-      ;update our data
-      write_this = transform_function[write_this]
+        ;update our data
+        write_this = transform_function[write_this]
 
-      ;clean up transform file
-      file_delete, transform_file, /QUIET
+        ;clean up transform file
+        file_delete, transform_file, /QUIET
 
-      ;also need to check for the transform maximum values
-      write_this = fix(round(write_this*(65535d/transform_maxvalue[0])) , TYPE = 12)
+        ;also need to check for the transform maximum values
+        write_this = fix(round(write_this*(65535d/transform_maxvalue[0])) , TYPE = 12)
 
-      ; at this point displaying an image of the data will show us where the values are bad i.e.
-      ; really large compared to the base image and they will be zeros in the MatchedImage array
-      ; from here, we can replace the bad data with whatever we want (like the median value)
-      ;        baddata = where(matchedimage eq 0)
-      ;        datadims = size(matchedimage, /DIMENSIONS)
-      ;        xbad = baddata mod datadims[0]
-      ;        ybad = baddata/datadims[0] mod datadims[1]
-      ;
-      ;        ;only replace zeros if we have them
-      ;        if (baddata[0] ne -1) then begin
-      ;          ;replace data with average from neighbors
-      ;          nn = 2 ;number of neighbors to take into account around center pixel
-      ;          for i=0, n_elements(xbad)-1 do begin
-      ;            xl = xbad[i] - nn
-      ;            xr = xbad[i] + nn
-      ;            yl = ybad[i] - nn
-      ;            yr = ybad[i] - nn
-      ;            ;cehck each index to make sure that it is an ok value
-      ;            if (xl lt 0) then xl = xbad[i]
-      ;            if (xr gt datadims[0]-1) then xr = xbad[i]
-      ;            if (yl lt 0) then yl = ybad[i]
-      ;            if (yl gt datadims[1] - 1) then yl = ybad[i]
-      ;
-      ;            sub_arr = matchedimage[xl:xr, yl:yr]
-      ;            ;find the positiong where the matchedimage has no data
-      ;            gooddata = where(sub_arr ne 0)
-      ;            ;replace bad values only if there is close gooddata
-      ;            if (gooddata[0] ne -1) then begin
-      ;              sub_arr = sub_arr[gooddata]
-      ;              matchedimage[xbad[i], ybad[i]] = sub_arr.mean()
-      ;            endif
-      ;          endfor
-      ;        endif
+        ; at this point displaying an image of the data will show us where the values are bad i.e.
+        ; really large compared to the base image and they will be zeros in the MatchedImage array
+        ; from here, we can replace the bad data with whatever we want (like the median value)
+        ;        baddata = where(matchedimage eq 0)
+        ;        datadims = size(matchedimage, /DIMENSIONS)
+        ;        xbad = baddata mod datadims[0]
+        ;        ybad = baddata/datadims[0] mod datadims[1]
+        ;
+        ;        ;only replace zeros if we have them
+        ;        if (baddata[0] ne -1) then begin
+        ;          ;replace data with average from neighbors
+        ;          nn = 2 ;number of neighbors to take into account around center pixel
+        ;          for i=0, n_elements(xbad)-1 do begin
+        ;            xl = xbad[i] - nn
+        ;            xr = xbad[i] + nn
+        ;            yl = ybad[i] - nn
+        ;            yr = ybad[i] - nn
+        ;            ;cehck each index to make sure that it is an ok value
+        ;            if (xl lt 0) then xl = xbad[i]
+        ;            if (xr gt datadims[0]-1) then xr = xbad[i]
+        ;            if (yl lt 0) then yl = ybad[i]
+        ;            if (yl gt datadims[1] - 1) then yl = ybad[i]
+        ;
+        ;            sub_arr = matchedimage[xl:xr, yl:yr]
+        ;            ;find the positiong where the matchedimage has no data
+        ;            gooddata = where(sub_arr ne 0)
+        ;            ;replace bad values only if there is close gooddata
+        ;            if (gooddata[0] ne -1) then begin
+        ;              sub_arr = sub_arr[gooddata]
+        ;              matchedimage[xbad[i], ybad[i]] = sub_arr.mean()
+        ;            endif
+        ;          endfor
+        ;        endif
+      endif
     endif
 
     ;allocate an array to hold our new data
@@ -429,8 +435,8 @@ pro BandAlignment_ApplyReferenceTiePointsToGroup, group, groupName, parameters
   ;clean up ENVI so we don't have locks on datasets
   raster.close
   foreach file, group do begin
-    raster = e.openraster(file)
-    raster.close
+    rasters = e.openraster(file)
+    foreach r, rasters do r.close
   endforeach
 end
 
@@ -521,9 +527,7 @@ pro BandAlignment_ApplyReferenceTiePointsToGroups, groups, parameters, DEBUG = d
       count++
       
       ;check for cancellation
-      if prog.AbortRequested() then begin
-        message, 'Process stopped by user', LEVEL = -1
-      endif
+      prog.abortRequested
     endforeach
   endif else begin
     ;alert user that we are initializing child processes
@@ -557,9 +561,7 @@ pro BandAlignment_ApplyReferenceTiePointsToGroups, groups, parameters, DEBUG = d
       prog.setProgress, str, 100*float(count+1)/nGroups
       
       ;check for cancellation
-      if prog.AbortRequested() then begin
-        message, 'Process stopped by user', LEVEL = -1
-      endif
+      prog.abortRequested
       
       ;update counter
       count++

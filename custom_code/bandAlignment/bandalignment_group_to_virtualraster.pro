@@ -35,10 +35,10 @@ function bandAlignment_group_to_virtualRaster, groupFiles
   
   ;open as rasters
   rasters = list()
-  foreach file, groupFiles do rasters.Add, e.openRaster(file)
+  foreach file, groupFiles do rasters.Add, e.openRaster(file), /EXTRACT
   
   ;check for spatialref and make dummy one if not present
-  if rasters[0].SPATIALREF eq !NULL then begin
+  if (rasters[0]).SPATIALREF eq !NULL then begin
     spatialref = ENVIStandardRasterSpatialRef($
       coord_sys_code = 4326, $
       /GEOGCS,$
@@ -46,7 +46,7 @@ function bandAlignment_group_to_virtualRaster, groupFiles
       tie_point_pixel = [0, 0], $
       tie_point_map = [0, 0])
   endif else begin
-    spatialref = rasters[0].SPATIALREF
+    spatialref = (rasters[0]).SPATIALREF
   endelse
 
   ;make a metaspectral raster

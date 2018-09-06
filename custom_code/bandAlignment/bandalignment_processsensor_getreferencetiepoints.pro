@@ -101,11 +101,11 @@ pro BandAlignment_ProcessSensor_GetReferenceTiePoints, group, parameters, $
     ;clean up so we dont have locks on any files
     raster.close
     foreach file, group do begin
-      raster = e.openRaster(file)
-      raster.close
+      rasters = e.openRaster(file)
+      foreach r, rasters do r.close
     endforeach
   endif
   
   ;finish our progress
-  prog.finish
+  prog.finish, /PRINT
 end

@@ -138,6 +138,12 @@ pro generate_gps_file,$
   for i=0,nKeys-1 do begin
     ;get information on our scene
     oImageInfo = obj_new('image_info', (groups[keys[i]])[0], /NO_SPATIALREF)
+    
+    ;check if we have spatial reference information
+    if oImageInfo.get('FAKE_SREF') then begin
+      print, 'No spatial reference information for an image, cannot create GPS file, returning'
+      return
+    endif
 
     ;populate strings with GPS information
     string_out[0,i] = oImageInfo.GetGPSInformation(GPS_ALTITUDE_OFFSET = gps_altitude_offset)

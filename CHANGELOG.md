@@ -1,6 +1,14 @@
 # Changelog
 
-This file summarizes the overall changes.
+This file summarizes the overall changes for the UAV toolkit.
+
+
+## Version 2.2
+
+Updated some of the progress messages when running ENVI headlessly
+
+Added support for data that is already a multi-page TIFF in a single file, created a test for it, and updated the README with an example.
+
 
 ## Version 2.1
 

@@ -73,7 +73,17 @@ pro generate_cam_file, INPUTDIR = inputdir, EXTENSION = extension, OUTPUTDIR = o
   ;get sensor information, assume all the same
   oImageInfo = obj_new('image_info', files[0])
   result = oImageInfo.Get(['FOCAL_LENGTH_MM', 'MODEL', 'SENSOR_PIXEL_SIZE_MM'])
-
+  
+  ;validate information
+  if (result.focal_length_mm eq -!DPI) then begin
+    print, ' No metadata to calculate focal length, unable to create CAM file, returning'
+    return 
+  endif
+  if (result.SENSOR_PIXEL_SIZE_MM eq -!DPI) then begin
+    print, ' No metadata to calculate focal length, unable to create CAM file, returning'
+    return
+  endif
+  
   ;initialize a list to hold the CAM file info
   cam_file = list()
 

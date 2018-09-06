@@ -58,13 +58,8 @@ function image_groups_to_virtual_rasters, image_groups,$
 
   nImages = n_elements(image_groups[keys[0]])
 
-  ;check if we don't pass in the band order
-  if ~keyword_set(bandorder) then begin
-    bandorder = indgen(nImages)
-  endif
-
   ;loop over each image group
-  foreach key, keys do begin
+  foreach key, keys, kIdx do begin
     ;check if we need to get our spatialref
     images = image_groups[key]
 
@@ -74,22 +69,32 @@ function image_groups_to_virtual_rasters, image_groups,$
     endif
 
     ;preallocate an array to hold our rasters
-    rasters = objarr(nImages)
+    rasters = list()
 
     ;open each image as a raster
-    for i=0,nImages-1 do begin
+    for i=0,n_elements(images)-1 do begin
       case (1) of
-        keyword_set(get_spatialref):rasters[i] = e.openraster(images[i], SPATIALREF_OVERRIDE = spatialref)
-        keyword_set(spatialref):rasters[i] = e.openraster(images[i], SPATIALREF_OVERRIDE = spatialref)
-        else:rasters[i] = e.openraster(images[i])
+        keyword_set(get_spatialref): rasters.add, e.openRaster(images[i], SPATIALREF_OVERRIDE = spatialref), /EXTRACT
+        keyword_set(spatialref): rasters.add, e.openRaster(images[i], SPATIALREF_OVERRIDE = spatialref), /EXTRACT
+        else: rasters.add, e.openRaster(images[i]), /EXTRACT
       endcase
     endfor
+    
+    ;check if we don't pass in the band order
+    if (kIdx eq 0) then begin
+      ;get the actual number of images
+      nImages = n_elements(rasters)
+      
+      if ~keyword_set(bandorder) then begin
+        bandorder = indgen(nImages)
+      endif
+    endif
 
     ;build our metaspectral raster
     case (1) of
-      keyword_set(get_spatialref):metaraster = ENVIMetaspectralRaster(rasters[bandorder], SPATIALREF = spatialref)
-      keyword_set(spatialref):metaraster = ENVIMetaspectralRaster(rasters[bandorder], SPATIALREF = spatialref)
-      else:metaraster = ENVIMetaspectralRaster(rasters[bandorder], SPATIALREF = rasters[0].SPATIALREF)
+      keyword_set(get_spatialref): metaraster = ENVIMetaspectralRaster(rasters[bandorder], SPATIALREF = spatialref)
+      keyword_set(spatialref): metaraster = ENVIMetaspectralRaster(rasters[bandorder], SPATIALREF = spatialref)
+      else: metaraster = ENVIMetaspectralRaster(rasters[bandorder], SPATIALREF = (rasters[0]).SPATIALREF)
     endcase
 
     ;save the stacked raster

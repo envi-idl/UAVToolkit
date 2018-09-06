@@ -72,7 +72,7 @@ pro bandalignment_find_good_image_group, $
   
   ;initialize progress
   prog = awesomeENVIProgress('Finding Ideal Image Group', /PRINT)
-  prog.setProgress, 'Applying kappa filter', 0, /PRINT
+  prog.setProgress, 'Processing...', 0, /PRINT
   
   ;get the group names that fall within approximate straight lines if asked for
   if keyword_set(kappa_filter) then begin
@@ -84,6 +84,9 @@ pro bandalignment_find_good_image_group, $
   
   ;get the number of groups
   nGroups = n_elements(groupNames)
+  
+  ;determine how often to print
+  nPrint = (nGroups lt 100) ? 1 : floor(nGroups/100.0)
   
   ;preallocate an array to hold our metric for the best image to register
   edges = dblarr(nGroups)
@@ -98,20 +101,18 @@ pro bandalignment_find_good_image_group, $
     
     ;open raster and get data from first band
     ;TODO: maybe improve this logic if bands are in one file?
-    raster = e.openRaster(images[baseband])
-    dat = raster.getdata(BANDS = [0])
-    raster.close
+    rasters = e.openRaster(images[baseband])
+    dat = rasters[0].getdata(BANDS = [0])
+    foreach r, rasters do r.close
     
     ;check if we were cancelled
-    if prog.abortRequested() then begin
-      message, 'Process stopped by user', LEVEL = -1
-    endif
+    prog.abortRequested
     
     ;find the total number of edges in the image
     edges[i] = mean(sobel(temporary(dat)))
     
     ;update user
-    prog.setProgress, 'Processing', 100*float(i+1)/nGroups, /PRINT
+    if ~(i mod nPrint) then prog.setProgress, 'Processing...', 100*float(i+1)/nGroups, /PRINT, /TIME
   endforeach  
   
   ;get the min/max values
@@ -122,5 +123,5 @@ pro bandalignment_find_good_image_group, $
   output_image_group = groupNames[idx_max]
   
   ;finish our progress
-  prog.finish
+  prog.finish, /PRINT
 end
