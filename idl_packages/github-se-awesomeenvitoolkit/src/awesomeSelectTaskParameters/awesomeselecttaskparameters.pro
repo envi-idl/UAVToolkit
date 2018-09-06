@@ -24,7 +24,7 @@ pro awesomeSelectTaskParameters, taskName, $
   SHOW_DISPLAY_OPTION = show_display_option,$
   SHOW_PREVIEW = show_preview,$
   TASK = task
-  compile_opt idl2
+  compile_opt idl2, hidden
   on_error, 2
   
   ;validate our inputs
@@ -42,10 +42,15 @@ pro awesomeSelectTaskParameters, taskName, $
   endif
   
   ;get current ENVI and make sure the UI is open
-  a = awesomeGetENVI(/UI)
+  e = awesomeGetENVI(/UI)
   
   ;get our task
-  if ~isa(task, 'ENVITask') then task = ENVITask(taskName)
+  if ~isa(task, 'ENVITask') then begin
+    task = ENVITask(taskName, ERROR = error)
+    if keyword_set(error) then begin
+      message, error
+    endif
+  endif
   
   ;create UI
   IDLcf$Get, TOOL=oTool

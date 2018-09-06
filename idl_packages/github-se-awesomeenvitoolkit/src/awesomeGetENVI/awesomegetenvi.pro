@@ -18,7 +18,7 @@
 ; :Author: Zachary Norman - GitHub: znorman-harris
 ;-
 function awesomeGetENVI, UI = ui
-  compile_opt idl2
+  compile_opt idl2, hidden
   on_error, 2
   
   ;get current ENVI

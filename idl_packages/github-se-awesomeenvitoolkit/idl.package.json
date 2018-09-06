@@ -1,0 +1,17 @@
+{
+    "name": "CustomIDLPackage",
+    "version": "1.0",
+    "license": "",
+    "author": "IDL Package Creator",
+    "description": "An IDL package created by the IDL Package Creator",
+    "entry_point": "",
+    "build_types": [
+        "idl"
+    ],
+    "build_ignore": [
+        "dist",
+        "docs"
+    ],
+    "dependencies": {
+    }
+}

@@ -28,6 +28,9 @@
 ;      `OUTPUT_TILE_SUB_RECTS` will correspond to. This is added so you can easily map
 ;      the tiles back to the original raster. This is only needed if you specify the
 ;      `TILE_BUFFER` keyword.
+;    OUTPUT_TILE_MAP: out, optional, type=arr
+;      A 2D array that contains the index of each tile in the `OUTPUT_SUB_RECTS` list so that
+;      a user can easily understand the spatial content between them all.
 ;    OUTPUT_TILE_SUB_RECTS: out, required, type=list
 ;      This keyword contains a list where each element represents the sub rect of each tile that
 ;      will exclude the buffer. This is used so that you can remove the buffer from each tile and,
@@ -38,6 +41,7 @@
 ; :Author: Zachary Norman - GitHub: znorman-harris
 ;-
 pro createAwesomeTileIterator,$
+  DEBUG = debug,$
   INPUT_RASTER = input_raster,$
   TILE_BUFFER = tile_buffer, $
   TILE_SIZE = tile_Size,$
@@ -45,9 +49,10 @@ pro createAwesomeTileIterator,$
   NROWS = nrows,$
   OUTPUT_SUB_RECTS = output_sub_rects,$
   OUTPUT_RASTER_TILE_LOCATIONS = output_raster_tile_locations,$
+  OUTPUT_TILE_MAP = output_tile_map,$
   OUTPUT_TILE_SUB_RECTS = output_tile_sub_rects
-
-  compile_opt idl2
+  compile_opt idl2, hidden
+  if ~keyword_set(debug) then on_error, 2
 
   if keyword_set(input_raster) then begin
     ;get some information from the INPUT_RASTER
@@ -85,11 +90,14 @@ pro createAwesomeTileIterator,$
     ny = ceil(float(nrows)/tile_size[1])
   endelse
 
+  ;hold a reference to all the output tiles in a map
+  output_tile_map = ulonarr(nx, ny)
+
   ;determine our sub rects without a buffer that correspond to where the real data
   ;in each tile will exist for our output raster
   output_raster_tile_locations = list()
-  for i = 0, nx - 1 do begin
-    for j = 0, ny - 1 do begin
+  for j = 0, ny - 1 do begin
+    for i = 0, nx - 1 do begin
       left = (i*tile_size[0]) > 0
       right = (((i+1)*tile_size[0]-1) < (ncolumns-1)) > 0
       top = (j*tile_size[1]) > 0
@@ -100,12 +108,13 @@ pro createAwesomeTileIterator,$
 
   ;determine our sub rects with a buffer
   output_sub_rects = list()
-  for i = 0, nx - 1 do begin
-    for j = 0, ny - 1 do begin
+  for j = 0, ny - 1 do begin
+    for i = 0, nx - 1 do begin
       left = (i*tile_size[0]-tile_buffer) > 0
       right = (((i+1)*tile_size[0]-1+tile_buffer) < (ncolumns-1)) > 0
       top = (j*tile_size[1]-tile_buffer) > 0
       bottom = (((j+1)*tile_size[1]-1+tile_buffer) < (nrows-1)) > 0
+      output_tile_map[i,j] = n_elements(output_sub_rects)
       output_sub_rects.add, [left, top, right, bottom]
     endfor
   endfor
