@@ -373,8 +373,6 @@ endcase
 
 ## License
 
-(c) 2018 Harris Geospatial Solutions, Inc.
+© 2018 Harris Geospatial Solutions, Inc.
 
 Licensed under MIT. See LICENSE.txt for additional details and information.
-
-
