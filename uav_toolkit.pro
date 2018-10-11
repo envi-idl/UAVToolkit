@@ -74,14 +74,14 @@ end
 ;   It also allows for a simple interface to open the help contents regarding the UAV Toolkit.
 ;   
 ;   
-;   ## Example One
+;   ### Example One
 ;        
 ;   Instead of needing to restore the UAV Toolkit .sav file every time in your code, you can just add
 ;   the source to IDL's search path and do the following in your IDL code:
 ;     
 ;       uav_toolkit
 ;       
-;   ## Example Two
+;   ### Example Two
 ;   
 ;   To open the help using this routine, just do the following:
 ;   
