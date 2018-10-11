@@ -6,7 +6,11 @@ Over time these tools have grown into more than just processing for the RedEdge 
 
 If you have downloaded this repository, then the best way to view the documentation is to open up **index.html** in the **docs** folder.
 
+## Requirements
 
+ENVI 5.5 and IDL 8.7. 
+
+Older versions of ENVI + IDL are not supported because of the ENVI Task schema definitions that are used. If you are on this older version and there are issues, then you will need to upgrade to the latest version of ENVI + IDL.
 
 ## Changes
 
@@ -34,10 +38,6 @@ Note that you may have to reset IDL's session for the changes to take place. To 
 
 For users that want to use the UAV Toolkit as an ENVI extension, you will need to run the `build_uav_toolkit.pro` file in the primary directory of the repository. Once this completes, take the **entire** `UAVToolkit-build` folder and place it into ENVI's extensions folder. Here are the potential locations that you 
 
-- For ENVI 5.3 and admin rig hts the directory for Windows is **C:\\Program Files\\Exelis\\ENVI53\\extensions**
-
-- For ENVI 5.4 and admin rights the directory for Windows is **C:\\Program Files\\Harris\\ENVI54\\extensions**
-
 - For ENVI 5.5 and admin rights the directory for Windows is **C:\\Program Files\\Harris\\ENVI55\\extensions**
 
 - If you do not have admin rights then you can find the local user directory in ENVI's preferences under:
@@ -49,12 +49,6 @@ For users that want to use the UAV Toolkit as an ENVI extension, you will need t
 **Note the location that you installed the SAVE files to. If you get a later version of this code, then you will need to update or remove these files for access to new features.**
 
 Note: if you are an experienced ENVI + IDL user, you may be wondering why the instructions are to place the ENVI Tasks in the extensions folder (they usually go in the custom_code directory). The reason that this works is because, when the buttons are added to ENVI, I search for and open all tasks in the extensions_folder meaning that you only have to place the UAV toolkit in one location instead of two which makes the installation process easier.
-
-## Requirements
-
-ENVI 5.5 and IDL 8.7. 
-
-This should likely work on older versions of ENVI (*should*) but is untested. If you are on this older version and there are issues, then you will need to upgrade to the latest version of ENVI + IDL.
 
 
 ## Usage
