@@ -5,7 +5,12 @@
     text-decoration: none;    
 }
 
-/* class for block of IDL code which exists as a pre*/
+/* 
+    class for block of IDL code which exists as a pre
+    when we set visible to auto, we get scroll bars, but we
+    have tooltips go outside of the bounds of the div they come
+    from
+*/
 pre.idl_code_block {
     color: black;
     padding-left: 15px;
@@ -13,7 +18,7 @@ pre.idl_code_block {
     border-style:solid;
     border-width:1px;
     border-color:#cccccc;
-    overflow: visible;
+    overflow: visible; 
     /* word break, not working right
     overflow-y: visible;
     overflow-x: scroll;

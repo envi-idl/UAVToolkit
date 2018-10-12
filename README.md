@@ -10,7 +10,7 @@ If you have downloaded this repository, then the best way to view the documentat
 
 ENVI 5.5 and IDL 8.7. 
 
-Older versions of ENVI + IDL are not supported because of the ENVI Task schema definitions that are used. If you are on this older version and there are issues, then you will need to upgrade to the latest version of ENVI + IDL.
+Older versions of ENVI + IDL are not supported because of the ENVI Task schema definitions that are used. If you are on an older version and there are issues, then you will need to upgrade to the latest version of ENVI + IDL.
 
 ## Changes
 
