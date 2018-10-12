@@ -4,7 +4,7 @@ $(document).ready(function () {
   // add buttons to every pre element
   for (var i = 0; i < pre.length; i++) {
     //make sure that we want a copy button
-    if (!pre[i].className !== 'no-copy-button'){
+    if (pre[i].className !== 'no-copy-button'){
       var p = document.createElement('p')
       pre[i].prepend(p);
       var p = document.createElement('p')
