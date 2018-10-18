@@ -125,13 +125,9 @@
 <p>This file contains the code needed to convert the raw pixel values from a RedEdge image directly to radiance. This workflow was taken from the following source:</p>
 <pre class="idl_code_block">
 [<font class="idl_struct_tag">https</font>://support.<font class="idl_prop">micasense</font>.<font class="idl_prop">com</font>/<font class="idl_struct_tag">hc/en-us/articles/115000351194-RedEdge-Camera-Radiometric-Calibration-Model](https</font>://support.<font class="idl_prop">micasense</font>.<font class="idl_prop">com</font>/hc/en-us/articles/<font class="idl_num">115000351194</font>-RedEdge-Camera-Radiometric-Calibration-Model)
-
-<font class="idl_lib_pro ">It</font> <font class="idl_lib_pro ">does</font> <font class="idl_control ">not</font> currently account <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/FOR.html" target="_blank"><font class="idl_control idl_tt" idl_tt="Executes one or more statements repeatedly, incrementing or decrementing a variable with each repetition, until a condition is met.">for</font></a> sensor orientation with a DLS, but support is planned.
-
-You will need a sensor that has the correct metadata <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/FOR.html" target="_blank"><font class="idl_control idl_tt" idl_tt="Executes one or more statements repeatedly, incrementing or decrementing a variable with each repetition, until a condition is met.">for</font></a> this <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/FUNCTION.html" target="_blank"><font class="idl_control idl_tt" idl_tt="Defines a function.">function</font></a> <font class="idl_lib_func">to work without throwing</font>
-an error during processing <font class="idl_control ">and</font> it should be used with a catch block to ensure that the
-source program continues running <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/IF___THEN___ELSE.html" target="_blank"><font class="idl_control idl_tt" idl_tt="Conditionally executes a statement or block of statements.">if</font></a> there are issues.
 </pre>
+<p>It does not currently account for sensor orientation with a DLS, but support is planned.</p>
+<p>You will need a sensor that has the correct metadata for this function to work without throwing an error during processing and it should be used with a catch block to ensure that the source program continues running if there are issues.</p>
 <div id="rededge_to_radiance-head_0">
 <a class="anchor_sub" name="rededge_to_radiance-head_0"></a>
 </div>

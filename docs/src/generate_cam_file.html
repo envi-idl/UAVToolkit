@@ -89,11 +89,11 @@
       <ul id="sidebar" class="nav nav-stacked fixed sidebar-overflow">
         <li><a href="#" class="side_tt", side_tt="generate_cam_file.pro">generate_cam_file.pro</a></li>
         <li>
-          <a href="#generate_cam_file-head_1" class="side_tt", side_tt="generate_cam_file">generate_cam_file</a>
+          <a href="#generate_cam_file-head_2" class="side_tt", side_tt="generate_cam_file">generate_cam_file</a>
             <ul class="nav nav-stacked">
-              <li><a href="#generate_cam_file-head_2" class="side_tt", side_tt="Syntax">Syntax</a></li>
-              <li><a href="#generate_cam_file-head_3" class="side_tt", side_tt="Keywords">Keywords</a></li>
-              <li><a href="#generate_cam_file-head_7" class="side_tt", side_tt="Author">Author</a></li>
+              <li><a href="#generate_cam_file-head_3" class="side_tt", side_tt="Syntax">Syntax</a></li>
+              <li><a href="#generate_cam_file-head_4" class="side_tt", side_tt="Keywords">Keywords</a></li>
+              <li><a href="#generate_cam_file-head_8" class="side_tt", side_tt="Author">Author</a></li>
             </ul>
         <li>
       </ul>
@@ -115,45 +115,47 @@
 inputdir = <font class="idl_str">&#39;C:\Users\username\images&#39;</font>
 outputdir = <font class="idl_str">&#39;C:\Users\username\images_out&#39;</font>
 <font class="idl_lib_pro ">generate_cam_file</font>, INPUTDIR = inputdir, OUTPUTDIR = outputdir
-
-### <font class="idl_lib_pro ">Example</font> Two
-
-This second example illustrates how to create a CAM file <font class="idl_control ">and</font> <font class="idl_struct_tag">have it be generated in inputdir</font>:
-
-inputdir = <font class="idl_str">&#39;C:\Users\username\images&#39;</font>
-<font class="idl_lib_pro ">generate_cam_file</font>, INPUTDIR = inputdir
 </pre>
 <div id="generate_cam_file-head_1">
 <a class="anchor_sub" name="generate_cam_file-head_1"></a>
 </div>
-<hr />
-<h2 id="generate_cam_file">generate_cam_file</h2>
+<h3 id="example-two">Example Two</h3>
+<p>This second example illustrates how to create a CAM file and have it be generated in inputdir:</p>
+<pre class="idl_code_block">
+inputdir = <font class="idl_str">&#39;C:\Users\username\images&#39;</font>
+<font class="idl_lib_pro ">generate_cam_file</font>, INPUTDIR = inputdir
+</pre>
 <div id="generate_cam_file-head_2">
 <a class="anchor_sub" name="generate_cam_file-head_2"></a>
 </div>
-<h3 id="syntax">Syntax</h3>
-<pre class="no-copy-button">generate_cam_file, <a href="#keywords1-0">INPUTDIR</a> = string, [ <a href="#keywords1-1">EXTENSION</a> = string ], [ <a href="#keywords1-2">OUTPUTDIR</a> = string ]</pre>
+<hr />
+<h2 id="generate_cam_file">generate_cam_file</h2>
 <div id="generate_cam_file-head_3">
 <a class="anchor_sub" name="generate_cam_file-head_3"></a>
 </div>
+<h3 id="syntax">Syntax</h3>
+<pre class="no-copy-button">generate_cam_file, <a href="#keywords1-0">INPUTDIR</a> = string, [ <a href="#keywords1-1">EXTENSION</a> = string ], [ <a href="#keywords1-2">OUTPUTDIR</a> = string ]</pre>
+<div id="generate_cam_file-head_4">
+<a class="anchor_sub" name="generate_cam_file-head_4"></a>
+</div>
 <h3 id="keywords">Keywords</h3>
 <p><a class="anchor_sub" name="keywords1-0"></a></p>
-<p><a class="anchor_sub" name="generate_cam_file-head_4"></a></p>
+<p><a class="anchor_sub" name="generate_cam_file-head_5"></a></p>
 <h4 id="inputdir">INPUTDIR</h4>
 <p><font style="font-weight:bold;">in, required, type=string</font></p>
 <p>Directory to be searched for images to get sensor information from.</p>
 <p><a class="anchor_sub" name="keywords1-1"></a></p>
-<p><a class="anchor_sub" name="generate_cam_file-head_5"></a></p>
+<p><a class="anchor_sub" name="generate_cam_file-head_6"></a></p>
 <h4 id="extension">EXTENSION</h4>
 <p><font style="font-weight:bold;">in, optional, type=string, default=‘tif’</font></p>
 <p>File extension that will match the files found in <a href="#keywords1-0">INPUTDIR</a>. The default value is ‘tif’ and should be specified if another file extension is used.</p>
 <p><a class="anchor_sub" name="keywords1-2"></a></p>
-<p><a class="anchor_sub" name="generate_cam_file-head_6"></a></p>
+<p><a class="anchor_sub" name="generate_cam_file-head_7"></a></p>
 <h4 id="outputdir">OUTPUTDIR</h4>
 <p><font style="font-weight:bold;">in, optional, type=string, default=<a href="#keywords1-0">INPUTDIR</a></font></p>
 <p>Set this keyword to the location where you would like the output CAM file to be written to. If you set this keyword and the directory does not exist, then it will be created.</p>
-<div id="generate_cam_file-head_7">
-<a class="anchor_sub" name="generate_cam_file-head_7"></a>
+<div id="generate_cam_file-head_8">
+<a class="anchor_sub" name="generate_cam_file-head_8"></a>
 </div>
 <h3 id="author">Author</h3>
 <p>Zachary Norman</p>
