@@ -1,7 +1,7 @@
 ;h+
 ; (c) 2018 Harris Geospatial Solutions, Inc.
 ; 
-; Licensed under MIT, see LICENSE.txt for more details.
+; Licensed under MIT. See LICENSE.txt for additional details and information.
 ;h-
 
 ;+
@@ -44,7 +44,7 @@
 ;      Specify an array of 1/0 values that indicate whether or not a particular
 ;      band should be registered to the `REFERENCE_BAND` or not.
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 pro BandAlignment_GenerateReferenceTiePoints,$
   DEBUG = debug,$

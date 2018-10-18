@@ -18,7 +18,7 @@
 ;      Optionally specify an ENVI task that has been created
 ;      to generate a UI for.
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 pro awesomeSelectTaskParameters, taskName, $
   SHOW_DISPLAY_OPTION = show_display_option,$

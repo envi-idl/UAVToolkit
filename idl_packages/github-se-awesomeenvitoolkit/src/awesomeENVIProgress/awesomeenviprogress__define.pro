@@ -3,7 +3,7 @@
 ;   Object definition for the `awesomeENVIProgress` class. See
 ;   the README for more information.
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 
 
@@ -14,7 +14,7 @@
 ;    user pressed the cancel button in ENVI.
 ;
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 function awesomeENVIProgress::AbortRequested
   compile_opt idl2, hidden
@@ -40,7 +40,7 @@ end
 ;    throws an error to halt execution. 
 ;    
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 pro awesomeENVIProgress::AbortRequested
   compile_opt idl2, hidden
@@ -68,7 +68,7 @@ end
 ;      the user.
 ;
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 pro awesomeENVIProgress::Finish, ERROR = error, PRINT = print
   compile_opt idl2, hidden
@@ -103,7 +103,7 @@ end
 ;      Makes sure messages always print when set.
 ;
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 pro awesomeENVIProgress::_Initialize, FORCE_PRINT = force_print
   compile_opt idl2, hidden
@@ -160,7 +160,7 @@ end
 ;    PRINT: in, optional, type=boolean
 ;      If set, then a message will be printed upon progress creation.
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 function awesomeENVIProgress::Init, progressTitle,$
   FORCE_PRINT = force_print,$
@@ -224,7 +224,7 @@ end
 ;      If set, then the approximate time until finish will be calculated
 ;      and attached to the progress message.
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 pro awesomeENVIProgress::SetProgress, msg, percent,$
   APPEND = append,$
@@ -295,7 +295,7 @@ end
 ;      If set, any references to current progress messages will
 ;      be cleare. Useful when you have errors during development.
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 pro awesomeENVIProgress, CLEAR_PROGRESS = clear_progress
   compile_opt idl2, hidden
@@ -307,7 +307,7 @@ end
 ;    Core object definition.
 ;
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 pro awesomeENVIProgress__define
   compile_opt idl2, hidden

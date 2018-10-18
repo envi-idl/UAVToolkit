@@ -30,7 +30,7 @@
 ;
 ;
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 function awesomeENVIAreExtensionsInitialized, name, DEBUG = debug, RESET = reset
   compile_opt idl2, hidden

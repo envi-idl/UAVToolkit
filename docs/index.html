@@ -1,12 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <title></title>
-  <style type="text/css">code{white-space: pre;}</style>
-  <link rel="stylesheet" href="./css/haroopad-markdown.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="generator" content="pandoc" />
+<title></title>
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet" href="./css/haroopad-markdown.css" type="text/css" />
 <!--  for adding syntax colorizer --> 
 <link rel="stylesheet" href="./js/highlight/styles/github.css"> 
 <script src="./js/highlight/highlight.pack.js"></script>
@@ -28,7 +28,6 @@
 <!-- load colors for IDL syntax and anchor fix with fixed header-->
 <style type="text/css">
 	@import url("./css/bootstrap.min.css");
-	@import url("./css/font-awesome.min.css");
 	@import url("./css/cosmos.bootstrap.min.css");
 	@import url("./css/idl-styles.css");
 	@import url("./css/anchor-fix.css");
@@ -42,18 +41,13 @@
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="15">
 
 <div id="header" class="navbar navbar-default navbar-fixed-top">
-    <div class="navbar-header">
-        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
-            <i class="icon-reorder"></i>
-        </button>
-    </div>
     <nav class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
             <li>
-                <a href="./index.html#"><i class="fa fa-home"></i> Home</a>
+                <a href="./index.html#"><img class="header-image" src="./images/baseline_home_white_48dp.png"></a>
             </li>
             <li class="dropdown">
-                <a style="top:3px" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-book">  Contents</i></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img class="header-image" src="./images/baseline_menu_white_48dp.png"></i></a>
                 <ul class="dropdown-menu">
 <li><a href=".//uav_toolkit.html#">uav_toolkit.pro</a></li>
 <li><a href="./src/unjoin_rededge_datadir.html#">unjoin_rededge_datadir.pro</a></li>
@@ -64,28 +58,34 @@
 <li><a href="./custom_code/batchTasks/uavbatchrededge.html#">uavbatchrededge.pro</a></li>
 <li><a href="./custom_code/bandAlignment/uavbandalignment.html#">uavbandalignment.pro</a></li>
 <li><a href="./custom_code/README.html#">UAVToolkit Directory custom_code</a></li>
-<li><a href=".//build_uav_toolkit.html#">build_uav_toolkit.pro</a></li>
 <li><a href=".//CONTRIBUTING.html#">Contributing</a></li>
 <li><a href=".//CHANGELOG.html#">Changelog</a></li>
                     <!--<li><a href="#">Chapter 1</a></li>-->
                 </ul>
             </li>
         </ul>
-      <a class="navbar-brand" href="#">
-         UAVToolkit
-      </a>
-      <div class="pull-right">
-        <a href="https://www.harrisgeospatial.com" target="_blank"><img src="./images/Harris_wR_White-RedA.png" style="height:41px; width:155px; position:relative; top:5px; right:20px"></img></a>
-      </div>
-      <a class="navbar-brand pull-right" href=".//index/index.html" style="position:relative;right:30px;" target="_blank">
-        Search
-      </a>
+        <a class="navbar-brand" href="#">
+            UAVToolkit
+        </a>
+
+        <ul class="nav navbar-nav pull-right">
+            <li>
+                <a class="navbar-brand" href=".//index/index.html" style="position:relative;right:30px;" target="_blank">
+                    <img class="header-image" src="./images/baseline_search_white_48dp.png">
+                </a>
+            </li>
+            <li>
+                <div>
+                    <a href="https://www.harrisgeospatial.com" target="_blank"><img src="./images/Harris_wR_White-RedA.png" style="height: 41px; position:relative; top:5px; right:20px"></img></a>
+                </div>
+            </li>
+        </ul>
     </nav>
 </div>
 <div style="padding-top:60px;"> 
 <div class="container">
- <row>
-   <nav class="col-xs-3 bs-docs-sidebar" id="myScrollspy">
+  <row>
+    <nav class="col-xs-3 bs-docs-sidebar" id="myScrollspy">
       <ul id="sidebar" class="nav nav-stacked fixed sidebar-overflow">
         <li><a href="#" class="side_tt", side_tt="UAVToolkit">UAVToolkit</a></li>
         <li>
@@ -131,7 +131,7 @@
 </div>
 <h1 id="uavtoolkit">UAVToolkit</h1>
 <hr />
-<p>This collection of code is meant for preprocessing drone data that has band-band alignment issues. Specifically, it was designed to work with the MicaSense RedEdge sensor in order to process the data and make it ready for ingestion into image stitching software packages. The benefit of processing on your own for the RedEdge sensor is that you don't need to pay monthly fees to process your data on the Atlas platform.</p>
+<p>This collection of code is meant for preprocessing drone data that has band-band alignment issues. Specifically, it was designed to work with the MicaSense RedEdge sensor in order to process the data and make it ready for ingestion into image stitching software packages. The benefit of processing on your own for the RedEdge sensor is that you don’t need to pay monthly fees to process your data on the Atlas platform.</p>
 <p>Over time these tools have grown into more than just processing for the RedEdge sensor. There is now an option for working with generic sensor formats where each band comes as a separate image format. Additional support has also been added for the Parrot Sequoia sensor which is another common, inexpensive, multispectral drone sensor.</p>
 <p>If you have downloaded this repository, then the best way to view the documentation is to open up <strong>index.html</strong> in the <strong>docs</strong> folder.</p>
 <div id="idl-package-md-file-head_0">
@@ -151,30 +151,30 @@
 <a class="anchor_sub" name="idl-package-md-file-head_2"></a>
 </div>
 <h3 id="worth-mentioning">Worth Mentioning</h3>
-<p>If there are any feature requests, don't hesitate to add an issue for the repository. If you have an issue, please be sure to include debug information and you may be asked to share some sample data for testing purposes which will not be shared.</p>
+<p>If there are any feature requests, don’t hesitate to add an issue for the repository. If you have an issue, please be sure to include debug information and you may be asked to share some sample data for testing purposes which will not be shared.</p>
 <div id="idl-package-md-file-head_3">
 <a class="anchor_sub" name="idl-package-md-file-head_3"></a>
 </div>
 <hr />
 <h2 id="installation">Installation</h2>
-<p>Please select <strong>one</strong> of the below options. Why one? Well, if you have SAVE files and PRO code on IDL's search path (or installed under ENVI), then the SAVE file will win over the PRO code. This means that you can have fun debugging odd issues with conflicts between newer and older versions of code.</p>
-<p><strong>If upgrading, make sure you remove any previous version of the UAV Toolkit from IDL's search path or, ENVI's custom_code, or ENVI's extension folder</strong>.</p>
+<p>Please select <strong>one</strong> of the below options. Why one? Well, if you have SAVE files and PRO code on IDL’s search path (or installed under ENVI), then the SAVE file will win over the PRO code. This means that you can have fun debugging odd issues with conflicts between newer and older versions of code.</p>
+<p><strong>If upgrading, make sure you remove any previous version of the UAV Toolkit from IDL’s search path or, ENVI’s custom_code, or ENVI’s extension folder</strong>.</p>
 <div id="idl-package-md-file-head_4">
 <a class="anchor_sub" name="idl-package-md-file-head_4"></a>
 </div>
 <h3 id="basic---pro-code">Basic - PRO code</h3>
-<p>To install the code, you just need to add this repository to IDL's search path. You can access this setting in <strong>Preferences -&gt; IDL -&gt; Paths -&gt; Insert</strong>, navigate to the directory and select OK, and then make sure to check the box to have this folder recursively searched for code. Click <strong>Apply</strong> and <strong>OK</strong> once the path has been added.</p>
-<p>Note that you may have to reset IDL's session for the changes to take place. To do this you can simply press the <strong>Reset</strong> button in the IDL workbench.</p>
+<p>To install the code, you just need to add this repository to IDL’s search path. You can access this setting in <strong>Preferences -&gt; IDL -&gt; Paths -&gt; Insert</strong>, navigate to the directory and select OK, and then make sure to check the box to have this folder recursively searched for code. Click <strong>Apply</strong> and <strong>OK</strong> once the path has been added.</p>
+<p>Note that you may have to reset IDL’s session for the changes to take place. To do this you can simply press the <strong>Reset</strong> button in the IDL workbench.</p>
 <div id="idl-package-md-file-head_5">
 <a class="anchor_sub" name="idl-package-md-file-head_5"></a>
 </div>
 <h3 id="envi-extensions---save-files">ENVI Extensions - SAVE files</h3>
-<p>For users that want to use the UAV Toolkit as an ENVI extension, you will need to run the <code class="idl_line">build_uav_toolkit.pro</code> file in the primary directory of the repository. Once this completes, take the <strong>entire</strong> <code class="idl_line">UAVToolkit-build</code> folder and place it into ENVI's extensions folder. Here are the potential locations that you</p>
+<p>For users that want to use the UAV Toolkit as an ENVI extension, you will need to run the <code class="idl_line">build_uav_toolkit.pro</code> file in the primary directory of the repository. Once this completes, take the <strong>entire</strong> <code class="idl_line">UAVToolkit-build</code> folder and place it into ENVI’s extensions folder. Here are the potential locations that you</p>
 <ul>
 <li><p>For ENVI 5.5 and admin rights the directory for Windows is <strong>C:\Program Files\Harris\ENVI55\extensions</strong></p></li>
-<li><p>If you do not have admin rights then you can find the local user directory in ENVI's preferences under:</p>
+<li><p>If you do not have admin rights then you can find the local user directory in ENVI’s preferences under:</p>
 <p><strong>File -&gt; Preferences -&gt; Directories -&gt; Extensions Directory</strong></p>
-<p>Once you place the file in ENVI's extension folder you <strong>must restart ENVI</strong> before you will see them appear.</p></li>
+<p>Once you place the file in ENVI’s extension folder you <strong>must restart ENVI</strong> before you will see them appear.</p></li>
 </ul>
 <p><strong>Note the location that you installed the SAVE files to. If you get a later version of this code, then you will need to update or remove these files for access to new features.</strong></p>
 <p>Note: if you are an experienced ENVI + IDL user, you may be wondering why the instructions are to place the ENVI Tasks in the extensions folder (they usually go in the custom_code directory). The reason that this works is because, when the buttons are added to ENVI, I search for and open all tasks in the extensions_folder meaning that you only have to place the UAV toolkit in one location instead of two which makes the installation process easier.</p>
@@ -183,7 +183,7 @@
 </div>
 <hr />
 <h2 id="usage">Usage</h2>
-<p>To take advantage of the UAV toolkit, you just need to add the source code for this repository to IDL's search path and include the following in and routines that you want to use the band alignment tasks for:</p>
+<p>To take advantage of the UAV toolkit, you just need to add the source code for this repository to IDL’s search path and include the following in and routines that you want to use the band alignment tasks for:</p>
 <pre class="idl_code_block">
 <font class="idl_comment">;set IDL's compile options</font>
 <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/COMPILE_OPT.html" target="_blank"><font class="idl_control idl_tt" idl_tt="Change default rules for compiling routines.">compile_opt</font></a> idl2
@@ -194,14 +194,14 @@ e = <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/ENVI.ht
 <font class="idl_comment">;run the UAV Toolkit routine</font>
 <font class="idl_lib_pro ">uav_toolkit</font>
 </pre>
-<p>Including <code class="idl_line"><font class="idl_lib_pro ">uav_toolkit</font></code> ensures that the tasks that ship as a part of this repository are found by ENVI without needing to install them in ENVI's custom code directory.</p>
+<p>Including <code class="idl_line"><font class="idl_lib_pro ">uav_toolkit</font></code> ensures that the tasks that ship as a part of this repository are found by ENVI without needing to install them in ENVI’s custom code directory.</p>
 <p>Below you can find several examples for how you can use the different tasks in the UAV Toolkit to process different UAV multispectral datasets, but first a few notes on the tools.</p>
 <div id="idl-package-md-file-head_7">
 <a class="anchor_sub" name="idl-package-md-file-head_7"></a>
 </div>
 <h3 id="running-the-examples-below">Running the Examples Below</h3>
 <p>To run the examples below, the easiest method is to create a new PRO file in the IDL Workbench. To do this, simply:</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li><p>Click on the <strong>New Pro</strong> icon the the workbench</p></li>
 <li><p>Copy the example code to the window</p></li>
 <li><p>Add and <code class="idl_line">end</code> statement as the <strong>last</strong> line in the file</p></li>
@@ -214,8 +214,8 @@ e = <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/ENVI.ht
 <h3 id="notes">Notes</h3>
 <ul>
 <li><p><strong>Calibration</strong>:</p>
-<p>If you have reflectance panels, then these images will need to be separated from the main flight images. To work with the UAV Toolkit, you will need to place all reflectance panels in a folder called &quot;reflectance_panels&quot; in your data directory. This makes sure that these scenes can't be chosen for generating reference tie points. To have the reflectance panels be applied to convert the scenes to reflectance, then you will need to set the <code class="idl_line">CO_CALIBRATION</code> parameters to for the <code class="idl_line">UAVBandAlignment</code> task. This will correct for any differences in exposure time, ISO sensitivity to light, and perform the calibration step if the panels are present.</p>
-<p>When using reflectance panels, you will also need to specify the percent reflectance for the panel surface (i.e. 70%). To do this, you can use the <code class="idl_line">PANEL_REFLECTANCE</code> task parameter to specify a 0 to 100 floating point value for this.</p></li>
+<p>If you have reflectance panels, then these images will need to be separated from the main flight images. To work with the UAV Toolkit, you will need to place all reflectance panels in a folder called “reflectance_panels” in your data directory. This makes sure that these scenes can’t be chosen for generating reference tie points. To have the reflectance panels be applied to convert the scenes to reflectance, then you will need to set the <code class="idl_line">CO_CALIBRATION</code> parameters to for the <code class="idl_line">UAVBandAlignment</code> task. This will correct for any differences in exposure time, ISO sensitivity to light, and perform the calibration step if the panels are present.</p>
+<p>When using reflectance panels, you will also need to specify the percent reflectance for the panel surface (i.e. 70%). To do this, you can use the <code class="idl_line">PANEL_REFLECTANCE</code> task parameter to specify a 0 to 100 floating point value for this.</p></li>
 <li><p>The algorithm may have a harder time finding reference tie points for the Parrot Sequoia because the multispectral sensor has a fisheye lens, which makes the geometry more complicated. The tools shown below have worked great on sample datasets, but that may not apply to all collections. It should, but it is just worth setting expectations a bit.</p></li>
 </ul>
 <div id="idl-package-md-file-head_9">
@@ -223,7 +223,7 @@ e = <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/ENVI.ht
 </div>
 <h3 id="generic-sensor">Generic Sensor</h3>
 <p>In order to process generic sensors with the UAV Toolkit, you will need datasets that consist of multipage TIFF or contain a single band per separate image file. Each band should have:</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li><p>Similar data range and data type.</p></li>
 <li><p>Same image dimensions</p></li>
 </ol>
@@ -236,7 +236,7 @@ e = <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/ENVI.ht
 </ul>
 <p>And the file identifiers look like:</p>
 <ul>
-<li><code class="idl_line">['_1.tif', '_2.tif', '_3.tif', '_4.tif']</code></li>
+<li><code class="idl_line">[’_1.tif’, ’_2.tif’, ’_3.tif’, ’_4.tif’]</code></li>
 </ul>
 <p>This groups the images above into a single image. If we want to then generate and apply reference tie points for this generic group then we can simply do the following in IDL:</p>
 <pre class="idl_code_block">
@@ -304,7 +304,7 @@ redEdgeTask.<font class="idl_prop">FLIGHTDIR</font> = flightDir
 redEdgeTask.<font class="idl_lib_pro ">execute</font>
 </pre>
 <p>Where <code class="idl_line">FLIGHTDIR</code> is the folder that <em>contains</em> the RedEdge data. In other words, <code class="idl_line">FLIGHTDIR</code> should contain the folders 000 and 001 as collected by the sensor. These folders must all be from the same sensor and be at approximately the same height off of the ground for the reference tie points to be valid.</p>
-<p>If you have reflectance panel images in each data folder, then create a subdirectory called &quot;reflectance_panels&quot; and place them in there. These files will be excluded from processing and only used to calibrate the data.</p>
+<p>If you have reflectance panel images in each data folder, then create a subdirectory called “reflectance_panels” and place them in there. These files will be excluded from processing and only used to calibrate the data.</p>
 <p>You can also use the ENVITask <code class="idl_line">UAVBandAlignment</code> directly to process a single folder of data using:</p>
 <pre class="idl_code_block">
 <font class="idl_comment">;set IDL's compile options</font>
@@ -515,11 +515,11 @@ alignTask.<font class="idl_lib_pro ">execute</font>
 </ul></li>
 <li><a href="./src/generate_gps_file.html#">File 5: generate_gps_file.pro</a>
 <ul>
-<li><a href="./src/generate_gps_file.html#generate_gps_file-head_2">generate_gps_file</a></li>
+<li><a href="./src/generate_gps_file.html#generate_gps_file-head_1">generate_gps_file</a></li>
 </ul></li>
 <li><a href="./src/generate_cam_file.html#">File 6: generate_cam_file.pro</a>
 <ul>
-<li><a href="./src/generate_cam_file.html#generate_cam_file-head_2">generate_cam_file</a></li>
+<li><a href="./src/generate_cam_file.html#generate_cam_file-head_1">generate_cam_file</a></li>
 </ul></li>
 <li><a href="./custom_code/batchTasks/uavbatchrededge.html#">File 7: uavbatchrededge.pro</a>
 <ul>
@@ -530,9 +530,8 @@ alignTask.<font class="idl_lib_pro ">execute</font>
 <li><a href="./custom_code/bandAlignment/uavbandalignment.html#uavbandalignment-head_0">uavBandAlignment</a></li>
 </ul></li>
 <li><a href="./custom_code/README.html#">File 9: UAVToolkit Directory custom_code</a></li>
-<li><a href=".//build_uav_toolkit.html#">File 10: build_uav_toolkit.pro</a></li>
-<li><a href=".//CONTRIBUTING.html#">File 11: Contributing</a></li>
-<li><a href=".//CHANGELOG.html#">File 12: Changelog</a>
+<li><a href=".//CONTRIBUTING.html#">File 10: Contributing</a></li>
+<li><a href=".//CHANGELOG.html#">File 11: Changelog</a>
 <ul>
 <li><a href=".//CHANGELOG.html#idl-package-md-file-head_0">Version 2.2</a></li>
 <li><a href=".//CHANGELOG.html#idl-package-md-file-head_1">Version 2.1</a></li>

@@ -1,7 +1,7 @@
 ;h+
 ; (c) 2018 Harris Geospatial Solutions, Inc.
 ; 
-; Licensed under MIT, see LICENSE.txt for more details.
+; Licensed under MIT. See LICENSE.txt for additional details and information.
 ;h-
 
 
@@ -11,7 +11,7 @@
 ;    
 ;
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 pro uav_toolkit_extensions_init
   compile_opt idl2, hidden
@@ -36,7 +36,7 @@ end
 ;
 ;
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 pro uav_toolkit_extension, event
   compile_opt idl2, hidden
@@ -93,7 +93,7 @@ end
 ;       Set this keyword to open up the help contents for the UAV Toolkit. Note that if you move the .sav file
 ;       then IDL may not be able to open up the help contents.
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 pro uav_toolkit, HELP = help
   compile_opt idl2, hidden

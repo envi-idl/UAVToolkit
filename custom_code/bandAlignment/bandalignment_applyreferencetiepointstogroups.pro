@@ -1,7 +1,7 @@
 ;h+
 ; (c) 2018 Harris Geospatial Solutions, Inc.
 ; 
-; Licensed under MIT, see LICENSE.txt for more details.
+; Licensed under MIT. See LICENSE.txt for additional details and information.
 ;h-
 
 ;+
@@ -10,7 +10,7 @@
 ;  Contains the code used for performing the band-band registration on all of the
 ;  image groups that you want to process.
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 
 
@@ -151,7 +151,7 @@ end
 ;
 ;
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 pro BandAlignment_ApplyReferenceTiePointsToGroup_hydrate_parameters, parameters
   compile_opt idl2
@@ -202,7 +202,7 @@ end
 ;
 ;
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 pro BandAlignment_ApplyReferenceTiePointsToGroup, group, groupName, parameters
   compile_opt idl2, hidden
@@ -457,7 +457,7 @@ end
 ;
 ;
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 pro BandAlignment_ApplyReferenceTiePointsToGroups, groups, parameters, DEBUG = debug
   compile_opt idl2, hidden

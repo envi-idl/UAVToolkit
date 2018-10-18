@@ -1,7 +1,7 @@
 ;h+
 ; (c) 2018 Harris Geospatial Solutions, Inc.
 ; 
-; Licensed under MIT, see LICENSE.txt for more details.
+; Licensed under MIT. See LICENSE.txt for additional details and information.
 ;h-
 
 ;+
@@ -18,7 +18,7 @@
 ;  source program continues running if there are issues.
 ;  
 ;  
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 
 ;+
@@ -40,7 +40,7 @@
 ;
 ;
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 function extract_metadata, item, keys
   compile_opt idl2
@@ -90,7 +90,7 @@ end
 ;    R: out, optional, type=array
 ;      The 2D array that contains the equation sqrt((x-cx)^2  + (y-cy)^2)
 ;
-; :Author: Zachary Norman - GitHub:znorman-harris
+; :Author: Zachary Norman - GitHub:[znorman-harris](https://github.com/znorman-harris)
 ;-
 function vmap, coeff, dims, CENTER = center, X = x, Y = y, R = r
   compile_opt idl2
@@ -148,7 +148,7 @@ end
 ;      read it in multiple times.
 ;
 ;
-; :Author: Zachary Norman - GitHub:znorman-harris
+; :Author: Zachary Norman - GitHub:[znorman-harris](https://github.com/znorman-harris)
 ;-
 function rededge_to_radiance, file, DAT = dat, VERBOSE = verbose
   compile_opt idl2

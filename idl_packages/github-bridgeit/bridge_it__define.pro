@@ -61,7 +61,7 @@
 ;
 ;
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;
 ;-
 
@@ -94,7 +94,7 @@
 ;       This optional keyword specifies the prefix which is used to differentiate between arguments and
 ;       keywords when it comes time to parse the arguments and keyword that will be passed into a routine.
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;
 ;-
 function bridge_it::Init, nbridges, INIT = init, MSG = msg, LOGDIR = logdir, NREFRESH = nrefresh, PREFIX = prefix
@@ -186,7 +186,7 @@ end
 ;       This argument is the information that you want the BRIDGE_IT object to
 ;       associate with the `keyname` argument.
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 pro bridge_it::AddResults, keyname, results
   compile_opt idl2, hidden
@@ -215,7 +215,7 @@ end
 ;       This argument represents the userdata stored in an IDL_IDLBridge object. The variable's
 ;       type is user defined. For this case, they will all be hashes.
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;
 ;-
 pro bridge_it_callback, status, error, oBridge, userdata
@@ -360,7 +360,7 @@ end
 ;    abort processing and then be destroyed. This method is called automatically when
 ;    the bridge_it object is destroyed
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;
 ;-
 pro bridge_it::BurnBridges
@@ -377,7 +377,7 @@ end
 ; :Description:
 ;    Object method to destroy the bridge_it object and kill each child process
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;
 ;-
 pro bridge_it::Cleanup
@@ -431,7 +431,7 @@ end
 ; :Description:
 ;    Simple procedure to to clear the results stored by the BRIDGE_IT object
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;
 ;-
 pro bridge_it::ClearResults
@@ -446,7 +446,7 @@ end
 ;    This object method will allow you to get references to the child IDL_IDLBridge
 ;    processes so that you may manipulate them as you see fit.
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;
 ;-
 function bridge_it::GetBridges
@@ -461,7 +461,7 @@ end
 ;     This message is the prefix for when the bridge finishes its processing
 ;     and the time gets deisplayed.
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;
 ;-
 function bridge_it::GetMessage
@@ -474,7 +474,7 @@ end
 ;    This object method allows you to return the number of processes that
 ;    each child process has executed.
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;
 ;-
 function bridge_it::GetNruns
@@ -488,7 +488,7 @@ end
 ;    This object method lets you get the prefix for how keywords are to
 ;    be distinguished from arguments in the BRIDGE_IT object.
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;
 ;-
 function bridge_it::GetPrefix
@@ -507,7 +507,7 @@ end
 ;    BRIDGE_IT object. If you do this, then there will be keys called START_TIME and
 ;    RUN_TIME in the hashes containing the results for each child process.
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;
 ;-
 function bridge_it::GetResults
@@ -558,7 +558,7 @@ end
 ;       results hash for the bridge_it object.
 ;
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ; 
 ;-
 pro bridge_it::Run, routine,$
@@ -635,7 +635,7 @@ end
 ;       to return from the procedure that was just executed. These will be contained in the 
 ;       results hash for the bridge_it object.
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;
 ;-
 function bridge_it::Run, routine, $
@@ -687,7 +687,7 @@ end
 ;      rehydrated version of the variable will use lists instead of arrays where
 ;      applicable.
 ;
-; :Author: Zachary Norman - GitHub : znorman-harris
+; :Author: Zachary Norman - GitHub : [znorman-harris](https://github.com/znorman-harris)
 ;-
 pro bridge_it::SetVar, varName, var, LIST = list, POST_EXECUTE = post_execute
   compile_opt idl2
@@ -811,7 +811,7 @@ end
 ;    TIME: in, optional, type=boolean
 ;      Set this keyword to have the process be timed.
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ; 
 ;-
 pro bridge_it::ExportRaster, raster, outFile, format, DATA_IGNORE_VALUE = data_ignore_value, TIME = time
@@ -925,7 +925,7 @@ end
 ;      endelse
 ;    endforeach
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ; 
 ;-
 pro bridge_it::RunENVITask, task, TIME = time, _UVALUE = uvalue
@@ -994,7 +994,7 @@ end
 ;       Setting this keyword will have the IDL_IDLBridge child process use the callback procedures
 ;       to print out the time that it took to run the child process.
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;
 ;-
 pro bridge_it::RunRoutine, routine, _extra = args, $
@@ -1255,7 +1255,7 @@ end
 ; :Description:
 ;    Method to force the main IDL procedure to halt until each bridge is idle again
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;
 ;-
 pro bridge_it::Wait

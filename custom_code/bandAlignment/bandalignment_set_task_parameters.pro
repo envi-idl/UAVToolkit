@@ -1,7 +1,7 @@
 ;h+
 ; (c) 2018 Harris Geospatial Solutions, Inc.
 ; 
-; Licensed under MIT, see LICENSE.txt for more details.
+; Licensed under MIT. See LICENSE.txt for additional details and information.
 ;h-
 
 ;+
@@ -13,7 +13,7 @@
 ;  Simple routine that sets task parameters from the input parameters. Just convenience
 ;  in case we need to set parameters in multiple places.
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 pro bandalignment_set_rededge_task_parameters, task, parameters, group
   compile_opt idl2, hidden

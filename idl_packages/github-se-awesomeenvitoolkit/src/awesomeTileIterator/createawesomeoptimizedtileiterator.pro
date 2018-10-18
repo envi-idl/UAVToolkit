@@ -42,7 +42,7 @@
 ;      List that specifies the [xmin, ymin, xmax, ymax] of valid pixel
 ;      coordinates for the data. Not meant for general use.
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 pro createAwesomeOptimizedTileIterator,$
   INPUT_RASTER = input_raster,$

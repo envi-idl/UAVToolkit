@@ -1,12 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <title></title>
-  <style type="text/css">code{white-space: pre;}</style>
-  <link rel="stylesheet" href="./../css/haroopad-markdown.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="generator" content="pandoc" />
+<title></title>
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet" href="./../css/haroopad-markdown.css" type="text/css" />
 <!--  for adding syntax colorizer --> 
 <link rel="stylesheet" href="./../js/highlight/styles/github.css"> 
 <script src="./../js/highlight/highlight.pack.js"></script>
@@ -28,7 +28,6 @@
 <!-- load colors for IDL syntax and anchor fix with fixed header-->
 <style type="text/css">
 	@import url("./../css/bootstrap.min.css");
-	@import url("./../css/font-awesome.min.css");
 	@import url("./../css/cosmos.bootstrap.min.css");
 	@import url("./../css/idl-styles.css");
 	@import url("./../css/anchor-fix.css");
@@ -42,18 +41,13 @@
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="15">
 
 <div id="header" class="navbar navbar-default navbar-fixed-top">
-    <div class="navbar-header">
-        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
-            <i class="icon-reorder"></i>
-        </button>
-    </div>
     <nav class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
             <li>
-                <a href="./../index.html#"><i class="fa fa-home"></i> Home</a>
+                <a href="./../index.html#"><img class="header-image" src="./../images/baseline_home_white_48dp.png"></a>
             </li>
             <li class="dropdown">
-                <a style="top:3px" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-book">  Contents</i></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img class="header-image" src="./../images/baseline_menu_white_48dp.png"></i></a>
                 <ul class="dropdown-menu">
 <li><a href="./..//uav_toolkit.html#">uav_toolkit.pro</a></li>
 <li><a href="./../src/unjoin_rededge_datadir.html#">unjoin_rededge_datadir.pro</a></li>
@@ -64,36 +58,42 @@
 <li><a href="./../custom_code/batchTasks/uavbatchrededge.html#">uavbatchrededge.pro</a></li>
 <li><a href="./../custom_code/bandAlignment/uavbandalignment.html#">uavbandalignment.pro</a></li>
 <li><a href="./../custom_code/README.html#">UAVToolkit Directory custom_code</a></li>
-<li><a href="./..//build_uav_toolkit.html#">build_uav_toolkit.pro</a></li>
 <li><a href="./..//CONTRIBUTING.html#">Contributing</a></li>
 <li><a href="./..//CHANGELOG.html#">Changelog</a></li>
                     <!--<li><a href="#">Chapter 1</a></li>-->
                 </ul>
             </li>
         </ul>
-      <a class="navbar-brand" href="#">
-         UAVToolkit: generate_cam_file.pro
-      </a>
-      <div class="pull-right">
-        <a href="https://www.harrisgeospatial.com" target="_blank"><img src="./../images/Harris_wR_White-RedA.png" style="height:41px; width:155px; position:relative; top:5px; right:20px"></img></a>
-      </div>
-      <a class="navbar-brand pull-right" href="./..//index/index.html" style="position:relative;right:30px;" target="_blank">
-        Search
-      </a>
+        <a class="navbar-brand" href="#">
+            UAVToolkit: generate_cam_file.pro
+        </a>
+
+        <ul class="nav navbar-nav pull-right">
+            <li>
+                <a class="navbar-brand" href="./..//index/index.html" style="position:relative;right:30px;" target="_blank">
+                    <img class="header-image" src="./../images/baseline_search_white_48dp.png">
+                </a>
+            </li>
+            <li>
+                <div>
+                    <a href="https://www.harrisgeospatial.com" target="_blank"><img src="./../images/Harris_wR_White-RedA.png" style="height: 41px; position:relative; top:5px; right:20px"></img></a>
+                </div>
+            </li>
+        </ul>
     </nav>
 </div>
 <div style="padding-top:60px;"> 
 <div class="container">
- <row>
-   <nav class="col-xs-3 bs-docs-sidebar" id="myScrollspy">
+  <row>
+    <nav class="col-xs-3 bs-docs-sidebar" id="myScrollspy">
       <ul id="sidebar" class="nav nav-stacked fixed sidebar-overflow">
         <li><a href="#" class="side_tt", side_tt="generate_cam_file.pro">generate_cam_file.pro</a></li>
         <li>
-          <a href="#generate_cam_file-head_2" class="side_tt", side_tt="generate_cam_file">generate_cam_file</a>
+          <a href="#generate_cam_file-head_1" class="side_tt", side_tt="generate_cam_file">generate_cam_file</a>
             <ul class="nav nav-stacked">
-              <li><a href="#generate_cam_file-head_3" class="side_tt", side_tt="Syntax">Syntax</a></li>
-              <li><a href="#generate_cam_file-head_4" class="side_tt", side_tt="Keywords">Keywords</a></li>
-              <li><a href="#generate_cam_file-head_8" class="side_tt", side_tt="Author">Author</a></li>
+              <li><a href="#generate_cam_file-head_2" class="side_tt", side_tt="Syntax">Syntax</a></li>
+              <li><a href="#generate_cam_file-head_3" class="side_tt", side_tt="Keywords">Keywords</a></li>
+              <li><a href="#generate_cam_file-head_7" class="side_tt", side_tt="Author">Author</a></li>
             </ul>
         <li>
       </ul>
@@ -115,47 +115,45 @@
 inputdir = <font class="idl_str">&#39;C:\Users\username\images&#39;</font>
 outputdir = <font class="idl_str">&#39;C:\Users\username\images_out&#39;</font>
 <font class="idl_lib_pro ">generate_cam_file</font>, INPUTDIR = inputdir, OUTPUTDIR = outputdir
+
+### <font class="idl_lib_pro ">Example</font> Two
+
+This second example illustrates how to create a CAM file <font class="idl_control ">and</font> <font class="idl_struct_tag">have it be generated in inputdir</font>:
+
+inputdir = <font class="idl_str">&#39;C:\Users\username\images&#39;</font>
+<font class="idl_lib_pro ">generate_cam_file</font>, INPUTDIR = inputdir
 </pre>
 <div id="generate_cam_file-head_1">
 <a class="anchor_sub" name="generate_cam_file-head_1"></a>
 </div>
-<h3 id="example-two">Example Two</h3>
-<p>This second example illustrates how to create a CAM file and have it be generated in inputdir:</p>
-<pre class="idl_code_block">
-inputdir = <font class="idl_str">&#39;C:\Users\username\images&#39;</font>
-<font class="idl_lib_pro ">generate_cam_file</font>, INPUTDIR = inputdir
-</pre>
+<hr />
+<h2 id="generate_cam_file">generate_cam_file</h2>
 <div id="generate_cam_file-head_2">
 <a class="anchor_sub" name="generate_cam_file-head_2"></a>
 </div>
-<hr />
-<h2 id="generate_cam_file">generate_cam_file</h2>
+<h3 id="syntax">Syntax</h3>
+<pre class="no-copy-button">generate_cam_file, <a href="#keywords1-0">INPUTDIR</a> = string, [ <a href="#keywords1-1">EXTENSION</a> = string ], [ <a href="#keywords1-2">OUTPUTDIR</a> = string ]</pre>
 <div id="generate_cam_file-head_3">
 <a class="anchor_sub" name="generate_cam_file-head_3"></a>
 </div>
-<h3 id="syntax">Syntax</h3>
-<pre class="no-copy-button">generate_cam_file, <a href="#keywords1-0">INPUTDIR</a> = string, [ <a href="#keywords1-1">EXTENSION</a> = string ], [ <a href="#keywords1-2">OUTPUTDIR</a> = string ]</pre>
-<div id="generate_cam_file-head_4">
-<a class="anchor_sub" name="generate_cam_file-head_4"></a>
-</div>
 <h3 id="keywords">Keywords</h3>
 <p><a class="anchor_sub" name="keywords1-0"></a></p>
-<p><a class="anchor_sub" name="generate_cam_file-head_5"></a></p>
+<p><a class="anchor_sub" name="generate_cam_file-head_4"></a></p>
 <h4 id="inputdir">INPUTDIR</h4>
-<p><strong>in, required, type=string</strong></p>
+<p><font style="font-weight:bold;">in, required, type=string</font></p>
 <p>Directory to be searched for images to get sensor information from.</p>
 <p><a class="anchor_sub" name="keywords1-1"></a></p>
-<p><a class="anchor_sub" name="generate_cam_file-head_6"></a></p>
+<p><a class="anchor_sub" name="generate_cam_file-head_5"></a></p>
 <h4 id="extension">EXTENSION</h4>
-<p><strong>in, optional, type=string, default='tif'</strong></p>
-<p>File extension that will match the files found in <a href="#keywords1-0">INPUTDIR</a>. The default value is 'tif' and should be specified if another file extension is used.</p>
+<p><font style="font-weight:bold;">in, optional, type=string, default=‘tif’</font></p>
+<p>File extension that will match the files found in <a href="#keywords1-0">INPUTDIR</a>. The default value is ‘tif’ and should be specified if another file extension is used.</p>
 <p><a class="anchor_sub" name="keywords1-2"></a></p>
-<p><a class="anchor_sub" name="generate_cam_file-head_7"></a></p>
+<p><a class="anchor_sub" name="generate_cam_file-head_6"></a></p>
 <h4 id="outputdir">OUTPUTDIR</h4>
-<p><strong>in, optional, type=string, default=<a href="#keywords1-0">INPUTDIR</a></strong></p>
+<p><font style="font-weight:bold;">in, optional, type=string, default=<a href="#keywords1-0">INPUTDIR</a></font></p>
 <p>Set this keyword to the location where you would like the output CAM file to be written to. If you set this keyword and the directory does not exist, then it will be created.</p>
-<div id="generate_cam_file-head_8">
-<a class="anchor_sub" name="generate_cam_file-head_8"></a>
+<div id="generate_cam_file-head_7">
+<a class="anchor_sub" name="generate_cam_file-head_7"></a>
 </div>
 <h3 id="author">Author</h3>
 <p>Zachary Norman</p>

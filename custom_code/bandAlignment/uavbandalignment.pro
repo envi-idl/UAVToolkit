@@ -1,7 +1,7 @@
 ;h+
 ; (c) 2018 Harris Geospatial Solutions, Inc.
 ; 
-; Licensed under MIT, see LICENSE.txt for more details.
+; Licensed under MIT. See LICENSE.txt for additional details and information.
 ;h-
 
 ;+
@@ -94,7 +94,7 @@
 ;    SENSOR: in, required, type=string, choices='rededge','sequoia','generic'
 ;      The type of sensor that will be processed. Default is generic unless otherwise specified.
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 pro uavBandAlignment, $
   APPLY_REFERENCE_TIEPOINTS = apply_reference_tiepoints,$

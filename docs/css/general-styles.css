@@ -11,6 +11,11 @@
 }
 
 
+/* header bar images */
+img.header-image  {
+    height: 25px;
+}
+
 /* buffer to make some of the ehaders more readable
 h4 {
    padding-top: 20px; 

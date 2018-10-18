@@ -33,7 +33,7 @@
 ;      if you are developing a task and want to use the newest 
 ;      content on disk. 
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 function awesomeENVITask, taskName,$
   DEBUG = debug,$

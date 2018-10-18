@@ -1,12 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <title></title>
-  <style type="text/css">code{white-space: pre;}</style>
-  <link rel="stylesheet" href="./css/haroopad-markdown.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="generator" content="pandoc" />
+<title></title>
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet" href="./css/haroopad-markdown.css" type="text/css" />
 <!--  for adding syntax colorizer --> 
 <link rel="stylesheet" href="./js/highlight/styles/github.css"> 
 <script src="./js/highlight/highlight.pack.js"></script>
@@ -28,7 +28,6 @@
 <!-- load colors for IDL syntax and anchor fix with fixed header-->
 <style type="text/css">
 	@import url("./css/bootstrap.min.css");
-	@import url("./css/font-awesome.min.css");
 	@import url("./css/cosmos.bootstrap.min.css");
 	@import url("./css/idl-styles.css");
 	@import url("./css/anchor-fix.css");
@@ -42,18 +41,13 @@
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="15">
 
 <div id="header" class="navbar navbar-default navbar-fixed-top">
-    <div class="navbar-header">
-        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
-            <i class="icon-reorder"></i>
-        </button>
-    </div>
     <nav class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
             <li>
-                <a href="./index.html#"><i class="fa fa-home"></i> Home</a>
+                <a href="./index.html#"><img class="header-image" src="./images/baseline_home_white_48dp.png"></a>
             </li>
             <li class="dropdown">
-                <a style="top:3px" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-book">  Contents</i></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img class="header-image" src="./images/baseline_menu_white_48dp.png"></i></a>
                 <ul class="dropdown-menu">
 <li><a href=".//uav_toolkit.html#">uav_toolkit.pro</a></li>
 <li><a href="./src/unjoin_rededge_datadir.html#">unjoin_rededge_datadir.pro</a></li>
@@ -64,28 +58,34 @@
 <li><a href="./custom_code/batchTasks/uavbatchrededge.html#">uavbatchrededge.pro</a></li>
 <li><a href="./custom_code/bandAlignment/uavbandalignment.html#">uavbandalignment.pro</a></li>
 <li><a href="./custom_code/README.html#">UAVToolkit Directory custom_code</a></li>
-<li><a href=".//build_uav_toolkit.html#">build_uav_toolkit.pro</a></li>
 <li><a href=".//CONTRIBUTING.html#">Contributing</a></li>
 <li><a href=".//CHANGELOG.html#">Changelog</a></li>
                     <!--<li><a href="#">Chapter 1</a></li>-->
                 </ul>
             </li>
         </ul>
-      <a class="navbar-brand" href="#">
-         UAVToolkit: uav_toolkit.pro
-      </a>
-      <div class="pull-right">
-        <a href="https://www.harrisgeospatial.com" target="_blank"><img src="./images/Harris_wR_White-RedA.png" style="height:41px; width:155px; position:relative; top:5px; right:20px"></img></a>
-      </div>
-      <a class="navbar-brand pull-right" href=".//index/index.html" style="position:relative;right:30px;" target="_blank">
-        Search
-      </a>
+        <a class="navbar-brand" href="#">
+            UAVToolkit: uav_toolkit.pro
+        </a>
+
+        <ul class="nav navbar-nav pull-right">
+            <li>
+                <a class="navbar-brand" href=".//index/index.html" style="position:relative;right:30px;" target="_blank">
+                    <img class="header-image" src="./images/baseline_search_white_48dp.png">
+                </a>
+            </li>
+            <li>
+                <div>
+                    <a href="https://www.harrisgeospatial.com" target="_blank"><img src="./images/Harris_wR_White-RedA.png" style="height: 41px; position:relative; top:5px; right:20px"></img></a>
+                </div>
+            </li>
+        </ul>
     </nav>
 </div>
 <div style="padding-top:60px;"> 
 <div class="container">
- <row>
-   <nav class="col-xs-3 bs-docs-sidebar" id="myScrollspy">
+  <row>
+    <nav class="col-xs-3 bs-docs-sidebar" id="myScrollspy">
       <ul id="sidebar" class="nav nav-stacked fixed sidebar-overflow">
         <li><a href="#" class="side_tt", side_tt="uav_toolkit.pro">uav_toolkit.pro</a></li>
         <li>
@@ -107,10 +107,9 @@
           <a href="#uav_toolkit-head_8" class="side_tt", side_tt="uav_toolkit">uav_toolkit</a>
             <ul class="nav nav-stacked">
               <li><a href="#uav_toolkit-head_9" class="side_tt", side_tt="Example One">Example One</a></li>
-              <li><a href="#uav_toolkit-head_10" class="side_tt", side_tt="Example Two">Example Two</a></li>
-              <li><a href="#uav_toolkit-head_11" class="side_tt", side_tt="Syntax">Syntax</a></li>
-              <li><a href="#uav_toolkit-head_12" class="side_tt", side_tt="Keywords">Keywords</a></li>
-              <li><a href="#uav_toolkit-head_14" class="side_tt", side_tt="Author">Author</a></li>
+              <li><a href="#uav_toolkit-head_10" class="side_tt", side_tt="Syntax">Syntax</a></li>
+              <li><a href="#uav_toolkit-head_11" class="side_tt", side_tt="Keywords">Keywords</a></li>
+              <li><a href="#uav_toolkit-head_13" class="side_tt", side_tt="Author">Author</a></li>
             </ul>
         <li>
       </ul>
@@ -125,7 +124,7 @@
 <a class="anchor_sub" name="uav_toolkit-head_0"></a>
 </div>
 <h2 id="uav_toolkit_extensions_init">uav_toolkit_extensions_init</h2>
-<p>Procedure that adds the buttons to ENVI's toolbox.</p>
+<p>Procedure that adds the buttons to ENVI’s toolbox.</p>
 <div id="uav_toolkit-head_1">
 <a class="anchor_sub" name="uav_toolkit-head_1"></a>
 </div>
@@ -135,7 +134,7 @@
 <a class="anchor_sub" name="uav_toolkit-head_2"></a>
 </div>
 <h3 id="author">Author</h3>
-<p>Zachary Norman - GitHub: znorman-harris</p>
+<p>Zachary Norman - GitHub: <a href="https://github.com/znorman-harris">znorman-harris</a></p>
 <div id="uav_toolkit-head_3">
 <a class="anchor_sub" name="uav_toolkit-head_3"></a>
 </div>
@@ -154,55 +153,53 @@
 <p><a class="anchor_sub" name="params1-0"></a></p>
 <p><a class="anchor_sub" name="uav_toolkit-head_6"></a></p>
 <h4 id="event">EVENT</h4>
-<p><strong>in, required, type=structure</strong></p>
+<p><font style="font-weight:bold;">in, required, type=structure</font></p>
 <p>The event that is passed on when a user clicks on the button in the ENVI toolbox.</p>
 <div id="uav_toolkit-head_7">
 <a class="anchor_sub" name="uav_toolkit-head_7"></a>
 </div>
 <h3 id="author-1">Author</h3>
-<p>Zachary Norman - GitHub: znorman-harris</p>
+<p>Zachary Norman - GitHub: <a href="https://github.com/znorman-harris">znorman-harris</a></p>
 <div id="uav_toolkit-head_8">
 <a class="anchor_sub" name="uav_toolkit-head_8"></a>
 </div>
 <hr />
 <h2 id="uav_toolkit">uav_toolkit</h2>
-<p>The purpose of this procedure is to to used to restore the UAV Toolkit as a .sav file into IDL's session and add to let ENVI know about the tasks that are a part of the UAV Toolkit (even if we are just using PRO code).</p>
+<p>The purpose of this procedure is to to used to restore the UAV Toolkit as a .sav file into IDL’s session and add to let ENVI know about the tasks that are a part of the UAV Toolkit (even if we are just using PRO code).</p>
 <p>It also allows for a simple interface to open the help contents regarding the UAV Toolkit.</p>
 <div id="uav_toolkit-head_9">
 <a class="anchor_sub" name="uav_toolkit-head_9"></a>
 </div>
 <h3 id="example-one">Example One</h3>
-<p>Instead of needing to restore the UAV Toolkit .sav file every time in your code, you can just add the source to IDL's search path and do the following in your IDL code:</p>
+<p>Instead of needing to restore the UAV Toolkit .sav file every time in your code, you can just add the source to IDL’s search path and do the following in your IDL code:</p>
 <pre class="idl_code_block">
 <font class="idl_lib_pro ">uav_toolkit</font>
+
+### <font class="idl_lib_pro ">Example</font> Two
+
+<font class="idl_lib_pro ">To</font> <font class="idl_lib_pro ">open</font> <font class="idl_lib_pro ">the</font> <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/HELP.html" target="_blank"><font class="idl_sys_pro idl_tt" idl_tt="Provides information about the current IDL session.">help</font></a> <font class="idl_lib_pro ">using</font> <font class="idl_lib_pro ">this</font> <font class="idl_lib_pro ">routine</font>, just <font class="idl_control ">do</font> <font class="idl_lib_pro ">the</font> <font class="idl_struct_tag">following</font>:
+
+<font class="idl_lib_pro ">uav_toolkit</font>, /HELP
 </pre>
 <div id="uav_toolkit-head_10">
 <a class="anchor_sub" name="uav_toolkit-head_10"></a>
 </div>
-<h3 id="example-two">Example Two</h3>
-<p>To open the help using this routine, just do the following:</p>
-<pre class="idl_code_block">
-<font class="idl_lib_pro ">uav_toolkit</font>, /HELP
-</pre>
+<h3 id="syntax-2">Syntax</h3>
+<pre class="no-copy-button">uav_toolkit, [ <a href="#keywords2-0">/HELP</a> ]</pre>
 <div id="uav_toolkit-head_11">
 <a class="anchor_sub" name="uav_toolkit-head_11"></a>
 </div>
-<h3 id="syntax-2">Syntax</h3>
-<pre class="no-copy-button">uav_toolkit, [ <a href="#keywords2-0">/HELP</a> ]</pre>
-<div id="uav_toolkit-head_12">
-<a class="anchor_sub" name="uav_toolkit-head_12"></a>
-</div>
 <h3 id="keywords">Keywords</h3>
 <p><a class="anchor_sub" name="keywords2-0"></a></p>
-<p><a class="anchor_sub" name="uav_toolkit-head_13"></a></p>
+<p><a class="anchor_sub" name="uav_toolkit-head_12"></a></p>
 <h4 id="help">HELP</h4>
-<p><strong>in, optional, type=boolean, default=false</strong></p>
+<p><font style="font-weight:bold;">in, optional, type=boolean, default=false</font></p>
 <p>Set this keyword to open up the help contents for the UAV Toolkit. Note that if you move the .sav file then IDL may not be able to open up the help contents.</p>
-<div id="uav_toolkit-head_14">
-<a class="anchor_sub" name="uav_toolkit-head_14"></a>
+<div id="uav_toolkit-head_13">
+<a class="anchor_sub" name="uav_toolkit-head_13"></a>
 </div>
 <h3 id="author-2">Author</h3>
-<p>Zachary Norman - GitHub: znorman-harris</p>
+<p>Zachary Norman - GitHub: <a href="https://github.com/znorman-harris">znorman-harris</a></p>
 <hr />
 <p>© 2018 Harris Geospatial Solutions, Inc.</p>
 <p>Licensed under MIT. See LICENSE.txt for additional details and information.</p>

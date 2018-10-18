@@ -1,7 +1,7 @@
 ;h+
 ; (c) 2018 Harris Geospatial Solutions, Inc.
 ; 
-; Licensed under MIT, see LICENSE.txt for more details.
+; Licensed under MIT. See LICENSE.txt for additional details and information.
 ;h-
 
 ;+
@@ -36,7 +36,7 @@
 ;      If you know the spatial reference for your iamge group this can be passed
 ;      in and will be applied to the metaspectral rasters that are generated.
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 function image_groups_to_virtual_rasters, image_groups,$
   BANDORDER = bandorder,$

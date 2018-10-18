@@ -18,7 +18,7 @@
 ;    DEBUG: in, optional, type=boolean
 ;      If set, errors will be stopped on.
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 pro ENVIRaster::AwesomeExport, output_raster_uri, DATA_IGNORE_VALUE = data_ignore_value, DEBUG = debug
   compile_opt idl2, hidden

@@ -1,7 +1,7 @@
 ;h+
 ; (c) 2018 Harris Geospatial Solutions, Inc.
 ; 
-; Licensed under MIT, see LICENSE.txt for more details.
+; Licensed under MIT. See LICENSE.txt for additional details and information.
 ;h-
 
 ;+
@@ -39,7 +39,7 @@
 ;      Specifyt he fully-qualified output file that will be written to disk with the
 ;      bands registered to one another.
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 pro BandAlignment_ApplyReferenceTiePointsWithENVI,$
   INPUT_RASTER = input_raster,$

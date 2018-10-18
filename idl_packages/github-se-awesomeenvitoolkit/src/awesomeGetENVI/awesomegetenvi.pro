@@ -15,7 +15,7 @@
 ;      headless mode.
 ;
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 function awesomeGetENVI, UI = ui
   compile_opt idl2, hidden

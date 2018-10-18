@@ -38,7 +38,7 @@
 ;      it belongs in an output raster. This output keyword is only needed when `TILE_BUFFER` is set.
 ;
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 pro createAwesomeTileIterator,$
   DEBUG = debug,$

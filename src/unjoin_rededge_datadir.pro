@@ -1,7 +1,7 @@
 ;h+
 ; (c) 2018 Harris Geospatial Solutions, Inc.
 ; 
-; Licensed under MIT, see LICENSE.txt for more details.
+; Licensed under MIT. See LICENSE.txt for additional details and information.
 ;h-
 
 ;+
@@ -28,7 +28,7 @@
 ;       This input is the fully qualified path to a directory that contains MicaSense data. An error will
 ;       be thrown if the directory does not exist.
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 pro unjoin_rededge_datadir, dir
     compile_opt idl2, hidden

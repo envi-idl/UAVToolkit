@@ -1,12 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <title></title>
-  <style type="text/css">code{white-space: pre;}</style>
-  <link rel="stylesheet" href="./../../css/haroopad-markdown.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="generator" content="pandoc" />
+<title></title>
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet" href="./../../css/haroopad-markdown.css" type="text/css" />
 <!--  for adding syntax colorizer --> 
 <link rel="stylesheet" href="./../../js/highlight/styles/github.css"> 
 <script src="./../../js/highlight/highlight.pack.js"></script>
@@ -28,7 +28,6 @@
 <!-- load colors for IDL syntax and anchor fix with fixed header-->
 <style type="text/css">
 	@import url("./../../css/bootstrap.min.css");
-	@import url("./../../css/font-awesome.min.css");
 	@import url("./../../css/cosmos.bootstrap.min.css");
 	@import url("./../../css/idl-styles.css");
 	@import url("./../../css/anchor-fix.css");
@@ -42,18 +41,13 @@
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="15">
 
 <div id="header" class="navbar navbar-default navbar-fixed-top">
-    <div class="navbar-header">
-        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
-            <i class="icon-reorder"></i>
-        </button>
-    </div>
     <nav class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
             <li>
-                <a href="./../../index.html#"><i class="fa fa-home"></i> Home</a>
+                <a href="./../../index.html#"><img class="header-image" src="./../../images/baseline_home_white_48dp.png"></a>
             </li>
             <li class="dropdown">
-                <a style="top:3px" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-book">  Contents</i></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img class="header-image" src="./../../images/baseline_menu_white_48dp.png"></i></a>
                 <ul class="dropdown-menu">
 <li><a href="./../..//uav_toolkit.html#">uav_toolkit.pro</a></li>
 <li><a href="./../../src/unjoin_rededge_datadir.html#">unjoin_rededge_datadir.pro</a></li>
@@ -64,28 +58,34 @@
 <li><a href="./../../custom_code/batchTasks/uavbatchrededge.html#">uavbatchrededge.pro</a></li>
 <li><a href="./../../custom_code/bandAlignment/uavbandalignment.html#">uavbandalignment.pro</a></li>
 <li><a href="./../../custom_code/README.html#">UAVToolkit Directory custom_code</a></li>
-<li><a href="./../..//build_uav_toolkit.html#">build_uav_toolkit.pro</a></li>
 <li><a href="./../..//CONTRIBUTING.html#">Contributing</a></li>
 <li><a href="./../..//CHANGELOG.html#">Changelog</a></li>
                     <!--<li><a href="#">Chapter 1</a></li>-->
                 </ul>
             </li>
         </ul>
-      <a class="navbar-brand" href="#">
-         UAVToolkit: uavbandalignment.pro
-      </a>
-      <div class="pull-right">
-        <a href="https://www.harrisgeospatial.com" target="_blank"><img src="./../../images/Harris_wR_White-RedA.png" style="height:41px; width:155px; position:relative; top:5px; right:20px"></img></a>
-      </div>
-      <a class="navbar-brand pull-right" href="./../..//index/index.html" style="position:relative;right:30px;" target="_blank">
-        Search
-      </a>
+        <a class="navbar-brand" href="#">
+            UAVToolkit: uavbandalignment.pro
+        </a>
+
+        <ul class="nav navbar-nav pull-right">
+            <li>
+                <a class="navbar-brand" href="./../..//index/index.html" style="position:relative;right:30px;" target="_blank">
+                    <img class="header-image" src="./../../images/baseline_search_white_48dp.png">
+                </a>
+            </li>
+            <li>
+                <div>
+                    <a href="https://www.harrisgeospatial.com" target="_blank"><img src="./../../images/Harris_wR_White-RedA.png" style="height: 41px; position:relative; top:5px; right:20px"></img></a>
+                </div>
+            </li>
+        </ul>
     </nav>
 </div>
 <div style="padding-top:60px;"> 
 <div class="container">
- <row>
-   <nav class="col-xs-3 bs-docs-sidebar" id="myScrollspy">
+  <row>
+    <nav class="col-xs-3 bs-docs-sidebar" id="myScrollspy">
       <ul id="sidebar" class="nav nav-stacked fixed sidebar-overflow">
         <li><a href="#" class="side_tt", side_tt="uavbandalignment.pro">uavbandalignment.pro</a></li>
         <li>
@@ -121,133 +121,133 @@
 <p><a class="anchor_sub" name="keywords0-0"></a></p>
 <p><a class="anchor_sub" name="uavbandalignment-head_3"></a></p>
 <h4 id="apply_reference_tiepoints">APPLY_REFERENCE_TIEPOINTS</h4>
-<p><strong>in, optional, type=boolean, default=false</strong></p>
+<p><font style="font-weight:bold;">in, optional, type=boolean, default=false</font></p>
 <p>Set to true if you have reference tie points and want to apply them to all of your image groups.</p>
 <p><a class="anchor_sub" name="keywords0-1"></a></p>
 <p><a class="anchor_sub" name="uavbandalignment-head_4"></a></p>
 <h4 id="apply_kappa_filter">APPLY_KAPPA_FILTER</h4>
-<p><strong>in, optional, type=boolean, default=false</strong></p>
+<p><font style="font-weight:bold;">in, optional, type=boolean, default=false</font></p>
 <p>If set to true then, when finding reference tie points, the choices for optimal group will be passed through a simple threshold to make sure that we pick an image during a straight flight line for generating reference tie points. Only used if <a href="#keywords0-0">APPLY_REFERENCE_TIEPOINTS</a> is set</p>
 <p><a class="anchor_sub" name="keywords0-2"></a></p>
 <p><a class="anchor_sub" name="uavbandalignment-head_5"></a></p>
 <h4 id="base_band">BASE_BAND</h4>
-<p><strong>in, optional, type=long, default=0</strong></p>
+<p><font style="font-weight:bold;">in, optional, type=long, default=0</font></p>
 <p>Specify the zero-based index for which band you want to use as a reference for generating reference tie points.</p>
 <p><a class="anchor_sub" name="keywords0-3"></a></p>
 <p><a class="anchor_sub" name="uavbandalignment-head_6"></a></p>
 <h4 id="co_calibration">CO_CALIBRATION</h4>
-<p><strong>in, optional, type=boolean, default=false</strong></p>
+<p><font style="font-weight:bold;">in, optional, type=boolean, default=false</font></p>
 <p>When specified, the images will be scaled to one another to account for changes in the ISO and exposure time during a flight. If you want to use reflectance panels then this must be set.</p>
 <p><a class="anchor_sub" name="keywords0-4"></a></p>
 <p><a class="anchor_sub" name="uavbandalignment-head_7"></a></p>
 <h4 id="correlation_matching_score">CORRELATION_MATCHING_SCORE</h4>
-<p><strong>in, optional, type=float, default=0.6</strong></p>
+<p><font style="font-weight:bold;">in, optional, type=float, default=0.6</font></p>
 <p>Set this to the score required by the task GenerateTiePointsByCrossCorrelation to make sure that two points are actual the same information.</p>
 <p><a class="anchor_sub" name="keywords0-5"></a></p>
 <p><a class="anchor_sub" name="uavbandalignment-head_8"></a></p>
 <h4 id="correlation_search_window">CORRELATION_SEARCH_WINDOW</h4>
-<p><strong>in, optional, type=long, default=255</strong></p>
+<p><font style="font-weight:bold;">in, optional, type=long, default=255</font></p>
 <p>Set this to the search window used by the task GenerateTiePointsByCrossCorrelation to find matching tie points.</p>
 <p><a class="anchor_sub" name="keywords0-6"></a></p>
 <p><a class="anchor_sub" name="uavbandalignment-head_9"></a></p>
 <h4 id="file_identifiers">FILE_IDENTIFIERS</h4>
-<p><strong>in, optional, type=stringarr</strong></p>
+<p><font style="font-weight:bold;">in, optional, type=stringarr</font></p>
 <p>Specify the end of each file name that delineates how files belong to a group or not.</p>
 <p><a class="anchor_sub" name="keywords0-7"></a></p>
 <p><a class="anchor_sub" name="uavbandalignment-head_10"></a></p>
 <h4 id="generate_reference_tiepoints">GENERATE_REFERENCE_TIEPOINTS</h4>
-<p><strong>in, optional, type=boolean, default=false</strong></p>
+<p><font style="font-weight:bold;">in, optional, type=boolean, default=false</font></p>
 <p>If set, then reference tie points will be found based on the sensor and <a href="#keywords0-9">INPUTDIR</a>.</p>
 <p><a class="anchor_sub" name="keywords0-8"></a></p>
 <p><a class="anchor_sub" name="uavbandalignment-head_11"></a></p>
 <h4 id="get_gps">GET_GPS</h4>
-<p><strong>in, optional, type=boolean, default=true</strong></p>
+<p><font style="font-weight:bold;">in, optional, type=boolean, default=true</font></p>
 <p>Set to true for only generating a GPS file. Created by default afte the processing has finished.</p>
 <p><a class="anchor_sub" name="keywords0-9"></a></p>
 <p><a class="anchor_sub" name="uavbandalignment-head_12"></a></p>
 <h4 id="inputdir">INPUTDIR</h4>
-<p><strong>in, required, type=string</strong></p>
+<p><font style="font-weight:bold;">in, required, type=string</font></p>
 <p>Specify the directory that you want to search for image groups to process.</p>
 <p><a class="anchor_sub" name="keywords0-10"></a></p>
 <p><a class="anchor_sub" name="uavbandalignment-head_13"></a></p>
 <h4 id="make_envi_file">MAKE_ENVI_FILE</h4>
-<p><strong>in, optional, type=boolean, default=false</strong></p>
+<p><font style="font-weight:bold;">in, optional, type=boolean, default=false</font></p>
 <p>Turn to true to make a .dat and .hdr file that can be ingested in ENVI. Will likely have a dummy spatial reference set up.</p>
 <p><a class="anchor_sub" name="keywords0-11"></a></p>
 <p><a class="anchor_sub" name="uavbandalignment-head_14"></a></p>
 <h4 id="max_pixel_value">MAX_PIXEL_VALUE</h4>
-<p><strong>in, optional, type=number</strong></p>
+<p><font style="font-weight:bold;">in, optional, type=number</font></p>
 <p>Specify the maximum pixel value to be allowed when creating output images. Used in conjunction with <a href="#keywords0-12">MAX_VALUE_DIVISOR</a></p>
 <p><a class="anchor_sub" name="keywords0-12"></a></p>
 <p><a class="anchor_sub" name="uavbandalignment-head_15"></a></p>
 <h4 id="max_value_divisor">MAX_VALUE_DIVISOR</h4>
-<p><strong>in, optional, type=number</strong></p>
+<p><font style="font-weight:bold;">in, optional, type=number</font></p>
 <p>If <a href="#keywords0-11">MAX_PIXEL_VALUE</a> is set, then this represents the scale factor that the data will be divided by if over the maximum. This is used for the RedEdge data to make sure that it is truly 12 bit as it was collected (instead of scaled by a factor of 16).</p>
 <p><a class="anchor_sub" name="keywords0-13"></a></p>
 <p><a class="anchor_sub" name="uavbandalignment-head_16"></a></p>
 <h4 id="minimum_filtered_tiepoints">MINIMUM_FILTERED_TIEPOINTS</h4>
-<p><strong>in, optional, type=long, default=REQUESTED_NUMBER_OF_TIEPOINTS/10</strong></p>
+<p><font style="font-weight:bold;">in, optional, type=long, default=REQUESTED_NUMBER_OF_TIEPOINTS/10</font></p>
 <p>Select a threshold for the smallest number of allowed tie points that can be found after filtering. If less than this, then the tie point generation algorithm is ugraded to mutual information if not already set as that.</p>
 <p><a class="anchor_sub" name="keywords0-14"></a></p>
 <p><a class="anchor_sub" name="uavbandalignment-head_17"></a></p>
 <h4 id="multi_channel">MULTI_CHANNEL</h4>
-<p><strong>in, optional, tpye=boolean, default=false</strong></p>
+<p><font style="font-weight:bold;">in, optional, tpye=boolean, default=false</font></p>
 <p>If set to true, then multi-channel TIFFs will be generated. otherwise multi-page TIFFs will be used.</p>
 <p><a class="anchor_sub" name="keywords0-15"></a></p>
 <p><a class="anchor_sub" name="uavbandalignment-head_18"></a></p>
 <h4 id="mutual_matching_score">MUTUAL_MATCHING_SCORE</h4>
-<p><strong>in, optional, type=float, default=0.05</strong></p>
+<p><font style="font-weight:bold;">in, optional, type=float, default=0.05</font></p>
 <p>Represents the required matching score used by GenerateTiePointsbyMutualInformation.</p>
 <p><a class="anchor_sub" name="keywords0-16"></a></p>
 <p><a class="anchor_sub" name="uavbandalignment-head_19"></a></p>
 <h4 id="mutual_search_window">MUTUAL_SEARCH_WINDOW</h4>
-<p><strong>in, optional, type=long, default=121</strong></p>
+<p><font style="font-weight:bold;">in, optional, type=long, default=121</font></p>
 <p>Represents the search window used by GenerateTiePointsbyMutualInformation.</p>
 <p><a class="anchor_sub" name="keywords0-17"></a></p>
 <p><a class="anchor_sub" name="uavbandalignment-head_20"></a></p>
 <h4 id="no_secondary_match">NO_SECONDARY_MATCH</h4>
-<p><strong>in, optional, type=boolean, default=true</strong></p>
+<p><font style="font-weight:bold;">in, optional, type=boolean, default=true</font></p>
 <p>When false, image registration is performed a second time before writing data to disk for batch processing. Will add a lot of overhead to the total time.</p>
 <p><a class="anchor_sub" name="keywords0-18"></a></p>
 <p><a class="anchor_sub" name="uavbandalignment-head_21"></a></p>
 <h4 id="np_groups">NP_GROUPS</h4>
-<p><strong>in, optional, type=long, default=nCPU/2, min=1, max=4</strong></p>
+<p><font style="font-weight:bold;">in, optional, type=long, default=nCPU/2, min=1, max=4</font></p>
 <p>Set to the number of child processes that you want to process in parallel. Max is 4 due to licensing.</p>
 <p><a class="anchor_sub" name="keywords0-19"></a></p>
 <p><a class="anchor_sub" name="uavbandalignment-head_22"></a></p>
 <h4 id="panel_reflectance">PANEL_REFLECTANCE</h4>
-<p><strong>in, optional, type=float, default=70.0</strong></p>
+<p><font style="font-weight:bold;">in, optional, type=float, default=70.0</font></p>
 <p>This represents the percent reflectance (0 to 100) of reflectance panel images that are provided in <a href="#keywords0-20">PANELDIR</a>. Specify a single value or an array of values that represents the percent reflectance of each band of the reflectance panel. The value should be between 0 and 100. If a scalar is provided, then it is assumed to be a constant value for each band. The order of this array should match the <a href="#keywords0-6">FILE_IDENTIFIERS</a>. If you are using Sequioa or RedEdge data, then it is from shortest to longest wavelength.</p>
 <p><a class="anchor_sub" name="keywords0-20"></a></p>
 <p><a class="anchor_sub" name="uavbandalignment-head_23"></a></p>
 <h4 id="paneldir">PANELDIR</h4>
-<p><strong>in, optional, default=INPUTDIR/reflectance_panels</strong></p>
+<p><font style="font-weight:bold;">in, optional, default=INPUTDIR/reflectance_panels</font></p>
 <p>Specify the directory that contains reflectance panels. The default value is INPUTDIR/reflectance_panels.</p>
 <p><a class="anchor_sub" name="keywords0-21"></a></p>
 <p><a class="anchor_sub" name="uavbandalignment-head_24"></a></p>
 <h4 id="reflectance_scale_factor">REFLECTANCE_SCALE_FACTOR</h4>
-<p><strong>in, optional, type=number, default=50000</strong></p>
-<p>Set this to the scale factor that will be applied to the output imagery so that we don't have to use floating point data for reflectance imagery.</p>
+<p><font style="font-weight:bold;">in, optional, type=number, default=50000</font></p>
+<p>Set this to the scale factor that will be applied to the output imagery so that we don’t have to use floating point data for reflectance imagery.</p>
 <p><a class="anchor_sub" name="keywords0-22"></a></p>
 <p><a class="anchor_sub" name="uavbandalignment-head_25"></a></p>
 <h4 id="requested_number_of_tiepoints">REQUESTED_NUMBER_OF_TIEPOINTS</h4>
-<p><strong>in, optional, type=long, default=1500</strong></p>
+<p><font style="font-weight:bold;">in, optional, type=long, default=1500</font></p>
 <p>Specify the number of tie points that you want to initially find.</p>
 <p><a class="anchor_sub" name="keywords0-23"></a></p>
 <p><a class="anchor_sub" name="uavbandalignment-head_26"></a></p>
 <h4 id="search_window_from_height">SEARCH_WINDOW_FROM_HEIGHT</h4>
-<p><strong>in, optional, type=boolean, default=false</strong></p>
+<p><font style="font-weight:bold;">in, optional, type=boolean, default=false</font></p>
 <p>If true, then the search window for the different algorithms is based on the approximate height above the ground for the reference group.</p>
 <p><a class="anchor_sub" name="keywords0-24"></a></p>
 <p><a class="anchor_sub" name="uavbandalignment-head_27"></a></p>
 <h4 id="sensor">SENSOR</h4>
-<p><strong>in, required, type=string, choices='rededge','sequoia','generic'</strong></p>
+<p><font style="font-weight:bold;">in, required, type=string, choices=‘rededge’,‘sequoia’,‘generic’</font></p>
 <p>The type of sensor that will be processed. Default is generic unless otherwise specified.</p>
 <div id="uavbandalignment-head_28">
 <a class="anchor_sub" name="uavbandalignment-head_28"></a>
 </div>
 <h3 id="author">Author</h3>
-<p>Zachary Norman - GitHub: znorman-harris</p>
+<p>Zachary Norman - GitHub: <a href="https://github.com/znorman-harris">znorman-harris</a></p>
 <hr />
 <p>© 2018 Harris Geospatial Solutions, Inc.</p>
 <p>Licensed under MIT. See LICENSE.txt for additional details and information.</p>

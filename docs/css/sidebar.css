@@ -1,6 +1,7 @@
 /*text overflow*/
 .sidebar-overflow {
     overflow-x: auto;
+    height: 75vh;
     /* transform:rotateX(180deg);
     -ms-transform:rotateX(180deg);
     -webkit-transform:rotateX(180deg); */
@@ -119,42 +120,3 @@ ul.dropdown-menu {
 .bs-docs-sidebar .nav>.active>ul.nav {
     display: block;
 }
-
-
-
-/* tooltips class in IDL*/
-/* .side_tt{
-    display: inline;
-    position: relative;
-    overflow: visible;
-} */
-
-/* makes the arrow for the tooltip*/
-/* .side_tt:hover:after{
-    border: solid;
-    border-color: #333 transparent;
-    border-width: 6px 6px 0 6px;
-    top: 100%;    
-    content: "";
-    left: 50%;
-    position: absolute;
-    z-index:98;
-} */
-
-/* makes the content for the tooltip */
-/* .side_tt:hover:before{
-    background: #333;
-    background: rgba(0,0,0,.8);
-    border-radius: 5px;
-    top: 100%;
-    color: #fff; */
-    /* the side_tt class elements also need a side_tt attribute with the tooltip*/
-    /* content: attr(side_tt);
-    left: 20%;
-    padding: 5px 15px;
-    position: absolute;
-    z-index:97; */
-    /*word wrap*/
-    /* white-space:pre-line; */
-    /* width:auto;
-} */

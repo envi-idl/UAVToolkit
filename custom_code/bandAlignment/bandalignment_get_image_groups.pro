@@ -1,7 +1,7 @@
 ;h+
 ; (c) 2018 Harris Geospatial Solutions, Inc.
 ; 
-; Licensed under MIT, see LICENSE.txt for more details.
+; Licensed under MIT. See LICENSE.txt for additional details and information.
 ;h-
 
 ;+
@@ -42,7 +42,7 @@
 ;
 ;
 ;
-; :Author: Zachary Norman - Github: znorman-harris
+; :Author: Zachary Norman - Github: [znorman-harris](https://github.com/znorman-harris)
 ;-
 function BandAlignment_Get_Image_Groups, directory, uniqueIdentifiers
   compile_opt idl2, hidden

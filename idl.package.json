@@ -12,6 +12,22 @@
         "dist",
         "docs"
     ],
+    "scripts": {
+        "add-header": [
+            [
+                "self.addFileHeaders, /OVERWRITE, ['(c) 2018 Harris Geospatial Solutions, Inc.',",
+                "'',",
+                "'Licensed under MIT. See LICENSE.txt for additional details and information.']"
+            ]
+        ],
+        "doc": [
+            [
+                "self.document, /CLEAR_PREVIOUS,",
+                "FOOTER=['&copy; 2018 Harris Geospatial Solutions, Inc.',",
+                "'', 'Licensed under MIT. See LICENSE.txt for additional details and information.']"
+            ]
+        ]
+    },
     "dependencies": {
         "github-se-awesomeenvitools": {
             "version": "^v0.0.2",

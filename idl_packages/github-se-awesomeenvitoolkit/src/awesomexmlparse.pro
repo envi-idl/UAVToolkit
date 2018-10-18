@@ -7,7 +7,7 @@
 ;  This modification was made because it would take 2.5 seconds to parse
 ;  a 100KB ENVIROI XML file with only about 5 entries present.
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 
 ;----------------------------------------------------------------------------

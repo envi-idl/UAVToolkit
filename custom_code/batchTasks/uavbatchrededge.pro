@@ -1,7 +1,7 @@
 ;h+
 ; (c) 2018 Harris Geospatial Solutions, Inc.
 ; 
-; Licensed under MIT, see LICENSE.txt for more details.
+; Licensed under MIT. See LICENSE.txt for additional details and information.
 ;h-
 
 ;+
@@ -85,7 +85,7 @@
 ;      match the `FILE_IDENTIFIERS`. If you are using Sequioa or RedEdge data, then
 ;      it is from shortest to longest wavelength.
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 pro uavBatchRedEdge, FLIGHTDIR = flightdir, BAND_ALIGNMENT_TASK = band_alignment_task, PANEL_REFLECTANCE = panel_reflectance
   compile_opt idl2

@@ -1,7 +1,7 @@
 ;h+
 ; (c) 2018 Harris Geospatial Solutions, Inc.
 ; 
-; Licensed under MIT, see LICENSE.txt for more details.
+; Licensed under MIT. See LICENSE.txt for additional details and information.
 ;h-
 
 ;+
@@ -35,7 +35,7 @@
 ;       This input in required and must be a string array. The first directory in the string array will be where renamed copies
 ;       of the data in the other directories can be found.
 ;       
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;
 ;-
 pro join_rededge_datadirs, dirs

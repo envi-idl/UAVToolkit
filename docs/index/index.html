@@ -21,7 +21,6 @@
   <!-- load colors for IDL syntax and anchor fix with fixed header-->
   <style type="text/css">
   	@import url("./../css/bootstrap.min.css");
-  	@import url("./../css/font-awesome.min.css");
   	@import url("./../css/cosmos.bootstrap.min.css");
   	@import url("./../css/idl-styles.css");
   	@import url("./../css/anchor-fix.css");
@@ -39,18 +38,13 @@
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="15">
   
   <div id="header" class="navbar navbar-default navbar-fixed-top">
-      <div class="navbar-header">
-          <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
-              <i class="icon-reorder"></i>
-          </button>
-      </div>
       <nav class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
               <li>
-                  <a href="./../index.html#"><i class="fa fa-home"></i> Home</a>
+                  <a href="./../index.html#"><img class="header-image" src="./../images/baseline_home_white_48dp.png"></a>
               </li>
               <li class="dropdown">
-                  <a style="top:3px" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-book">  Contents</i></a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img class="header-image" src="./../images/baseline_menu_white_48dp.png"></i></a>
                   <ul class="dropdown-menu">
                     <li><a href="./..//uav_toolkit.html#">Chapter 1: uav_toolkit.pro</a></li>
                     <li><a href="./../src/unjoin_rededge_datadir.html#">Chapter 2: unjoin_rededge_datadir.pro</a></li>
@@ -61,22 +55,28 @@
                     <li><a href="./../custom_code/batchTasks/uavbatchrededge.html#">Chapter 7: uavbatchrededge.pro</a></li>
                     <li><a href="./../custom_code/bandAlignment/uavbandalignment.html#">Chapter 8: uavbandalignment.pro</a></li>
                     <li><a href="./../custom_code/README.html#">Chapter 9: UAVToolkit Directory custom_code</a></li>
-                    <li><a href="./..//build_uav_toolkit.html#">Chapter 10: build_uav_toolkit.pro</a></li>
-                    <li><a href="./..//CONTRIBUTING.html#">Chapter 11: Contributing</a></li>
-                    <li><a href="./..//CHANGELOG.html#">Chapter 12: Changelog</a></li>
+                    <li><a href="./..//CONTRIBUTING.html#">Chapter 10: Contributing</a></li>
+                    <li><a href="./..//CHANGELOG.html#">Chapter 11: Changelog</a></li>
                       <!--<li><a href="#">Chapter 1</a></li>-->
                   </ul>
               </li>
           </ul>
-        <a class="navbar-brand" href="#">
-           UAVToolkit
-        </a>
-        <div class="pull-right">
-          <a href="https://www.harrisgeospatial.com" target="_blank"><img src="./../images/Harris_wR_White-RedA.png" style="height:41px; width:155px; position:relative; top:5px; right:20px"></img></a>
-        </div>
-        <a class="navbar-brand pull-right" href="#" style="position:relative;right:30px;" target="_blank">
-          Search
-        </a>
+          <a class="navbar-brand" href="#">
+              UAVToolkit
+          </a>
+  
+          <ul class="nav navbar-nav pull-right">
+              <li>
+                  <a class="navbar-brand" href="#" style="position:relative;right:30px;" target="_blank">
+                      <img class="header-image" src="./../images/baseline_search_white_48dp.png">
+                  </a>
+              </li>
+              <li>
+                  <div>
+                      <a href="https://www.harrisgeospatial.com" target="_blank"><img src="./../images/Harris_wR_White-RedA.png" style="height: 41px; position:relative; top:5px; right:20px"></img></a>
+                  </div>
+              </li>
+          </ul>
       </nav>
   </div>
   <div style="padding-top:60px;" class="container">

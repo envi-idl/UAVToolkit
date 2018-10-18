@@ -1,7 +1,7 @@
 ;h+
 ; (c) 2018 Harris Geospatial Solutions, Inc.
 ; 
-; Licensed under MIT, see LICENSE.txt for more details.
+; Licensed under MIT. See LICENSE.txt for additional details and information.
 ;h-
 
 ;+
@@ -34,7 +34,7 @@
 ;
 ;
 ;
-; :Author: Zachary Norma - GitHub:znorman-harris
+; :Author: Zachary Norma - GitHub:[znorman-harris](https://github.com/znorman-harris)
 ;-
 function get_refelctance_panels_extract_panel, dat
   compile_opt idl2
@@ -111,7 +111,7 @@ end
 ;      Specify the name of the sensor and, if there is any custom calibration, then it will be performed on
 ;      the data.
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 function get_reflectance_panels, group, sensor, $
   MAX_PIXEL_VALUE = max_pixel_value,$

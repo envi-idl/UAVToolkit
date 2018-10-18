@@ -8,7 +8,7 @@
 ; can commonly be a keyword for the routine you are processing and
 ; help for production/development use.
 ; 
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 if ~keyword_set(debug) then begin
   on_error, 2

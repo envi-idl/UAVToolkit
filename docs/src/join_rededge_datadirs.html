@@ -1,12 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <title></title>
-  <style type="text/css">code{white-space: pre;}</style>
-  <link rel="stylesheet" href="./../css/haroopad-markdown.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="generator" content="pandoc" />
+<title></title>
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet" href="./../css/haroopad-markdown.css" type="text/css" />
 <!--  for adding syntax colorizer --> 
 <link rel="stylesheet" href="./../js/highlight/styles/github.css"> 
 <script src="./../js/highlight/highlight.pack.js"></script>
@@ -28,7 +28,6 @@
 <!-- load colors for IDL syntax and anchor fix with fixed header-->
 <style type="text/css">
 	@import url("./../css/bootstrap.min.css");
-	@import url("./../css/font-awesome.min.css");
 	@import url("./../css/cosmos.bootstrap.min.css");
 	@import url("./../css/idl-styles.css");
 	@import url("./../css/anchor-fix.css");
@@ -42,18 +41,13 @@
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="15">
 
 <div id="header" class="navbar navbar-default navbar-fixed-top">
-    <div class="navbar-header">
-        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
-            <i class="icon-reorder"></i>
-        </button>
-    </div>
     <nav class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
             <li>
-                <a href="./../index.html#"><i class="fa fa-home"></i> Home</a>
+                <a href="./../index.html#"><img class="header-image" src="./../images/baseline_home_white_48dp.png"></a>
             </li>
             <li class="dropdown">
-                <a style="top:3px" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-book">  Contents</i></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img class="header-image" src="./../images/baseline_menu_white_48dp.png"></i></a>
                 <ul class="dropdown-menu">
 <li><a href="./..//uav_toolkit.html#">uav_toolkit.pro</a></li>
 <li><a href="./../src/unjoin_rededge_datadir.html#">unjoin_rededge_datadir.pro</a></li>
@@ -64,28 +58,34 @@
 <li><a href="./../custom_code/batchTasks/uavbatchrededge.html#">uavbatchrededge.pro</a></li>
 <li><a href="./../custom_code/bandAlignment/uavbandalignment.html#">uavbandalignment.pro</a></li>
 <li><a href="./../custom_code/README.html#">UAVToolkit Directory custom_code</a></li>
-<li><a href="./..//build_uav_toolkit.html#">build_uav_toolkit.pro</a></li>
 <li><a href="./..//CONTRIBUTING.html#">Contributing</a></li>
 <li><a href="./..//CHANGELOG.html#">Changelog</a></li>
                     <!--<li><a href="#">Chapter 1</a></li>-->
                 </ul>
             </li>
         </ul>
-      <a class="navbar-brand" href="#">
-         UAVToolkit: join_rededge_datadirs.pro
-      </a>
-      <div class="pull-right">
-        <a href="https://www.harrisgeospatial.com" target="_blank"><img src="./../images/Harris_wR_White-RedA.png" style="height:41px; width:155px; position:relative; top:5px; right:20px"></img></a>
-      </div>
-      <a class="navbar-brand pull-right" href="./..//index/index.html" style="position:relative;right:30px;" target="_blank">
-        Search
-      </a>
+        <a class="navbar-brand" href="#">
+            UAVToolkit: join_rededge_datadirs.pro
+        </a>
+
+        <ul class="nav navbar-nav pull-right">
+            <li>
+                <a class="navbar-brand" href="./..//index/index.html" style="position:relative;right:30px;" target="_blank">
+                    <img class="header-image" src="./../images/baseline_search_white_48dp.png">
+                </a>
+            </li>
+            <li>
+                <div>
+                    <a href="https://www.harrisgeospatial.com" target="_blank"><img src="./../images/Harris_wR_White-RedA.png" style="height: 41px; position:relative; top:5px; right:20px"></img></a>
+                </div>
+            </li>
+        </ul>
     </nav>
 </div>
 <div style="padding-top:60px;"> 
 <div class="container">
- <row>
-   <nav class="col-xs-3 bs-docs-sidebar" id="myScrollspy">
+  <row>
+    <nav class="col-xs-3 bs-docs-sidebar" id="myScrollspy">
       <ul id="sidebar" class="nav nav-stacked fixed sidebar-overflow">
         <li><a href="#" class="side_tt", side_tt="join_rededge_datadirs.pro">join_rededge_datadirs.pro</a></li>
         <li>
@@ -119,6 +119,10 @@
 <pre class="idl_code_block">
 dirs = [<font class="idl_str">&#39;C:\path\to\some\images&#39;</font>, <font class="idl_str">&#39;C:\path\to\other\images&#39;</font>]
 <font class="idl_lib_pro ">join_rededge_datadirs</font>, dirs
+
+<font class="idl_lib_pro ">In</font> <font class="idl_lib_pro ">this</font> <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/CASE.html" target="_blank"><font class="idl_control idl_tt" idl_tt="Selects one statement for execution, depending on the value of an expression.">case</font></a>, all <font class="idl_control ">of</font> the files in <font class="idl_str">&#39;C:\path\to\other\images&#39;</font> will be copied into the folder <font class="idl_str">&#39;C:\path\to\some\images&#39;</font>
+<font class="idl_control ">and</font> renamed such that an image in <font class="idl_str">&#39;C:\path\to\some\images&#39;</font> will go from <font class="idl_str">&#34;IMG_000_2.tif&#34;</font> to <font class="idl_str">&#34;IMG_001_1_2.tif&#34;</font> where the additional
+<font class="idl_str">&#34;1&#34;</font> comes from the directory index location in the dirs array.
 </pre>
 <div id="join_rededge_datadirs-head_1">
 <a class="anchor_sub" name="join_rededge_datadirs-head_1"></a>
@@ -137,13 +141,13 @@ dirs = [<font class="idl_str">&#39;C:\path\to\some\images&#39;</font>, <font cla
 <p><a class="anchor_sub" name="params1-0"></a></p>
 <p><a class="anchor_sub" name="join_rededge_datadirs-head_4"></a></p>
 <h4 id="dirs">DIRS</h4>
-<p><strong>in, required, type=stringarr</strong></p>
+<p><font style="font-weight:bold;">in, required, type=stringarr</font></p>
 <p>This input in required and must be a string array. The first directory in the string array will be where renamed copies of the data in the other directories can be found.</p>
 <div id="join_rededge_datadirs-head_5">
 <a class="anchor_sub" name="join_rededge_datadirs-head_5"></a>
 </div>
 <h3 id="author">Author</h3>
-<p>Zachary Norman - GitHub: znorman-harris</p>
+<p>Zachary Norman - GitHub: <a href="https://github.com/znorman-harris">znorman-harris</a></p>
 <hr />
 <p>© 2018 Harris Geospatial Solutions, Inc.</p>
 <p>Licensed under MIT. See LICENSE.txt for additional details and information.</p>

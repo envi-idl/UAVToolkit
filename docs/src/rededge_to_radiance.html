@@ -1,12 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
-  <title></title>
-  <style type="text/css">code{white-space: pre;}</style>
-  <link rel="stylesheet" href="./../css/haroopad-markdown.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="generator" content="pandoc" />
+<title></title>
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet" href="./../css/haroopad-markdown.css" type="text/css" />
 <!--  for adding syntax colorizer --> 
 <link rel="stylesheet" href="./../js/highlight/styles/github.css"> 
 <script src="./../js/highlight/highlight.pack.js"></script>
@@ -28,7 +28,6 @@
 <!-- load colors for IDL syntax and anchor fix with fixed header-->
 <style type="text/css">
 	@import url("./../css/bootstrap.min.css");
-	@import url("./../css/font-awesome.min.css");
 	@import url("./../css/cosmos.bootstrap.min.css");
 	@import url("./../css/idl-styles.css");
 	@import url("./../css/anchor-fix.css");
@@ -42,18 +41,13 @@
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="15">
 
 <div id="header" class="navbar navbar-default navbar-fixed-top">
-    <div class="navbar-header">
-        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
-            <i class="icon-reorder"></i>
-        </button>
-    </div>
     <nav class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
             <li>
-                <a href="./../index.html#"><i class="fa fa-home"></i> Home</a>
+                <a href="./../index.html#"><img class="header-image" src="./../images/baseline_home_white_48dp.png"></a>
             </li>
             <li class="dropdown">
-                <a style="top:3px" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-book">  Contents</i></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img class="header-image" src="./../images/baseline_menu_white_48dp.png"></i></a>
                 <ul class="dropdown-menu">
 <li><a href="./..//uav_toolkit.html#">uav_toolkit.pro</a></li>
 <li><a href="./../src/unjoin_rededge_datadir.html#">unjoin_rededge_datadir.pro</a></li>
@@ -64,28 +58,34 @@
 <li><a href="./../custom_code/batchTasks/uavbatchrededge.html#">uavbatchrededge.pro</a></li>
 <li><a href="./../custom_code/bandAlignment/uavbandalignment.html#">uavbandalignment.pro</a></li>
 <li><a href="./../custom_code/README.html#">UAVToolkit Directory custom_code</a></li>
-<li><a href="./..//build_uav_toolkit.html#">build_uav_toolkit.pro</a></li>
 <li><a href="./..//CONTRIBUTING.html#">Contributing</a></li>
 <li><a href="./..//CHANGELOG.html#">Changelog</a></li>
                     <!--<li><a href="#">Chapter 1</a></li>-->
                 </ul>
             </li>
         </ul>
-      <a class="navbar-brand" href="#">
-         UAVToolkit: rededge_to_radiance.pro
-      </a>
-      <div class="pull-right">
-        <a href="https://www.harrisgeospatial.com" target="_blank"><img src="./../images/Harris_wR_White-RedA.png" style="height:41px; width:155px; position:relative; top:5px; right:20px"></img></a>
-      </div>
-      <a class="navbar-brand pull-right" href="./..//index/index.html" style="position:relative;right:30px;" target="_blank">
-        Search
-      </a>
+        <a class="navbar-brand" href="#">
+            UAVToolkit: rededge_to_radiance.pro
+        </a>
+
+        <ul class="nav navbar-nav pull-right">
+            <li>
+                <a class="navbar-brand" href="./..//index/index.html" style="position:relative;right:30px;" target="_blank">
+                    <img class="header-image" src="./../images/baseline_search_white_48dp.png">
+                </a>
+            </li>
+            <li>
+                <div>
+                    <a href="https://www.harrisgeospatial.com" target="_blank"><img src="./../images/Harris_wR_White-RedA.png" style="height: 41px; position:relative; top:5px; right:20px"></img></a>
+                </div>
+            </li>
+        </ul>
     </nav>
 </div>
 <div style="padding-top:60px;"> 
 <div class="container">
- <row>
-   <nav class="col-xs-3 bs-docs-sidebar" id="myScrollspy">
+  <row>
+    <nav class="col-xs-3 bs-docs-sidebar" id="myScrollspy">
       <ul id="sidebar" class="nav nav-stacked fixed sidebar-overflow">
         <li><a href="#" class="side_tt", side_tt="rededge_to_radiance.pro">rededge_to_radiance.pro</a></li>
         <li>
@@ -110,8 +110,8 @@
             <ul class="nav nav-stacked">
               <li><a href="#rededge_to_radiance-head_18" class="side_tt", side_tt="Syntax">Syntax</a></li>
               <li><a href="#rededge_to_radiance-head_19" class="side_tt", side_tt="Arguments">Arguments</a></li>
-              <li><a href="#rededge_to_radiance-head_20" class="side_tt", side_tt="Keywords">Keywords</a></li>
-              <li><a href="#rededge_to_radiance-head_22" class="side_tt", side_tt="Author">Author</a></li>
+              <li><a href="#rededge_to_radiance-head_21" class="side_tt", side_tt="Keywords">Keywords</a></li>
+              <li><a href="#rededge_to_radiance-head_23" class="side_tt", side_tt="Author">Author</a></li>
             </ul>
         <li>
       </ul>
@@ -125,14 +125,18 @@
 <p>This file contains the code needed to convert the raw pixel values from a RedEdge image directly to radiance. This workflow was taken from the following source:</p>
 <pre class="idl_code_block">
 [<font class="idl_struct_tag">https</font>://support.<font class="idl_prop">micasense</font>.<font class="idl_prop">com</font>/<font class="idl_struct_tag">hc/en-us/articles/115000351194-RedEdge-Camera-Radiometric-Calibration-Model](https</font>://support.<font class="idl_prop">micasense</font>.<font class="idl_prop">com</font>/hc/en-us/articles/<font class="idl_num">115000351194</font>-RedEdge-Camera-Radiometric-Calibration-Model)
+
+<font class="idl_lib_pro ">It</font> <font class="idl_lib_pro ">does</font> <font class="idl_control ">not</font> currently account <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/FOR.html" target="_blank"><font class="idl_control idl_tt" idl_tt="Executes one or more statements repeatedly, incrementing or decrementing a variable with each repetition, until a condition is met.">for</font></a> sensor orientation with a DLS, but support is planned.
+
+You will need a sensor that has the correct metadata <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/FOR.html" target="_blank"><font class="idl_control idl_tt" idl_tt="Executes one or more statements repeatedly, incrementing or decrementing a variable with each repetition, until a condition is met.">for</font></a> this <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/FUNCTION.html" target="_blank"><font class="idl_control idl_tt" idl_tt="Defines a function.">function</font></a> <font class="idl_lib_func">to work without throwing</font>
+an error during processing <font class="idl_control ">and</font> it should be used with a catch block to ensure that the
+source program continues running <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/IF___THEN___ELSE.html" target="_blank"><font class="idl_control idl_tt" idl_tt="Conditionally executes a statement or block of statements.">if</font></a> there are issues.
 </pre>
-<p>It does not currently account for sensor orientation with a DLS, but support is planned.</p>
-<p>You will need a sensor that has the correct metadata for this function to work without throwing an error during processing and it should be used with a catch block to ensure that the source program continues running if there are issues.</p>
 <div id="rededge_to_radiance-head_0">
 <a class="anchor_sub" name="rededge_to_radiance-head_0"></a>
 </div>
 <h3 id="author">Author</h3>
-<p>Zachary Norman - GitHub: znorman-harris</p>
+<p>Zachary Norman - GitHub: <a href="https://github.com/znorman-harris">znorman-harris</a></p>
 <div id="rededge_to_radiance-head_1">
 <a class="anchor_sub" name="rededge_to_radiance-head_1"></a>
 </div>
@@ -153,18 +157,18 @@
 <p><a class="anchor_sub" name="params1-0"></a></p>
 <p><a class="anchor_sub" name="rededge_to_radiance-head_4"></a></p>
 <h4 id="item">ITEM</h4>
-<p><strong>in, required, type=hash/dictionary</strong></p>
+<p><font style="font-weight:bold;">in, required, type=hash/dictionary</font></p>
 <p>The hash or dictionary that you want to extract keys from</p>
 <p><a class="anchor_sub" name="params1-1"></a></p>
 <p><a class="anchor_sub" name="rededge_to_radiance-head_5"></a></p>
 <h4 id="keys">KEYS</h4>
-<p><strong>in, required, type=string/string array</strong></p>
+<p><font style="font-weight:bold;">in, required, type=string/string array</font></p>
 <p>Specify the key/keys that you want to check and extract</p>
 <div id="rededge_to_radiance-head_6">
 <a class="anchor_sub" name="rededge_to_radiance-head_6"></a>
 </div>
 <h3 id="author-1">Author</h3>
-<p>Zachary Norman - GitHub: znorman-harris</p>
+<p>Zachary Norman - GitHub: <a href="https://github.com/znorman-harris">znorman-harris</a></p>
 <div id="rededge_to_radiance-head_7">
 <a class="anchor_sub" name="rededge_to_radiance-head_7"></a>
 </div>
@@ -183,12 +187,12 @@
 <p><a class="anchor_sub" name="params2-0"></a></p>
 <p><a class="anchor_sub" name="rededge_to_radiance-head_10"></a></p>
 <h4 id="coeff">COEFF</h4>
-<p><strong>in, required, type=array[6]</strong></p>
+<p><font style="font-weight:bold;">in, required, type=array[6]</font></p>
 <p>Contains the 6 polynomial coefficients for correcting vignetting effects</p>
 <p><a class="anchor_sub" name="params2-1"></a></p>
 <p><a class="anchor_sub" name="rededge_to_radiance-head_11"></a></p>
 <h4 id="dims">DIMS</h4>
-<p><strong>in, required, type=array[2]</strong></p>
+<p><font style="font-weight:bold;">in, required, type=array[2]</font></p>
 <p>The dimensions of the image in columns, rows.</p>
 <div id="rededge_to_radiance-head_12">
 <a class="anchor_sub" name="rededge_to_radiance-head_12"></a>
@@ -197,23 +201,23 @@
 <p><a class="anchor_sub" name="keywords2-0"></a></p>
 <p><a class="anchor_sub" name="rededge_to_radiance-head_13"></a></p>
 <h4 id="x">X</h4>
-<p><strong>out, optional, type=array</strong></p>
+<p><font style="font-weight:bold;">out, optional, type=array</font></p>
 <p>The 2D array with X pixel locations</p>
 <p><a class="anchor_sub" name="keywords2-1"></a></p>
 <p><a class="anchor_sub" name="rededge_to_radiance-head_14"></a></p>
 <h4 id="y">Y</h4>
-<p><strong>out, optional, type=array</strong></p>
+<p><font style="font-weight:bold;">out, optional, type=array</font></p>
 <p>The 2D array with Y pixel locations</p>
 <p><a class="anchor_sub" name="keywords2-2"></a></p>
 <p><a class="anchor_sub" name="rededge_to_radiance-head_15"></a></p>
 <h4 id="r">R</h4>
-<p><strong>out, optional, type=array</strong></p>
+<p><font style="font-weight:bold;">out, optional, type=array</font></p>
 <p>The 2D array that contains the equation sqrt((x-cx)^2 + (y-cy)^2)</p>
 <div id="rededge_to_radiance-head_16">
 <a class="anchor_sub" name="rededge_to_radiance-head_16"></a>
 </div>
 <h3 id="author-2">Author</h3>
-<p>Zachary Norman - GitHub:znorman-harris</p>
+<p>Zachary Norman - GitHub:<a href="https://github.com/znorman-harris">znorman-harris</a></p>
 <div id="rededge_to_radiance-head_17">
 <a class="anchor_sub" name="rededge_to_radiance-head_17"></a>
 </div>
@@ -225,27 +229,31 @@
 <a class="anchor_sub" name="rededge_to_radiance-head_18"></a>
 </div>
 <h3 id="syntax-2">Syntax</h3>
-<pre class="no-copy-button">Result = rededge_to_radiance([ <a href="#keywords3-0">DAT</a> = array ])</pre>
+<pre class="no-copy-button">Result = rededge_to_radiance(<a href="#params3-0">file</a>, [ <a href="#keywords3-0">DAT</a> = array ])</pre>
 <div id="rededge_to_radiance-head_19">
 <a class="anchor_sub" name="rededge_to_radiance-head_19"></a>
 </div>
 <h3 id="arguments-2">Arguments</h3>
-<p>file: in, required, type=string Specify the RedEdge file that you want to open and attempt to convert to radiance.</p>
-<div id="rededge_to_radiance-head_20">
-<a class="anchor_sub" name="rededge_to_radiance-head_20"></a>
+<p><a class="anchor_sub" name="params3-0"></a></p>
+<p><a class="anchor_sub" name="rededge_to_radiance-head_20"></a></p>
+<h4 id="file">FILE</h4>
+<p><font style="font-weight:bold;">in, required, type=string</font></p>
+<p>Specify the RedEdge file that you want to open and attempt to convert to radiance.</p>
+<div id="rededge_to_radiance-head_21">
+<a class="anchor_sub" name="rededge_to_radiance-head_21"></a>
 </div>
 <h3 id="keywords-1">Keywords</h3>
 <p><a class="anchor_sub" name="keywords3-0"></a></p>
-<p><a class="anchor_sub" name="rededge_to_radiance-head_21"></a></p>
+<p><a class="anchor_sub" name="rededge_to_radiance-head_22"></a></p>
 <h4 id="dat">DAT</h4>
-<p><strong>in/out, optional, type=array</strong></p>
+<p><font style="font-weight:bold;">in/out, optional, type=array</font></p>
 <p>For <strong>input</strong>, specify the image data for the scene that will have the correction applied.</p>
-<p>For <strong>output</strong>, this keyword contains the original scene data so that you don't need to read it in multiple times.</p>
-<div id="rededge_to_radiance-head_22">
-<a class="anchor_sub" name="rededge_to_radiance-head_22"></a>
+<p>For <strong>output</strong>, this keyword contains the original scene data so that you don’t need to read it in multiple times.</p>
+<div id="rededge_to_radiance-head_23">
+<a class="anchor_sub" name="rededge_to_radiance-head_23"></a>
 </div>
 <h3 id="author-3">Author</h3>
-<p>Zachary Norman - GitHub:znorman-harris</p>
+<p>Zachary Norman - GitHub:<a href="https://github.com/znorman-harris">znorman-harris</a></p>
 <hr />
 <p>© 2018 Harris Geospatial Solutions, Inc.</p>
 <p>Licensed under MIT. See LICENSE.txt for additional details and information.</p>

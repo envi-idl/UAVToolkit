@@ -1,7 +1,7 @@
 ;h+
 ; (c) 2018 Harris Geospatial Solutions, Inc.
 ; 
-; Licensed under MIT, see LICENSE.txt for more details.
+; Licensed under MIT. See LICENSE.txt for additional details and information.
 ;h-
 
 ;+
@@ -26,7 +26,7 @@
 ;      dictionary is used for simplicity and convenience to be able to
 ;      easily add new parameters for use in different routines.
 ;
-; :Author: Zachary Norman - GitLab: znorman-harris
+; :Author: Zachary Norman - GitLab: [znorman-harris](https://github.com/znorman-harris)
 ;-
 pro BandAlignment_SetUpSensorForProcessing, PARAMETERS = parameters
   compile_opt idl2, hidden

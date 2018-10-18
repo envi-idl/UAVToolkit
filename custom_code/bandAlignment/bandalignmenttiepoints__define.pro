@@ -1,7 +1,7 @@
 ;h+
 ; (c) 2018 Harris Geospatial Solutions, Inc.
 ; 
-; Licensed under MIT, see LICENSE.txt for more details.
+; Licensed under MIT. See LICENSE.txt for additional details and information.
 ;h-
 
 ;+
@@ -12,7 +12,7 @@
 ;  Object definition for the BandAlignmentTiePoints object. This object uses the ".dot" notation
 ;  to access and set properties.
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 
 
@@ -31,7 +31,7 @@
 ;
 ;
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 pro BandAlignmentTiePoints::GenerateRSTTransform, input_raster
   compile_opt idl2, hidden
@@ -149,7 +149,7 @@ end
 ;    _REF_EXTRA: in, requried, type=assorted
 ;     Allowed properties are any object definition parameters.
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 pro BandAlignmentTiePoints::GetProperty, _REF_EXTRA=extra
   compile_opt idl2, hidden
@@ -210,7 +210,7 @@ end
 ;      Se this to an IDL SAVE file on disk that contains a previously saved instance
 ;      of this object.
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 function BandAlignmentTiePoints::init, tie_points, SAVE_FILE = save_file
   compile_opt idl2, hidden
@@ -272,7 +272,7 @@ end
 ;    same method as the _overloadPrint method.
 ;
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 function BandAlignmentTiePoints::_OverloadImpliedPrint, varname
   return, self->BandAlignmentTiePoints::_overloadPrint()
@@ -286,7 +286,7 @@ end
 ;    from our crop centers object.
 ;
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 function BandAlignmentTiePoints::_OverloadPrint
   tags = tag_names(self)
@@ -356,7 +356,7 @@ end
 ;    _REF_EXTRA: in, requried, type=assorted
 ;      Set keywords that match object properties in the object definition.
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 pro BandAlignmentTiePoints::SetProperty, _REF_EXTRA = extra
   compile_opt idl2, hidden
@@ -394,7 +394,7 @@ end
 ;
 ;
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 pro BandAlignmentTiePoints::_SetProperty, property, prop_idx, new_value
   compile_opt idl2, hidden

@@ -14,7 +14,7 @@
 ;
 ;
 ;
-; :Author: Zachary Norman - GitHub: znorman-harris
+; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 pro uav_toolkit_test_sequoia, flightDir
   compile_opt idl2

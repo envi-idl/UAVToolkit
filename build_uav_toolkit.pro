@@ -1,12 +1,14 @@
 ;h+
 ; (c) 2018 Harris Geospatial Solutions, Inc.
 ; 
-; Licensed under MIT, see LICENSE.txt for more details.
+; Licensed under MIT. See LICENSE.txt for additional details and information.
 ;h-
 
 
 ;+
 ;
+;  :Private:
+;  
 ;  IDL batch file that will compile the code present into a single IDL 
 ;  SAVE file called the UAV Toolkit. This will also place the task files next to
 ;  the compiled source code.
@@ -20,7 +22,7 @@
 ;  folder. This helps avoid any conflicts on IDL's search path.
 ;  
 ;  
-; :Author: Zachary Norman - GitLab: znorman-harris
+; :Author: Zachary Norman - GitLab: [znorman-harris](https://github.com/znorman-harris)
 ;-
 
 

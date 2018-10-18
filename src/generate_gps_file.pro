@@ -1,7 +1,7 @@
 ;h+
 ; (c) 2018 Harris Geospatial Solutions, Inc.
 ; 
-; Licensed under MIT, see LICENSE.txt for more details.
+; Licensed under MIT. See LICENSE.txt for additional details and information.
 ;h-
 
 ;+
@@ -60,7 +60,7 @@
 ;      search for corresponding files between `INPUTDIR` and  OUTPUTDIR for the GPS file creation. This will also make the GPS
 ;      file be created in the directory specified by OUTPUTDIR.
 ;
-; :Author: Zachary Norman - Github: znorman-harris
+; :Author: Zachary Norman - Github: [znorman-harris](https://github.com/znorman-harris)
 ;-
 pro generate_gps_file,$
   FILE_IDENTIFIERS = file_identifiers,$
