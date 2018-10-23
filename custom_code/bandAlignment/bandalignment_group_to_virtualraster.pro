@@ -28,7 +28,7 @@
 ;
 ; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
-function bandAlignment_group_to_virtualRaster, groupFiles
+function bandAlignment_group_to_virtualRaster, groupFiles, RASTERS = rasters
   compile_opt idl2, hidden
   
   e = envi(/current)

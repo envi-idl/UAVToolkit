@@ -133,5 +133,6 @@ pro filter_raster,$
   
   ;save our output raster
   output_raster.save
+  output_raster.close
 end
 

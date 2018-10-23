@@ -29,9 +29,9 @@ function uav_toolkit_calibrate_data, group, sensor, $
   saveOrig = arg_present(orig_dat)
   
   ;check if we are a multi-page tiff
-  raster = bandAlignment_group_to_virtualRaster(group)
-  if (raster.NBANDS ne n_elements(group)) then begin
-    nBands = raster.NBANDS
+  vraster = bandAlignment_group_to_virtualRaster(group, RASTERS = rasters)
+  if (vraster.NBANDS ne n_elements(group)) then begin
+    nBands = vraster.NBANDS
     mPage = 1
   endif else begin
     nBands = n_elements(group)
@@ -197,6 +197,10 @@ function uav_toolkit_calibrate_data, group, sensor, $
       endfor
     endelse
   endforeach
+  
+  ;clean up
+  vraster.close
+  foreach r, rasters do if isa(r, 'ENVIRaster') then r.close
   
   ;check if we need to scale our data
   if (scaleFlag) then begin

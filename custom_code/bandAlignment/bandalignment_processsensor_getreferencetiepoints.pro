@@ -41,9 +41,10 @@ pro BandAlignment_ProcessSensor_GetReferenceTiePoints, group, parameters, $
   prog = awesomeENVIProgress('Generating Reference Tie Points', /PRINT)
   prog.setProgress, 'Initializing', 0, /PRINT
   
-  ;generate the reference tiepoints
+  ;check if we were provided a raster or not
   if ~isa(raster, 'ENVIRASTER') then begin
-    raster = bandAlignment_group_to_virtualRaster(group)
+    cleanup = 1
+    raster = bandAlignment_group_to_virtualRaster(group, RASTERS = sourceRasters)
   endif
 
   ;set task parameters - from banadalignment_set_task_parameters which ALWAYS gets called
@@ -102,8 +103,14 @@ pro BandAlignment_ProcessSensor_GetReferenceTiePoints, group, parameters, $
     raster.close
     foreach file, group do begin
       rasters = e.openRaster(file)
-      foreach r, rasters do r.close
+      foreach r, rasters do if isa(r, 'enviraster') then r.close
     endforeach
+  endif
+
+  ;check if we need to clean up our source rasters
+  if keyword_set(cleanup) then begin
+    if isa(raster, 'ENVIRaster') then raster.close
+    foreach r, sourceRasters do if isa(r, 'ENVIRaster') then r.close
   endif
   
   ;finish our progress

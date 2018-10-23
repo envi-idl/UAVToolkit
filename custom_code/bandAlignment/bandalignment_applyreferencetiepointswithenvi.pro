@@ -71,8 +71,12 @@ pro BandAlignment_ApplyReferenceTiePointsWithENVI,$
   endif
   reference_band = idxRef[0]
 
+  ;create a lost of rasters to clean up
+  clean = list()
+
   ;get base band
   baseRaster = ENVISubsetRaster(input_raster, BANDS = reference_band)
+  clean.add, baseRaster
 
   ;preallocate an array to hold our rasters
   outputRasters = objarr(input_raster.NBANDS)
@@ -107,6 +111,7 @@ pro BandAlignment_ApplyReferenceTiePointsWithENVI,$
 
     ;save output raster and add to data collection
     outputRasters[i] = regTask.OUTPUT_RASTER
+    clean.add, regTask.OUTPUT_RASTER
 
     ;close our band raster if not our reference band
     bandRaster.close
@@ -142,15 +147,18 @@ pro BandAlignment_ApplyReferenceTiePointsWithENVI,$
 
     ;regrid our reference
     baseRaster = ENVISpatialgridRaster(baseRaster, GRID_DEFINITION = grid_definition)
+    clean.add, baseRaster
   endforeach
 
   ;regrid all of our rasters
   foreach raster, outputRasters, i do $
     outputRasters[i] = ENVISpatialgridRaster(raster, GRID_DEFINITION = grid_definition)
+  clean.add, outputRasters, /EXTRACT
 
   ;stack together
   stackedRaster = ENVIMetaspectralRaster(outputRasters, $
     SPATIALREF = outputRasters[reference_band].SPATIALREF)
+  clean.add, stackedRaster
 
   ;check if we want to write to disk
   if keyword_set(output_raster_uri) then begin
@@ -188,5 +196,9 @@ pro BandAlignment_ApplyReferenceTiePointsWithENVI,$
     
     ;finalize raster
     output_raster.save
+    clean.add, output_raster
   endif
+
+  ;clean up
+  foreach r, clean do if isa(r, 'ENVIRaster') then r.close
 end

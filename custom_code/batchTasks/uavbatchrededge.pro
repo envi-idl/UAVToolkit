@@ -215,6 +215,9 @@ pro uavBatchRedEdge, FLIGHTDIR = flightdir, BAND_ALIGNMENT_TASK = band_alignment
   
   ;run task
   band_alignment_task.execute
+  
+  ;clean up
+  foreach r, e.data.get(/RASTER) do r.close
 
   ;unjoin the micasense data to delete the copies of files we made in the first
   ;numbered directory

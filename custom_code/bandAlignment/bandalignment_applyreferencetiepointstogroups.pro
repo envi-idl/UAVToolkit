@@ -223,7 +223,7 @@ pro BandAlignment_ApplyReferenceTiePointsToGroup, group, groupName, parameters
     MAX_VALUE_DIVISOR = maxFlag ? parameters.MAX_VALUE_DIVISOR : !NULL)
 
   ;convert out groups into a raster
-  raster = bandAlignment_group_to_virtualRaster(group)
+  raster = bandAlignment_group_to_virtualRaster(group, RASTERS = sourceRasters)
   nBands = raster.NBANDS
   mPage = raster.NBANDS ne n_elements(group)
 
@@ -245,6 +245,7 @@ pro BandAlignment_ApplyReferenceTiePointsToGroup, group, groupName, parameters
   ;to account for variations in elevation
   if ~parameters.NO_SECONDARY_MATCH then begin
     ;close orginal raster
+    foreach r, sourceRasters do if isa(r, 'ENVIRaster') then r.close
     raster.close
 
     ;save second raster to disk so that we can generate a second set of tiepoints
@@ -434,8 +435,9 @@ pro BandAlignment_ApplyReferenceTiePointsToGroup, group, groupName, parameters
 
   ;clean up ENVI so we don't have locks on datasets
   raster.close
+  foreach r, sourceRasters do if isa(r, 'ENVIRaster') then r.close
   foreach file, group do begin
-    rasters = e.openraster(file)
+    rasters = e.openRaster(file)
     foreach r, rasters do r.close
   endforeach
 end
