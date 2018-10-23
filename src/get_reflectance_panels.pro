@@ -20,8 +20,99 @@
 ;
 ;-
 
+;gets the bounding box of labels and returns the major/minor axis
+;PIXEL_SIZE = pixel_size, specify xy pixel size in meters to get approximate length of
+;axes in meters
+function get_reflectance_panels_bbox, xy, PIXEL_SIZE = pixel_size, MAJORAXIS=majorAxis, MINORAXIS = minorAxis, THETA = theta, MAJORLEN=majorlen, MINORLEN=minorlen
+  compile_opt idl2, hidden
+
+  ;extract the points
+  xOrig = xy[0,*]
+  yOrig = xy[1,*]
+
+  ; Test for collinearity
+  isaColin = CORRELATE(xOrig, yOrig)
+  if FINITE(isaColin, /NAN) OR isaColin eq 1 then begin
+    message, 'Problem'
+    theta = !VALUES.F_NAN
+    minorAxis = !VALUES.F_NAN
+    majorAxis = !VALUES.F_NAN
+    return, !VALUES.F_NAN
+  endif
+
+  ;check for no pixels
+  if n_elements(pixel_size) ne 2 then begin
+    pixel_size = [1.0,1.0]
+  endif
+
+  ; Compute the offset
+  xoffset = mean([max(xOrig),min(xOrig)], /DOUBLE)
+  yoffset = mean([max(yOrig),min(yOrig)], /DOUBLE)
+
+  ; Move the points to the origin
+  x = xOrig - xoffset
+  y = yOrig - yoffset
+
+  ; comput the convex hull
+  Triangulate, x, y, !null, hull
+
+  ; create list of connections
+  xc1 = x[hull]
+  xc2 = shift(xc1,1)
+  yc1 = y[hull]
+  yc2 = shift(yc1,1)
+
+  ; compute the angle
+  theta = ATAN(yc2-yc1, xc2-xc1)
+
+  ; compute the points with the given rotation
+  a = xc1#cos(-1d*theta) - yc1#sin(-1d*theta)
+  b = yc1#cos(-1d*theta) + xc1#sin(-1d*theta)
+
+  ; find the min area box with respect to the roation
+  length = max(a,DIMENSION=1) - min(a,DIMENSION=1)
+  width = max(b,DIMENSION=1) - min(b,DIMENSION=1)
+
+  ; find the min area rotation
+  area = length * width
+  !null = min(area,pos)
+
+  ; get the corners of the bounding box
+  rotx = [min(a[*,pos]),max(a[*,pos]),max(a[*,pos]),min(a[*,pos]),min(a[*,pos])]
+  roty = [min(b[*,pos]),min(b[*,pos]),max(b[*,pos]),max(b[*,pos]),min(b[*,pos])]
+
+  ; rotate the bounding box back
+  rotx2 = rotx*cos(theta[pos]) - roty*sin(theta[pos]) + xoffset
+  roty2 = roty*cos(theta[pos]) + rotx*sin(theta[pos]) + yoffset
+
+  ; find the four mid points
+  midx = mean([[rotx2[0:-2]] , [rotx2[1:-1]]],DIMENSION=2)
+  midy = mean([[roty2[0:-2]] , [roty2[1:-1]]],DIMENSION=2)
+
+  ; populate the keywords
+  majorAxis = [TRANSPOSE(midx[[0,2]]),TRANSPOSE(midy[[0,2]])]
+  minorAxis = [TRANSPOSE(midx[[1,3]]),TRANSPOSE(midy[[1,3]])]
+
+  majorLen = sqrt(((majorAxis[0,0]*pixel_size[0] - majorAxis[0,1]*pixel_size[0])^2) + ((majorAxis[1,0]*pixel_size[1] - majorAxis[1,1]*pixel_size[1])^2))
+  minorLen = sqrt(((minorAxis[0,0]*pixel_size[0] - minorAxis[0,1]*pixel_size[0])^2) + ((minorAxis[1,0]*pixel_size[1] - minorAxis[1,1]*pixel_size[1])^2))
+
+  if majorLen lt minorLen then begin
+    temp = minorAxis
+    minorAxis = majorAxis
+    majorAxis = temp
+    temp = majorLen
+    majorLen = minorLen
+    minorLen = temp
+  endif
+
+  ; return the results
+  return, [TRANSPOSE(rotx2),TRANSPOSE(roty2)]
+end
+
 
 ;+
+; :Private:
+; 
 ; :Description:
 ;    Function that extracts the reflectance panels from a given data array. It is
 ;    assumed that the reflectance panels are the largest, solid-color item in the scene
@@ -45,49 +136,129 @@ function get_refelctance_panels_extract_panel, dat
   
   ;hard coded parameters
   ;set a threshold for the region size (square pixels)
-  size_min = 7500
+  size_min = 5000
+  fit_min = 0.5
 
   ;grow the regions that are 0
   dmin = 5 ;pixel distance to 0 pixels that makes you a zero
   kernel = bytarr(dmin, dmin) + 1 ;kernel used for masking
-  nIter = 8 ;number of iterations to shrink areas next to black pixels
+  nIter = 10 ;number of iterations to shrink areas next to black pixels
   stddev_mult = 10 ;for growing the panel region
+  dims = size(dat, /DIMENSIONS)
   
-  ;mask pixels less than the mean plus some factor of the standard deviation
-  bandMask = dat ge (mean(dat) +1.0*stddev(dat))
+  ;specify our threshold
+  meanVal = mean(dat)
+  stddev = stddev(dat)
+  threshold = meanVal
+  
+  ;recursively try to identify where our panel pixels are
+  while (1) do begin
+    ;mask pixels less than the mean plus some factor of the standard deviation
+    bandMask = dat ge threshold
 
-  ;add a border around the image that is dmin pixels large
-  bandMask[*,0:dmin-1] = 0
-  bandMask[*,-dmin-2:-1] = 0
-  bandMask[0:dmin-1,*] = 0
-  bandMask[-dmin-2:-1,*] = 0
+    ;add a border around the image
+    bandMask[*,0:1] = 0
+    bandMask[*,-2:-1] = 0
+    bandMask[0:1,*] = 0
+    bandMask[-2:-1,*] = 0
 
-  ;shrink good regions if they are close to black pixels
-  for z=0,nIter-1 do bandMask *= ~convol(~bandMask,kernel)
+    ;shrink good regions if they are close to black pixels
+    for z=0,nIter-1 do bandMask *= ~convol(~bandMask,kernel)
 
-  ;split our sobel image into regions, helps find areas with no edges
-  label = label_region(bandMask)
+    ;split our sobel image into regions, helps find areas with no edges
+    label = label_region(bandMask)
 
-  ; Count number of pixels in each region,
-  ; ignore background and edges
-  h = histogram(label, MIN = 1, REVERSE_INDICES = r, LOCATIONS = loc)
-
-  ; find our largest region
-  idx = !NULL
-  for j=0, n_elements(h)-1 do if (r[j] ne r[j+1]) then begin
-    if (h[j] eq max(h)) then begin
-      idx = j
-      break
+    ; Count number of pixels in each region,
+    ; ignore background and edges
+    h = histogram(label, MIN = 1, REVERSE_INDICES = r, LOCATIONS = loc)
+    
+    ;check if we have clusters at our threshold
+    idxCheck = where(h ge size_min, countCheck)
+    
+    ;decrease our threshold
+    if (countCheck eq 0) then begin
+      threshold -= 0.1*stddev
+      continue
     endif
-  endif
-
-  ;make sure that we found a panel
+    
+    ;get the max value
+    max = max(h[idxCheck], j)
+    idx = idxCheck[j]
+    break
+  endwhile
+  
+  ;we have some items to check, so lets check them if needed
+  if (countCheck eq 0) then begin
+    idx = idxCheck[0]
+  endif else begin
+    ;allocate an array to save our "squareness"
+    squares = fltarr(countCheck)
+    
+    ;process each segment
+    foreach idx, idxCheck, i do begin
+      ;create a mask for creating our outline
+      mask = bytarr(dims)
+      mask[r[r[idx]:r[idx+1]-1]] = 1
+      
+      ;get our vertices
+      contour, mask, PATH_INFO = path_info, PATH_XY = vertices, /PATH_DATA_COORDS, NLEVELS = 1
+      
+      ;init a counter for the area that we have to subtract for holes
+      subtract = 0.0
+      
+      ;if more than one vertex, extract the primary outline as the reference
+      ;this can be when we have a shape with holes in it where contour generates
+      ;polygons for the interior shapes
+      if (n_elements(path_info) gt 1) then begin
+        ;process each part and get the area
+        for z=1,n_elements(path_info)-1 do begin
+          interior = vertices[*, path_info[z].OFFSET + [[0l:path_info[z].N-1], 0]]
+          
+          ;close vertices
+          interior = [[interior], [interior[*,0]]]
+          
+          ;create polygon
+          roi = IDLanROI(interior)
+          !NULL = roi.ComputeGeometry(AREA = area)
+          subtract += area
+        endfor
+        
+        ;extract our primary vertices
+        vertices = vertices[*, path_info[0].OFFSET + [[0l:path_info[0].N-1], 0]]
+      endif
+      
+      ;close our vertices
+      vertices = [[vertices], [vertices[*,0]]]
+      
+      ;get our area
+      area = float(h[idx]) - subtract
+      
+      ;fit to bbox and get square area
+      !NULL = get_reflectance_panels_bbox(vertices, MAJORLEN=major, MINORLEN=minor)
+      
+      ;get size of our "square"
+      square = (major > minor)^2.0
+      
+      ;create our objective function
+      squares[i] = ((area/square)*((minor<major)/(major>minor)))^2
+    endforeach
+    
+    ;check our results
+    idxOk = where(squares ge fit_min, countOk)
+    if (countOk gt 0) then begin
+      !NULL = max(squares[idxOk], i)
+      idx = idxCheck[idxOk[i]]
+    endif else begin
+      idx = !NULL
+    endelse
+  endelse
+  
+  ;check if we found a panel or not
   if (idx eq !NULL) then begin
     return, !NULL
-  endif
-
-  ;grow the region to try and fill the entire reflectance panel
-  return, region_grow(dat, r[r[idx]:r[idx+1]-1], STDDEV_MULTIPLIER = stddev_mult)
+  endif else begin
+    return, region_grow(dat, r[r[idx]:r[idx+1]-1], STDDEV_MULTIPLIER = stddev_mult)
+  endelse
 end
 
 
@@ -197,7 +368,7 @@ function get_reflectance_panels, group, sensor, $
 ;    grown[panel_pixels] = banddat[panel_pixels]
 ;    w = window(DIMENSIONS = [1200,550], TITLE = 'Reflectance Panel for Band ' + strtrim(i+1,2), FONT_SIZE = 16, FONT_STYLE = 'bold')
 ;    ;original band
-;    im1 = image(all_bands[*,*,i], LAYOUT = [2,1,1], CURRENT = w)
+;    im1 = image(*all_bands[i], LAYOUT = [2,1,1], CURRENT = w)
 ;    ;refectance panel pixels
 ;    im2 = image(grown, LAYOUT = [2,1,2], CURRENT = w)
     ;        w.save, inputdir + path_sep() + 'band' + strtrim(i,2) + '.jpg'
