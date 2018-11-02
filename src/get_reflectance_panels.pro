@@ -337,8 +337,8 @@ function get_reflectance_panels, group, sensor, $
   panel_counts = lonarr(nBands)
 
   ;outfile for creating a GIF
-;  outfile = inputdir + path_sep() + 'panel_locations.gif'
-;  if file_test(outfile) then FILE_DELETE, outfile, /quiet
+  ;outfile = 'super-animation.gif'
+  ;if file_test(outfile) then file_delete, outfile, /quiet
 
   print, '    Finding reflectance panels in the images...'
   for i=0, nBands-1 do begin
@@ -363,7 +363,7 @@ function get_reflectance_panels, group, sensor, $
     print, '    Stddev of pixels in panel   : [ ' + strtrim(panel_stddevs[i],2) + ' ]'
     print
 
-    ;display some images to check that we found the panel
+;    ;display some images to check that we found the panel
 ;    grown = 0*banddat
 ;    grown[panel_pixels] = banddat[panel_pixels]
 ;    w = window(DIMENSIONS = [1200,550], TITLE = 'Reflectance Panel for Band ' + strtrim(i+1,2), FONT_SIZE = 16, FONT_STYLE = 'bold')
@@ -371,15 +371,13 @@ function get_reflectance_panels, group, sensor, $
 ;    im1 = image(*all_bands[i], LAYOUT = [2,1,1], CURRENT = w)
 ;    ;refectance panel pixels
 ;    im2 = image(grown, LAYOUT = [2,1,2], CURRENT = w)
-    ;        w.save, inputdir + path_sep() + 'band' + strtrim(i,2) + '.jpg'
-    ;
-    ;        ;convert the image to 8 bit
-    ;        img = w.copywindow()
-    ;        w.close
-    ;        img = color_quan(img, 1, r, g, b)
-    ;        ;duplicate frames otherwise low frame-rate can be a problem with some players
-    ;        WRITE_GIF, outfile, img, r, g, b, delay_time = 100 ,$
-    ;          /multiple, repeat_count = 0
+;  
+;    ;convert the image to 8 bit
+;    img = w.copywindow()
+;    img = color_quan(img, 1, r, g, b)
+;    ;duplicate frames otherwise low frame-rate can be a problem with some players
+;    WRITE_GIF, outfile, img, r, g, b, delay_time = 100 ,$
+;      /multiple, repeat_count = 0
   endfor
   
   if (1 eq 0) then begin
@@ -399,7 +397,7 @@ function get_reflectance_panels, group, sensor, $
   panel_info['PANEL_COUNTS'] = panel_counts    ;number of pixels in the panel
 
   ; Close the file and window
-  ;    WRITE_GIF, outpath, /CLOSE
+  ;write_gif, outfile, /CLOSE
 
   ;return the panel information
   return, panel_info
