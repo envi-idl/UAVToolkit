@@ -11,7 +11,7 @@ $(document).ready(function () {
       pre[i].append(p);
       var span = document.createElement('span');
       span.className = 'copy-button';
-      span.textContent = 'Copy';
+      span.textContent = 'COPY';
       //add button to the code block
       pre[i].prepend(span);
     }

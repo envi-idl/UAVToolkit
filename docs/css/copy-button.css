@@ -3,11 +3,11 @@
     z-index: 10;
     display: block;
     padding: .25rem .5rem;
-    font-size: 75%;
+    /* font-size: 75%; */
     color: #fff;
     cursor: pointer;
     background-color: #121212;
-    border-radius: 7px;
+    /* border-radius: 7px; */
 }
 .copy-button:hover {
     color: #fff;

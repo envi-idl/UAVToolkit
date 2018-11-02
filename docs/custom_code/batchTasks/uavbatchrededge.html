@@ -46,23 +46,29 @@
             <li>
                 <a href="./../../index.html#"><img class="header-image" src="./../../images/baseline_home_white_48dp.png"></a>
             </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img class="header-image" src="./../../images/baseline_menu_white_48dp.png"></i></a>
-                <ul class="dropdown-menu">
-<li><a href="./../..//uav_toolkit.html#">uav_toolkit.pro</a></li>
-<li><a href="./../../src/unjoin_rededge_datadir.html#">unjoin_rededge_datadir.pro</a></li>
-<li><a href="./../../src/rededge_to_radiance.html#">rededge_to_radiance.pro</a></li>
-<li><a href="./../../src/join_rededge_datadirs.html#">join_rededge_datadirs.pro</a></li>
-<li><a href="./../../src/generate_gps_file.html#">generate_gps_file.pro</a></li>
-<li><a href="./../../src/generate_cam_file.html#">generate_cam_file.pro</a></li>
-<li><a href="./../../custom_code/batchTasks/uavbatchrededge.html#">uavbatchrededge.pro</a></li>
-<li><a href="./../../custom_code/bandAlignment/uavbandalignment.html#">uavbandalignment.pro</a></li>
-<li><a href="./../../custom_code/README.html#">UAVToolkit Directory custom_code</a></li>
-<li><a href="./../..//CONTRIBUTING.html#">Contributing</a></li>
-<li><a href="./../..//CHANGELOG.html#">Changelog</a></li>
-                    <!--<li><a href="#">Chapter 1</a></li>-->
-                </ul>
-            </li>
+            <!-- the below lines are populated when we convert the markdown to html in the builder -->
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img class="header-image" src="./../..//images/baseline_menu_white_48dp.png">Contents</a>
+  <ul class="dropdown-menu">
+    <li><a href="./../..//CHANGELOG.html#">Changelog</a></li>
+    <li><a href="./../..//CONTRIBUTING.html#">Contributing</a></li>
+    <li><a href="./../..//LICENSE.html#">LICENSE.txt</a></li>
+    <li><a href="./../../custom_code/README.html#">UAVToolkit Directory custom_code</a></li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img class="header-image" src="./../..//images/baseline_code_white_48dp.png">Code</a>
+  <ul class="dropdown-menu">
+    <li><a href="./../../src/generate_cam_file.html#">generate_cam_file.pro</a></li>
+    <li><a href="./../../src/generate_gps_file.html#">generate_gps_file.pro</a></li>
+    <li><a href="./../../src/join_rededge_datadirs.html#">join_rededge_datadirs.pro</a></li>
+    <li><a href="./../../src/rededge_to_radiance.html#">rededge_to_radiance.pro</a></li>
+    <li><a href="./../..//uav_toolkit.html#">uav_toolkit.pro</a></li>
+    <li><a href="./../../custom_code/bandAlignment/uavbandalignment.html#">uavbandalignment.pro</a></li>
+    <li><a href="./../../custom_code/batchTasks/uavbatchrededge.html#">uavbatchrededge.pro</a></li>
+    <li><a href="./../../src/unjoin_rededge_datadir.html#">unjoin_rededge_datadir.pro</a></li>
+  </ul>
+</li>
         </ul>
         <a class="navbar-brand" href="#">
             UAVToolkit: uavbatchrededge.pro
@@ -109,36 +115,62 @@
 <a class="anchor_sub" name="uavbatchrededge-head_0"></a>
 </div>
 <h2 id="uavbatchrededge">uavBatchRedEdge</h2>
+<p>Procedure that will process a folder containing directories of RedEdge data in an automated fashion. It joins directories that contain rededge data, generates, and applies reference tie points for the user. Note that the directories of data should all be with the same sensor and have the same height above the ground for the tie points to be valid.</p>
 <div id="uavbatchrededge-head_1">
 <a class="anchor_sub" name="uavbatchrededge-head_1"></a>
 </div>
 <h3 id="examples">Examples</h3>
 <p>Here is an example of how you can run this routine with the task UAVBatchRedEdge:</p>
-<pre><code style="background:#f5f5f5;">  ;start ENVI headlessly e = envi(/HEADLESS) 
+<pre class="idl_code_block">
+<font class="idl_comment">;start ENVI headlessly</font>
+e = <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/ENVI.html" target="_blank"><font class="idl_sys_func idl_tt" idl_tt="Launches the ENVI application and returns an object reference to the application.">envi</font></a>(/HEADLESS)
 
-  ;initialize the uav_toolkit uav_toolkit 
+<font class="idl_comment">;initialize the uav_toolkit</font>
+<font class="idl_lib_pro ">uav_toolkit</font>
 
-  ;specify our flight folder (contains data folder &#39;000&#39;) flightdir = &#39;C:\data\rededge&#39; 
+<font class="idl_comment">;specify our flight folder (contains data folder '000')</font>
+flightdir = <font class="idl_str">&#39;C:\data\rededge&#39;</font>
 
-  ;create our batch task redEdgeTask = ENVITask(&#39;UAVBatchRedEdge&#39;) redEdgeTask.FLIGHTDIR = flightdir redEdgeTask.execute </code></pre>
+<font class="idl_comment">;create our batch task</font>
+redEdgeTask = <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/ENVITask.html" target="_blank"><font class="idl_sys_func idl_tt" idl_tt="Accepts a task name and returns an object reference to the task.">ENVITask</font></a>(<font class="idl_str">&#39;UAVBatchRedEdge&#39;</font>)
+redEdgeTask.<font class="idl_prop">FLIGHTDIR</font> = flightdir
+redEdgeTask.<font class="idl_lib_pro ">execute</font>
+</pre>
 <p>Here is an example for how you can use this routine directly. Processing with the task is preferable:</p>
-<pre><code style="background:#f5f5f5;">  ;start ENVI headlessly e = envi(/HEADLESS) 
+<pre class="idl_code_block">
+<font class="idl_comment">;start ENVI headlessly</font>
+e = <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/ENVI.html" target="_blank"><font class="idl_sys_func idl_tt" idl_tt="Launches the ENVI application and returns an object reference to the application.">envi</font></a>(/HEADLESS)
 
-  ;initialize the uav_toolkit uav_toolkit 
+<font class="idl_comment">;initialize the uav_toolkit</font>
+<font class="idl_lib_pro ">uav_toolkit</font>
 
-  ;specify our flight folder (contains data folder &#39;000&#39;) flightdir = &#39;C:\data\rededge&#39; 
+<font class="idl_comment">;specify our flight folder (contains data folder '000')</font>
+flightdir = <font class="idl_str">&#39;C:\data\rededge&#39;</font>
 
-  ;initialize our task alignTask = ENVITask(&#39;UAVBandAlignment&#39;) alignTask.APPLY_REFERENCE_TIEPOINTS = 1 
+<font class="idl_comment">;initialize our task</font>
+alignTask = <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/ENVITask.html" target="_blank"><font class="idl_sys_func idl_tt" idl_tt="Accepts a task name and returns an object reference to the task.">ENVITask</font></a>(<font class="idl_str">&#39;UAVBandAlignment&#39;</font>)
+alignTask.<font class="idl_prop">APPLY_REFERENCE_TIEPOINTS</font> = <font class="idl_num">1</font>
 
-  ;generate the reference tiepoints batchRedEdge, FLIGHTDIR = flightdir, BAND_ALIGNMENT_TASK = alignTask </code></pre>
+<font class="idl_comment">;generate the reference tiepoints</font>
+<font class="idl_lib_pro ">batchRedEdge</font>, FLIGHTDIR = flightdir, BAND_ALIGNMENT_TASK = alignTask
+</pre>
 <p>Here is an example of how you can use this routine and specify the percent reflectance of each band with the reflectance panels:</p>
-<pre><code style="background:#f5f5f5;">  ;start ENVI headlessly e = envi(/HEADLESS) 
+<pre class="idl_code_block">
+<font class="idl_comment">;start ENVI headlessly</font>
+e = <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/ENVI.html" target="_blank"><font class="idl_sys_func idl_tt" idl_tt="Launches the ENVI application and returns an object reference to the application.">envi</font></a>(/HEADLESS)
 
-  ;initialize the uav_toolkit uav_toolkit 
+<font class="idl_comment">;initialize the uav_toolkit</font>
+<font class="idl_lib_pro ">uav_toolkit</font>
 
-  ;specify our flight folder (contains data folder &#39;000&#39;) flightdir = &#39;C:\data\rededge&#39; 
+<font class="idl_comment">;specify our flight folder (contains data folder '000')</font>
+flightdir = <font class="idl_str">&#39;C:\data\rededge&#39;</font>
 
-  ;create our batch task redEdgeTask = ENVITask(&#39;UAVBatchRedEdge&#39;) redEdgeTask.FLIGHTDIR = flightdir redEdgeTask.PANEL_REFLECTANCE = [67, 69, 68, 67, 61] redEdgeTask.execute </code></pre>
+<font class="idl_comment">;create our batch task</font>
+redEdgeTask = <a class="idl_docs_link" href="https://www.harrisgeospatial.com/docs/ENVITask.html" target="_blank"><font class="idl_sys_func idl_tt" idl_tt="Accepts a task name and returns an object reference to the task.">ENVITask</font></a>(<font class="idl_str">&#39;UAVBatchRedEdge&#39;</font>)
+redEdgeTask.<font class="idl_prop">FLIGHTDIR</font> = flightdir
+redEdgeTask.<font class="idl_prop">PANEL_REFLECTANCE</font> = [<font class="idl_num">67</font>, <font class="idl_num">69</font>, <font class="idl_num">68</font>, <font class="idl_num">67</font>, <font class="idl_num">61</font>]
+redEdgeTask.<font class="idl_lib_pro ">execute</font>
+</pre>
 <div id="uavbatchrededge-head_2">
 <a class="anchor_sub" name="uavbatchrededge-head_2"></a>
 </div>
