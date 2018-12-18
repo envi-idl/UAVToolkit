@@ -2,6 +2,16 @@
 
 This file summarizes the overall changes for the UAV toolkit.
 
+## Version 2.3.1
+
+Comment updates to add tooltips
+
+Documentation updated
+
+LICENSE.txt updated to add "Copyright"
+
+idl.package.json updated for hooks into ENVI Tasks and Extensions
+
 ## Version 2.3
 
 Updated the reflectance panel extractor to work better when the background is also bright. As long as the reflectance panels are greater than the mean reflectance of the image, they should be extractable. The new algorithm finds a measure of "squareness" and uses an optmization function to extract the most "square" clump of pixels in the scene.

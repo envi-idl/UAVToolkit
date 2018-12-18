@@ -95,28 +95,13 @@
       <ul id="sidebar" class="nav nav-stacked fixed sidebar-overflow">
         <li><a href="#" class="side_tt", side_tt="uav_toolkit.pro">uav_toolkit.pro</a></li>
         <li>
-          <a href="#uav_toolkit-head_0" class="side_tt", side_tt="uav_toolkit_extensions_init">uav_toolkit_extensions_init</a>
+          <a href="#uav_toolkit-head_0" class="side_tt", side_tt="uav_toolkit">uav_toolkit</a>
             <ul class="nav nav-stacked">
-              <li><a href="#uav_toolkit-head_1" class="side_tt", side_tt="Syntax">Syntax</a></li>
-              <li><a href="#uav_toolkit-head_2" class="side_tt", side_tt="Author">Author</a></li>
-            </ul>
-        <li>
-        <li>
-          <a href="#uav_toolkit-head_3" class="side_tt", side_tt="uav_toolkit_extension">uav_toolkit_extension</a>
-            <ul class="nav nav-stacked">
-              <li><a href="#uav_toolkit-head_4" class="side_tt", side_tt="Syntax">Syntax</a></li>
-              <li><a href="#uav_toolkit-head_5" class="side_tt", side_tt="Arguments">Arguments</a></li>
-              <li><a href="#uav_toolkit-head_7" class="side_tt", side_tt="Author">Author</a></li>
-            </ul>
-        <li>
-        <li>
-          <a href="#uav_toolkit-head_8" class="side_tt", side_tt="uav_toolkit">uav_toolkit</a>
-            <ul class="nav nav-stacked">
-              <li><a href="#uav_toolkit-head_9" class="side_tt", side_tt="Example One">Example One</a></li>
-              <li><a href="#uav_toolkit-head_10" class="side_tt", side_tt="Example Two">Example Two</a></li>
-              <li><a href="#uav_toolkit-head_11" class="side_tt", side_tt="Syntax">Syntax</a></li>
-              <li><a href="#uav_toolkit-head_12" class="side_tt", side_tt="Keywords">Keywords</a></li>
-              <li><a href="#uav_toolkit-head_14" class="side_tt", side_tt="Author">Author</a></li>
+              <li><a href="#uav_toolkit-head_1" class="side_tt", side_tt="Example One">Example One</a></li>
+              <li><a href="#uav_toolkit-head_2" class="side_tt", side_tt="Example Two">Example Two</a></li>
+              <li><a href="#uav_toolkit-head_3" class="side_tt", side_tt="Syntax">Syntax</a></li>
+              <li><a href="#uav_toolkit-head_4" class="side_tt", side_tt="Keywords">Keywords</a></li>
+              <li><a href="#uav_toolkit-head_6" class="side_tt", side_tt="Author">Author</a></li>
             </ul>
         <li>
       </ul>
@@ -130,88 +115,48 @@
 <div id="uav_toolkit-head_0">
 <a class="anchor_sub" name="uav_toolkit-head_0"></a>
 </div>
-<h2 id="uav_toolkit_extensions_init">uav_toolkit_extensions_init</h2>
-<p>Procedure that adds the buttons to ENVI’s toolbox.</p>
-<div id="uav_toolkit-head_1">
-<a class="anchor_sub" name="uav_toolkit-head_1"></a>
-</div>
-<h3 id="syntax">Syntax</h3>
-<pre class="no-copy-button">uav_toolkit_extensions_init</pre>
-<div id="uav_toolkit-head_2">
-<a class="anchor_sub" name="uav_toolkit-head_2"></a>
-</div>
-<h3 id="author">Author</h3>
-<p>Zachary Norman - GitHub: <a href="https://github.com/znorman-harris">znorman-harris</a></p>
-<div id="uav_toolkit-head_3">
-<a class="anchor_sub" name="uav_toolkit-head_3"></a>
-</div>
-<hr />
-<h2 id="uav_toolkit_extension">uav_toolkit_extension</h2>
-<p>Displays the task UI for the button we click.</p>
-<div id="uav_toolkit-head_4">
-<a class="anchor_sub" name="uav_toolkit-head_4"></a>
-</div>
-<h3 id="syntax-1">Syntax</h3>
-<pre class="no-copy-button">uav_toolkit_extension, <a href="#params1-0">event</a></pre>
-<div id="uav_toolkit-head_5">
-<a class="anchor_sub" name="uav_toolkit-head_5"></a>
-</div>
-<h3 id="arguments">Arguments</h3>
-<p><a class="anchor_sub" name="params1-0"></a></p>
-<p><a class="anchor_sub" name="uav_toolkit-head_6"></a></p>
-<h4 id="event">EVENT</h4>
-<p><font style="font-weight:bold;">in, required, type=structure</font></p>
-<p>The event that is passed on when a user clicks on the button in the ENVI toolbox.</p>
-<div id="uav_toolkit-head_7">
-<a class="anchor_sub" name="uav_toolkit-head_7"></a>
-</div>
-<h3 id="author-1">Author</h3>
-<p>Zachary Norman - GitHub: <a href="https://github.com/znorman-harris">znorman-harris</a></p>
-<div id="uav_toolkit-head_8">
-<a class="anchor_sub" name="uav_toolkit-head_8"></a>
-</div>
-<hr />
 <h2 id="uav_toolkit">uav_toolkit</h2>
 <p>The purpose of this procedure is to to used to restore the UAV Toolkit as a .sav file into IDL’s session and add to let ENVI know about the tasks that are a part of the UAV Toolkit (even if we are just using PRO code).</p>
 <p>It also allows for a simple interface to open the help contents regarding the UAV Toolkit.</p>
-<div id="uav_toolkit-head_9">
-<a class="anchor_sub" name="uav_toolkit-head_9"></a>
+<div id="uav_toolkit-head_1">
+<a class="anchor_sub" name="uav_toolkit-head_1"></a>
 </div>
 <h3 id="example-one">Example One</h3>
 <p>Instead of needing to restore the UAV Toolkit .sav file every time in your code, you can just add the source to IDL’s search path and do the following in your IDL code:</p>
 <pre class="idl_code_block">
-<font class="idl_lib_pro ">uav_toolkit</font>
+<a class="idl_docs_link" href="./uav_toolkit.html" target="_blank"><font class="idl_lib_pro idl_tt" idl_tt="Initializes the UAV Toolkit for use with ENVI">uav_toolkit</font></a>
 </pre>
-<div id="uav_toolkit-head_10">
-<a class="anchor_sub" name="uav_toolkit-head_10"></a>
+<div id="uav_toolkit-head_2">
+<a class="anchor_sub" name="uav_toolkit-head_2"></a>
 </div>
 <h3 id="example-two">Example Two</h3>
 <p>To open the help using this routine, just do the following:</p>
 <pre class="idl_code_block">
-<font class="idl_lib_pro ">uav_toolkit</font>, /HELP
+<a class="idl_docs_link" href="./uav_toolkit.html" target="_blank"><font class="idl_lib_pro idl_tt" idl_tt="Initializes the UAV Toolkit for use with ENVI">uav_toolkit</font></a>, /HELP
 </pre>
-<div id="uav_toolkit-head_11">
-<a class="anchor_sub" name="uav_toolkit-head_11"></a>
+<p>This functionality is tested on windows.</p>
+<div id="uav_toolkit-head_3">
+<a class="anchor_sub" name="uav_toolkit-head_3"></a>
 </div>
-<h3 id="syntax-2">Syntax</h3>
+<h3 id="syntax">Syntax</h3>
 <pre class="no-copy-button">uav_toolkit, [ <a href="#keywords2-0">/HELP</a> ]</pre>
-<div id="uav_toolkit-head_12">
-<a class="anchor_sub" name="uav_toolkit-head_12"></a>
+<div id="uav_toolkit-head_4">
+<a class="anchor_sub" name="uav_toolkit-head_4"></a>
 </div>
 <h3 id="keywords">Keywords</h3>
 <p><a class="anchor_sub" name="keywords2-0"></a></p>
-<p><a class="anchor_sub" name="uav_toolkit-head_13"></a></p>
+<p><a class="anchor_sub" name="uav_toolkit-head_5"></a></p>
 <h4 id="help">HELP</h4>
 <p><font style="font-weight:bold;">in, optional, type=boolean, default=false</font></p>
 <p>Set this keyword to open up the help contents for the UAV Toolkit. Note that if you move the .sav file then IDL may not be able to open up the help contents.</p>
-<div id="uav_toolkit-head_14">
-<a class="anchor_sub" name="uav_toolkit-head_14"></a>
+<div id="uav_toolkit-head_6">
+<a class="anchor_sub" name="uav_toolkit-head_6"></a>
 </div>
-<h3 id="author-2">Author</h3>
+<h3 id="author">Author</h3>
 <p>Zachary Norman - GitHub: <a href="https://github.com/znorman-harris">znorman-harris</a></p>
 <hr />
-<p>© 2018 Harris Geospatial Solutions, Inc.</p>
-<p>Licensed under MIT. See LICENSE.txt for additional details and information.</p>
+<p>Copyright © 2018 Harris Geospatial Solutions, Inc.</p>
+<p>Licensed under MIT. See <a href="./LICENSE.html">LICENSE.txt</a> for additional details and information.</p>
 </div>
 </row>
 </div>

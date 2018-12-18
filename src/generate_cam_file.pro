@@ -1,5 +1,5 @@
 ;h+
-; (c) 2018 Harris Geospatial Solutions, Inc.
+; Copyright (c) 2018 Harris Geospatial Solutions, Inc.
 ; 
 ; Licensed under MIT. See LICENSE.txt for additional details and information.
 ;h-
@@ -43,7 +43,10 @@
 ;    OUTPUTDIR: in, optional, type=string, default=`INPUTDIR`
 ;       Set this keyword to the location where you would like the output CAM file to be written to.
 ;       If you set this keyword and the directory does not exist, then it will be created.
-;       
+; 
+; :Tooltip:
+;    Generates a ".cam" formatted file from reading image metadata
+; 
 ; :Author: Zachary Norman
 ;-
 pro generate_cam_file, INPUTDIR = inputdir, EXTENSION = extension, OUTPUTDIR = outputdir

@@ -1,5 +1,5 @@
 ;h+
-; (c) 2018 Harris Geospatial Solutions, Inc.
+; Copyright (c) 2018 Harris Geospatial Solutions, Inc.
 ; 
 ; Licensed under MIT. See LICENSE.txt for additional details and information.
 ;h-
@@ -27,6 +27,9 @@
 ;    dir: in, required, type=string
 ;       This input is the fully qualified path to a directory that contains MicaSense data. An error will
 ;       be thrown if the directory does not exist.
+;
+; :Tooltip:
+;   Removes files that were copies to join together RedEdge folders
 ;
 ; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-

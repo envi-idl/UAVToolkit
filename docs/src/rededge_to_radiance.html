@@ -95,29 +95,12 @@
       <ul id="sidebar" class="nav nav-stacked fixed sidebar-overflow">
         <li><a href="#" class="side_tt", side_tt="rededge_to_radiance.pro">rededge_to_radiance.pro</a></li>
         <li>
-          <a href="#rededge_to_radiance-head_1" class="side_tt", side_tt="extract_metadata()">extract_metadata()</a>
+          <a href="#rededge_to_radiance-head_1" class="side_tt", side_tt="rededge_to_radiance()">rededge_to_radiance()</a>
             <ul class="nav nav-stacked">
               <li><a href="#rededge_to_radiance-head_2" class="side_tt", side_tt="Syntax">Syntax</a></li>
               <li><a href="#rededge_to_radiance-head_3" class="side_tt", side_tt="Arguments">Arguments</a></li>
-              <li><a href="#rededge_to_radiance-head_6" class="side_tt", side_tt="Author">Author</a></li>
-            </ul>
-        <li>
-        <li>
-          <a href="#rededge_to_radiance-head_7" class="side_tt", side_tt="vmap()">vmap()</a>
-            <ul class="nav nav-stacked">
-              <li><a href="#rededge_to_radiance-head_8" class="side_tt", side_tt="Syntax">Syntax</a></li>
-              <li><a href="#rededge_to_radiance-head_9" class="side_tt", side_tt="Arguments">Arguments</a></li>
-              <li><a href="#rededge_to_radiance-head_12" class="side_tt", side_tt="Keywords">Keywords</a></li>
-              <li><a href="#rededge_to_radiance-head_16" class="side_tt", side_tt="Author">Author</a></li>
-            </ul>
-        <li>
-        <li>
-          <a href="#rededge_to_radiance-head_17" class="side_tt", side_tt="rededge_to_radiance()">rededge_to_radiance()</a>
-            <ul class="nav nav-stacked">
-              <li><a href="#rededge_to_radiance-head_18" class="side_tt", side_tt="Syntax">Syntax</a></li>
-              <li><a href="#rededge_to_radiance-head_19" class="side_tt", side_tt="Arguments">Arguments</a></li>
-              <li><a href="#rededge_to_radiance-head_21" class="side_tt", side_tt="Keywords">Keywords</a></li>
-              <li><a href="#rededge_to_radiance-head_23" class="side_tt", side_tt="Author">Author</a></li>
+              <li><a href="#rededge_to_radiance-head_5" class="side_tt", side_tt="Keywords">Keywords</a></li>
+              <li><a href="#rededge_to_radiance-head_7" class="side_tt", side_tt="Author">Author</a></li>
             </ul>
         <li>
       </ul>
@@ -143,122 +126,41 @@
 <a class="anchor_sub" name="rededge_to_radiance-head_1"></a>
 </div>
 <hr />
-<h2 id="extract_metadata">extract_metadata()</h2>
-<p>Simple function that validates and returns nested keys from within a hash/distionary object.</p>
-<p>It will return the value from the hash if it exists, otherwise an error will be thrown.</p>
-<p>If the item in question is a list, this function converts the list to an array for convenience.</p>
+<h2 id="rededge_to_radiance">rededge_to_radiance()</h2>
+<p>Function that takes RedEdge data and converts the pixel values directly to radiance if all of the necessary metadata is present. This routine does not account for DLS sensors and the orientation of the sensor, but that support is planned.</p>
+<p>This function is overly cautious and makes sure that all metadata is present, otherwise an error is thrown. This should be used with a catch block to ensure that we can process our data correctly.</p>
 <div id="rededge_to_radiance-head_2">
 <a class="anchor_sub" name="rededge_to_radiance-head_2"></a>
 </div>
 <h3 id="syntax">Syntax</h3>
-<pre class="no-copy-button">Result = extract_metadata(<a href="#params1-0">item</a>, <a href="#params1-1">keys</a>)</pre>
+<pre class="no-copy-button">Result = rededge_to_radiance(<a href="#params3-0">file</a>, [ <a href="#keywords3-0">DAT</a> = array ])</pre>
 <div id="rededge_to_radiance-head_3">
 <a class="anchor_sub" name="rededge_to_radiance-head_3"></a>
 </div>
 <h3 id="arguments">Arguments</h3>
-<p><a class="anchor_sub" name="params1-0"></a></p>
-<p><a class="anchor_sub" name="rededge_to_radiance-head_4"></a></p>
-<h4 id="item">ITEM</h4>
-<p><font style="font-weight:bold;">in, required, type=hash/dictionary</font></p>
-<p>The hash or dictionary that you want to extract keys from</p>
-<p><a class="anchor_sub" name="params1-1"></a></p>
-<p><a class="anchor_sub" name="rededge_to_radiance-head_5"></a></p>
-<h4 id="keys">KEYS</h4>
-<p><font style="font-weight:bold;">in, required, type=string/string array</font></p>
-<p>Specify the key/keys that you want to check and extract</p>
-<div id="rededge_to_radiance-head_6">
-<a class="anchor_sub" name="rededge_to_radiance-head_6"></a>
-</div>
-<h3 id="author-1">Author</h3>
-<p>Zachary Norman - GitHub: <a href="https://github.com/znorman-harris">znorman-harris</a></p>
-<div id="rededge_to_radiance-head_7">
-<a class="anchor_sub" name="rededge_to_radiance-head_7"></a>
-</div>
-<hr />
-<h2 id="vmap">vmap()</h2>
-<p>Returns 2D array which is the correction for vignetting with the sensor.</p>
-<div id="rededge_to_radiance-head_8">
-<a class="anchor_sub" name="rededge_to_radiance-head_8"></a>
-</div>
-<h3 id="syntax-1">Syntax</h3>
-<pre class="no-copy-button">Result = vmap(<a href="#params2-0">coeff</a>, <a href="#params2-1">dims</a>, [ <a href="#keywords2-0">X</a> = array ], [ <a href="#keywords2-1">Y</a> = array ], [ <a href="#keywords2-2">R</a> = array ])</pre>
-<div id="rededge_to_radiance-head_9">
-<a class="anchor_sub" name="rededge_to_radiance-head_9"></a>
-</div>
-<h3 id="arguments-1">Arguments</h3>
-<p><a class="anchor_sub" name="params2-0"></a></p>
-<p><a class="anchor_sub" name="rededge_to_radiance-head_10"></a></p>
-<h4 id="coeff">COEFF</h4>
-<p><font style="font-weight:bold;">in, required, type=array[6]</font></p>
-<p>Contains the 6 polynomial coefficients for correcting vignetting effects</p>
-<p><a class="anchor_sub" name="params2-1"></a></p>
-<p><a class="anchor_sub" name="rededge_to_radiance-head_11"></a></p>
-<h4 id="dims">DIMS</h4>
-<p><font style="font-weight:bold;">in, required, type=array[2]</font></p>
-<p>The dimensions of the image in columns, rows.</p>
-<div id="rededge_to_radiance-head_12">
-<a class="anchor_sub" name="rededge_to_radiance-head_12"></a>
-</div>
-<h3 id="keywords">Keywords</h3>
-<p><a class="anchor_sub" name="keywords2-0"></a></p>
-<p><a class="anchor_sub" name="rededge_to_radiance-head_13"></a></p>
-<h4 id="x">X</h4>
-<p><font style="font-weight:bold;">out, optional, type=array</font></p>
-<p>The 2D array with X pixel locations</p>
-<p><a class="anchor_sub" name="keywords2-1"></a></p>
-<p><a class="anchor_sub" name="rededge_to_radiance-head_14"></a></p>
-<h4 id="y">Y</h4>
-<p><font style="font-weight:bold;">out, optional, type=array</font></p>
-<p>The 2D array with Y pixel locations</p>
-<p><a class="anchor_sub" name="keywords2-2"></a></p>
-<p><a class="anchor_sub" name="rededge_to_radiance-head_15"></a></p>
-<h4 id="r">R</h4>
-<p><font style="font-weight:bold;">out, optional, type=array</font></p>
-<p>The 2D array that contains the equation sqrt((x-cx)^2 + (y-cy)^2)</p>
-<div id="rededge_to_radiance-head_16">
-<a class="anchor_sub" name="rededge_to_radiance-head_16"></a>
-</div>
-<h3 id="author-2">Author</h3>
-<p>Zachary Norman - GitHub:<a href="https://github.com/znorman-harris">znorman-harris</a></p>
-<div id="rededge_to_radiance-head_17">
-<a class="anchor_sub" name="rededge_to_radiance-head_17"></a>
-</div>
-<hr />
-<h2 id="rededge_to_radiance">rededge_to_radiance()</h2>
-<p>Function that takes RedEdge data and converts the pixel values directly to radiance if all of the necessary metadata is present. This routine does not account for DLS sensors and the orientation of the sensor, but that support is planned.</p>
-<p>This function is overly cautious and makes sure that all metadata is present, otherwise an error is thrown. This should be used with a catch block to ensure that we can process our data correctly.</p>
-<div id="rededge_to_radiance-head_18">
-<a class="anchor_sub" name="rededge_to_radiance-head_18"></a>
-</div>
-<h3 id="syntax-2">Syntax</h3>
-<pre class="no-copy-button">Result = rededge_to_radiance(<a href="#params3-0">file</a>, [ <a href="#keywords3-0">DAT</a> = array ])</pre>
-<div id="rededge_to_radiance-head_19">
-<a class="anchor_sub" name="rededge_to_radiance-head_19"></a>
-</div>
-<h3 id="arguments-2">Arguments</h3>
 <p><a class="anchor_sub" name="params3-0"></a></p>
-<p><a class="anchor_sub" name="rededge_to_radiance-head_20"></a></p>
+<p><a class="anchor_sub" name="rededge_to_radiance-head_4"></a></p>
 <h4 id="file">FILE</h4>
 <p><font style="font-weight:bold;">in, required, type=string</font></p>
 <p>Specify the RedEdge file that you want to open and attempt to convert to radiance.</p>
-<div id="rededge_to_radiance-head_21">
-<a class="anchor_sub" name="rededge_to_radiance-head_21"></a>
+<div id="rededge_to_radiance-head_5">
+<a class="anchor_sub" name="rededge_to_radiance-head_5"></a>
 </div>
-<h3 id="keywords-1">Keywords</h3>
+<h3 id="keywords">Keywords</h3>
 <p><a class="anchor_sub" name="keywords3-0"></a></p>
-<p><a class="anchor_sub" name="rededge_to_radiance-head_22"></a></p>
+<p><a class="anchor_sub" name="rededge_to_radiance-head_6"></a></p>
 <h4 id="dat">DAT</h4>
 <p><font style="font-weight:bold;">in/out, optional, type=array</font></p>
 <p>For <strong>input</strong>, specify the image data for the scene that will have the correction applied.</p>
 <p>For <strong>output</strong>, this keyword contains the original scene data so that you don’t need to read it in multiple times.</p>
-<div id="rededge_to_radiance-head_23">
-<a class="anchor_sub" name="rededge_to_radiance-head_23"></a>
+<div id="rededge_to_radiance-head_7">
+<a class="anchor_sub" name="rededge_to_radiance-head_7"></a>
 </div>
-<h3 id="author-3">Author</h3>
+<h3 id="author-1">Author</h3>
 <p>Zachary Norman - GitHub:<a href="https://github.com/znorman-harris">znorman-harris</a></p>
 <hr />
-<p>© 2018 Harris Geospatial Solutions, Inc.</p>
-<p>Licensed under MIT. See LICENSE.txt for additional details and information.</p>
+<p>Copyright © 2018 Harris Geospatial Solutions, Inc.</p>
+<p>Licensed under MIT. See <a href="./../LICENSE.html">LICENSE.txt</a> for additional details and information.</p>
 </div>
 </row>
 </div>

@@ -1,5 +1,5 @@
 ;h+
-; (c) 2018 Harris Geospatial Solutions, Inc.
+; Copyright (c) 2018 Harris Geospatial Solutions, Inc.
 ; 
 ; Licensed under MIT. See LICENSE.txt for additional details and information.
 ;h-
@@ -93,7 +93,10 @@
 ;      approximate height above the ground for the reference group.
 ;    SENSOR: in, required, type=string, choices='rededge','sequoia','generic'
 ;      The type of sensor that will be processed. Default is generic unless otherwise specified.
-;
+; 
+; :Tooltip:
+;    Entry point for performing band-band alignment on imagery  
+;   
 ; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 pro uavBandAlignment, $

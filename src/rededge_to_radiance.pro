@@ -1,5 +1,5 @@
 ;h+
-; (c) 2018 Harris Geospatial Solutions, Inc.
+; Copyright (c) 2018 Harris Geospatial Solutions, Inc.
 ; 
 ; Licensed under MIT. See LICENSE.txt for additional details and information.
 ;h-
@@ -22,6 +22,8 @@
 ;-
 
 ;+
+; :Private:
+; 
 ; :Description:
 ;    Simple function that validates and returns nested keys
 ;    from within a hash/distionary object.
@@ -73,6 +75,8 @@ function extract_metadata, item, keys
 end
 
 ;+
+; :Private:
+; 
 ; :Description:
 ;    Returns 2D array which is the correction for vignetting with the sensor.
 ;
@@ -147,6 +151,8 @@ end
 ;      For **output**, this keyword contains the original scene data so that you don't need to 
 ;      read it in multiple times.
 ;
+; :Tooltip:
+;    Calibrates a RedEdge image to radiance using sensor metadata
 ;
 ; :Author: Zachary Norman - GitHub:[znorman-harris](https://github.com/znorman-harris)
 ;-

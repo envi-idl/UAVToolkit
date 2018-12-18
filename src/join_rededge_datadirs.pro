@@ -1,5 +1,5 @@
 ;h+
-; (c) 2018 Harris Geospatial Solutions, Inc.
+; Copyright (c) 2018 Harris Geospatial Solutions, Inc.
 ; 
 ; Licensed under MIT. See LICENSE.txt for additional details and information.
 ;h-
@@ -34,7 +34,10 @@
 ;    dirs: in, required, type=stringarr
 ;       This input in required and must be a string array. The first directory in the string array will be where renamed copies
 ;       of the data in the other directories can be found.
-;       
+; 
+; :Tooltip:
+;   Combines together multiple directories of MicaSense RedEdge data 
+;   
 ; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;
 ;-

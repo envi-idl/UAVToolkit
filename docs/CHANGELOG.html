@@ -95,19 +95,22 @@
       <ul id="sidebar" class="nav nav-stacked fixed sidebar-overflow">
         <li><a href="#" class="side_tt", side_tt="Changelog">Changelog</a></li>
         <li>
-          <a href="#idl-package-md-file-head_0" class="side_tt", side_tt="Version 2.3">Version 2.3</a>
+          <a href="#idl-package-md-file-head_0" class="side_tt", side_tt="Version 2.3.1">Version 2.3.1</a>
         <li>
         <li>
-          <a href="#idl-package-md-file-head_1" class="side_tt", side_tt="Version 2.2">Version 2.2</a>
+          <a href="#idl-package-md-file-head_1" class="side_tt", side_tt="Version 2.3">Version 2.3</a>
         <li>
         <li>
-          <a href="#idl-package-md-file-head_2" class="side_tt", side_tt="Version 2.1">Version 2.1</a>
+          <a href="#idl-package-md-file-head_2" class="side_tt", side_tt="Version 2.2">Version 2.2</a>
         <li>
         <li>
-          <a href="#idl-package-md-file-head_3" class="side_tt", side_tt="Version 2.0.2">Version 2.0.2</a>
+          <a href="#idl-package-md-file-head_3" class="side_tt", side_tt="Version 2.1">Version 2.1</a>
         <li>
         <li>
-          <a href="#idl-package-md-file-head_4" class="side_tt", side_tt="Version 2.0.1">Version 2.0.1</a>
+          <a href="#idl-package-md-file-head_4" class="side_tt", side_tt="Version 2.0.2">Version 2.0.2</a>
+        <li>
+        <li>
+          <a href="#idl-package-md-file-head_5" class="side_tt", side_tt="Version 2.0.1">Version 2.0.1</a>
         <li>
       </ul>
     </nav>
@@ -122,18 +125,27 @@
 <a class="anchor_sub" name="idl-package-md-file-head_0"></a>
 </div>
 <hr />
+<h2 id="version-2.3.1">Version 2.3.1</h2>
+<p>Comment updates to add tooltips</p>
+<p>Documentation updated</p>
+<p>LICENSE.txt updated to add “Copyright”</p>
+<p>idl.package.json updated for hooks into ENVI Tasks and Extensions</p>
+<div id="idl-package-md-file-head_1">
+<a class="anchor_sub" name="idl-package-md-file-head_1"></a>
+</div>
+<hr />
 <h2 id="version-2.3">Version 2.3</h2>
 <p>Updated the reflectance panel extractor to work better when the background is also bright. As long as the reflectance panels are greater than the mean reflectance of the image, they should be extractable. The new algorithm finds a measure of “squareness” and uses an optmization function to extract the most “square” clump of pixels in the scene.</p>
 <p>Documentation has been updated.</p>
-<div id="idl-package-md-file-head_1">
-<a class="anchor_sub" name="idl-package-md-file-head_1"></a>
+<div id="idl-package-md-file-head_2">
+<a class="anchor_sub" name="idl-package-md-file-head_2"></a>
 </div>
 <hr />
 <h2 id="version-2.2">Version 2.2</h2>
 <p>Updated some of the progress messages when running ENVI headlessly</p>
 <p>Added support for data that is already a multi-page TIFF in a single file, created a test for it, and updated the README with an example.</p>
-<div id="idl-package-md-file-head_2">
-<a class="anchor_sub" name="idl-package-md-file-head_2"></a>
+<div id="idl-package-md-file-head_3">
+<a class="anchor_sub" name="idl-package-md-file-head_3"></a>
 </div>
 <hr />
 <h2 id="version-2.1">Version 2.1</h2>
@@ -142,14 +154,14 @@
 <p>Fixed a bug with Parrot Sequoia metadata have a different tag name for ISOSpeed.</p>
 <p>Updated some routine names, task display names, and reorganized task parameters. This should not affect any code as the proper entry point is through the tasks.</p>
 <p>Added a new Basic version of the UAV Toolkit Band Alignment task that has about 1/3 of the parameters to make it easier to use in the ENVI UI.</p>
-<div id="idl-package-md-file-head_3">
-<a class="anchor_sub" name="idl-package-md-file-head_3"></a>
+<div id="idl-package-md-file-head_4">
+<a class="anchor_sub" name="idl-package-md-file-head_4"></a>
 </div>
 <hr />
 <h2 id="version-2.0.2">Version 2.0.2</h2>
 <p>When generating the tie points for the bands, we algorithm now only uses ENVI’s advanced algorithm for tie point generation. This means that the tie point generation process may take 10-15 minutes, depending on your data. This change removed the <code class="idl_line">RIGOROUS_ALIGNMENT</code> task parameter of the <code class="idl_line">UAVBandAlignment</code> task.</p>
-<div id="idl-package-md-file-head_4">
-<a class="anchor_sub" name="idl-package-md-file-head_4"></a>
+<div id="idl-package-md-file-head_5">
+<a class="anchor_sub" name="idl-package-md-file-head_5"></a>
 </div>
 <hr />
 <h2 id="version-2.0.1">Version 2.0.1</h2>
@@ -168,8 +180,8 @@
 <li><p>Packaged the tools to use the ENVI Task framework</p></li>
 </ul>
 <hr />
-<p>© 2018 Harris Geospatial Solutions, Inc.</p>
-<p>Licensed under MIT. See LICENSE.txt for additional details and information.</p>
+<p>Copyright © 2018 Harris Geospatial Solutions, Inc.</p>
+<p>Licensed under MIT. See <a href="./LICENSE.html">LICENSE.txt</a> for additional details and information.</p>
 </div>
 </row>
 </div>

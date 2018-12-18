@@ -1,5 +1,5 @@
 ;h+
-; (c) 2018 Harris Geospatial Solutions, Inc.
+; Copyright (c) 2018 Harris Geospatial Solutions, Inc.
 ; 
 ; Licensed under MIT. See LICENSE.txt for additional details and information.
 ;h-
@@ -84,7 +84,10 @@
 ;      assumed to be a constant value for each band. The order of this array should
 ;      match the `FILE_IDENTIFIERS`. If you are using Sequioa or RedEdge data, then
 ;      it is from shortest to longest wavelength.
-;
+; 
+; :Tooltip:
+;    Automates the processing of a folder of RedEdge images
+; 
 ; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
 pro uavBatchRedEdge, FLIGHTDIR = flightdir, BAND_ALIGNMENT_TASK = band_alignment_task, PANEL_REFLECTANCE = panel_reflectance

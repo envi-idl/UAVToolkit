@@ -1,11 +1,13 @@
 ;h+
-; (c) 2018 Harris Geospatial Solutions, Inc.
+; Copyright (c) 2018 Harris Geospatial Solutions, Inc.
 ; 
 ; Licensed under MIT. See LICENSE.txt for additional details and information.
 ;h-
 
 
 ;+
+; :Private:
+; 
 ; :Description:
 ;    Procedure that adds the buttons to ENVI's toolbox.
 ;    
@@ -26,6 +28,8 @@ pro uav_toolkit_extensions_init
 end
 
 ;+
+; :Private:
+; 
 ; :Description:
 ;    Displays the task UI for the button we click.
 ;
@@ -86,12 +90,17 @@ end
 ;   To open the help using this routine, just do the following:
 ;   
 ;       uav_toolkit, /HELP
+;
+;   This functionality is tested on windows.
 ;       
 ;
 ; :Keywords:
 ;    HELP: in, optional, type=boolean, default=false
 ;       Set this keyword to open up the help contents for the UAV Toolkit. Note that if you move the .sav file
 ;       then IDL may not be able to open up the help contents.
+; 
+; :Tooltip:
+;    Initializes the UAV Toolkit for use with ENVI
 ;
 ; :Author: Zachary Norman - GitHub: [znorman-harris](https://github.com/znorman-harris)
 ;-
