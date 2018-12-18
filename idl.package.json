@@ -1,6 +1,6 @@
 {
     "name": "UAVToolkit",
-    "version": "2.1",
+    "version": "2.3.2",
     "license": "MIT",
     "author": "Zachary Norman",
     "description": "A tool used to preprocess multispectral, multi-lens imagery.",
@@ -38,7 +38,7 @@
     "dependencies": {
         "github-se-awesomeenvitools": {
             "version": "^v0.0.2",
-            "url": "hgsolutions/SE-AwesomeENVITools"
+            "url": "hgsolutions/SE-AwesomeENVIToolkit"
         },
         "github-BridgeIt": {
             "version": "^v1.0.0",
