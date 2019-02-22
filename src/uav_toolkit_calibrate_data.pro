@@ -98,6 +98,7 @@ function uav_toolkit_calibrate_data, group, sensor, $
         ;default cases
         (useSensor eq !NULL):
         else:begin
+          goto, default
           default:
 
           ;open raster and get data
@@ -119,38 +120,18 @@ function uav_toolkit_calibrate_data, group, sensor, $
           endif else begin
             output_ies[i] = 1.0
           endelse
+          
+          ;check if we need to perform any scaling if over a certain pixel threshold
+          if keyword_set(max_pixel_value) AND keyword_set(max_value_divisor) then begin
+            ;check if we are higher than we need to be for the data
+            if (max(dat) gt max_pixel_value) then begin
+              scaleFlag = 1
+            endif
+          end
 
         ;stop switch execution
         break
       end
-
-      ;default cases
-      (useSensor eq !NULL):
-      else:begin
-        default:
-        
-        ;open raster and get data
-        raster = e.openRaster(file)
-        dat = raster.getData(INTERLEAVE = 'BSQ')
-        raster.close
-        
-        ;extract image metadata and get our gains for our panel
-        meta = read_exif(file)
-        
-        ;check the key type
-        case (1) of
-          meta.hasKey('ISOSpeed'): output_ies[i] = meta.ISOSpeed*meta.ExposureTime
-          meta.hasKey('ISOSpeedRatings'): output_ies[i] = meta.ISOSpeedRatings*meta.ExposureTime
-          else: output_ies[i] = 1.0
-        endcase
-        
-        ;check if we need to perform any scaling if over a certain pixel threshold
-        if keyword_set(max_pixel_value) AND keyword_set(max_value_divisor) then begin
-          ;check if we are higher than we need to be for the data
-          if (max(dat) gt max_pixel_value) then begin
-            scaleFlag = 1
-          endif
-        end
       endswitch
       
       ;save our data dimensionality
@@ -221,7 +202,7 @@ function uav_toolkit_calibrate_data, group, sensor, $
     endelse
   endforeach
   
-  ;clean up
+  ;clean ups
   vraster.close
   foreach r, rasters do if isa(r, 'ENVIRaster') then r.close
   
