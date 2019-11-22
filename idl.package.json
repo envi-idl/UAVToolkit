@@ -1,6 +1,6 @@
 {
     "name": "UAVToolkit",
-    "version": "2.3.4",
+    "version": "2.3.5",
     "license": "MIT",
     "author": "Zachary Norman",
     "description": "A tool used to preprocess multispectral, multi-lens imagery.",
@@ -15,7 +15,7 @@
     "scripts": {
         "add-headers": [
             [
-                "self.addFileHeaders, /OVERWRITE, ['Copyright (c) 2018 Harris Geospatial Solutions, Inc.',",
+                "self.addFileHeaders, /OVERWRITE, ['Copyright (c) 2019 Harris Geospatial Solutions, Inc.',",
                 "'',",
                 "'Licensed under MIT. See LICENSE.txt for additional details and information.']"
             ]
@@ -23,14 +23,14 @@
         "doc": [
             [
                 "self.document, /CLEAR_PREVIOUS, /NO_AUTO_OPEN, ",
-                "FOOTER=['Copyright &copy; 2018 Harris Geospatial Solutions, Inc.',",
+                "FOOTER=['Copyright &copy; 2019 Harris Geospatial Solutions, Inc.',",
                 "'', 'Licensed under MIT. See ![FILE: LICENSE.txt] for additional details and information.']"
             ]
         ],
         "doc-dev": [
             [
                 "self.document, /CLEAR_PREVIOUS, ",
-                "FOOTER=['Copyright &copy; 2018 Harris Geospatial Solutions, Inc.',",
+                "FOOTER=['Copyright &copy; 2019 Harris Geospatial Solutions, Inc.',",
                 "'', 'Licensed under MIT. See ![FILE: LICENSE.txt] for additional details and information.']"
             ]
         ]

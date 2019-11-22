@@ -10,6 +10,12 @@
     background: #C8102E;
 }
 
+.course-title {
+    /* border-left-color: white;
+    border-left-width: 1px;
+    border-left-style: solid;
+    padding-left: 20px; */
+}
 
 /* header bar images */
 img.header-image  {

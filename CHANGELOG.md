@@ -2,6 +2,16 @@
 
 This file summarizes the overall changes for the UAV toolkit.
 
+## Version 2.3.5
+
+Updated copyright statements
+
+Added updated example to README for UAVBatchRededge
+
+Rebuilt docs
+
+Some minor updates to the idl.package.json file
+
 ## Version 2.3.1
 
 Comment updates to add tooltips

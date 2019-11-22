@@ -1,5 +1,5 @@
 ;h+
-; Copyright (c) 2018 Harris Geospatial Solutions, Inc.
+; Copyright (c) 2019 Harris Geospatial Solutions, Inc.
 ; 
 ; Licensed under MIT. See LICENSE.txt for additional details and information.
 ;h-

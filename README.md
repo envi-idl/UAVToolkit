@@ -229,6 +229,11 @@ uav_toolkit
 alignTask = ENVITask('UAVBandAlignment')
 alignTask.MULTI_CHANNEL = 1
 
+; with custom parameters, we have to tell the UAV Toolkit what to process
+alignTask.GENERATE_REFERENCE_TIEPOINTS = 1 ; generate the reference tiepoints to register the images
+alignTask.APPLY_REFERENCE_TIEPOINTS = 1    ; register the bands of images we found
+alignTask.RIGOROUS_ALIGNMENT = 1           ; slower, but always works
+
 ;this folder should be the one that contains the unzipped contents of the sample data.
 flightDir = 'C:\data\rededge'
 
